@@ -6,7 +6,7 @@ body {
 
 .main {
   margin: auto;
-  max-width: 42em;
+  max-width: 60em;
 }
 
 .main .header-bar {
@@ -31,7 +31,7 @@ figcaption {
 }
 
 iframe {
-  max-width: 42em;
+  max-width: 60em;
   display: block;
   margin-left: auto;
   margin-right: auto;

@@ -57,6 +57,8 @@ th { background: #1D1F21; }
 .post .content h5{ color: var(--main-sec); }
 .post .content h6{ color: var(--main-sec); }
 .post .content a:hover { color: var(--main-sec); }
+
+
 .social-link:hover { color: var(--main-sec); }
 .nav-item-title:hover { color: var(--main-sec); }
 .tag a:hover { color: var(--main-sec); }
