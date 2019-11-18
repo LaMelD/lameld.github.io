@@ -13,6 +13,11 @@ body {
   padding: 1em 0.2em 0.3em 0.2em;
 }
 
+#rect {
+	width : 100em ; height : 100em;
+	background-color : red;
+}
+
 img {
   max-width: 100%;
   display: block;
