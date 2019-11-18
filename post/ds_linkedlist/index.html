@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="UTF-8">
+
+<head>
+<meta charset="utf-8" />
+<meta name="author" content="LaMelD" />
+<meta name="description" content="Personal blog." />
+<meta name="keywords" content="" />
+<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+<meta name="generator" content="Hugo 0.59.1" />
+
+<link rel="canonical" href="https://lameld.github.io/post/ds_linkedlist/">
+<meta property="og:title" content="[Data Structure] Single Linked List" />
+<meta property="og:description" content="Single Linked List (단순 연결 리스트) 1. 개념  하나의 노드에 필요한 정보를 담고 다음에 해당하는 노드를 가리키고 있는 자료구조로 포인터를 이용해 자료들을 선형으로 연결한 자료구조이다. [ 배열 ] 과 비교했을 때 추가 및 삭제가 쉽다는 장점이 있지만 접근할 때 O(n)만큼 걸린다는 단점이 있습니다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lameld.github.io/post/ds_linkedlist/" />
+<meta property="article:published_time" content="2019-11-15T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-11-15T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[Data Structure] Single Linked List"/>
+<meta name="twitter:description" content="Single Linked List (단순 연결 리스트) 1. 개념  하나의 노드에 필요한 정보를 담고 다음에 해당하는 노드를 가리키고 있는 자료구조로 포인터를 이용해 자료들을 선형으로 연결한 자료구조이다. [ 배열 ] 과 비교했을 때 추가 및 삭제가 쉽다는 장점이 있지만 접근할 때 O(n)만큼 걸린다는 단점이 있습니다."/>
+
+
+<meta itemprop="name" content="[Data Structure] Single Linked List">
+<meta itemprop="description" content="Single Linked List (단순 연결 리스트) 1. 개념  하나의 노드에 필요한 정보를 담고 다음에 해당하는 노드를 가리키고 있는 자료구조로 포인터를 이용해 자료들을 선형으로 연결한 자료구조이다. [ 배열 ] 과 비교했을 때 추가 및 삭제가 쉽다는 장점이 있지만 접근할 때 O(n)만큼 걸린다는 단점이 있습니다.">
+
+
+<meta itemprop="datePublished" content="2019-11-15T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2019-11-15T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="1018">
+
+
+
+<meta itemprop="keywords" content="c&#43;&#43;,data structure,linked list," />
+
+
+<link rel="stylesheet" href="https://lameld.github.io/css/layout.css" />
+
+
+<link rel="stylesheet" href="https://lameld.github.io/css/default-dark.css" />
+
+
+
+
+<title>
+
+
+     [Data Structure] Single Linked List 
+
+</title>
+
+</head>
+
+
+<body>
+<div class="main">
+<header>
+
+<div class="header-bar">
+
+  <nav>
+    <div class="siteTitle">
+      <a href="https://lameld.github.io/">LaMelD&#39;s Dev Life</a>
+    </div> 
+
+    
+    
+    <a class="nav-item active" href="https://lameld.github.io/post/"><div class="nav-item-title">Posts</div></a>
+    
+    <a class="nav-item" href="https://lameld.github.io/categories/"><div class="nav-item-title">Category</div></a>
+    
+    <a class="nav-item" href="https://lameld.github.io/tags/"><div class="nav-item-title">Tags</div></a>
+    
+    <a class="nav-item" href="https://lameld.github.io/about/"><div class="nav-item-title">About</div></a>
+    
+
+  </nav>
+    
+</div>
+
+
+</header>
+
+
+<article class="post">
+    <h1 class="title"> [Data Structure] Single Linked List </h1>
+    
+<div class="tags">
+    
+      <div class="tag">
+        <a href="https://lameld.github.io/tags/c&#43;&#43;">#c&#43;&#43;</a>
+      </div>
+    
+      <div class="tag">
+        <a href="https://lameld.github.io/tags/data-structure">#data structure</a>
+      </div>
+    
+      <div class="tag">
+        <a href="https://lameld.github.io/tags/linked-list">#linked list</a>
+      </div>
+    
+</div>
+
+    
+    <div class="content"> 
+
+<h1 id="single-linked-list-단순-연결-리스트">Single Linked List (단순 연결 리스트)</h1>
+
+<h3 id="1-개념">1. 개념</h3>
+
+<ul>
+<li>하나의 노드에 필요한 정보를 담고 다음에 해당하는 노드를 가리키고 있는 자료구조로 포인터를 이용해 자료들을 선형으로 연결한 자료구조이다.</li>
+<li>[ 배열 ] 과 비교했을 때 추가 및 삭제가 쉽다는 장점이 있지만 접근할 때 O(n)만큼 걸린다는 단점이 있습니다.</li>
+</ul>
+
+<p><br><br>
+<hr></p>
+
+<h3 id="2-구현">2. 구현</h3>
+
+<ul>
+<li>List를 구성할 노드를 생성하고 기본적인 기능을 추가합니다.
+
+<ul>
+<li>private 멤버 변수
+
+<ul>
+<li>data : 노드의 값</li>
+<li>pnext : 현재 노드의 다음을 알려주는 포인터</li>
+</ul></li>
+<li>public 멤버 함수
+
+<ul>
+<li>Node(), Node(T) : 생성자</li>
+<li>getData() : 노드의 data를 리턴한다.</li>
+<li>setData() : 노드의 data를 설정한다.</li>
+<li>getNext() : 현재 노드의 다음 노드를 리턴한다.</li>
+<li>setNext() : 현재 노드의 다음 노드를 설정한다.</li>
+</ul></li>
+</ul></li>
+</ul>
+
+<blockquote>
+<pre><code>template &lt;class T&gt;
+class Node
+{
+private:
+	T data;
+	Node&lt;T&gt;* pnext;
+public:
+	Node();
+	Node(T);
+	T getData() { return this-&gt;data; }
+	void setData(T n) { this-&gt;data = n; }
+	singlenode&lt;T&gt;* getNext() { return this-&gt;pnext; }
+	void setNext(singlenode&lt;T&gt;* pnode) { this-&gt;pnext = pnode; }
+};
+template &lt;class T&gt;
+Node&lt;T&gt;::Node()
+{
+	this-&gt;data = 0;
+	this-&gt;pnext = NULL;
+}
+template &lt;class T&gt;
+Node&lt;T&gt;::Node(T n)
+{
+	this-&gt;data = n;
+	this-&gt;pnext = NULL;
+}
+</code></pre>
+</blockquote>
+
+<p><br></p>
+
+<ul>
+<li>Node가 들어갈 List의 틀(class)을(를) 생성하고 필요한 기능과 멤버 변수를 추가해줍니다.
+
+<ul>
+<li>private 멤버 변수
+
+<ul>
+<li>phead : List의 가장 앞 부분을 알려준다.</li>
+<li>ptail : List의 끝을 알려준다.</li>
+<li>ssize : List에 들어있는 노드의 갯수를 알려준다.</li>
+</ul></li>
+<li>public 멤버 함수
+
+<ul>
+<li>SingleLinkedList() : 생성자</li>
+<li>isEmpty() : List가 비어있다면 True, 아니면 False</li>
+<li>size() : List에 들어있는 노드의 갯수를 리턴한다.</li>
+<li>getHead() : List의 가장 앞 부분을 알려주는 phead를 리턴한다</li>
+<li>getData(), AddFront(), AddBack(), InsertNode(), DeleteNode()
+<br /></li>
+</ul></li>
+</ul></li>
+</ul>
+
+<blockquote>
+<pre><code>template &lt;class T&gt;
+class SingleLinkedList
+{
+private:
+	Node&lt;T&gt;* phead;
+	Node&lt;T&gt;* ptail;
+	int ssize;
+public:
+	SingleLinkedList();
+	bool isEmpty() { return this-&gt;phead == NULL ? true : false; }
+	int size() { return this-&gt;ssize; }
+	Node&lt;T&gt;* getHead() { return this-&gt;phead; }
+	T getData(int);
+	void AddFront(T);
+	void AddBack(T);
+	void InsertNode(Node&lt;T&gt;*, T);
+	void DeleteNode(int);
+};
+</code></pre>
+</blockquote>
+
+<p><br></p>
+
+<ul>
+<li>멤버 함수 상세 내용</li>
+</ul>
+
+<blockquote>
+<p>getData(int n) : phead부터 n번째 data를 리턴한다.</p>
+
+<pre><code>template &lt;class T&gt;
+T SingleLinkedList&lt;T&gt;::getValue(int n)
+{
+	Node&lt;T&gt;* tmp = this-&gt;phead;
+	for (int i = 0; i &lt; n; i++)
+	{
+		tmp = tmp-&gt;getNext();
+	}
+	
+	return tmp-&gt;getData();
+}
+</code></pre>
+
+<p>AddFront(T n) : List의 맨 앞에 추가한다.</p>
+
+<pre><code>template &lt;class T&gt;
+void SingleLinkedList&lt;T&gt;::AddFront(T n)
+{
+	Node&lt;T&gt;* tmp = new Node&lt;T&gt;(n);
+
+	this-&gt;ssize++;
+
+	if (this-&gt;phead == NULL)
+	{
+		this-&gt;phead = tmp;
+		this-&gt;ptail = tmp;
+	}
+	else
+	{
+		tmp-&gt;setNext(this-&gt;phead);
+		this-&gt;phead = tmp;
+	}
+</code></pre>
+
+<p>AddBack(T n) : List의 맨 뒤에 추가한다</p>
+
+<pre><code>template &lt;class T&gt;
+void SingleLinkedList&lt;T&gt;::AddBack(T n)
+{
+	Node&lt;T&gt;* tmp = new Node&lt;T&gt;(n);
+
+	this-&gt;ssize++;
+
+	if (this-&gt;phead == NULL)
+	{
+		this-&gt;phead = tmp;
+		this-&gt;ptail = tmp;
+	}
+	else
+	{
+		this-&gt;ptail-&gt;setNext(tmp);
+		this-&gt;ptail = tmp;
+	}
+}
+</code></pre>
+
+<p>InsertNode(Node&lt;T&gt;* prev, T n) : prev 노드 뒤에 n의 value를 갖는 노드를 추가한다.</p>
+
+<pre><code>template &lt;class T&gt;
+void SingleLinkedList&lt;T&gt;::InsertNode(Node&lt;T&gt;* previous, T n)
+{
+	Node&lt;T&gt;* tmp = new Node&lt;T&gt;(n);
+
+	this-&gt;ssize++;
+
+	tmp-&gt;setNext(previous-&gt;getNext());
+	previous-&gt;setNext(tmp);
+}
+</code></pre>
+
+<p>DeleteNode(int n) : phead부터 n번째 인덱스의 다음 node를 삭제한다.</p>
+
+<pre><code>template &lt;class T&gt;
+void SingleLinkedList&lt;T&gt;::DeleteNode(int n)
+{
+	if (ssize != 0 &amp;&amp; n &lt; ssize)
+	{
+		this-&gt;ssize--;
+
+		if (n == 0)
+		{
+			this-&gt;phead = this-&gt;phead-&gt;getNext();
+		}
+		else
+		{
+			Node&lt;T&gt;* previous = this-&gt;phead;
+			Node&lt;T&gt;* tmp = previous-&gt;getNext();
+
+			for (int i = 1; i &lt; n; i++)
+			{
+				previous = tmp;
+				tmp = previous-&gt;getNext();
+			}
+			if (n == ssize)
+			{
+				this-&gt;ptail = previous;
+				previous-&gt;setNext(NULL);
+			}
+			previous-&gt;setNext(tmp-&gt;getNext());
+		}
+
+		if (ssize == 0)
+		{
+			this-&gt;phead = NULL;
+			this-&gt;ptail = NULL;
+		}
+	}
+}
+</code></pre>
+</blockquote>
+
+<p><br>
+- 전체 코드</p>
+
+<blockquote>
+<pre><code>#include &lt;iostream&gt;
+
+using namespace std;
+
+template &lt;class T&gt;
+class Node
+{
+private:
+	T data;
+	Node&lt;T&gt;* pnext;
+
+public:
+	Node();
+	Node(T);
+	T getData() { return this-&gt;data; }
+	void setData(T n) { this-&gt;data = n; }
+	Node&lt;T&gt;* getNext() { return this-&gt;pnext; }
+	void setNext(Node&lt;T&gt;* pnode) { this-&gt;pnext = pnode; }
+};
+template &lt;class T&gt;
+Node&lt;T&gt;::Node()
+{
+	this-&gt;data = 0;
+	this-&gt;pnext = NULL;
+}
+template &lt;class T&gt;
+Node&lt;T&gt;::Node(T n)
+{
+	this-&gt;data = n;
+	this-&gt;pnext = NULL;
+}
+
+template &lt;class T&gt;
+class SingleLinkedList
+{
+private:
+	Node&lt;T&gt;* phead;
+	Node&lt;T&gt;* ptail;
+	int ssize;
+
+public:
+	SingleLinkedList();
+	bool isEmpty() { return this-&gt;phead == NULL ? true : false; }
+	int size() { return this-&gt;ssize; }
+	Node&lt;T&gt;* getHead() { return this-&gt;phead; }
+	T getData(int);
+	void AddFront(T);
+	void AddBack(T);
+	void InsertNode(Node&lt;T&gt;*, T);
+	void DeleteNode(int);
+};
+template &lt;class T&gt;
+SingleLinkedList&lt;T&gt;::SingleLinkedList()
+{
+	this-&gt;phead = NULL;
+	this-&gt;ptail = NULL;
+	this-&gt;ssize = 0;
+}
+template &lt;class T&gt;
+void SingleLinkedList&lt;T&gt;::AddFront(T n)
+{
+	Node&lt;T&gt;* tmp = new Node&lt;T&gt;(n);
+
+	this-&gt;ssize++;
+
+	if (this-&gt;phead == NULL)
+	{
+		this-&gt;phead = tmp;
+		this-&gt;ptail = tmp;
+	}
+	else
+	{
+		tmp-&gt;setNext(this-&gt;phead);
+		this-&gt;phead = tmp;
+	}
+}
+template &lt;class T&gt;
+void SingleLinkedList&lt;T&gt;::AddBack(T n)
+{
+	Node&lt;T&gt;* tmp = new Node&lt;T&gt;(n);
+
+	this-&gt;ssize++;
+
+	if (this-&gt;phead == NULL)
+	{
+		this-&gt;phead = tmp;
+		this-&gt;ptail = tmp;
+	}
+	else
+	{
+		this-&gt;ptail-&gt;setNext(tmp);
+		this-&gt;ptail = tmp;
+	}
+}
+template &lt;class T&gt;
+void SingleLinkedList&lt;T&gt;::InsertNode(Node&lt;T&gt;* previous, T n)
+{
+	Node&lt;T&gt;* tmp = new Node&lt;T&gt;(n);
+
+	this-&gt;ssize++;
+
+	tmp-&gt;setNext(previous-&gt;getNext());
+	previous-&gt;setNext(tmp);
+}
+template &lt;class T&gt;
+void SingleLinkedList&lt;T&gt;::DeleteNode(int n)
+{
+	if (ssize != 0 &amp;&amp; n &lt; ssize)
+	{
+		this-&gt;ssize--;
+
+		if (n == 0)
+		{
+			this-&gt;phead = this-&gt;phead-&gt;getNext();
+		}
+		else
+		{
+			Node&lt;T&gt;* previous = this-&gt;phead;
+			Node&lt;T&gt;* tmp = previous-&gt;getNext();
+
+			for (int i = 1; i &lt; n; i++)
+			{
+				previous = tmp;
+				tmp = previous-&gt;getNext();
+			}
+			if (n == ssize)
+			{
+				this-&gt;ptail = previous;
+				previous-&gt;setNext(NULL);
+			}
+			previous-&gt;setNext(tmp-&gt;getNext());
+		}
+
+		if (ssize == 0)
+		{
+			this-&gt;phead = NULL;
+			this-&gt;ptail = NULL;
+		}
+	}
+}
+template &lt;class T&gt;
+T SingleLinkedList&lt;T&gt;::getData(int n)
+{
+	Node* tmp = this-&gt;phead;
+	for (int i = 0; i &lt; n; i++)
+	{
+		tmp = tmp-&gt;getNext();
+	}
+
+	return tmp-&gt;getData();
+}
+
+int main()
+{
+	SingleLinkedList&lt;int&gt;* sli = new SingleLinkedList&lt;int&gt;();
+
+	sli-&gt;AddBack(2);
+	sli-&gt;AddBack(3);
+	sli-&gt;AddBack(9);
+	sli-&gt;AddBack(10);
+
+	sli-&gt;AddFront(4);
+	sli-&gt;AddFront(5);
+	sli-&gt;AddFront(6);
+	sli-&gt;AddFront(7);
+	sli-&gt;AddFront(8);
+
+	cout &lt;&lt; &quot;2, 3, 9, 10을 앞에 추가하고, 4, 5, 6, 7, 8을 뒤에 추가한 결과 :&quot;;
+	Node&lt;int&gt;* tmp = sli-&gt;getHead();
+	for (int i = 0; i &lt; sli-&gt;size(); i++)
+	{
+		cout &lt;&lt; ' ' &lt;&lt; tmp-&gt;getData();
+		tmp = tmp-&gt;getNext();
+	}
+	cout &lt;&lt; '\n';
+
+	Node&lt;int&gt;* ptr = sli-&gt;getHead();
+	ptr = ptr-&gt;getNext()-&gt;getNext();
+
+	cout &lt;&lt; &quot;앞에서 3번째 인덱스 뒤에 150을 추가한다\n&quot;;
+	sli-&gt;InsertNode(ptr, 150);
+
+	cout &lt;&lt; &quot;5번째 인덱스 뒤의 노드를 삭제한다\n&quot;;
+	sli-&gt;DeleteNode(5);
+	cout &lt;&lt; &quot;최종 리스트 :&quot;;
+	tmp = sli-&gt;getHead();
+	for (int i = 0; i &lt; sli-&gt;size(); i++)
+	{
+		cout &lt;&lt; ' ' &lt;&lt; tmp-&gt;getData();
+		tmp = tmp-&gt;getNext();
+	}
+	cout &lt;&lt; '\n';
+}
+</code></pre>
+
+<p>출력<br></p>
+
+<pre><code>2, 3, 9, 10을 앞에 추가하고, 4, 5, 6, 7, 8을 뒤에 추가한 결과 : 8 7 6 5 4 2 3 9 10
+앞에서 3번째 인덱스 뒤에 150을 추가한다
+5번째 인덱스 뒤의 노드를 삭제한다
+최종 리스트 : 8 7 6 150 5 2 3 9 10
+</code></pre>
+</blockquote>
+ </div>
+    <footer class="post-footer">
+
+  <div class="post-footer-data">
+    
+<div class="tags">
+    
+      <div class="tag">
+        <a href="https://lameld.github.io/tags/c&#43;&#43;">#c&#43;&#43;</a>
+      </div>
+    
+      <div class="tag">
+        <a href="https://lameld.github.io/tags/data-structure">#data structure</a>
+      </div>
+    
+      <div class="tag">
+        <a href="https://lameld.github.io/tags/linked-list">#linked list</a>
+      </div>
+    
+</div>
+
+    <div class="date"> 15 Nov 2019 </div>
+  </div>
+
+</footer>
+
+
+  
+
+
+</article>
+
+  <footer>
+
+  <div class="social-links-footer">
+
+  
+  <a href="mailto:wqe014@gmail.com"><div class="social-link">Email</div></a>
+  
+
+  
+  <a href="https://github.com/lameld" target="_blank"><div class="social-link">GitHub</div></a>
+  
+
+  
+
+  
+  <a href="https://instagram.com/sangjoooooooooooon" target="_blank"><div class="social-link">instagram</div></a>
+  
+
+  
+
+  <div class="social-link">
+  <a href="https://lameld.github.io/index.xml" target="_blank">RSS</a>
+  </div>
+
+</div>
+
+
+  <div class="copyright">  </div>
+
+  <div class="poweredby">
+    Powered by <a href="https://gohugo.io/">Hugo</a>.
+  </div>
+
+  </footer>
+
+</div> 
+
+</body>
+</html>
+

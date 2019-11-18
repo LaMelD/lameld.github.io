@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="UTF-8">
+
+<head>
+<meta charset="utf-8" />
+<meta name="author" content="LaMelD" />
+<meta name="description" content="Personal blog." />
+<meta name="keywords" content="" />
+<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+<meta name="generator" content="Hugo 0.59.1" />
+
+<link rel="canonical" href="https://lameld.github.io/post/ds_stack/">
+<meta property="og:title" content="[Data Structure] Stack" />
+<meta property="og:description" content="Stack(스택) 1. 개념  가장 늦게 들어간 자료가 가장 먼저 나가는 구조이다. 후입선출(LIFO, Last In First Out)이라고도 부른다. Stack에 데이터를 넣는 행동을 push, 데이터를 빼는 행동을 pop이라 한다. Stack의 가장 위 데이터를 가르키는 포인터를 top이라고 한다.  
+ 2." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lameld.github.io/post/ds_stack/" />
+<meta property="article:published_time" content="2019-11-15T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-11-15T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[Data Structure] Stack"/>
+<meta name="twitter:description" content="Stack(스택) 1. 개념  가장 늦게 들어간 자료가 가장 먼저 나가는 구조이다. 후입선출(LIFO, Last In First Out)이라고도 부른다. Stack에 데이터를 넣는 행동을 push, 데이터를 빼는 행동을 pop이라 한다. Stack의 가장 위 데이터를 가르키는 포인터를 top이라고 한다.  
+ 2."/>
+
+
+<meta itemprop="name" content="[Data Structure] Stack">
+<meta itemprop="description" content="Stack(스택) 1. 개념  가장 늦게 들어간 자료가 가장 먼저 나가는 구조이다. 후입선출(LIFO, Last In First Out)이라고도 부른다. Stack에 데이터를 넣는 행동을 push, 데이터를 빼는 행동을 pop이라 한다. Stack의 가장 위 데이터를 가르키는 포인터를 top이라고 한다.  
+ 2.">
+
+
+<meta itemprop="datePublished" content="2019-11-15T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2019-11-15T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="596">
+
+
+
+<meta itemprop="keywords" content="c&#43;&#43;,data structure,stack," />
+
+
+<link rel="stylesheet" href="https://lameld.github.io/css/layout.css" />
+
+
+<link rel="stylesheet" href="https://lameld.github.io/css/default-dark.css" />
+
+
+
+
+<title>
+
+
+     [Data Structure] Stack 
+
+</title>
+
+</head>
+
+
+<body>
+<div class="main">
+<header>
+
+<div class="header-bar">
+
+  <nav>
+    <div class="siteTitle">
+      <a href="https://lameld.github.io/">LaMelD&#39;s Dev Life</a>
+    </div> 
+
+    
+    
+    <a class="nav-item active" href="https://lameld.github.io/post/"><div class="nav-item-title">Posts</div></a>
+    
+    <a class="nav-item" href="https://lameld.github.io/categories/"><div class="nav-item-title">Category</div></a>
+    
+    <a class="nav-item" href="https://lameld.github.io/tags/"><div class="nav-item-title">Tags</div></a>
+    
+    <a class="nav-item" href="https://lameld.github.io/about/"><div class="nav-item-title">About</div></a>
+    
+
+  </nav>
+    
+</div>
+
+
+</header>
+
+
+<article class="post">
+    <h1 class="title"> [Data Structure] Stack </h1>
+    
+<div class="tags">
+    
+      <div class="tag">
+        <a href="https://lameld.github.io/tags/c&#43;&#43;">#c&#43;&#43;</a>
+      </div>
+    
+      <div class="tag">
+        <a href="https://lameld.github.io/tags/data-structure">#data structure</a>
+      </div>
+    
+      <div class="tag">
+        <a href="https://lameld.github.io/tags/stack">#stack</a>
+      </div>
+    
+</div>
+
+    
+    <div class="content"> 
+
+<h1 id="stack-스택">Stack(스택)</h1>
+
+<h3 id="1-개념">1. 개념</h3>
+
+<ul>
+<li>가장 늦게 들어간 자료가 가장 먼저 나가는 구조이다.</li>
+<li>후입선출(LIFO, Last In First Out)이라고도 부른다.</li>
+<li>Stack에 데이터를 넣는 행동을 push, 데이터를 빼는 행동을 pop이라 한다.</li>
+<li>Stack의 가장 위 데이터를 가르키는 포인터를 top이라고 한다.</li>
+</ul>
+
+<p><br>
+<img src="https://lameld.github.io/images/stack.png">
+<br></p>
+
+<hr>
+
+<h3 id="2-구현">2. 구현</h3>
+
+<ul>
+<li>Stack class를 구성할 멤버 변수와 멤버 함수를 구성합니다.
+
+<ul>
+<li>멤버 변수
+
+<ul>
+<li>stack : 데이터를 저장할 동적 배열</li>
+<li>top : 가장 윗 부분을 알려주는 포인터</li>
+<li>capacity : stack의 최대 크기를 설정하는 변수</li>
+</ul></li>
+<li>멤버 함수
+
+<ul>
+<li>Stack() : capacity를 10으로 하여 Stack을 생성하는 생성자</li>
+<li>Stack(int) : capacity를 입력으로 받아 Stack을 생성하는 생성자</li>
+<li>Top() : 가장 위 데이터를 가져오는 함수</li>
+<li>Push, Pop : 데이터를 넣는 함수, 데이터를 빼는 함수</li>
+<li>isEmpty() : Stack이 비어있는지 판단하는 함수</li>
+<li>isFull() : Stack이 초깅 설정한 capacity에 도달 했는지(꽉 찼는지) 판단하는 함수
+<br /></li>
+</ul></li>
+</ul></li>
+</ul>
+
+<blockquote>
+<pre><code>template &lt;class T&gt;
+class Stack
+{
+private :
+	T* stack;
+	T top;
+	int capacity;
+public :
+	Stack();
+	Stack(int);
+	T Top();
+	void Push(T);
+	void Pop();
+	bool isEmpty();
+	bool isFull();
+};
+</code></pre>
+</blockquote>
+
+<ul>
+<li>각 멤버 함수의 구현</li>
+</ul>
+
+<blockquote>
+<p>Stack()</p>
+
+<pre><code>template &lt;class T&gt;
+Stack&lt;T&gt;::Stack()
+{
+	this-&gt;capacity = 10;
+	this-&gt;stack = new T[this-&gt;capacity];
+	this-&gt;top = -1;
+}
+</code></pre>
+
+<p>Stack(int capacity)</p>
+
+<pre><code>template &lt;class T&gt;
+Stack&lt;T&gt;::Stack(int capacity)
+{
+	this-&gt;capacity = capacity;
+	this-&gt;stack = new T[this-&gt;capacity];
+	this-&gt;top = -1;
+}
+</code></pre>
+
+<p>T Top()</p>
+
+<pre><code>template &lt;class T&gt;
+T Stack&lt;T&gt;::Top()
+{
+	T ret = NULL;
+	if (!this-&gt;isEmpty())
+	{
+		ret = this-&gt;stack[top];
+	}
+	return ret;
+}
+</code></pre>
+
+<p>void Push(T)</p>
+
+<pre><code>template &lt;class T&gt;
+void Stack&lt;T&gt;::Push(T data)
+{
+	if (!this-&gt;isFull())
+	{
+		this-&gt;stack[++top] = data;
+	}
+}
+</code></pre>
+
+<p>void Pop()</p>
+
+<pre><code>template &lt;class T&gt;
+void Stack&lt;T&gt;::Pop()
+{
+	if (!this-&gt;isEmpty())
+	{
+		this-&gt;top--;
+	}
+}
+</code></pre>
+
+<p>bool isEmpty()</p>
+
+<pre><code>template &lt;class T&gt;
+bool Stack&lt;T&gt;::isEmpty()
+{
+	if (this-&gt;top == -1)
+	{
+		return true;
+	}
+	return false;
+}
+</code></pre>
+
+<p>bool isFull()</p>
+
+<pre><code>template &lt;class T&gt;
+bool Stack&lt;T&gt;::isFull()
+{
+	if (this-&gt;top == (this-&gt;capacity - 1))
+	{
+		return true;
+	}
+	return false;
+}
+</code></pre>
+</blockquote>
+
+<ul>
+<li>전체 코드 및 테스트</li>
+</ul>
+
+<blockquote>
+<pre><code>#include &lt;iostream&gt;
+
+using namespace std;
+
+template &lt;class T&gt;
+class Stack
+{
+private :
+	T* stack;
+	T top;
+	int capacity;
+public :
+	Stack();
+	Stack(int);
+	T Top();
+	void Push(T);
+	void Pop();
+	bool isEmpty();
+	bool isFull();
+};
+
+template &lt;class T&gt;
+Stack&lt;T&gt;::Stack()
+{
+	this-&gt;capacity = 10;
+	this-&gt;stack = new T[this-&gt;capacity];
+	this-&gt;top = -1;
+}
+
+template &lt;class T&gt;
+Stack&lt;T&gt;::Stack(int capacity)
+{
+	this-&gt;capacity = capacity;
+	this-&gt;stack = new T[this-&gt;capacity];
+	this-&gt;top = -1;
+}
+
+template &lt;class T&gt;
+T Stack&lt;T&gt;::Top()
+{
+	T ret = NULL;
+	if (!this-&gt;isEmpty())
+	{
+		ret = this-&gt;stack[top];
+	}
+	return ret;
+}
+
+template &lt;class T&gt;
+void Stack&lt;T&gt;::Push(T data)
+{
+	if (!this-&gt;isFull())
+	{
+		this-&gt;stack[++top] = data;
+	}
+}
+
+template &lt;class T&gt;
+void Stack&lt;T&gt;::Pop()
+{
+	if (!this-&gt;isEmpty())
+	{
+		this-&gt;top--;
+	}
+}
+
+template &lt;class T&gt;
+bool Stack&lt;T&gt;::isEmpty()
+{
+	if (this-&gt;top == -1)
+	{
+		return true;
+	}
+	return false;
+}
+
+template &lt;class T&gt;
+bool Stack&lt;T&gt;::isFull()
+{
+	if (this-&gt;top == (this-&gt;capacity - 1))
+	{
+		return true;
+	}
+	return false;
+}
+
+int main()
+{
+	cout &lt;&lt; &quot;capacity가 70인 Stack 생성\n&quot;;
+	Stack&lt;int&gt; stack(70);
+	if (stack.isEmpty())
+	{
+		cout &lt;&lt; &quot;stack이 비어있습니다.\n&quot;;
+	}
+	cout &lt;&lt; &quot;0부터 34까지 stack에 push합니다\n&quot;;
+	for (int i = 0; i &lt; 35; i++)
+	{
+		stack.Push(i);
+	}
+	cout &lt;&lt; &quot;stack의 Top : &quot; &lt;&lt; stack.Top() &lt;&lt; '\n';
+	cout &lt;&lt; &quot;35부터 69까지 stack에 push합니다\n&quot;;
+	for (int i = 35; i &lt; 70; i++)
+	{
+		stack.Push(i);
+	}
+	cout &lt;&lt; &quot;stack의 Top : &quot; &lt;&lt; stack.Top() &lt;&lt; '\n';
+	if (stack.isFull())
+	{
+		cout &lt;&lt; &quot;stack이 꽉 찼습니다.\n&quot;;
+	}
+	cout &lt;&lt; &quot;stack에서 15개의 데이터를 pop합니다\n&quot;;
+	for (int i = 0; i &lt; 15; i++)
+	{
+		stack.Pop();
+	}
+	cout &lt;&lt; &quot;stack의 Top : &quot; &lt;&lt; stack.Top() &lt;&lt; '\n';
+}
+</code></pre>
+
+<p>결과</p>
+
+<pre><code>capacity가 70인 Stack 생성
+stack이 비어있습니다.
+0부터 34까지 stack에 push합니다
+stack의 Top : 34
+35부터 69까지 stack에 push합니다
+stack의 Top : 69
+stack이 꽉 찼습니다.
+stack에서 15개의 데이터를 pop합니다
+stack의 Top : 54
+</code></pre>
+</blockquote>
+
+<hr>
+
+<ul>
+<li>C++ STL vector를 Stack처럼 사용할 수 있습니다. 자세한 내용은 <a href="https://lameld.github.io/post/stl_vector">[ C++ STL vector ]</a>에서 확인하세요.</li>
+</ul>
+ </div>
+    <footer class="post-footer">
+
+  <div class="post-footer-data">
+    
+<div class="tags">
+    
+      <div class="tag">
+        <a href="https://lameld.github.io/tags/c&#43;&#43;">#c&#43;&#43;</a>
+      </div>
+    
+      <div class="tag">
+        <a href="https://lameld.github.io/tags/data-structure">#data structure</a>
+      </div>
+    
+      <div class="tag">
+        <a href="https://lameld.github.io/tags/stack">#stack</a>
+      </div>
+    
+</div>
+
+    <div class="date"> 15 Nov 2019 </div>
+  </div>
+
+</footer>
+
+
+  
+
+
+</article>
+
+  <footer>
+
+  <div class="social-links-footer">
+
+  
+  <a href="mailto:wqe014@gmail.com"><div class="social-link">Email</div></a>
+  
+
+  
+  <a href="https://github.com/lameld" target="_blank"><div class="social-link">GitHub</div></a>
+  
+
+  
+
+  
+  <a href="https://instagram.com/sangjoooooooooooon" target="_blank"><div class="social-link">instagram</div></a>
+  
+
+  
+
+  <div class="social-link">
+  <a href="https://lameld.github.io/index.xml" target="_blank">RSS</a>
+  </div>
+
+</div>
+
+
+  <div class="copyright">  </div>
+
+  <div class="poweredby">
+    Powered by <a href="https://gohugo.io/">Hugo</a>.
+  </div>
+
+  </footer>
+
+</div> 
+
+</body>
+</html>
+
