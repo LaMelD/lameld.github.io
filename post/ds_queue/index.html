@@ -28,7 +28,7 @@
 
 <meta itemprop="datePublished" content="2019-11-15T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2019-11-15T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="132">
+<meta itemprop="wordCount" content="408">
 
 
 
@@ -139,6 +139,130 @@
 <hr>
 
 <h3 id="2-구현-circular-queue">2. 구현 : Circular Queue</h3>
+
+<blockquote>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+
+using namespace std;
+
+template &lt;class T&gt;
+class CircularQueue
+{
+private :
+	T* queue;
+	int front = 0;
+	int rear = 0;
+	int capacity;
+public :
+	CircularQueue();
+	CircularQueue(int);
+	bool isEmpty();
+	bool isFull();
+	void Push(T);
+	void Pop();
+	T Front();
+};
+
+template &lt;class T&gt;
+CircularQueue&lt;T&gt;::CircularQueue()
+{
+	this-&gt;capacity = 10;
+	this-&gt;queue = new T[this-&gt;capacity + 1];
+}
+
+template &lt;class T&gt;
+CircularQueue&lt;T&gt;::CircularQueue(int capacity)
+{
+	this-&gt;capacity = capacity + 1;
+	this-&gt;queue = new T[this-&gt;capacity];
+}
+
+template &lt;class T&gt;
+bool CircularQueue&lt;T&gt;::isEmpty()
+{
+	if (this-&gt;front == this-&gt;rear)
+	{
+		return true;
+	}
+	return false;
+}
+
+template &lt;class T&gt;
+bool CircularQueue&lt;T&gt;::isFull()
+{
+	if ((this-&gt;rear + 1) % this-&gt;capacity == this-&gt;front)
+	{
+		return true;
+	}
+	return false;
+}
+
+template &lt;class T&gt;
+void CircularQueue&lt;T&gt;::Push(T data)
+{
+	if (!this-&gt;isFull())
+	{
+		this-&gt;queue[this-&gt;rear] = data;
+		this-&gt;rear = (this-&gt;rear + 1) % capacity;
+	}
+}
+
+template &lt;class T&gt;
+void CircularQueue&lt;T&gt;::Pop()
+{
+	if (!this-&gt;isEmpty())
+	{
+		this-&gt;front = (this-&gt;front + 1) % this-&gt;capacity;
+	}
+}
+
+template &lt;class T&gt;
+T CircularQueue&lt;T&gt;::Front()
+{
+	if (!this-&gt;isEmpty())
+	{
+		return this-&gt;queue[this-&gt;front];
+	}
+}
+
+int main()
+{
+	CircularQueue&lt;int&gt; q(20);
+	cout &lt;&lt; &quot;capacity가 20인 CircularQueue를 생성합니다.\n0부터 19까지 20개를 Queue에 넣습니다.\n&quot;;
+	for (int i = 0; i &lt; 20; i++)
+	{
+		q.Push(i);
+	}
+	if (q.isFull())
+	{
+		cout &lt;&lt; &quot;꽉 찼습니다.\n&quot;;
+	}
+	cout &lt;&lt; &quot;Queue의 Front를 출력하고 Pop하는 동작을 20번 반복합니다.\n&quot;;
+	for (int i = 0; i &lt; 20; i++)
+	{
+		cout &lt;&lt; q.Front() &lt;&lt; ' ';
+		q.Pop();
+	}
+	if (q.isEmpty())
+	{
+		cout &lt;&lt; &quot;\n비어있습니다.\n&quot;;
+	}
+
+	return 0;
+}
+</code></pre>
+
+<p>결과</p>
+
+<pre><code>capacity가 20인 CircularQueue를 생성합니다
+0부터 19까지 20개를 Queue에 넣습니다.
+꽉 찼습니다.
+Queue의 Front를 출력하고 Pop하는 동작을 20번 반복합니다.
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19
+비어있습니다.
+</code></pre>
+</blockquote>
  </div>
     <footer class="post-footer">
 
