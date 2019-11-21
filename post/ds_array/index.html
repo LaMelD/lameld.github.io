@@ -34,7 +34,7 @@ int arr0[3][7]; int arr1[10][10] = { { 0, }, }; int arr2 = { { 1,2}, { 3,4 } }; 
 
 <meta itemprop="datePublished" content="2019-11-15T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2019-11-15T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="498">
+<meta itemprop="wordCount" content="515">
 
 
 
@@ -202,10 +202,10 @@ memset(arr2, 0, sizeof(int) * size);
 <p><img src="https://lameld.github.io/images/array3.png"></p>
 
 <ul>
-<li>동적 배열 class : 1번 방법을 사용한 경우
+<li>동적 배열 class : 2번 방법을 사용한 경우
 
 <ul>
-<li>push : 배열의 가장 뒤쪽에 데이터를 추가한다.</li>
+<li>push : 배열의 가장 뒤쪽에 데이터를 추가한다. 배열의 size가 capacity에 도달하면 배열의 크기를 2배 늘려준다.</li>
 <li>pop : 배열의 가장 뒤쪽의 데이터를 제거한다.</li>
 <li>set : [ idx ]의 데이터를 input으로 수정한다.</li>
 <li>at : [ idx ]의 데이터를 가져온다.</li>
@@ -223,10 +223,11 @@ using namespace std;
 template &lt;class T&gt;
 class myArray
 {
-private :
+private:
 	T* m_arr;
 	int m_size;
-public :
+	int capacity;
+public:
 	myArray&lt;T&gt;();
 	myArray&lt;T&gt;(int);
 	myArray&lt;T&gt;(int, T);
@@ -242,12 +243,15 @@ template &lt;class T&gt;
 myArray&lt;T&gt;::myArray()
 {
 	this-&gt;m_size = 0;
+	this-&gt;capacity = 1;
+	this-&gt;m_arr = new T[this-&gt;capacity];
 }
 
 template &lt;class T&gt;
 myArray&lt;T&gt;::myArray(int size)
 {
 	this-&gt;m_size = size;
+	this-&gt;capacity = size;
 	this-&gt;m_arr = new T[size];
 }
 
@@ -262,17 +266,17 @@ myArray&lt;T&gt;::myArray(int size, T init)
 template &lt;class T&gt;
 void myArray&lt;T&gt;::push(T input)
 {
-	if (this-&gt;m_size == 0)
+	if (this-&gt;m_size == this-&gt;capacity)
 	{
-		this-&gt;m_arr = new T[1];
-		m_arr[m_size++] = input;
-	}
-	else
-	{
-		T* tmp = new T[m_size + 1];
+		this-&gt;capacity *= 2;
+		T* tmp = new T[this-&gt;capacity];
 		memcpy(tmp, this-&gt;m_arr, sizeof(T) * m_size);
 		delete(this-&gt;m_arr);
 		this-&gt;m_arr = tmp;
+		this-&gt;m_arr[this-&gt;m_size++] = input;
+	}
+	else
+	{
 		this-&gt;m_arr[this-&gt;m_size++] = input;
 	}
 }
@@ -313,7 +317,7 @@ int myArray&lt;T&gt;::size()
 
 <blockquote>
 <p>C++ STL vector
-vector를 사용하여 여러가지 동작이 가능하다. 자세한 내용은 추후에 C++ STL vector에서 다루겠습니다. 아래에는 사용하는 예시를 넣었습니다.</p>
+vector를 사용하여 여러가지 동작이 가능하다. 자세한 내용은 추후에 <a href="https://lameld.github.io/post/stl_vector">[ C++ STL vector ]</a>에서 다루겠습니다. 아래에는 사용하는 예시를 넣었습니다.</p>
 
 <pre><code>vector&lt;int&gt; arr1;
 vector&lt;int&gt; arr2(12);
