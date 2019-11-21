@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="UTF-8">
+
+<head>
+<meta charset="utf-8" />
+<meta name="author" content="LaMelD" />
+<meta name="description" content="Personal blog." />
+<meta name="keywords" content="" />
+<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+<meta name="generator" content="Hugo 0.59.1" />
+
+<link rel="canonical" href="https://lameld.github.io/post/stl_vector/">
+<meta property="og:title" content="[C&#43;&#43; STL] Vector" />
+<meta property="og:description" content="C&#43;&#43; STL Vector 개념  vector는 자동으로 메모리가 할당되는 배열이라고 생각하면 됩니다. template를 사용하기 때문에 데이터 타입은 마음데로 넣을 수 있습니다. Stack과 비슷한 구조를 가지고 있으며, 맨 뒤에서 삽입과 삭제가 가능합니다. 중간의 값을 삭제하거나 삽입이 가능하지만, 배열기반이므로 삽입과 삭제가 빈번하게 일어난다면 효율이 떨어집니다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lameld.github.io/post/stl_vector/" />
+<meta property="article:published_time" content="2019-11-16T20:08:14+09:00" />
+<meta property="article:modified_time" content="2019-11-16T20:08:14+09:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[C&#43;&#43; STL] Vector"/>
+<meta name="twitter:description" content="C&#43;&#43; STL Vector 개념  vector는 자동으로 메모리가 할당되는 배열이라고 생각하면 됩니다. template를 사용하기 때문에 데이터 타입은 마음데로 넣을 수 있습니다. Stack과 비슷한 구조를 가지고 있으며, 맨 뒤에서 삽입과 삭제가 가능합니다. 중간의 값을 삭제하거나 삽입이 가능하지만, 배열기반이므로 삽입과 삭제가 빈번하게 일어난다면 효율이 떨어집니다."/>
+
+
+<meta itemprop="name" content="[C&#43;&#43; STL] Vector">
+<meta itemprop="description" content="C&#43;&#43; STL Vector 개념  vector는 자동으로 메모리가 할당되는 배열이라고 생각하면 됩니다. template를 사용하기 때문에 데이터 타입은 마음데로 넣을 수 있습니다. Stack과 비슷한 구조를 가지고 있으며, 맨 뒤에서 삽입과 삭제가 가능합니다. 중간의 값을 삭제하거나 삽입이 가능하지만, 배열기반이므로 삽입과 삭제가 빈번하게 일어난다면 효율이 떨어집니다.">
+
+
+<meta itemprop="datePublished" content="2019-11-16T20:08:14&#43;09:00" />
+<meta itemprop="dateModified" content="2019-11-16T20:08:14&#43;09:00" />
+<meta itemprop="wordCount" content="88">
+
+
+
+<meta itemprop="keywords" content="c&#43;&#43; stl,vector," />
+
+
+<link rel="stylesheet" href="https://lameld.github.io/css/layout.css" />
+
+
+<link rel="stylesheet" href="https://lameld.github.io/css/default-dark.css" />
+
+
+
+
+<title>
+
+
+     [C&#43;&#43; STL] Vector 
+
+</title>
+
+</head>
+
+
+<body>
+<div class="main">
+<header>
+
+<div class="header-bar">
+
+  <nav>
+    <div class="siteTitle">
+      <a href="https://lameld.github.io/">LaMelD&#39;s Dev Life</a>
+    </div> 
+
+    
+    
+    <a class="nav-item active" href="https://lameld.github.io/post/"><div class="nav-item-title">Posts</div></a>
+    
+    <a class="nav-item" href="https://lameld.github.io/categories/"><div class="nav-item-title">Category</div></a>
+    
+    <a class="nav-item" href="https://lameld.github.io/tags/"><div class="nav-item-title">Tags</div></a>
+    
+    <a class="nav-item" href="https://lameld.github.io/about/"><div class="nav-item-title">About</div></a>
+    
+
+  </nav>
+    
+</div>
+
+
+</header>
+
+
+<article class="post">
+    <h1 class="title"> [C&#43;&#43; STL] Vector </h1>
+    
+<div class="tags">
+    
+      <div class="tag">
+        <a href="https://lameld.github.io/tags/c&#43;&#43;-stl">#c&#43;&#43; stl</a>
+      </div>
+    
+      <div class="tag">
+        <a href="https://lameld.github.io/tags/vector">#vector</a>
+      </div>
+    
+</div>
+
+    
+    <div class="content"> <h1>C++ STL Vector</h1>
+
+<h2>개념</h2>
+
+<ul>
+<li>vector는 자동으로 메모리가 할당되는 배열이라고 생각하면 됩니다.</li>
+<li>template를 사용하기 때문에 데이터 타입은 마음데로 넣을 수 있습니다.</li>
+<li>Stack과 비슷한 구조를 가지고 있으며, 맨 뒤에서 삽입과 삭제가 가능합니다.</li>
+<li>중간의 값을 삭제하거나 삽입이 가능하지만, 배열기반이므로 삽입과 삭제가 빈번하게 일어난다면 효율이 떨어집니다.</li>
+</ul>
+
+<h2>기본 생성법</h2>
+
+<ul>
+<li><vector> 헤더파일을 추가해야한다.</li>
+<li>선언 : vector&lt;[data type]&gt; [변수이름]
+
+<ul>
+<li>vector&lt;int&gt; v;</li>
+</ul></li>
+</ul>
+
+<blockquote>
+<p>비어있는 vector v를 생성합니다.</p>
+
+<pre><code>vector&lt;int&gt; v;
+</code></pre>
+
+<p>기본값(0)으로 초기화 된 N개의 원소를 가지는 vector v를 생성합니다.</p>
+
+<pre><code>vector&lt;int&gt; v(N);
+</code></pre>
+
+<p>K로 초기화된 N개의 원소를 가지는 vector v를 생성합니다.</p>
+
+<pre><code>vector&lt;int&gt; v(N, K);
+</code></pre>
+
+<p>v2는 v1 vector를 복사해서 생성됩니다.</p>
+
+<pre><code>vector&lt;int&gt; v2(v1);
+</code></pre>
+</blockquote>
+ </div>
+    <footer class="post-footer">
+
+  <div class="post-footer-data">
+    
+<div class="tags">
+    
+      <div class="tag">
+        <a href="https://lameld.github.io/tags/c&#43;&#43;-stl">#c&#43;&#43; stl</a>
+      </div>
+    
+      <div class="tag">
+        <a href="https://lameld.github.io/tags/vector">#vector</a>
+      </div>
+    
+</div>
+
+    <div class="date"> 16 Nov 2019 </div>
+  </div>
+
+</footer>
+
+
+  
+
+
+</article>
+
+  <footer>
+
+  <div class="social-links-footer">
+
+  
+  <a href="mailto:wqe014@gmail.com"><div class="social-link">Email</div></a>
+  
+
+  
+  <a href="https://github.com/lameld" target="_blank"><div class="social-link">GitHub</div></a>
+  
+
+  
+
+  
+  <a href="https://instagram.com/sangjoooooooooooon" target="_blank"><div class="social-link">instagram</div></a>
+  
+
+  
+
+  <div class="social-link">
+  <a href="https://lameld.github.io/index.xml" target="_blank">RSS</a>
+  </div>
+
+</div>
+
+
+  <div class="copyright">  </div>
+
+  <div class="poweredby">
+    Powered by <a href="https://gohugo.io/">Hugo</a>.
+  </div>
+
+  </footer>
+
+</div> 
+
+</body>
+</html>
+

@@ -6,10 +6,37 @@
     <description>Recent content in Tags on LaMelD&#39;s Dev Life</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>UTF-8</language>
-    <lastBuildDate>Fri, 15 Nov 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 16 Nov 2019 20:08:14 +0900</lastBuildDate>
     
 	<atom:link href="https://lameld.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>c&#43;&#43; stl</title>
+      <link>https://lameld.github.io/tags/c&#43;&#43;-stl/</link>
+      <pubDate>Sat, 16 Nov 2019 20:08:14 +0900</pubDate>
+      
+      <guid>https://lameld.github.io/tags/c&#43;&#43;-stl/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>queue</title>
+      <link>https://lameld.github.io/tags/queue/</link>
+      <pubDate>Sat, 16 Nov 2019 20:08:14 +0900</pubDate>
+      
+      <guid>https://lameld.github.io/tags/queue/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>vector</title>
+      <link>https://lameld.github.io/tags/vector/</link>
+      <pubDate>Sat, 16 Nov 2019 20:08:14 +0900</pubDate>
+      
+      <guid>https://lameld.github.io/tags/vector/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>array</title>
@@ -44,15 +71,6 @@
       <pubDate>Fri, 15 Nov 2019 00:00:00 +0000</pubDate>
       
       <guid>https://lameld.github.io/tags/linked-list/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>queue</title>
-      <link>https://lameld.github.io/tags/queue/</link>
-      <pubDate>Fri, 15 Nov 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://lameld.github.io/tags/queue/</guid>
       <description></description>
     </item>
     
