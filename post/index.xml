@@ -23,6 +23,16 @@
     </item>
     
     <item>
+      <title>[Programmers][Kakao Blind 2018] 프렌즈 4 블록</title>
+      <link>https://lameld.github.io/post/kko_blind_2018_friendsblock/</link>
+      <pubDate>Thu, 21 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://lameld.github.io/post/kko_blind_2018_friendsblock/</guid>
+      <description>카카오 블라인드 테스트 2018 - 프렌즈 4 블록 문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/17682
+ 같은 모양의 카카오프렌즈 블록이 2×2 형태로 4개가 붙어있을 경우 사라지면서 점수를 얻는 게임이다.     풀이  왼쪽 상단부터 오른쪽 하단까지 지울 수 2x2 형태로 4개가 붙어있는 경우를 탐색한다.</description>
+    </item>
+    
+    <item>
       <title>[C&#43;&#43; STL] Queue</title>
       <link>https://lameld.github.io/post/stl_queue/</link>
       <pubDate>Sat, 16 Nov 2019 20:08:14 +0900</pubDate>
