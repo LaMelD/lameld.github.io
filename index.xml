@@ -6,7 +6,7 @@
     <description>Recent content on LaMelD&#39;s Dev Life</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>UTF-8</language>
-    <lastBuildDate>Thu, 21 Nov 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 22 Nov 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://lameld.github.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -18,6 +18,17 @@
       
       <guid>https://lameld.github.io/about/</guid>
       <description> 블로그 설명  C++기반의 Algorithm 구축 Programmers 문제 풀이 SW Expert Academy 문제 풀이 BOJ 문제 풀이  앞으로 추가될 부분  웹, 앱 프로젝트 : Front-end 서버, DB : Back-end 블록체인 : Block-Chain  </description>
+    </item>
+    
+    <item>
+      <title>[Programmers][Kakao Blind 2018] 셔틀버스</title>
+      <link>https://lameld.github.io/post/kko_blind_2018_shuttle/</link>
+      <pubDate>Fri, 22 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://lameld.github.io/post/kko_blind_2018_shuttle/</guid>
+      <description>카카오 블라인드 테스트 2018 - 셔틀버스 문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/17678
+ 문제 설명
+ 셔틀은 09:00 부터 총 n 회 t 분 간격으로 역에 도착하며, 하나의 셔틀에는 최대 m 명의 승객이 탈 수 있다. 셔틀은 도착했을 때 도착한 순간 대기열에 선 크루까지 포함해서 대기 순서대로 태우고 바로 출발한다.</description>
     </item>
     
     <item>
@@ -37,7 +48,7 @@
       <pubDate>Thu, 21 Nov 2019 00:00:00 +0000</pubDate>
       
       <guid>https://lameld.github.io/post/kko_blind_2018_friendsblock/</guid>
-      <description>카카오 블라인드 테스트 2018 - 프렌즈 4 블록 문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/17682
+      <description>카카오 블라인드 테스트 2018 - 프렌즈 4 블록 문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/17679
  같은 모양의 카카오프렌즈 블록이 2×2 형태로 4개가 붙어있을 경우 사라지면서 점수를 얻는 게임이다.     풀이  왼쪽 상단부터 오른쪽 하단까지 지울 수 2x2 형태로 4개가 붙어있는 경우를 탐색한다.</description>
     </item>
     
