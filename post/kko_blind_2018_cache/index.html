@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="UTF-8">
+
+<head>
+<meta charset="utf-8" />
+<meta name="author" content="LaMelD" />
+<meta name="description" content="Personal blog." />
+<meta name="keywords" content="" />
+<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+<meta name="generator" content="Hugo 0.59.1" />
+
+<link rel="canonical" href="https://lameld.github.io/post/kko_blind_2018_cache/">
+<meta property="og:title" content="[Programmers][Kakao Blind 2018] 캐시" />
+<meta property="og:description" content="카카오 블라인드 테스트 2018 - 캐시 문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/17680
+ 문제 설명
+ 캐시 교체 알고리즘은 LRU(Least Recently Used) 를 사용한다. cache hit 일 경우 실행시간은 1이다. cache miss 일 경우 실행시간은 5이다. 총 실행 시간을 출력한다.   문제 풀이" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lameld.github.io/post/kko_blind_2018_cache/" />
+<meta property="article:published_time" content="2019-11-22T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-11-22T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[Programmers][Kakao Blind 2018] 캐시"/>
+<meta name="twitter:description" content="카카오 블라인드 테스트 2018 - 캐시 문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/17680
+ 문제 설명
+ 캐시 교체 알고리즘은 LRU(Least Recently Used) 를 사용한다. cache hit 일 경우 실행시간은 1이다. cache miss 일 경우 실행시간은 5이다. 총 실행 시간을 출력한다.   문제 풀이"/>
+
+
+<meta itemprop="name" content="[Programmers][Kakao Blind 2018] 캐시">
+<meta itemprop="description" content="카카오 블라인드 테스트 2018 - 캐시 문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/17680
+ 문제 설명
+ 캐시 교체 알고리즘은 LRU(Least Recently Used) 를 사용한다. cache hit 일 경우 실행시간은 1이다. cache miss 일 경우 실행시간은 5이다. 총 실행 시간을 출력한다.   문제 풀이">
+
+
+<meta itemprop="datePublished" content="2019-11-22T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2019-11-22T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="299">
+
+
+
+<meta itemprop="keywords" content="c&#43;&#43;,programmers,kakao blind 2018," />
+
+
+<link rel="stylesheet" href="https://lameld.github.io/css/layout.css" />
+
+
+<link rel="stylesheet" href="https://lameld.github.io/css/default-dark.css" />
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-153078485-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+<title>
+
+
+     [Programmers][Kakao Blind 2018] 캐시 
+
+</title>
+
+</head>
+
+
+<body>
+<div class="main">
+<header>
+
+<div class="header-bar">
+
+  <nav>
+    <div class="siteTitle">
+      <a href="https://lameld.github.io/">LaMelD&#39;s Dev Life</a>
+    </div> 
+
+    
+    
+    <a class="nav-item active" href="https://lameld.github.io/post/"><div class="nav-item-title">Posts</div></a>
+    
+    <a class="nav-item" href="https://lameld.github.io/categories/"><div class="nav-item-title">Category</div></a>
+    
+    <a class="nav-item" href="https://lameld.github.io/tags/"><div class="nav-item-title">Tags</div></a>
+    
+    <a class="nav-item" href="https://lameld.github.io/about/"><div class="nav-item-title">About</div></a>
+    
+
+  </nav>
+    
+</div>
+
+
+</header>
+
+
+<article class="post">
+    <h1 class="title"> [Programmers][Kakao Blind 2018] 캐시 </h1>
+    
+<div class="tags">
+    
+      <div class="tag">
+        <a href="https://lameld.github.io/tags/c&#43;&#43;">#c&#43;&#43;</a>
+      </div>
+    
+      <div class="tag">
+        <a href="https://lameld.github.io/tags/programmers">#programmers</a>
+      </div>
+    
+      <div class="tag">
+        <a href="https://lameld.github.io/tags/kakao-blind-2018">#kakao blind 2018</a>
+      </div>
+    
+</div>
+
+    
+    <div class="content"> <h1>카카오 블라인드 테스트 2018 - 캐시</h1>
+
+<p>문제 출처 : <a href="https://programmers.co.kr/learn/courses/30/lessons/17680">https://programmers.co.kr/learn/courses/30/lessons/17680</a></p>
+
+<ul>
+<li><p>문제 설명</p>
+
+<ol>
+<li>캐시 교체 알고리즘은 <code>LRU(Least Recently Used)</code> 를 사용한다.</li>
+<li><code>cache hit</code> 일 경우 실행시간은 1이다.</li>
+<li><code>cache miss</code> 일 경우 실행시간은 5이다.</li>
+<li>총 실행 시간을 출력한다.
+<br /></li>
+</ol></li>
+
+<li><p>문제 풀이</p>
+
+<ul>
+<li>캐시 크기만큼의 배열을 생성한다.</li>
+<li>캐시가 비어있다면 데이터를 넣는다. 데이터를 넣을 때 사용된 시간을 함께 넣는다.</li>
+<li>cache miss이고 비어 있는 캐시가 없다면 가장 오랫동안 사용되지 않은 데이터를 교체한다.</li>
+<li>cache miss이고 비어 있는 캐시가 있다면 비어 있는 공간에 데이터와 사용된 시간을 넣는다.</li>
+<li>cache hit가 일어나면 해당 cache의 사용된 시간을 갱신한다.
+<br /></li>
+</ul></li>
+</ul>
+
+<blockquote>
+<p>Code</p>
+
+<pre><code>#include &lt;string&gt;
+#include &lt;vector&gt;
+
+using namespace std;
+
+static const int hit = 1;
+static const int miss = 5;
+
+struct node {
+	int used_time = -1;
+	string city = &quot;&quot;;
+};
+
+//캐시에 들어있는지 판단
+//cache hit인지 판단한다.
+bool is_hit(vector&lt;node&gt;&amp; c, string s, int time)
+{
+	for (int i = 0; i &lt; c.size(); i++)
+	{
+		if (c[i].city == s)
+		{
+			c[i].used_time = time;
+			return true;
+		}
+	}
+
+	return false;
+}
+
+//캐시 교체
+void cache_replace(vector&lt;node&gt;&amp; c, string s, int time)
+{
+	int mintime = c[0].used_time;
+	int idx = 0;
+
+	//캐시에 들어있는 데이터 중에서 가장 오랫동안 사용되지 않은
+	//데이터를 찾는다.
+	for (int i = 1; i &lt; c.size(); i++)
+	{
+		if (c[i].used_time &lt; mintime)
+		{
+			mintime = c[i].used_time;
+			idx = i;
+		}
+	}
+
+	//교체
+	c[idx].used_time = time;
+	c[idx].city = s;
+}
+
+int solution(int cacheSize, vector&lt;string&gt; cities)
+{
+	int csize = cities.size();
+	vector&lt;node&gt; cache(cacheSize);
+
+	//모든 문자를 대문자로 변경
+	for (int i = 0; i &lt; csize; i++)
+	{
+		for (int j = 0; j &lt; cities[i].length(); j++)
+		{
+			cities[i][j] = toupper(cities[i][j]);
+		}
+	}
+
+	int cnt = 0;
+
+	for (int i = 0; i &lt; csize; i++)
+	{
+		if (is_hit(cache, cities[i], i))
+		{
+			cnt += hit;
+		}
+		else
+		{
+			if (cacheSize != 0)
+			{
+				cache_replace(cache, cities[i], i);
+			}
+
+			cnt += miss;
+		}
+	}
+
+	return cnt;
+}
+</code></pre>
+</blockquote>
+ </div>
+    <footer class="post-footer">
+
+  <div class="post-footer-data">
+    
+<div class="tags">
+    
+      <div class="tag">
+        <a href="https://lameld.github.io/tags/c&#43;&#43;">#c&#43;&#43;</a>
+      </div>
+    
+      <div class="tag">
+        <a href="https://lameld.github.io/tags/programmers">#programmers</a>
+      </div>
+    
+      <div class="tag">
+        <a href="https://lameld.github.io/tags/kakao-blind-2018">#kakao blind 2018</a>
+      </div>
+    
+</div>
+
+    <div class="date"> 22 Nov 2019 </div>
+  </div>
+
+</footer>
+
+
+  
+
+
+</article>
+
+  <footer>
+
+  <div class="social-links-footer">
+
+  
+  <a href="mailto:wqe014@gmail.com"><div class="social-link">Email</div></a>
+  
+
+  
+  <a href="https://github.com/lameld" target="_blank"><div class="social-link">GitHub</div></a>
+  
+
+  
+
+  
+  <a href="https://instagram.com/sangjoooooooooooon" target="_blank"><div class="social-link">instagram</div></a>
+  
+
+  
+
+  <div class="social-link">
+  <a href="https://lameld.github.io/index.xml" target="_blank">RSS</a>
+  </div>
+
+</div>
+
+
+  <div class="copyright">  </div>
+
+  <div class="poweredby">
+    Powered by <a href="https://gohugo.io/">Hugo</a>.
+  </div>
+
+  </footer>
+
+</div> 
+
+</body>
+</html>
+

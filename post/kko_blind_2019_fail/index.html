@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="UTF-8">
+
+<head>
+<meta charset="utf-8" />
+<meta name="author" content="LaMelD" />
+<meta name="description" content="Personal blog." />
+<meta name="keywords" content="" />
+<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+<meta name="generator" content="Hugo 0.59.1" />
+
+<link rel="canonical" href="https://lameld.github.io/post/kko_blind_2019_fail/">
+<meta property="og:title" content="[Programmers][Kakao Blind 2019] 실패율" />
+<meta property="og:description" content="카카오 블라인드 테스트 2018 - 실패율 문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/42889
+ 문제 설명
+ 실패율 = A / B  A : 스테이지에 도달했으나 클리어하지 못한 플레이어 수 B : 스테이지에 도달한 플레이어 수  B가 0인 경우 실패율은 0으로 정의한다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lameld.github.io/post/kko_blind_2019_fail/" />
+<meta property="article:published_time" content="2019-11-24T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-11-24T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[Programmers][Kakao Blind 2019] 실패율"/>
+<meta name="twitter:description" content="카카오 블라인드 테스트 2018 - 실패율 문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/42889
+ 문제 설명
+ 실패율 = A / B  A : 스테이지에 도달했으나 클리어하지 못한 플레이어 수 B : 스테이지에 도달한 플레이어 수  B가 0인 경우 실패율은 0으로 정의한다."/>
+
+
+<meta itemprop="name" content="[Programmers][Kakao Blind 2019] 실패율">
+<meta itemprop="description" content="카카오 블라인드 테스트 2018 - 실패율 문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/42889
+ 문제 설명
+ 실패율 = A / B  A : 스테이지에 도달했으나 클리어하지 못한 플레이어 수 B : 스테이지에 도달한 플레이어 수  B가 0인 경우 실패율은 0으로 정의한다.">
+
+
+<meta itemprop="datePublished" content="2019-11-24T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2019-11-24T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="244">
+
+
+
+<meta itemprop="keywords" content="c&#43;&#43;,programmers,kakao blind 2019," />
+
+
+<link rel="stylesheet" href="https://lameld.github.io/css/layout.css" />
+
+
+<link rel="stylesheet" href="https://lameld.github.io/css/default-dark.css" />
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-153078485-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+<title>
+
+
+     [Programmers][Kakao Blind 2019] 실패율 
+
+</title>
+
+</head>
+
+
+<body>
+<div class="main">
+<header>
+
+<div class="header-bar">
+
+  <nav>
+    <div class="siteTitle">
+      <a href="https://lameld.github.io/">LaMelD&#39;s Dev Life</a>
+    </div> 
+
+    
+    
+    <a class="nav-item active" href="https://lameld.github.io/post/"><div class="nav-item-title">Posts</div></a>
+    
+    <a class="nav-item" href="https://lameld.github.io/categories/"><div class="nav-item-title">Category</div></a>
+    
+    <a class="nav-item" href="https://lameld.github.io/tags/"><div class="nav-item-title">Tags</div></a>
+    
+    <a class="nav-item" href="https://lameld.github.io/about/"><div class="nav-item-title">About</div></a>
+    
+
+  </nav>
+    
+</div>
+
+
+</header>
+
+
+<article class="post">
+    <h1 class="title"> [Programmers][Kakao Blind 2019] 실패율 </h1>
+    
+<div class="tags">
+    
+      <div class="tag">
+        <a href="https://lameld.github.io/tags/c&#43;&#43;">#c&#43;&#43;</a>
+      </div>
+    
+      <div class="tag">
+        <a href="https://lameld.github.io/tags/programmers">#programmers</a>
+      </div>
+    
+      <div class="tag">
+        <a href="https://lameld.github.io/tags/kakao-blind-2019">#kakao blind 2019</a>
+      </div>
+    
+</div>
+
+    
+    <div class="content"> <h1>카카오 블라인드 테스트 2018 - 실패율</h1>
+
+<p>문제 출처 : <a href="https://programmers.co.kr/learn/courses/30/lessons/42889">https://programmers.co.kr/learn/courses/30/lessons/42889</a></p>
+
+<ul>
+<li><p>문제 설명</p>
+
+<ol>
+<li>실패율 = A / B
+
+<ul>
+<li>A : 스테이지에 도달했으나 클리어하지 못한 플레이어 수</li>
+<li>B : 스테이지에 도달한 플레이어 수</li>
+</ul></li>
+<li>B가 0인 경우 실패율은 0으로 정의한다.</li>
+<li>실패율이 높은 스테이지부터 내림차순으로 정렬된 배열을 리턴한다.
+<br /></li>
+</ol></li>
+
+<li><p>문제 풀이</p>
+
+<ul>
+<li>모든 스테이지 A, B를 확정시킨다.</li>
+<li>실패율을 비교하여 정렬을 진행한 뒤 스테이지 number만 리턴한다.
+<br /></li>
+</ul></li>
+</ul>
+
+<blockquote>
+<p>Code</p>
+
+<pre><code>#include &lt;string&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+
+using namespace std;
+
+struct node
+{
+	int stage;
+	int playing;
+	int arrive;
+	bool iszero;
+};
+
+vector&lt;int&gt; solution(int N, vector&lt;int&gt; stages)
+{
+	vector&lt;node&gt; ret;
+
+	for (int i = 1; i &lt;= N; i++)
+	{
+		int arrive = 0;
+		int playing = 0;
+		node input;
+		input.stage = i;
+		for (int j = 0; j &lt; stages.size(); j++)
+		{
+			if (i &lt;= stages[j])
+			{
+				if (i == stages[j])
+				{
+					playing++;
+				}
+				arrive++;
+			}
+		}
+
+		if (arrive == 0)
+		{
+			input.iszero = 1;
+			ret.push_back(input);
+		}
+		else
+		{
+			input.iszero = 0;
+			input.arrive = arrive;
+			input.playing = playing;
+			ret.push_back(input);
+		}
+	}
+
+	sort(ret.begin(), ret.end(), [](node a, node b)
+		{
+			//소트 조건에서 비교한다
+			if (a.iszero &amp;&amp; b.iszero)
+			{
+				return a.stage &lt; b.stage;
+			}
+
+			if (a.iszero)
+			{
+				return false;
+			}
+
+			if (b.iszero)
+			{
+				return true;
+			}
+
+			long long aa, bb;
+			aa = (long long)a.playing * (long long)b.arrive;
+			bb = (long long)b.playing * (long long)a.arrive;
+			if (aa == bb)
+			{
+				return a.stage &lt; b.stage;
+			}
+			return aa &gt; bb;
+		}
+	);
+
+	vector&lt;int&gt; answer;
+	for (int i = 0; i &lt; N; i++)
+	{
+		answer.push_back(ret[i].stage);
+	}
+
+	return answer;
+}
+</code></pre>
+</blockquote>
+ </div>
+    <footer class="post-footer">
+
+  <div class="post-footer-data">
+    
+<div class="tags">
+    
+      <div class="tag">
+        <a href="https://lameld.github.io/tags/c&#43;&#43;">#c&#43;&#43;</a>
+      </div>
+    
+      <div class="tag">
+        <a href="https://lameld.github.io/tags/programmers">#programmers</a>
+      </div>
+    
+      <div class="tag">
+        <a href="https://lameld.github.io/tags/kakao-blind-2019">#kakao blind 2019</a>
+      </div>
+    
+</div>
+
+    <div class="date"> 24 Nov 2019 </div>
+  </div>
+
+</footer>
+
+
+  
+
+
+</article>
+
+  <footer>
+
+  <div class="social-links-footer">
+
+  
+  <a href="mailto:wqe014@gmail.com"><div class="social-link">Email</div></a>
+  
+
+  
+  <a href="https://github.com/lameld" target="_blank"><div class="social-link">GitHub</div></a>
+  
+
+  
+
+  
+  <a href="https://instagram.com/sangjoooooooooooon" target="_blank"><div class="social-link">instagram</div></a>
+  
+
+  
+
+  <div class="social-link">
+  <a href="https://lameld.github.io/index.xml" target="_blank">RSS</a>
+  </div>
+
+</div>
+
+
+  <div class="copyright">  </div>
+
+  <div class="poweredby">
+    Powered by <a href="https://gohugo.io/">Hugo</a>.
+  </div>
+
+  </footer>
+
+</div> 
+
+</body>
+</html>
+

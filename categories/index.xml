@@ -6,15 +6,24 @@
     <description>Recent content in Categories on LaMelD&#39;s Dev Life</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>UTF-8</language>
-    <lastBuildDate>Fri, 22 Nov 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 24 Nov 2019 18:15:23 +0900</lastBuildDate>
     
 	<atom:link href="https://lameld.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>Kakao Blind 2019</title>
+      <link>https://lameld.github.io/categories/kakao-blind-2019/</link>
+      <pubDate>Sun, 24 Nov 2019 18:15:23 +0900</pubDate>
+      
+      <guid>https://lameld.github.io/categories/kakao-blind-2019/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Kakao Blind 2018</title>
       <link>https://lameld.github.io/categories/kakao-blind-2018/</link>
-      <pubDate>Fri, 22 Nov 2019 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 24 Nov 2019 00:00:00 +0000</pubDate>
       
       <guid>https://lameld.github.io/categories/kakao-blind-2018/</guid>
       <description></description>
