@@ -23,6 +23,17 @@
     </item>
     
     <item>
+      <title>[Programmers][Kakao Blind 2019] 무지의 먹방 라이브</title>
+      <link>https://lameld.github.io/post/kko_blind_2019_muzi/</link>
+      <pubDate>Sun, 24 Nov 2019 18:15:07 +0900</pubDate>
+      
+      <guid>https://lameld.github.io/post/kko_blind_2019_muzi/</guid>
+      <description>카카오 블라인드 테스트 2018 - 무지의 먹방 라이브 문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/42891
+ 문제 설명
+ 회전판에 먹어야 할 N개의 음식이 있다. 무지는 1번 음식부터 먹기 시작하며, 회전판은 번호가 증가하는 순서대로 음식을 무지 앞으로 가져다 놓는다. 무지는 음식 하나를 1초 동안 섭취한 후 남은 음식은 그대로 두고, 다음 음식을 섭취한다.</description>
+    </item>
+    
+    <item>
       <title>[Programmers][Kakao Blind 2019] 후보키</title>
       <link>https://lameld.github.io/post/kko_blind_2019_key/</link>
       <pubDate>Sun, 24 Nov 2019 18:15:02 +0900</pubDate>
@@ -32,6 +43,17 @@
  문제 설명
  후보키 : 유일성과 최소성을 만족하는 것을 후보키(Candidate Key)라고 한다. 테이블이 주어졌을 때 후보키의 최대 갯수를 구한다.    유일성(uniqueness)
 릴레이션에 있는 모든 튜플에 대해 유일하게 식별되어야 한다.</description>
+    </item>
+    
+    <item>
+      <title>[Programmers][Kakao Blind 2019] 오픈채팅방</title>
+      <link>https://lameld.github.io/post/kko_blind_2019_open/</link>
+      <pubDate>Sun, 24 Nov 2019 18:14:39 +0900</pubDate>
+      
+      <guid>https://lameld.github.io/post/kko_blind_2019_open/</guid>
+      <description>카카오 블라인드 테스트 2018 - 오픈채팅방 문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/42888
+ 문제 설명
+ 오픈채팅방에선 친구가 아닌 사람들과 대화가 가능하다. 채칭방에 들어오거나 나갈 때 메시지가 출력된다. 닉네임을 변경하는 방법은 2가지가 있다.  채팅방을 나간 후, 새로운 닉네임으로 다시 들어온다. 채팅방에서 닉네임을 변경한다.</description>
     </item>
     
     <item>
