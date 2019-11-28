@@ -32,5 +32,15 @@
  외벽이 원형으로 이루어진 레스토랑의 외벽을 점검한다. 외벽의 총 둘레는 n미터이다. 최소한의 인원을 투입하여 취약 지점을 점검한다. 정북 방향 지점을 0으로 한다. 인원들 각각이 1시간 동안 이동할 수 있는 거리는 다르다.</description>
     </item>
     
+    <item>
+      <title>[Programmers][Kakao Blind 2019] 괄호 변환</title>
+      <link>https://lameld.github.io/post/kko_blind_2020_convert/</link>
+      <pubDate>Wed, 27 Nov 2019 11:21:17 +0900</pubDate>
+      
+      <guid>https://lameld.github.io/post/kko_blind_2020_convert/</guid>
+      <description>카카오 블라인드 테스트 2020 - 괄호 변환 문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/60058
+ 문제 설명  균형잡힌 괄호 문자열 : &amp;lsquo;(&amp;lsquo;의 개수와 &amp;lsquo;)&amp;lsquo;의 개수가 같다. 올바른 문자열 : &amp;lsquo;(&amp;lsquo;와 &amp;lsquo;)&amp;lsquo;의 괄호의 개수가 같고, 짝도 맞다. 해당 문제에서 제시된 설명은 다음과 같다.     입력이 빈 문자열인 경우, 빈 문자열을 반환합니다.</description>
+    </item>
+    
   </channel>
 </rss>
