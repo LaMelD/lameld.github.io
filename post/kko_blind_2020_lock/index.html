@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="UTF-8">
+
+<head>
+<meta charset="utf-8" />
+<meta name="author" content="LaMelD" />
+<meta name="description" content="Personal blog." />
+<meta name="keywords" content="" />
+<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+<meta name="generator" content="Hugo 0.59.1" />
+
+<link rel="canonical" href="https://lameld.github.io/post/kko_blind_2020_lock/">
+<meta property="og:title" content="[Programmers][Kakao Blind 2019] 자물쇠와 열쇠" />
+<meta property="og:description" content="카카오 블라인드 테스트 2020 - 자물쇠와 열쇠 문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/60059
+ 문제 설명  자물쇠의 크기 : M * M 열쇠의 크기 : N * N 열쇠는 회전과 이동이 가능하며 열쇠의 돌기 부분을 자물쇠 홈 부분에 맞게 채우면 자물쇠가 열리는 구조이다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lameld.github.io/post/kko_blind_2020_lock/" />
+<meta property="article:published_time" content="2019-11-27T11:21:28+09:00" />
+<meta property="article:modified_time" content="2019-11-27T11:21:28+09:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[Programmers][Kakao Blind 2019] 자물쇠와 열쇠"/>
+<meta name="twitter:description" content="카카오 블라인드 테스트 2020 - 자물쇠와 열쇠 문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/60059
+ 문제 설명  자물쇠의 크기 : M * M 열쇠의 크기 : N * N 열쇠는 회전과 이동이 가능하며 열쇠의 돌기 부분을 자물쇠 홈 부분에 맞게 채우면 자물쇠가 열리는 구조이다."/>
+
+
+<meta itemprop="name" content="[Programmers][Kakao Blind 2019] 자물쇠와 열쇠">
+<meta itemprop="description" content="카카오 블라인드 테스트 2020 - 자물쇠와 열쇠 문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/60059
+ 문제 설명  자물쇠의 크기 : M * M 열쇠의 크기 : N * N 열쇠는 회전과 이동이 가능하며 열쇠의 돌기 부분을 자물쇠 홈 부분에 맞게 채우면 자물쇠가 열리는 구조이다.">
+
+
+<meta itemprop="datePublished" content="2019-11-27T11:21:28&#43;09:00" />
+<meta itemprop="dateModified" content="2019-11-27T11:21:28&#43;09:00" />
+<meta itemprop="wordCount" content="360">
+
+
+
+<meta itemprop="keywords" content="c&#43;&#43;,programmers,kakao blind 2020," />
+
+
+<link rel="stylesheet" href="https://lameld.github.io/css/layout.css" />
+
+
+<link rel="stylesheet" href="https://lameld.github.io/css/default-dark.css" />
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-153078485-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+<title>
+
+
+     [Programmers][Kakao Blind 2019] 자물쇠와 열쇠 
+
+</title>
+
+</head>
+
+
+<body>
+
+
+
+<div class="main">
+<header>
+
+<div class="header-bar">
+
+  <nav>
+    <div class="siteTitle">
+      <a href="https://lameld.github.io/">LaMelD&#39;s Dev Life</a>
+    </div> 
+
+    
+    
+    <a class="nav-item active" href="https://lameld.github.io/post/"><div class="nav-item-title">Posts</div></a>
+    
+    <a class="nav-item" href="https://lameld.github.io/categories/"><div class="nav-item-title">Category</div></a>
+    
+    <a class="nav-item" href="https://lameld.github.io/tags/"><div class="nav-item-title">Tags</div></a>
+    
+    <a class="nav-item" href="https://lameld.github.io/about/"><div class="nav-item-title">About</div></a>
+    
+
+  </nav>
+    
+</div>
+
+
+</header>
+
+
+<article class="post">
+    <h1 class="title"> [Programmers][Kakao Blind 2019] 자물쇠와 열쇠 </h1>
+    
+<div class="tags">
+    
+      <div class="tag">
+        <a href="https://lameld.github.io/tags/c&#43;&#43;">#c&#43;&#43;</a>
+      </div>
+    
+      <div class="tag">
+        <a href="https://lameld.github.io/tags/programmers">#programmers</a>
+      </div>
+    
+      <div class="tag">
+        <a href="https://lameld.github.io/tags/kakao-blind-2020">#kakao blind 2020</a>
+      </div>
+    
+</div>
+
+    
+    <div class="content"> <h1>카카오 블라인드 테스트 2020 - 자물쇠와 열쇠</h1>
+
+<p>문제 출처 : <a href="https://programmers.co.kr/learn/courses/30/lessons/60059">https://programmers.co.kr/learn/courses/30/lessons/60059</a></p>
+
+<ul>
+<li>문제 설명
+
+<ol>
+<li>자물쇠의 크기 : M * M</li>
+<li>열쇠의 크기 : N * N</li>
+<li>열쇠는 회전과 이동이 가능하며 열쇠의 돌기 부분을 자물쇠 홈 부분에 맞게 채우면 자물쇠가 열리는 구조이다.</li>
+<li>열쇠를 자물쇠에 끼워 넣었을 때 빈 부분이 없어야 자물쇠를 열 수 있다.</li>
+</ol></li>
+</ul>
+
+<p><img src="https://lameld.github.io/images/lock1.jpg" width=50% height=50%></p>
+
+<ul>
+<li>문제 풀이
+
+<ul>
+<li>N, M의 범위가 매우 크지 않음으로 완전탐색을 진행한다.</li>
+<li>(N + M + N - 2) x (N + M + N - 2) 의 2차원 배열 생성하여 중앙에 자물쇠를 배치한다.</li>
+<li>열쇠를 가능한 모든 위치에 대입하여 해당 열쇠로 자물쇠를 열 수 있는지 판단한다.
+<br /></li>
+</ul></li>
+</ul>
+
+<blockquote>
+<p>Code</p>
+
+<pre><code>#include &lt;string&gt;
+#include &lt;vector&gt;
+#include &lt;iostream&gt;
+
+using namespace std;
+
+bool is_open(vector&lt;vector&lt;int&gt;&gt; W, vector&lt;vector&lt;int&gt;&gt;&amp; key, int w_i, int w_j, int N, int M)
+{
+	for (int i = 0; i &lt; key.size(); i++) {
+		for (int j = 0; j &lt; key.size(); j++) {
+			W[w_i + i][w_j + j] += key[i][j];
+		}
+	}
+
+	for (int i = M - 1; i &lt; M + N - 1; i++)
+	{
+		for (int j = M - 1; j &lt; M + N - 1; j++)
+		{
+			if (W[i][j] == 1) continue;
+			return false;
+		}
+	}
+	return true;
+}
+
+void right_rot(vector&lt;vector&lt;int&gt;&gt;&amp; k)
+{
+	vector&lt;vector&lt;int&gt;&gt; ret = k;
+	for (int i = 0; i &lt; k.size(); i++) {
+		for (int j = 0; j &lt; k.size(); j++) {
+			ret[i][j] = k[j][k.size() - 1 - i];
+		}
+	}
+	k = ret;
+}
+
+bool solution(vector&lt;vector&lt;int&gt;&gt; key, vector&lt;vector&lt;int&gt;&gt; lock)
+{
+	int N = lock.size();
+	int M = key.size();
+	int Wsize = 2 * M + N - 2;
+	vector&lt;vector&lt;int&gt;&gt; W(Wsize, vector&lt;int&gt;(Wsize));
+	for (int i = M - 1; i &lt; M + N - 1; i++)
+	{
+		for (int j = M - 1; j &lt; M + N - 1; j++)
+		{
+			W[i][j] = lock[i - M + 1][j - M + 1];
+		}
+	}
+
+	for (int i = 0; i &lt; 4; i++)
+	{
+		for (int j = 0; j &lt; Wsize - M + 1; j++)
+		{
+			for (int k = 0; k &lt; Wsize - M + 1; k++) {
+				if (is_open(W, key, j, k, N, M))
+					return true;
+			}
+		}
+		right_rot(key);
+	}
+
+	return false;
+}
+</code></pre>
+</blockquote>
+ </div>
+    <footer class="post-footer">
+
+  <div class="post-footer-data">
+    
+<div class="tags">
+    
+      <div class="tag">
+        <a href="https://lameld.github.io/tags/c&#43;&#43;">#c&#43;&#43;</a>
+      </div>
+    
+      <div class="tag">
+        <a href="https://lameld.github.io/tags/programmers">#programmers</a>
+      </div>
+    
+      <div class="tag">
+        <a href="https://lameld.github.io/tags/kakao-blind-2020">#kakao blind 2020</a>
+      </div>
+    
+</div>
+
+    <div class="date"> 27 Nov 2019 </div>
+  </div>
+
+</footer>
+
+
+  
+
+
+</article>
+
+  <footer>
+
+  <div class="social-links-footer">
+
+  
+  <a href="mailto:wqe014@gmail.com"><div class="social-link">Email</div></a>
+  
+
+  
+  <a href="https://github.com/lameld" target="_blank"><div class="social-link">GitHub</div></a>
+  
+
+  
+
+  
+  <a href="https://instagram.com/sangjoooooooooooon" target="_blank"><div class="social-link">instagram</div></a>
+  
+
+  
+
+  <div class="social-link">
+  <a href="https://lameld.github.io/index.xml" target="_blank">RSS</a>
+  </div>
+
+</div>
+
+
+  <div class="copyright">  </div>
+
+  <div class="poweredby">
+    Powered by <a href="https://gohugo.io/">Hugo</a>.
+  </div>
+
+  </footer>
+
+</div> 
+
+</body>
+</html>
+
