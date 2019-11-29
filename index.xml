@@ -6,7 +6,7 @@
     <description>Recent content on LaMelD&#39;s Dev Life</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>UTF-8</language>
-    <lastBuildDate>Wed, 27 Nov 2019 11:22:43 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 29 Nov 2019 17:38:30 +0900</lastBuildDate>
     
 	<atom:link href="https://lameld.github.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -18,6 +18,17 @@
       
       <guid>https://lameld.github.io/about/</guid>
       <description> 블로그 설명  C++기반의 Algorithm 구축 Programmers 문제 풀이 SW Expert Academy 문제 풀이 BOJ 문제 풀이  앞으로 추가될 부분  웹, 앱 프로젝트 : Front-end 서버, DB : Back-end 블록체인 : Block-Chain  </description>
+    </item>
+    
+    <item>
+      <title>[SW Expert Academy][D4] 2819</title>
+      <link>https://lameld.github.io/post/swea_2819/</link>
+      <pubDate>Fri, 29 Nov 2019 17:38:30 +0900</pubDate>
+      
+      <guid>https://lameld.github.io/post/swea_2819/</guid>
+      <description>2819 - 격자판의 숫자 이어 붙이기 문제 출처 : https://swexpertacademy.com/main/code/problem/problemDetail.do
+ 문제 설명
+ 4 x 4 크기의 격자판이 있다. 격자판의 각 격자칸에는 0부터 9사이의 숫자가 적혀 있다. 격자판의 임의의 위치에서 시작한다. 동서남북 네 방향으로 인접한 격자로 총 6회 이동하여 각 칸에 숫자를 차례로 이어 붙인다.</description>
     </item>
     
     <item>
