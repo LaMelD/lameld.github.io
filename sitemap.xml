@@ -8,27 +8,47 @@
   </url>
   
   <url>
+    <loc>https://lameld.github.io/categories/</loc>
+    <lastmod>2019-12-31T13:23:21+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lameld.github.io/</loc>
+    <lastmod>2019-12-31T13:23:21+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lameld.github.io/post/cloud_nw_1/</loc>
+    <lastmod>2019-12-31T13:23:21+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lameld.github.io/post/</loc>
+    <lastmod>2019-12-31T13:23:21+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lameld.github.io/categories/study_network/</loc>
+    <lastmod>2019-12-31T13:23:21+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lameld.github.io/tags/study_network/</loc>
+    <lastmod>2019-12-31T13:23:21+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lameld.github.io/tags/</loc>
+    <lastmod>2019-12-31T13:23:21+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://lameld.github.io/tags/c&#43;&#43;/</loc>
     <lastmod>2019-11-29T17:38:30+09:00</lastmod>
   </url>
   
   <url>
-    <loc>https://lameld.github.io/categories/</loc>
-    <lastmod>2019-11-29T17:38:30+09:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://lameld.github.io/tags/d4/</loc>
-    <lastmod>2019-11-29T17:38:30+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lameld.github.io/</loc>
-    <lastmod>2019-11-29T17:38:30+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lameld.github.io/post/</loc>
     <lastmod>2019-11-29T17:38:30+09:00</lastmod>
   </url>
   
@@ -44,11 +64,6 @@
   
   <url>
     <loc>https://lameld.github.io/post/swea_2819/</loc>
-    <lastmod>2019-11-29T17:38:30+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lameld.github.io/tags/</loc>
     <lastmod>2019-11-29T17:38:30+09:00</lastmod>
   </url>
   
@@ -228,12 +243,12 @@
   </url>
   
   <url>
-    <loc>https://lameld.github.io/tags/data-structure/</loc>
+    <loc>https://lameld.github.io/categories/data-structure/</loc>
     <lastmod>2019-11-15T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://lameld.github.io/categories/data-structure/</loc>
+    <loc>https://lameld.github.io/tags/data-structure/</loc>
     <lastmod>2019-11-15T00:00:00+00:00</lastmod>
   </url>
   

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>study_network on LaMelD&#39;s Dev Life</title>
+    <link>https://lameld.github.io/categories/study_network/</link>
+    <description>Recent content in study_network on LaMelD&#39;s Dev Life</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>UTF-8</language>
+    <lastBuildDate>Tue, 31 Dec 2019 13:23:21 +0900</lastBuildDate>
+    
+	<atom:link href="https://lameld.github.io/categories/study_network/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>[CLOUD] Network</title>
+      <link>https://lameld.github.io/post/cloud_nw_1/</link>
+      <pubDate>Tue, 31 Dec 2019 13:23:21 +0900</pubDate>
+      
+      <guid>https://lameld.github.io/post/cloud_nw_1/</guid>
+      <description>#네트워크 #191230 Monday ~ ?????????
+berryz web share ip :: http://192.168.0.100 (사설 IP)
+berryz web share ip :: http://121.140.73.126 (공인 IP)
+복습 :: http://www.ddarahakit.kro.kr -&amp;gt; kro.kr 도메인은 무료?
+  기본적으로 알아야 할 컴퓨터 기초  데이터 표현  2진법, 10진법, 16진법(0x00)   HW 구성요소  CPU(central processing unit)  processor : 물리적 코어   RAM(memory : random access memory) : 주 기억  process : 실행되고 있는 프로그램   하드 디스크(SSD/HDD) : 보조 기억 I/O 장치   운영 체제(OS : operating system)  하드웨어를 관리해주는 프로그램 구성요소 : 커널, 쉘, 응용 프로그램   파일의 특징  파일의 이름(확장자)  exe, txt, zip, egg, etc.</description>
+    </item>
+    
+  </channel>
+</rss>

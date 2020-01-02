@@ -8,15 +8,14 @@
 <meta name="description" content="Personal blog." />
 <meta name="keywords" content="" />
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.59.1" />
+<meta name="generator" content="Hugo 0.62.0" />
 
 <link rel="canonical" href="https://lameld.github.io/">
 <meta property="og:title" content="LaMelD&#39;s Dev Life" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://lameld.github.io/" />
-
-<meta property="og:updated_time" content="2019-11-29T17:38:30+09:00" />
+<meta property="og:updated_time" content="2019-12-31T13:23:21+09:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="LaMelD&#39;s Dev Life"/>
@@ -25,8 +24,6 @@
 
 <meta itemprop="name" content="LaMelD&#39;s Dev Life">
 <meta itemprop="description" content="">
-
-
 
 <link rel="stylesheet" href="https://lameld.github.io/css/layout.css" />
 
@@ -97,6 +94,43 @@ if (!doNotTrack) {
 			<article class="post-preview">
 
   <header>
+    <h2 class="title"> <a href='https://lameld.github.io/post/stl_vector/'> [C&#43;&#43; STL] Vector</a> </h2>
+    <div class="meta">
+      <div class="date">
+      16 Nov, 2019 - 2 minutes
+      </div>
+      
+<div class="tags">
+    
+      <div class="tag">
+        <a href="https://lameld.github.io/tags/c&#43;&#43;-stl">#c&#43;&#43; stl</a>
+      </div>
+    
+      <div class="tag">
+        <a href="https://lameld.github.io/tags/vector">#vector</a>
+      </div>
+    
+</div>
+
+    </div>
+
+  </header>
+
+  <div class="summary">
+    vector는 자동으로 메모리가 할당되는 배열이라고 생각하면 됩니다. template를 사용하기 때문에 데이터 타입은 마음데로 넣을 수 있습니다. Stack과 비슷한 구조를 가지고 있으며, 맨 뒤에서 삽입과 삭제가 가능합니다. 중간의 값을 삭제하거나 삽입이 가능하지만, 배열기반이므로 삽입과 삭제가 빈번하게 일어난다면 효율이 떨어집니다.   헤더파일을 추가해야한다.
+  </div>
+
+  <div class="rmore">
+    <a href='https://lameld.github.io/post/stl_vector/' class="rmore">Read more</a>
+  </div>
+
+
+</article>
+
+	
+			<article class="post-preview">
+
+  <header>
     <h2 class="title"> <a href='https://lameld.github.io/post/ds_array/'> [Data Structure] Array</a> </h2>
     <div class="meta">
       <div class="date">
@@ -125,8 +159,8 @@ if (!doNotTrack) {
 
   <div class="summary">
     Array(배열)  정적 배열 (Static Array)  기본적인 배열을 의미한다. C++에서 간단하게 선언이 가능하다.     1차원
-int arr0[3]; int arr1[10] = { 0, }; int arr2 = { 1,2,3,4 };  2차원
-int arr0[3][7]; int arr1[10][10] = { { 0, }, }; int arr2 = { { 1,2}, { 3,4 } };  3차원 이상의 배열도 [ ]를 추가하여 선언이 가능하다.
+ int arr0[3];int arr1[10] = { 0, };int arr2 = { 1,2,3,4 }; 2차원
+ int arr0[3][7];int arr1[10][10] = { { 0, }, };int arr2 = { { 1,2}, { 3,4 } }; 3차원 이상의 배열도 [ ]를 추가하여 선언이 가능하다.
   </div>
 
   <div class="rmore">
@@ -249,8 +283,7 @@ int arr0[3][7]; int arr1[10][10] = { { 0, }, }; int arr2 = { { 1,2}, { 3,4 } }; 
   </header>
 
   <div class="summary">
-    Stack(스택) 1. 개념  가장 늦게 들어간 자료가 가장 먼저 나가는 구조이다. 후입선출(LIFO, Last In First Out)이라고도 부른다. Stack에 데이터를 넣는 행동을 push, 데이터를 빼는 행동을 pop이라 한다. Stack의 가장 위 데이터를 가르키는 포인터를 top이라고 한다.  
- 2.
+    Stack(스택) 1. 개념  가장 늦게 들어간 자료가 가장 먼저 나가는 구조이다. 후입선출(LIFO, Last In First Out)이라고도 부른다. Stack에 데이터를 넣는 행동을 push, 데이터를 빼는 행동을 pop이라 한다. Stack의 가장 위 데이터를 가르키는 포인터를 top이라고 한다.  2. 구현  Stack class를 구성할 멤버 변수와 멤버 함수를 구성합니다.
   </div>
 
   <div class="rmore">

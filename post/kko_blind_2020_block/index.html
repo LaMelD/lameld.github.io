@@ -7,12 +7,12 @@
 <meta name="description" content="Personal blog." />
 <meta name="keywords" content="" />
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.59.1" />
+<meta name="generator" content="Hugo 0.62.0" />
 
 <link rel="canonical" href="https://lameld.github.io/post/kko_blind_2020_block/">
 <meta property="og:title" content="[Programmers][Kakao Blind 2020] 블록 이동하기" />
-<meta property="og:description" content="카카오 블라인드 테스트 2020 - 길 찾기 게임 문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/60063
- 문제 설명  아래의 왼쪽과 같이 board의 정보가 input으로 주어진다. 0과 1로 이루어진 N x N 크기의 지도에서 2 x 1 크기의 로봇을 (1, 1) 에서 (N, N) 까지 이동시킨다." />
+<meta property="og:description" content="문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/60063&lt;/a&gt;
+ 문제 설명  아래의 왼쪽과 같이 board의 정보가 input으로 주어진다. 0과 1로 이루어진 N x N 크기의 지도에서 2 x 1 크기의 로봇을 (1, 1) 에서 (N, N) 까지 이동시킨다. 시작은 아래의 왼쪽과 같이 시작한다. 로봇은 앞뒤 구분없이 움직일 수 있다." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://lameld.github.io/post/kko_blind_2020_block/" />
 <meta property="article:published_time" content="2019-11-27T11:22:43+09:00" />
@@ -20,23 +20,20 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="[Programmers][Kakao Blind 2020] 블록 이동하기"/>
-<meta name="twitter:description" content="카카오 블라인드 테스트 2020 - 길 찾기 게임 문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/60063
- 문제 설명  아래의 왼쪽과 같이 board의 정보가 input으로 주어진다. 0과 1로 이루어진 N x N 크기의 지도에서 2 x 1 크기의 로봇을 (1, 1) 에서 (N, N) 까지 이동시킨다."/>
+<meta name="twitter:description" content="문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/60063&lt;/a&gt;
+ 문제 설명  아래의 왼쪽과 같이 board의 정보가 input으로 주어진다. 0과 1로 이루어진 N x N 크기의 지도에서 2 x 1 크기의 로봇을 (1, 1) 에서 (N, N) 까지 이동시킨다. 시작은 아래의 왼쪽과 같이 시작한다. 로봇은 앞뒤 구분없이 움직일 수 있다."/>
 
 
 <meta itemprop="name" content="[Programmers][Kakao Blind 2020] 블록 이동하기">
-<meta itemprop="description" content="카카오 블라인드 테스트 2020 - 길 찾기 게임 문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/60063
- 문제 설명  아래의 왼쪽과 같이 board의 정보가 input으로 주어진다. 0과 1로 이루어진 N x N 크기의 지도에서 2 x 1 크기의 로봇을 (1, 1) 에서 (N, N) 까지 이동시킨다.">
-
-
+<meta itemprop="description" content="문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/60063&lt;/a&gt;
+ 문제 설명  아래의 왼쪽과 같이 board의 정보가 input으로 주어진다. 0과 1로 이루어진 N x N 크기의 지도에서 2 x 1 크기의 로봇을 (1, 1) 에서 (N, N) 까지 이동시킨다. 시작은 아래의 왼쪽과 같이 시작한다. 로봇은 앞뒤 구분없이 움직일 수 있다.">
 <meta itemprop="datePublished" content="2019-11-27T11:22:43&#43;09:00" />
 <meta itemprop="dateModified" content="2019-11-27T11:22:43&#43;09:00" />
-<meta itemprop="wordCount" content="1236">
+<meta itemprop="wordCount" content="1230">
 
 
 
 <meta itemprop="keywords" content="c&#43;&#43;,programmers,kakao blind 2020," />
-
 
 <link rel="stylesheet" href="https://lameld.github.io/css/layout.css" />
 
@@ -120,13 +117,10 @@ if (!doNotTrack) {
 </div>
 
     
-    <div class="content"> <h1>카카오 블라인드 테스트 2020 - 길 찾기 게임</h1>
-
-<p>문제 출처 : <a href="https://programmers.co.kr/learn/courses/30/lessons/60063">https://programmers.co.kr/learn/courses/30/lessons/60063</a></p>
-
+    <div class="content"> <!-- raw HTML omitted -->
+<p>문제 출처 : <!-- raw HTML omitted --><a href="https://programmers.co.kr/learn/courses/30/lessons/60063%3C/a%3E">https://programmers.co.kr/learn/courses/30/lessons/60063&lt;/a&gt;</a></p>
 <ul>
 <li>문제 설명
-
 <ul>
 <li>아래의 왼쪽과 같이 board의 정보가 input으로 주어진다.</li>
 <li>0과 1로 이루어진 N x N 크기의 지도에서 <code>2 x 1</code> 크기의 로봇을 <code>(1, 1)</code> 에서 <code>(N, N)</code> 까지 이동시킨다.</li>
@@ -135,23 +129,20 @@ if (!doNotTrack) {
 <li>로봇의 회전은 아래의 오른쪽과 같이 실행 할 수 있다.</li>
 <li>로봇이 한칸 이동할 때 걸리는 시간은 1초이다.</li>
 <li>90도 회전할 때 1초가 소요된다.</li>
-</ul></li>
 </ul>
-
-<p><img src="https://lameld.github.io/images/moveblock1.jpg" width=80% height=80%></p>
-
+</li>
+</ul>
+<!-- raw HTML omitted -->
 <ul>
-<li><p>문제 풀이</p>
-
+<li>
+<p>문제 풀이</p>
 <ul>
 <li>기본적으로 탐색알고리즘은 다익스트라 알고리즘을 사용한다.</li>
-<li>Memoization을 하기 위한 배열 visit을 생성한다
-<br /></li>
+<li>Memoization을 하기 위한 배열 visit을 생성한다</li>
 </ul>
-
 <blockquote>
 <p>visit :: node</p>
-
+</blockquote>
 <pre><code>struct node
 {
     node() : left(false), right(false), top(false), bottom(false) {}
@@ -165,49 +156,42 @@ if (!doNotTrack) {
     //현재 위치와 아래쪽에 배치되어 있는가
     bool bottom;
 };
-</code></pre>
+</code></pre><pre><code>  &gt;visit :: 검색
+</code></pre><pre><code>  //로봇이 가로로 있을 경우
+  if (pos.p1.x == pos.p2.x)
+  {
+      //로봇의 두 좌표가 visit 여부가 모두 false여야 진행한다.
+      if (visit[pos.p1.x][pos.p1.y].left &amp;&amp; visit[pos.p2.x][pos.p2.y].right)
+      {
+          continue;
+      }
+      visit[pos.p1.x][pos.p1.y].left = true;
+      visit[pos.p2.x][pos.p2.y].right = true;
 
-<p>visit :: 검색</p>
+      state = 0;
+  }
+  //로봇이 세로로 있을 경우
+  else
+  {
+      //로봇의 두 좌표가 visit 여부가 모두 false여야 진행한다.
+      if (visit[pos.p1.x][pos.p1.y].top &amp;&amp; visit[pos.p2.x][pos.p2.y].bottom)
+      {
+          continue;
+      }
+      visit[pos.p1.x][pos.p1.y].top = true;
+      visit[pos.p2.x][pos.p2.y].bottom = true;
 
-<pre><code>//로봇이 가로로 있을 경우
-if (pos.p1.x == pos.p2.x)
-{
-    //로봇의 두 좌표가 visit 여부가 모두 false여야 진행한다.
-    if (visit[pos.p1.x][pos.p1.y].left &amp;&amp; visit[pos.p2.x][pos.p2.y].right)
-    {
-        continue;
-    }
-    visit[pos.p1.x][pos.p1.y].left = true;
-    visit[pos.p2.x][pos.p2.y].right = true;
-
-    state = 0;
-}
-//로봇이 세로로 있을 경우
-else
-{
-    //로봇의 두 좌표가 visit 여부가 모두 false여야 진행한다.
-    if (visit[pos.p1.x][pos.p1.y].top &amp;&amp; visit[pos.p2.x][pos.p2.y].bottom)
-    {
-        continue;
-    }
-    visit[pos.p1.x][pos.p1.y].top = true;
-    visit[pos.p2.x][pos.p2.y].bottom = true;
-
-    state = 1;
-}
-</code></pre>
-</blockquote>
-
-<ul>
-<li>좌표를 저장하기 위한 point와 pointset 구조체를 만든다.</li>
-<li>시작 좌표를 기준으로 이동가능한 모든 좌표를 queue에 저장하고, 순차적으로 이동시켜 나아가 최적의 값을 구한다.
-<br /></li>
-</ul></li>
+      state = 1;
+  }
+</code></pre><pre><code>	
+  - 좌표를 저장하기 위한 point와 pointset 구조체를 만든다.
+  - 시작 좌표를 기준으로 이동가능한 모든 좌표를 queue에 저장하고, 순차적으로 이동시켜 나아가 최적의 값을 구한다.
+	
+</code></pre></li>
 </ul>
-
 <blockquote>
 <p>Code</p>
-
+</blockquote>
 <pre><code>#include &lt;string&gt;
 #include &lt;vector&gt;
 #include &lt;queue&gt;
@@ -580,9 +564,7 @@ int solution(vector&lt;vector&lt;int&gt;&gt; board)
 	//도달하지 못하였을 경우 0을 리턴한다.
 	return 0;
 }
-</code></pre>
-</blockquote>
- </div>
+</code></pre> </div>
     <footer class="post-footer">
 
   <div class="post-footer-data">

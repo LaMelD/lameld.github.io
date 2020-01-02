@@ -7,12 +7,12 @@
 <meta name="description" content="Personal blog." />
 <meta name="keywords" content="" />
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.59.1" />
+<meta name="generator" content="Hugo 0.62.0" />
 
 <link rel="canonical" href="https://lameld.github.io/post/kko_blind_2019_matching/">
 <meta property="og:title" content="[Programmers][Kakao Blind 2019] 매칭 점수" />
-<meta property="og:description" content="카카오 블라인드 테스트 2019 - 매칭 점수 문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/42893
- 문제 설명
+<meta property="og:description" content="문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/42893&lt;/a&gt;
+  문제 설명
  한 웹페이지에 대해서 기본점수, 외부 링크 수, 링크점수, 매칭점수를 구할 수 있다. 기본점수 : 텍스트 중에 검색어가 등장한 횟수(대소문자 무시) 외부 링크 수 : 다른 외부 페이지로 연결된 링크의 개수 링크점수 : ( 해당 웹페이지로 걸린 다른 웹페이지의 기본점수 ) / ( 외부링크 수) 의 합 매칭점수 : 기본점수 &#43; 링크점수 매칭점수가 높은 웹페이지의 번호를 리턴한다." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://lameld.github.io/post/kko_blind_2019_matching/" />
@@ -21,25 +21,22 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="[Programmers][Kakao Blind 2019] 매칭 점수"/>
-<meta name="twitter:description" content="카카오 블라인드 테스트 2019 - 매칭 점수 문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/42893
- 문제 설명
+<meta name="twitter:description" content="문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/42893&lt;/a&gt;
+  문제 설명
  한 웹페이지에 대해서 기본점수, 외부 링크 수, 링크점수, 매칭점수를 구할 수 있다. 기본점수 : 텍스트 중에 검색어가 등장한 횟수(대소문자 무시) 외부 링크 수 : 다른 외부 페이지로 연결된 링크의 개수 링크점수 : ( 해당 웹페이지로 걸린 다른 웹페이지의 기본점수 ) / ( 외부링크 수) 의 합 매칭점수 : 기본점수 &#43; 링크점수 매칭점수가 높은 웹페이지의 번호를 리턴한다."/>
 
 
 <meta itemprop="name" content="[Programmers][Kakao Blind 2019] 매칭 점수">
-<meta itemprop="description" content="카카오 블라인드 테스트 2019 - 매칭 점수 문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/42893
- 문제 설명
+<meta itemprop="description" content="문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/42893&lt;/a&gt;
+  문제 설명
  한 웹페이지에 대해서 기본점수, 외부 링크 수, 링크점수, 매칭점수를 구할 수 있다. 기본점수 : 텍스트 중에 검색어가 등장한 횟수(대소문자 무시) 외부 링크 수 : 다른 외부 페이지로 연결된 링크의 개수 링크점수 : ( 해당 웹페이지로 걸린 다른 웹페이지의 기본점수 ) / ( 외부링크 수) 의 합 매칭점수 : 기본점수 &#43; 링크점수 매칭점수가 높은 웹페이지의 번호를 리턴한다.">
-
-
 <meta itemprop="datePublished" content="2019-11-24T18:15:23&#43;09:00" />
 <meta itemprop="dateModified" content="2019-11-24T18:15:23&#43;09:00" />
-<meta itemprop="wordCount" content="916">
+<meta itemprop="wordCount" content="909">
 
 
 
 <meta itemprop="keywords" content="c&#43;&#43;,programmers,kakao blind 2019," />
-
 
 <link rel="stylesheet" href="https://lameld.github.io/css/layout.css" />
 
@@ -123,13 +120,11 @@ if (!doNotTrack) {
 </div>
 
     
-    <div class="content"> <h1>카카오 블라인드 테스트 2019 - 매칭 점수</h1>
-
-<p>문제 출처 : <a href="https://programmers.co.kr/learn/courses/30/lessons/42893">https://programmers.co.kr/learn/courses/30/lessons/42893</a></p>
-
+    <div class="content"> <!-- raw HTML omitted -->
+<p>문제 출처 : <!-- raw HTML omitted --><a href="https://programmers.co.kr/learn/courses/30/lessons/42893%3C/a%3E">https://programmers.co.kr/learn/courses/30/lessons/42893&lt;/a&gt;</a></p>
 <ul>
-<li><p>문제 설명</p>
-
+<li>
+<p>문제 설명</p>
 <ol>
 <li>한 웹페이지에 대해서 기본점수, 외부 링크 수, 링크점수, 매칭점수를 구할 수 있다.</li>
 <li>기본점수 : 텍스트 중에 검색어가 등장한 횟수(대소문자 무시)</li>
@@ -138,60 +133,56 @@ if (!doNotTrack) {
 <li>매칭점수 : 기본점수 + 링크점수</li>
 <li>매칭점수가 높은 웹페이지의 번호를 리턴한다.</li>
 <li>매칭점수가 같은 웹페이지가 여러 개라면 그중 번호가 가장 작은 것을 구한다.</li>
-</ol></li>
-
-<li><p>입력 예시 : <code>[&quot;&lt;html lang=\&quot;ko\&quot; xml:lang=\&quot;ko\&quot; xmlns=\&quot;http://www.w3.org/1999/xhtml\&quot;&gt;\n&lt;head&gt;\n  &lt;meta charset=\&quot;utf-8\&quot;&gt;\n  &lt;meta property=\&quot;og:url\&quot; content=\&quot;https://careers.kakao.com/interview/list\&quot;/&gt;\n&lt;/head&gt;  \n&lt;body&gt;\n&lt;a href=\&quot;https://programmers.co.kr/learn/courses/4673\&quot;&gt;&lt;/a&gt;#!MuziMuzi!)jayg07con&amp;&amp;\n\n&lt;/body&gt;\n&lt;/html&gt;&quot;, &quot;&lt;html lang=\&quot;ko\&quot; xml:lang=\&quot;ko\&quot; xmlns=\&quot;http://www.w3.org/1999/xhtml\&quot;&gt;\n&lt;head&gt;\n  &lt;meta charset=\&quot;utf-8\&quot;&gt;\n  &lt;meta property=\&quot;og:url\&quot; content=\&quot;https://www.kakaocorp.com\&quot;/&gt;\n&lt;/head&gt;  \n&lt;body&gt;\ncon%\tmuzI92apeach&amp;2&lt;a href=\&quot;https://hashcode.co.kr/tos\&quot;&gt;&lt;/a&gt;\n\n\t^\n&lt;/body&gt;\n&lt;/html&gt;&quot;]</code></p></li>
+</ol>
+</li>
+<li>
+<p>입력 예시 : <code>[&quot;&lt;html lang=\&quot;ko\&quot; xml:lang=\&quot;ko\&quot; xmlns=\&quot;http://www.w3.org/1999/xhtml\&quot;&gt;\n&lt;head&gt;\n  &lt;meta charset=\&quot;utf-8\&quot;&gt;\n  &lt;meta property=\&quot;og:url\&quot; content=\&quot;https://careers.kakao.com/interview/list\&quot;/&gt;\n&lt;/head&gt;  \n&lt;body&gt;\n&lt;a href=\&quot;https://programmers.co.kr/learn/courses/4673\&quot;&gt;&lt;/a&gt;#!MuziMuzi!)jayg07con&amp;&amp;\n\n&lt;/body&gt;\n&lt;/html&gt;&quot;, &quot;&lt;html lang=\&quot;ko\&quot; xml:lang=\&quot;ko\&quot; xmlns=\&quot;http://www.w3.org/1999/xhtml\&quot;&gt;\n&lt;head&gt;\n  &lt;meta charset=\&quot;utf-8\&quot;&gt;\n  &lt;meta property=\&quot;og:url\&quot; content=\&quot;https://www.kakaocorp.com\&quot;/&gt;\n&lt;/head&gt;  \n&lt;body&gt;\ncon%\tmuzI92apeach&amp;2&lt;a href=\&quot;https://hashcode.co.kr/tos\&quot;&gt;&lt;/a&gt;\n\n\t^\n&lt;/body&gt;\n&lt;/html&gt;&quot;]</code></p>
+</li>
 </ul>
-
-<p><img src="https://lameld.github.io/images/matching1.jpg"></p>
-
+<!-- raw HTML omitted -->
 <ul>
 <li>검색어 : hi
-
 <ul>
 <li>A의 기본점수 : 1점</li>
 <li>B의 기본점수 : 4점</li>
 <li>C의 기본점수 : 9점</li>
-</ul></li>
+</ul>
+</li>
 <li>외부 링크 수
-
 <ul>
 <li>A : 1개</li>
 <li>B : 2개</li>
 <li>C : 3개</li>
-</ul></li>
+</ul>
+</li>
 <li>링크 점수
-
 <ul>
 <li>A : ( 4 / 2 ) + ( 9 / 3 ) = 5점</li>
 <li>B : 0점</li>
 <li>C : 0점</li>
-</ul></li>
+</ul>
+</li>
 <li>매칭점수
-
 <ul>
 <li>A : 6점</li>
 <li>B : 4점</li>
 <li>C : 9점</li>
-</ul></li>
 </ul>
-
-<p><br></p>
-
+</li>
+</ul>
+<!-- raw HTML omitted -->
 <ul>
 <li>문제 풀이
-
 <ul>
 <li>입력 형식을 파싱하여 각 웹페이지의 URL과 링크 URL, index, 기본점수, (기본점수 / 링크수)를 구한다.</li>
 <li>각 웹페이의 매칭점수를 완성하고, 매칭 점수를 기준으로하여 내림차순으로 정렬하여 매칭 점수가 가장 높은 웹페이지의 index를 리턴한다.</li>
-<li>&amp;&amp;는 왼쪽 것이 false라면 오른쪽 조건을 확인하지 않는다는 것을 이용한다.
-<br /></li>
-</ul></li>
+<li>&amp;&amp;는 왼쪽 것이 false라면 오른쪽 조건을 확인하지 않는다는 것을 이용한다.</li>
 </ul>
-
+</li>
+</ul>
 <blockquote>
 <p>Code</p>
-
+</blockquote>
 <pre><code>#include &lt;string&gt;
 #include &lt;vector&gt;
 #include &lt;algorithm&gt;
@@ -424,9 +415,7 @@ int solution(string word, vector&lt;string&gt; pages)
 
 	return parsing_pages.front().getIdx();
 }
-</code></pre>
-</blockquote>
- </div>
+</code></pre> </div>
     <footer class="post-footer">
 
   <div class="post-footer-data">

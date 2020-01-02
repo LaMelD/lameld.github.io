@@ -6,10 +6,19 @@
     <description>Recent content in Tags on LaMelD&#39;s Dev Life</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>UTF-8</language>
-    <lastBuildDate>Fri, 29 Nov 2019 17:38:30 +0900</lastBuildDate>
+    <lastBuildDate>Tue, 31 Dec 2019 13:23:21 +0900</lastBuildDate>
     
 	<atom:link href="https://lameld.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>study_network</title>
+      <link>https://lameld.github.io/tags/study_network/</link>
+      <pubDate>Tue, 31 Dec 2019 13:23:21 +0900</pubDate>
+      
+      <guid>https://lameld.github.io/tags/study_network/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>c&#43;&#43;</title>

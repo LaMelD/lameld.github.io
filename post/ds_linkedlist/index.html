@@ -7,7 +7,7 @@
 <meta name="description" content="Personal blog." />
 <meta name="keywords" content="" />
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.59.1" />
+<meta name="generator" content="Hugo 0.62.0" />
 
 <link rel="canonical" href="https://lameld.github.io/post/ds_linkedlist/">
 <meta property="og:title" content="[Data Structure] Single Linked List" />
@@ -24,16 +24,13 @@
 
 <meta itemprop="name" content="[Data Structure] Single Linked List">
 <meta itemprop="description" content="Single Linked List (단순 연결 리스트) 1. 개념  하나의 노드에 필요한 정보를 담고 다음에 해당하는 노드를 가리키고 있는 자료구조로 포인터를 이용해 자료들을 선형으로 연결한 자료구조이다. [ 배열 ] 과 비교했을 때 추가 및 삭제가 쉽다는 장점이 있지만 접근할 때 O(n)만큼 걸린다는 단점이 있습니다.">
-
-
 <meta itemprop="datePublished" content="2019-11-15T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2019-11-15T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="1018">
+<meta itemprop="wordCount" content="1015">
 
 
 
 <meta itemprop="keywords" content="c&#43;&#43;,data structure,linked list," />
-
 
 <link rel="stylesheet" href="https://lameld.github.io/css/layout.css" />
 
@@ -117,45 +114,38 @@ if (!doNotTrack) {
 </div>
 
     
-    <div class="content"> 
-
-<h1 id="single-linked-list-단순-연결-리스트">Single Linked List (단순 연결 리스트)</h1>
-
-<h3 id="1-개념">1. 개념</h3>
-
+    <div class="content"> <h1 id="single-linked-list---">Single Linked List (단순 연결 리스트)</h1>
+<h3 id="1-">1. 개념</h3>
 <ul>
 <li>하나의 노드에 필요한 정보를 담고 다음에 해당하는 노드를 가리키고 있는 자료구조로 포인터를 이용해 자료들을 선형으로 연결한 자료구조이다.</li>
 <li>[ 배열 ] 과 비교했을 때 추가 및 삭제가 쉽다는 장점이 있지만 접근할 때 O(n)만큼 걸린다는 단점이 있습니다.</li>
 </ul>
-
-<p><br><br>
-<hr></p>
-
-<h3 id="2-구현">2. 구현</h3>
-
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<h3 id="2-">2. 구현</h3>
 <ul>
 <li>List를 구성할 노드를 생성하고 기본적인 기능을 추가합니다.
-
 <ul>
 <li>private 멤버 변수
-
 <ul>
 <li>data : 노드의 값</li>
 <li>pnext : 현재 노드의 다음을 알려주는 포인터</li>
-</ul></li>
+</ul>
+</li>
 <li>public 멤버 함수
-
 <ul>
 <li>Node(), Node(T) : 생성자</li>
 <li>getData() : 노드의 data를 리턴한다.</li>
 <li>setData() : 노드의 data를 설정한다.</li>
 <li>getNext() : 현재 노드의 다음 노드를 리턴한다.</li>
 <li>setNext() : 현재 노드의 다음 노드를 설정한다.</li>
-</ul></li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
+</li>
+</ul>
 <blockquote>
+</blockquote>
 <pre><code>template &lt;class T&gt;
 class Node
 {
@@ -182,36 +172,31 @@ Node&lt;T&gt;::Node(T n)
 	this-&gt;data = n;
 	this-&gt;pnext = NULL;
 }
-</code></pre>
-</blockquote>
-
-<p><br></p>
-
+</code></pre><!-- raw HTML omitted -->
 <ul>
 <li>Node가 들어갈 List의 틀(class)을(를) 생성하고 필요한 기능과 멤버 변수를 추가해줍니다.
-
 <ul>
 <li>private 멤버 변수
-
 <ul>
 <li>phead : List의 가장 앞 부분을 알려준다.</li>
 <li>ptail : List의 끝을 알려준다.</li>
 <li>ssize : List에 들어있는 노드의 갯수를 알려준다.</li>
-</ul></li>
+</ul>
+</li>
 <li>public 멤버 함수
-
 <ul>
 <li>SingleLinkedList() : 생성자</li>
 <li>isEmpty() : List가 비어있다면 True, 아니면 False</li>
 <li>size() : List에 들어있는 노드의 갯수를 리턴한다.</li>
 <li>getHead() : List의 가장 앞 부분을 알려주는 phead를 리턴한다</li>
-<li>getData(), AddFront(), AddBack(), InsertNode(), DeleteNode()
-<br /></li>
-</ul></li>
-</ul></li>
+<li>getData(), AddFront(), AddBack(), InsertNode(), DeleteNode()</li>
 </ul>
-
+</li>
+</ul>
+</li>
+</ul>
 <blockquote>
+</blockquote>
 <pre><code>template &lt;class T&gt;
 class SingleLinkedList
 {
@@ -230,18 +215,13 @@ public:
 	void InsertNode(Node&lt;T&gt;*, T);
 	void DeleteNode(int);
 };
-</code></pre>
-</blockquote>
-
-<p><br></p>
-
+</code></pre><!-- raw HTML omitted -->
 <ul>
 <li>멤버 함수 상세 내용</li>
 </ul>
-
 <blockquote>
 <p>getData(int n) : phead부터 n번째 data를 리턴한다.</p>
-
+</blockquote>
 <pre><code>template &lt;class T&gt;
 T SingleLinkedList&lt;T&gt;::getValue(int n)
 {
@@ -253,10 +233,9 @@ T SingleLinkedList&lt;T&gt;::getValue(int n)
 	
 	return tmp-&gt;getData();
 }
-</code></pre>
-
+</code></pre><blockquote>
 <p>AddFront(T n) : List의 맨 앞에 추가한다.</p>
-
+</blockquote>
 <pre><code>template &lt;class T&gt;
 void SingleLinkedList&lt;T&gt;::AddFront(T n)
 {
@@ -274,10 +253,9 @@ void SingleLinkedList&lt;T&gt;::AddFront(T n)
 		tmp-&gt;setNext(this-&gt;phead);
 		this-&gt;phead = tmp;
 	}
-</code></pre>
-
+</code></pre><blockquote>
 <p>AddBack(T n) : List의 맨 뒤에 추가한다</p>
-
+</blockquote>
 <pre><code>template &lt;class T&gt;
 void SingleLinkedList&lt;T&gt;::AddBack(T n)
 {
@@ -296,10 +274,9 @@ void SingleLinkedList&lt;T&gt;::AddBack(T n)
 		this-&gt;ptail = tmp;
 	}
 }
-</code></pre>
-
+</code></pre><blockquote>
 <p>InsertNode(Node&lt;T&gt;* prev, T n) : prev 노드 뒤에 n의 value를 갖는 노드를 추가한다.</p>
-
+</blockquote>
 <pre><code>template &lt;class T&gt;
 void SingleLinkedList&lt;T&gt;::InsertNode(Node&lt;T&gt;* previous, T n)
 {
@@ -310,10 +287,9 @@ void SingleLinkedList&lt;T&gt;::InsertNode(Node&lt;T&gt;* previous, T n)
 	tmp-&gt;setNext(previous-&gt;getNext());
 	previous-&gt;setNext(tmp);
 }
-</code></pre>
-
+</code></pre><blockquote>
 <p>DeleteNode(int n) : phead부터 n번째 인덱스의 다음 node를 삭제한다.</p>
-
+</blockquote>
 <pre><code>template &lt;class T&gt;
 void SingleLinkedList&lt;T&gt;::DeleteNode(int n)
 {
@@ -350,13 +326,9 @@ void SingleLinkedList&lt;T&gt;::DeleteNode(int n)
 		}
 	}
 }
-</code></pre>
-</blockquote>
-
-<p><br>
-- 전체 코드</p>
-
+</code></pre><!-- raw HTML omitted -->
 <blockquote>
+</blockquote>
 <pre><code>#include &lt;iostream&gt;
 
 using namespace std;
@@ -550,17 +522,14 @@ int main()
 	}
 	cout &lt;&lt; '\n';
 }
-</code></pre>
-
-<p>출력<br></p>
-
+</code></pre><blockquote>
+<p>출력<!-- raw HTML omitted --></p>
+</blockquote>
 <pre><code>2, 3, 9, 10을 앞에 추가하고, 4, 5, 6, 7, 8을 뒤에 추가한 결과 : 8 7 6 5 4 2 3 9 10
 앞에서 3번째 인덱스 뒤에 150을 추가한다
 5번째 인덱스 뒤의 노드를 삭제한다
 최종 리스트 : 8 7 6 150 5 2 3 9 10
-</code></pre>
-</blockquote>
- </div>
+</code></pre> </div>
     <footer class="post-footer">
 
   <div class="post-footer-data">
