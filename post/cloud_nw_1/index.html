@@ -38,7 +38,7 @@ berryz web share ip :: http://121.140.73.126 (공인 IP)
   기본적으로 알아야 할 컴퓨터 기초  데이터 표현  2진법, 10진법, 16진법(0x00)   HW 구성요소  CPU(central processing unit)  processor : 물리적 코어   RAM(memory : random access memory) : 주 기억  process : 실행되고 있는 프로그램   하드 디스크(SSD/HDD) : 보조 기억 I/O 장치   운영 체제(OS : operating system)  하드웨어를 관리해주는 프로그램 구성요소 : 커널, 쉘, 응용 프로그램   파일의 특징  파일의 이름(확장자)  exe, txt, zip, egg, etc.">
 <meta itemprop="datePublished" content="2019-12-31T13:23:21&#43;09:00" />
 <meta itemprop="dateModified" content="2019-12-31T13:23:21&#43;09:00" />
-<meta itemprop="wordCount" content="2077">
+<meta itemprop="wordCount" content="2073">
 
 
 
@@ -119,6 +119,8 @@ if (!doNotTrack) {
 
     
     <div class="content"> <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>#네트워크
 #191230 Monday ~ ?????????</p>
 <p>berryz web share ip :: http://192.168.0.100 (사설 IP)<br>
@@ -407,9 +409,7 @@ www : world wide WEB</li>
 4) 쪼개진 각각의 네트워크의 네트워크 ID는 1씩 증가시킨 값 그대로
 5) 쪼개진 각각의 네트워크의 브로드캐스트 주소는 뒷 부분을 전부 1로 채운다
 6) 각 네트워크에서 사용 가능한 IP주소의ㅡ 범위는 네트워크 ID + 1, 브로드캐스트 주소 - 1
-
-
-1. 211.100.10.0/24  네트워크를 각 네트워크 당 60개의 HOST가 사용할 수 있도록 subneting
+</code></pre><pre><code>1. 211.100.10.0/24  네트워크를 각 네트워크 당 60개의 HOST가 사용할 수 있도록 subneting
 
 네트워크 ID 0 : 	11010011.01100100.00001010.00 000000
 네트워크 ID 1 : 	11010011.01100100.00001010.01 000000
@@ -423,9 +423,7 @@ www : world wide WEB</li>
 4) 마지막 subnet의 Network-ID : 211.100.10.192
 5) 첫번째 subnet의 broadcast 주소 : 211.100.10.63
 6) 두번째 subnet의 사용 가능한 IP 범위 : 211.100.10.65 ~ 211.100.10.126
-
-
-2. 195.168.12.0/24 네트워크를 8개의 네트워크로 사용할 수 있도록 subneting
+</code></pre><pre><code>2. 195.168.12.0/24 네트워크를 8개의 네트워크로 사용할 수 있도록 subneting
 
 네트워크 ID 0 :		11000011.10101000.00001100.000 00000
 네트워크 ID 1 :		11000011.10101000.00001100.001 00000
@@ -446,23 +444,17 @@ www : world wide WEB</li>
 5번	195.168.12.160	195.168.12.191		195.168.12.161 ~ 195.168.12.190
 6번	195.168.12.192	195.168.12.223		195.168.12.193 ~ 195.168.12.222
 7번	195.168.12.224	195.168.12.255		195.168.12.225 ~ 195.168.12.254
-
-
-3. 152.0.61.0/24 네트워크를 각 네트워크 당 100개의 HOST가 사용할 수 있도록 subneting
+</code></pre><pre><code>3. 152.0.61.0/24 네트워크를 각 네트워크 당 100개의 HOST가 사용할 수 있도록 subneting
 
 152.0.61.0/25	152.0.1.127
 152.0.61.128/25	152.0.1.255
-
-
-4. 189.101.7.0/24 네트워크를 각 네트워크 당 50개의 Host가 사용할 수 있도록 subnetiing
+</code></pre><pre><code>4. 189.101.7.0/24 네트워크를 각 네트워크 당 50개의 Host가 사용할 수 있도록 subnetiing
 	네트워크 ID		    브로드캐스트주소	 범위
 0번	189.101.7.0/26		189.101.7.63/26		189.101.7.1/26 ~ 189.101.7.62/26
 1번	189.101.7.64/26		189.101.7.127/26	189.101.7.65/26 ~ 189.101.7.126/26
 2번	189.101.7.128/26	189.101.7.191/26	189.101.7.129/26 ~ 189.101.7.190/26
 3번	189.101.7.192/26	189.101.7.255/26	189.101.7.193/26 ~ 189.101.7.254/26
-
-
-5. 206.81.128.0/18 네트워크를 8개의 네트워크로 사용할 수 있도록 subneting
+</code></pre><pre><code>5. 206.81.128.0/18 네트워크를 8개의 네트워크로 사용할 수 있도록 subneting
 206     .81      .10 000 000.00000000
 206     .81      .10 001 000.00000000
 206     .81      .10 010 000.00000000
@@ -706,75 +698,215 @@ www : world wide WEB</li>
 </ul>
 </li>
 </ol>
+<ul>
+<li>예제</li>
+</ul>
 <pre><code>1. 전송하려는 데이터 크기 [8937] 바이트
 MTU [2300]바이트
 
 데이터를 [2300] - 20 = [2280] 씩 조각화
-		MTU	 IPv4
-						(크기/8)
-패킷	플래그		오프셋			데이터크기
-0번		1		0		2280
-1번		1		285		2280
-2번		1		570		2280
-3번		0		855		2097
-마지막 패킷의 페이로드 크기 : 2105 (ICMP + 데이터)
-
-
-2. 전송하려는 데이터 크기 [2379] 바이트
+	MTU	 IPv4
+</code></pre><table>
+<thead>
+<tr>
+<th align="right">패킷</th>
+<th align="center">플래그</th>
+<th align="right">오프셋(크기/8)</th>
+<th align="right">데이터크기</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0번</td>
+<td align="center">1</td>
+<td align="right">0</td>
+<td align="right">2280</td>
+</tr>
+<tr>
+<td align="right">1번</td>
+<td align="center">1</td>
+<td align="right">285</td>
+<td align="right">2280</td>
+</tr>
+<tr>
+<td align="right">2번</td>
+<td align="center">1</td>
+<td align="right">570</td>
+<td align="right">2280</td>
+</tr>
+<tr>
+<td align="right">3번</td>
+<td align="center">0</td>
+<td align="right">855</td>
+<td align="right">2097</td>
+</tr>
+</tbody>
+</table>
+<p>마지막 패킷의 페이로드 크기 : 2105 (ICMP + 데이터)</p>
+<pre><code>2. 전송하려는 데이터 크기 [2379] 바이트
 MTU [980]바이트
 
 
 데이터를 [980] - 20 = [960] 씩 조각화
-		MTU	 IPv4
-							(크기/8)
-패킷	플래그		오프셋		데이터크기
-0번		1		0		960
-1번		1		120		960
-2번		1		240		960
-3번		0		360		459
-마지막 패킷의 페이로드 크기 : 467 (ICMP + 데이터)
-
-
-3. 전송하려는 데이터 크기 [4618] 바이트
+	MTU	 IPv4
+</code></pre><table>
+<thead>
+<tr>
+<th align="right">패킷</th>
+<th align="center">플래그</th>
+<th align="right">오프셋(크기/8)</th>
+<th align="right">데이터크기</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0번</td>
+<td align="center">1</td>
+<td align="right">0</td>
+<td align="right">960</td>
+</tr>
+<tr>
+<td align="right">1번</td>
+<td align="center">1</td>
+<td align="right">120</td>
+<td align="right">960</td>
+</tr>
+<tr>
+<td align="right">2번</td>
+<td align="center">1</td>
+<td align="right">240</td>
+<td align="right">960</td>
+</tr>
+<tr>
+<td align="right">3번</td>
+<td align="center">0</td>
+<td align="right">360</td>
+<td align="right">459</td>
+</tr>
+</tbody>
+</table>
+<p>마지막 패킷의 페이로드 크기 : 467 (ICMP + 데이터)</p>
+<pre><code>3. 전송하려는 데이터 크기 [4618] 바이트
 MTU [1370]바이트
 
 데이터를 [1370] - 20 = [1350] 씩 조각화
-		MTU	 IPv4
-						(크기/8)
-패킷	플래그		오프셋		데이터크기
-0번		1		0		1350
-1번		1		?		1350
-2번		1		?		1350
-3번		0		?		568
-마지막 패킷의 페이로드 크기 : 576 (ICMP + 데이터)
-
-
-4. 전송하려는 데이터 크기 [4800] 바이트
+	MTU	 IPv4
+</code></pre><table>
+<thead>
+<tr>
+<th align="right">패킷</th>
+<th align="center">플래그</th>
+<th align="right">오프셋(크기/8)</th>
+<th align="right">데이터크기</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0번</td>
+<td align="center">1</td>
+<td align="right">0</td>
+<td align="right">1350</td>
+</tr>
+<tr>
+<td align="right">1번</td>
+<td align="center">1</td>
+<td align="right">?</td>
+<td align="right">1350</td>
+</tr>
+<tr>
+<td align="right">2번</td>
+<td align="center">1</td>
+<td align="right">?</td>
+<td align="right">1350</td>
+</tr>
+<tr>
+<td align="right">3번</td>
+<td align="center">0</td>
+<td align="right">?</td>
+<td align="right">568</td>
+</tr>
+</tbody>
+</table>
+<p>마지막 패킷의 페이로드 크기 : 576 (ICMP + 데이터)</p>
+<pre><code>4. 전송하려는 데이터 크기 [4800] 바이트
 MTU [1500]바이트
 
 데이터를 [1500] - 20 = [1480] 씩 조각화
-		MTU	 IPv4
-						(크기/8)
-패킷	플래그		오프셋		데이터크기
-0번		1		0		1480
-1번		1		185		1480
-2번		1		370		1480
-3번		0		555		360
-마지막 패킷의 페이로드 크기 : 368 (ICMP + 데이터)
-
-
-5. 전송하려는 데이터 크기 [4432] 바이트
+	MTU	 IPv4
+</code></pre><table>
+<thead>
+<tr>
+<th align="right">패킷</th>
+<th align="center">플래그</th>
+<th align="right">오프셋(크기/8)</th>
+<th align="right">데이터크기</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0번</td>
+<td align="center">1</td>
+<td align="right">0</td>
+<td align="right">1480</td>
+</tr>
+<tr>
+<td align="right">1번</td>
+<td align="center">1</td>
+<td align="right">185</td>
+<td align="right">1480</td>
+</tr>
+<tr>
+<td align="right">2번</td>
+<td align="center">1</td>
+<td align="right">370</td>
+<td align="right">1480</td>
+</tr>
+<tr>
+<td align="right">3번</td>
+<td align="center">0</td>
+<td align="right">555</td>
+<td align="right">360</td>
+</tr>
+</tbody>
+</table>
+<p>마지막 패킷의 페이로드 크기 : 368 (ICMP + 데이터)</p>
+<pre><code>5. 전송하려는 데이터 크기 [4432] 바이트
 MTU [1500]바이트
 
 데이터를 [1500] - 20 = [1480] 씩 조각화
-		MTU	 IPv4
-						(크기/8)
-패킷	플래그		오프셋		데이터크기
-0번		1		0		1480
-1번		1		185		1480
-2번		1		370		1472
-마지막 패킷의 페이로드 크기 : 1480 (ICMP + 데이터)
-</code></pre><hr>
+	MTU	 IPv4
+</code></pre><table>
+<thead>
+<tr>
+<th align="right">패킷</th>
+<th align="center">플래그</th>
+<th align="right">오프셋(크기/8)</th>
+<th align="right">데이터크기</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0번</td>
+<td align="center">1</td>
+<td align="right">0</td>
+<td align="right">1480</td>
+</tr>
+<tr>
+<td align="right">1번</td>
+<td align="center">1</td>
+<td align="right">185</td>
+<td align="right">1480</td>
+</tr>
+<tr>
+<td align="right">2번</td>
+<td align="center">1</td>
+<td align="right">370</td>
+<td align="right">1472</td>
+</tr>
+</tbody>
+</table>
+<p>마지막 패킷의 페이로드 크기 : 1480 (ICMP + 데이터)</p>
+<hr>
 <ol start="12">
 <li>OSI7layer - 4계층 :: 전송
 <ul>
