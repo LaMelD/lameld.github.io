@@ -34,7 +34,7 @@ int arr0[3][7]; int arr1[10][10] = { { 0, }, }; int arr2 = { { 1,2}, { 3,4 } }; 
 
 <meta itemprop="datePublished" content="2019-11-15T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2019-11-15T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="515">
+<meta itemprop="wordCount" content="514">
 
 
 
@@ -139,23 +139,19 @@ if (!doNotTrack) {
 
 <blockquote>
 <p>1차원</p>
-
-<pre><code>int arr0[3];
-int arr1[10] = { 0, };
-int arr2 = { 1,2,3,4 };
-</code></pre>
-
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#6ab825;font-weight:bold">int</span> arr0[<span style="color:#3677a9">3</span>];
+<span style="color:#6ab825;font-weight:bold">int</span> arr1[<span style="color:#3677a9">10</span>] = { <span style="color:#3677a9">0</span>, };
+<span style="color:#6ab825;font-weight:bold">int</span> arr2 = { <span style="color:#3677a9">1</span>,<span style="color:#3677a9">2</span>,<span style="color:#3677a9">3</span>,<span style="color:#3677a9">4</span> };
+</code></pre></div>
 <p>2차원</p>
-
-<pre><code>int arr0[3][7];
-int arr1[10][10] = { { 0, }, };
-int arr2 = { { 1,2}, { 3,4 } };
-</code></pre>
-
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#6ab825;font-weight:bold">int</span> arr0[<span style="color:#3677a9">3</span>][<span style="color:#3677a9">7</span>];
+<span style="color:#6ab825;font-weight:bold">int</span> arr1[<span style="color:#3677a9">10</span>][<span style="color:#3677a9">10</span>] = { { <span style="color:#3677a9">0</span>, }, };
+<span style="color:#6ab825;font-weight:bold">int</span> arr2 = { { <span style="color:#3677a9">1</span>,<span style="color:#3677a9">2</span>}, { <span style="color:#3677a9">3</span>,<span style="color:#3677a9">4</span> } };
+</code></pre></div>
 <p>3차원 이상의 배열도 [ ]를 추가하여 선언이 가능하다.</p>
 </blockquote>
 
-<hr>
+<hr />
 
 <ul>
 <li>동적 배열 (Dynamic Array)
@@ -168,28 +164,26 @@ int arr2 = { { 1,2}, { 3,4 } };
 </ul></li>
 </ul>
 
-<p><img src="https://lameld.github.io/images/array1.png"/></p>
+<p><img src="https://lameld.github.io/images/array11.png" alt="IMAGE" /></p>
 
 <blockquote>
 <p>포인터(*)와 new 또는 malloc(cstring 라이브러리)을 사용</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#6ab825;font-weight:bold">int</span> size = <span style="color:#3677a9">27</span>;
 
-<pre><code>int size = 27;
+<span style="color:#999;font-style:italic">//동적 배열 생성 1 : new
+</span><span style="color:#999;font-style:italic"></span><span style="color:#6ab825;font-weight:bold">int</span>* arr1 = <span style="color:#6ab825;font-weight:bold">new</span> <span style="color:#6ab825;font-weight:bold">int</span>[size];
+<span style="color:#999;font-style:italic">//동적 배열 생성 2 : malloc
+</span><span style="color:#999;font-style:italic"></span><span style="color:#6ab825;font-weight:bold">int</span>* arr2 = (<span style="color:#6ab825;font-weight:bold">int</span>*)malloc(<span style="color:#6ab825;font-weight:bold">sizeof</span>(<span style="color:#6ab825;font-weight:bold">int</span>) * size);
 
-//동적 배열 생성 1 : new
-int* arr1 = new int[size];
-//동적 배열 생성 2 : malloc
-int* arr2 = (int*)malloc(sizeof(int) * size);
-
-//동적 배열의 초기화
-//배열의 초기화 방법 1 : 배열의 전체를 방문하여 0으로 초기화한다.
-for (int i = 0; i &lt; size; i++)
+<span style="color:#999;font-style:italic">//동적 배열의 초기화
+</span><span style="color:#999;font-style:italic">//배열의 초기화 방법 1 : 배열의 전체를 방문하여 0으로 초기화한다.
+</span><span style="color:#999;font-style:italic"></span><span style="color:#6ab825;font-weight:bold">for</span> (<span style="color:#6ab825;font-weight:bold">int</span> i = <span style="color:#3677a9">0</span>; i &lt; size; i++)
 {
-	arr1[i] = 0;
+	arr1[i] = <span style="color:#3677a9">0</span>;
 }
-//배열의 초기화 방법 2 : memset(cstring 라이브러리)을 사용한다.
-memset(arr2, 0, sizeof(int) * size);
-</code></pre>
-</blockquote>
+<span style="color:#999;font-style:italic">//배열의 초기화 방법 2 : memset(cstring 라이브러리)을 사용한다.
+</span><span style="color:#999;font-style:italic"></span>memset(arr2, <span style="color:#3677a9">0</span>, <span style="color:#6ab825;font-weight:bold">sizeof</span>(<span style="color:#6ab825;font-weight:bold">int</span>) * size);
+</code></pre></div></blockquote>
 
 <ul>
 <li>방법 1 : 한 개씩 바꾸는 방법
@@ -201,7 +195,7 @@ memset(arr2, 0, sizeof(int) * size);
 </ul></li>
 </ul>
 
-<p><img src="https://lameld.github.io/images/array2.png"></p>
+<p><img src="https://lameld.github.io/images/array22.png" alt="IMAGE" /></p>
 
 <ul>
 <li>방법 2 : 두 배로 늘리는 방법
@@ -213,7 +207,7 @@ memset(arr2, 0, sizeof(int) * size);
 </ul></li>
 </ul>
 
-<p><img src="https://lameld.github.io/images/array3.png"></p>
+<p><img src="https://lameld.github.io/images/array33.png" alt="IMAGE" /></p>
 
 <ul>
 <li>동적 배열 class : 2번 방법을 사용한 경우
@@ -228,102 +222,100 @@ memset(arr2, 0, sizeof(int) * size);
 
 <blockquote>
 <p>myArray 클래스</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;iostream&gt;</span><span style="color:#cd2828;font-weight:bold">
+</span><span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;cstring&gt;</span><span style="color:#cd2828;font-weight:bold">
+</span><span style="color:#cd2828;font-weight:bold"></span>
+<span style="color:#6ab825;font-weight:bold">using</span> <span style="color:#6ab825;font-weight:bold">namespace</span> std;
 
-<pre><code>#include &lt;iostream&gt;
-#include &lt;cstring&gt;
-
-using namespace std;
-
-template &lt;class T&gt;
-class myArray
+<span style="color:#6ab825;font-weight:bold">template</span> &lt;<span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">T</span>&gt;
+<span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">myArray</span>
 {
-private:
+<span style="color:#6ab825;font-weight:bold">private</span>:
 	T* m_arr;
-	int m_size;
-	int capacity;
-public:
+	<span style="color:#6ab825;font-weight:bold">int</span> m_size;
+	<span style="color:#6ab825;font-weight:bold">int</span> capacity;
+<span style="color:#6ab825;font-weight:bold">public</span>:
 	myArray&lt;T&gt;();
-	myArray&lt;T&gt;(int);
-	myArray&lt;T&gt;(int, T);
+	myArray&lt;T&gt;(<span style="color:#6ab825;font-weight:bold">int</span>);
+	myArray&lt;T&gt;(<span style="color:#6ab825;font-weight:bold">int</span>, T);
 
-	void push(T);
-	void pop();
-	T at(int);
-	void set(int, T);
-	int size();
+	<span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">push</span>(T);
+	<span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">pop</span>();
+	T <span style="color:#447fcf">at</span>(<span style="color:#6ab825;font-weight:bold">int</span>);
+	<span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">set</span>(<span style="color:#6ab825;font-weight:bold">int</span>, T);
+	<span style="color:#6ab825;font-weight:bold">int</span> <span style="color:#447fcf">size</span>();
 };
 
-template &lt;class T&gt;
+<span style="color:#6ab825;font-weight:bold">template</span> &lt;<span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">T</span>&gt;
 myArray&lt;T&gt;::myArray()
 {
-	this-&gt;m_size = 0;
-	this-&gt;capacity = 1;
-	this-&gt;m_arr = new T[this-&gt;capacity];
+	<span style="color:#6ab825;font-weight:bold">this</span>-&gt;m_size = <span style="color:#3677a9">0</span>;
+	<span style="color:#6ab825;font-weight:bold">this</span>-&gt;capacity = <span style="color:#3677a9">1</span>;
+	<span style="color:#6ab825;font-weight:bold">this</span>-&gt;m_arr = <span style="color:#6ab825;font-weight:bold">new</span> T[<span style="color:#6ab825;font-weight:bold">this</span>-&gt;capacity];
 }
 
-template &lt;class T&gt;
-myArray&lt;T&gt;::myArray(int size)
+<span style="color:#6ab825;font-weight:bold">template</span> &lt;<span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">T</span>&gt;
+myArray&lt;T&gt;::myArray(<span style="color:#6ab825;font-weight:bold">int</span> size)
 {
-	this-&gt;m_size = size;
-	this-&gt;capacity = size;
-	this-&gt;m_arr = new T[size];
+	<span style="color:#6ab825;font-weight:bold">this</span>-&gt;m_size = size;
+	<span style="color:#6ab825;font-weight:bold">this</span>-&gt;capacity = size;
+	<span style="color:#6ab825;font-weight:bold">this</span>-&gt;m_arr = <span style="color:#6ab825;font-weight:bold">new</span> T[size];
 }
 
-template &lt;class T&gt;
-myArray&lt;T&gt;::myArray(int size, T init)
+<span style="color:#6ab825;font-weight:bold">template</span> &lt;<span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">T</span>&gt;
+myArray&lt;T&gt;::myArray(<span style="color:#6ab825;font-weight:bold">int</span> size, T init)
 {
-	this-&gt;m_size = size;
-	this-&gt;m_arr = new T[size];
-	memset(this-&gt;m_arr, init, sizeof(T) * size);
+	<span style="color:#6ab825;font-weight:bold">this</span>-&gt;m_size = size;
+	<span style="color:#6ab825;font-weight:bold">this</span>-&gt;m_arr = <span style="color:#6ab825;font-weight:bold">new</span> T[size];
+	memset(<span style="color:#6ab825;font-weight:bold">this</span>-&gt;m_arr, init, <span style="color:#6ab825;font-weight:bold">sizeof</span>(T) * size);
 }
 
-template &lt;class T&gt;
-void myArray&lt;T&gt;::push(T input)
+<span style="color:#6ab825;font-weight:bold">template</span> &lt;<span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">T</span>&gt;
+<span style="color:#6ab825;font-weight:bold">void</span> myArray&lt;T&gt;::push(T input)
 {
-	if (this-&gt;m_size == this-&gt;capacity)
+	<span style="color:#6ab825;font-weight:bold">if</span> (<span style="color:#6ab825;font-weight:bold">this</span>-&gt;m_size == <span style="color:#6ab825;font-weight:bold">this</span>-&gt;capacity)
 	{
-		this-&gt;capacity *= 2;
-		T* tmp = new T[this-&gt;capacity];
-		memcpy(tmp, this-&gt;m_arr, sizeof(T) * m_size);
-		delete(this-&gt;m_arr);
-		this-&gt;m_arr = tmp;
-		this-&gt;m_arr[this-&gt;m_size++] = input;
+		<span style="color:#6ab825;font-weight:bold">this</span>-&gt;capacity *= <span style="color:#3677a9">2</span>;
+		T* tmp = <span style="color:#6ab825;font-weight:bold">new</span> T[<span style="color:#6ab825;font-weight:bold">this</span>-&gt;capacity];
+		memcpy(tmp, <span style="color:#6ab825;font-weight:bold">this</span>-&gt;m_arr, <span style="color:#6ab825;font-weight:bold">sizeof</span>(T) * m_size);
+		<span style="color:#6ab825;font-weight:bold">delete</span>(<span style="color:#6ab825;font-weight:bold">this</span>-&gt;m_arr);
+		<span style="color:#6ab825;font-weight:bold">this</span>-&gt;m_arr = tmp;
+		<span style="color:#6ab825;font-weight:bold">this</span>-&gt;m_arr[<span style="color:#6ab825;font-weight:bold">this</span>-&gt;m_size++] = input;
 	}
-	else
+	<span style="color:#6ab825;font-weight:bold">else</span>
 	{
-		this-&gt;m_arr[this-&gt;m_size++] = input;
+		<span style="color:#6ab825;font-weight:bold">this</span>-&gt;m_arr[<span style="color:#6ab825;font-weight:bold">this</span>-&gt;m_size++] = input;
 	}
 }
 
-template &lt;class T&gt;
-void myArray&lt;T&gt;::pop()
+<span style="color:#6ab825;font-weight:bold">template</span> &lt;<span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">T</span>&gt;
+<span style="color:#6ab825;font-weight:bold">void</span> myArray&lt;T&gt;::pop()
 {
 	m_size--;
-	T* tmp = new T[this-&gt;m_size];
-	memcpy(tmp, this-&gt;m_arr, sizeof(T) * this-&gt;m_size);
-	delete(this-&gt;m_arr);
-	this-&gt;m_arr = tmp;
+	T* tmp = <span style="color:#6ab825;font-weight:bold">new</span> T[<span style="color:#6ab825;font-weight:bold">this</span>-&gt;m_size];
+	memcpy(tmp, <span style="color:#6ab825;font-weight:bold">this</span>-&gt;m_arr, <span style="color:#6ab825;font-weight:bold">sizeof</span>(T) * <span style="color:#6ab825;font-weight:bold">this</span>-&gt;m_size);
+	<span style="color:#6ab825;font-weight:bold">delete</span>(<span style="color:#6ab825;font-weight:bold">this</span>-&gt;m_arr);
+	<span style="color:#6ab825;font-weight:bold">this</span>-&gt;m_arr = tmp;
 }
 
-template &lt;class T&gt;
-T myArray&lt;T&gt;::at(int idx)
+<span style="color:#6ab825;font-weight:bold">template</span> &lt;<span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">T</span>&gt;
+T myArray&lt;T&gt;::at(<span style="color:#6ab825;font-weight:bold">int</span> idx)
 {
-	return this-&gt;m_arr[idx];
+	<span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#6ab825;font-weight:bold">this</span>-&gt;m_arr[idx];
 }
 
-template &lt;class T&gt;
-void myArray&lt;T&gt;::set(int idx, T input)
+<span style="color:#6ab825;font-weight:bold">template</span> &lt;<span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">T</span>&gt;
+<span style="color:#6ab825;font-weight:bold">void</span> myArray&lt;T&gt;::set(<span style="color:#6ab825;font-weight:bold">int</span> idx, T input)
 {
-	this-&gt;m_arr[idx] = input;
+	<span style="color:#6ab825;font-weight:bold">this</span>-&gt;m_arr[idx] = input;
 }
 
-template &lt;class T&gt;
-int myArray&lt;T&gt;::size()
+<span style="color:#6ab825;font-weight:bold">template</span> &lt;<span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">T</span>&gt;
+<span style="color:#6ab825;font-weight:bold">int</span> myArray&lt;T&gt;::size()
 {
-	return this-&gt;m_size;
+	<span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#6ab825;font-weight:bold">this</span>-&gt;m_size;
 }
-</code></pre>
-</blockquote>
+</code></pre></div></blockquote>
 
 <ul>
 <li>C++에서는 위의 클래스를 최적화시켜 STL을 지원한다. <a href="https://lameld.github.io/post/stl_vector">[ C++ STL vector ]</a></li>
@@ -332,17 +324,15 @@ int myArray&lt;T&gt;::size()
 <blockquote>
 <p>C++ STL vector
 vector를 사용하여 여러가지 동작이 가능하다. 자세한 내용은 추후에 <a href="https://lameld.github.io/post/stl_vector">[ C++ STL vector ]</a>에서 다루겠습니다. 아래에는 사용하는 예시를 넣었습니다.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">vector&lt;<span style="color:#6ab825;font-weight:bold">int</span>&gt; arr1;
+vector&lt;<span style="color:#6ab825;font-weight:bold">int</span>&gt; arr2(<span style="color:#3677a9">12</span>);
+vector&lt;<span style="color:#6ab825;font-weight:bold">int</span>&gt; arr3(<span style="color:#3677a9">20</span>, <span style="color:#3677a9">0</span>);
 
-<pre><code>vector&lt;int&gt; arr1;
-vector&lt;int&gt; arr2(12);
-vector&lt;int&gt; arr3(20, 0);
-
-arr1.push_back(111);
+arr1.push_back(<span style="color:#3677a9">111</span>);
 arr1.pop_back();
-int val = arr3[10];
-arr3.erase(arr3.begin() + 2);
-</code></pre>
-</blockquote>
+<span style="color:#6ab825;font-weight:bold">int</span> val = arr3[<span style="color:#3677a9">10</span>];
+arr3.erase(arr3.begin() + <span style="color:#3677a9">2</span>);
+</code></pre></div></blockquote>
  </div>
     <footer class="post-footer">
 
