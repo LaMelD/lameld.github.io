@@ -7,13 +7,13 @@
 <meta name="description" content="Personal blog." />
 <meta name="keywords" content="" />
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.62.0" />
+<meta name="generator" content="Hugo 0.59.1" />
 
 <link rel="canonical" href="https://lameld.github.io/post/kko_blind_2019_open/">
 <meta property="og:title" content="[Programmers][Kakao Blind 2019] 오픈채팅방" />
-<meta property="og:description" content="문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/42888&lt;/a&gt;
-  문제 설명
- 오픈채팅방에선 친구가 아닌 사람들과 대화가 가능하다. 채칭방에 들어오거나 나갈 때 메시지가 출력된다. 닉네임을 변경하는 방법은 2가지가 있다.  채팅방을 나간 후, 새로운 닉네임으로 다시 들어온다. 채팅방에서 닉네임을 변경한다.   닉네임을 변경할 때는 기존에 채팅방에 출력되어 있던 메시지의 닉네임도 전부 변경된다." />
+<meta property="og:description" content="카카오 블라인드 테스트 2019 - 오픈채팅방 문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/42888
+ 문제 설명
+ 오픈채팅방에선 친구가 아닌 사람들과 대화가 가능하다. 채칭방에 들어오거나 나갈 때 메시지가 출력된다. 닉네임을 변경하는 방법은 2가지가 있다.  채팅방을 나간 후, 새로운 닉네임으로 다시 들어온다. 채팅방에서 닉네임을 변경한다." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://lameld.github.io/post/kko_blind_2019_open/" />
 <meta property="article:published_time" content="2019-11-24T18:14:39+09:00" />
@@ -21,22 +21,25 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="[Programmers][Kakao Blind 2019] 오픈채팅방"/>
-<meta name="twitter:description" content="문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/42888&lt;/a&gt;
-  문제 설명
- 오픈채팅방에선 친구가 아닌 사람들과 대화가 가능하다. 채칭방에 들어오거나 나갈 때 메시지가 출력된다. 닉네임을 변경하는 방법은 2가지가 있다.  채팅방을 나간 후, 새로운 닉네임으로 다시 들어온다. 채팅방에서 닉네임을 변경한다.   닉네임을 변경할 때는 기존에 채팅방에 출력되어 있던 메시지의 닉네임도 전부 변경된다."/>
+<meta name="twitter:description" content="카카오 블라인드 테스트 2019 - 오픈채팅방 문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/42888
+ 문제 설명
+ 오픈채팅방에선 친구가 아닌 사람들과 대화가 가능하다. 채칭방에 들어오거나 나갈 때 메시지가 출력된다. 닉네임을 변경하는 방법은 2가지가 있다.  채팅방을 나간 후, 새로운 닉네임으로 다시 들어온다. 채팅방에서 닉네임을 변경한다."/>
 
 
 <meta itemprop="name" content="[Programmers][Kakao Blind 2019] 오픈채팅방">
-<meta itemprop="description" content="문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/42888&lt;/a&gt;
-  문제 설명
- 오픈채팅방에선 친구가 아닌 사람들과 대화가 가능하다. 채칭방에 들어오거나 나갈 때 메시지가 출력된다. 닉네임을 변경하는 방법은 2가지가 있다.  채팅방을 나간 후, 새로운 닉네임으로 다시 들어온다. 채팅방에서 닉네임을 변경한다.   닉네임을 변경할 때는 기존에 채팅방에 출력되어 있던 메시지의 닉네임도 전부 변경된다.">
+<meta itemprop="description" content="카카오 블라인드 테스트 2019 - 오픈채팅방 문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/42888
+ 문제 설명
+ 오픈채팅방에선 친구가 아닌 사람들과 대화가 가능하다. 채칭방에 들어오거나 나갈 때 메시지가 출력된다. 닉네임을 변경하는 방법은 2가지가 있다.  채팅방을 나간 후, 새로운 닉네임으로 다시 들어온다. 채팅방에서 닉네임을 변경한다.">
+
+
 <meta itemprop="datePublished" content="2019-11-24T18:14:39&#43;09:00" />
 <meta itemprop="dateModified" content="2019-11-24T18:14:39&#43;09:00" />
-<meta itemprop="wordCount" content="477">
+<meta itemprop="wordCount" content="483">
 
 
 
 <meta itemprop="keywords" content="c&#43;&#43;,programmers,kakao blind 2019," />
+
 
 <link rel="stylesheet" href="https://lameld.github.io/css/layout.css" />
 
@@ -120,43 +123,47 @@ if (!doNotTrack) {
 </div>
 
     
-    <div class="content"> <!-- raw HTML omitted -->
-<p>문제 출처 : <!-- raw HTML omitted --><a href="https://programmers.co.kr/learn/courses/30/lessons/42888%3C/a%3E">https://programmers.co.kr/learn/courses/30/lessons/42888&lt;/a&gt;</a></p>
+    <div class="content"> <h1>카카오 블라인드 테스트 2019 - 오픈채팅방</h1>
+
+<p>문제 출처 : <a href="https://programmers.co.kr/learn/courses/30/lessons/42888">https://programmers.co.kr/learn/courses/30/lessons/42888</a></p>
+
 <ul>
-<li>
-<p>문제 설명</p>
+<li><p>문제 설명</p>
+
 <ul>
 <li>오픈채팅방에선 친구가 아닌 사람들과 대화가 가능하다.</li>
 <li>채칭방에 들어오거나 나갈 때 메시지가 출력된다.</li>
 <li>닉네임을 변경하는 방법은 2가지가 있다.
+
 <ol>
 <li>채팅방을 나간 후, 새로운 닉네임으로 다시 들어온다.</li>
 <li>채팅방에서 닉네임을 변경한다.</li>
-</ol>
-</li>
+</ol></li>
 <li>닉네임을 변경할 때는 기존에 채팅방에 출력되어 있던 메시지의 닉네임도 전부 변경된다.</li>
 <li>채팅방은 중복 닉네임을 허용한다.</li>
-<li>사용자는 유저아이디로 구분된다.</li>
-</ul>
-</li>
-<li>
-<p>문제 풀이</p>
+<li>사용자는 유저아이디로 구분된다.
+<br /></li>
+</ul></li>
+
+<li><p>문제 풀이</p>
+
 <ul>
 <li>모든 사용자가 유저아이디로 구분되므로 식별자로 유저아이디를 사용하여 객체를 생성한다.</li>
 <li>커맨드는 Enter, Leave, Change로 구분된다.
+
 <ul>
 <li>Enter : 들어왔음을 알린다.</li>
 <li>Leave : 나갔음을 알린다.</li>
 <li>Change : 닉네임을 변경했음을 알린다.</li>
+</ul></li>
+<li>input인 record를 파싱하여 데이터를 축적하여 result에 저장한다.
+<br /></li>
+</ul></li>
 </ul>
-</li>
-<li>input인 record를 파싱하여 데이터를 축적하여 result에 저장한다.</li>
-</ul>
-</li>
-</ul>
+
 <blockquote>
 <p>Code</p>
-</blockquote>
+
 <pre><code>#include &lt;string&gt;
 #include &lt;vector&gt;
 #include &lt;sstream&gt;
@@ -318,7 +325,9 @@ vector&lt;string&gt; solution(vector&lt;string&gt; record)
 
 	return ret;
 }
-</code></pre> </div>
+</code></pre>
+</blockquote>
+ </div>
     <footer class="post-footer">
 
   <div class="post-footer-data">

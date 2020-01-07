@@ -7,12 +7,12 @@
 <meta name="description" content="Personal blog." />
 <meta name="keywords" content="" />
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.62.0" />
+<meta name="generator" content="Hugo 0.59.1" />
 
 <link rel="canonical" href="https://lameld.github.io/post/kko_blind_2018_news/">
 <meta property="og:title" content="[Programmers][Kakao Blind 2018] 뉴스 클러스터링" />
-<meta property="og:description" content="문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/17677&lt;/a&gt;
-  문제 설명
+<meta property="og:description" content="카카오 블라인드 테스트 2018 - 뉴스 클러스터링 문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/17677
+ 문제 설명
  자카드 유사도  집합 A = { 1, 2, 3 }, 집합 B = { 2, 3, 4 } A ∩ B = { 2, 3 } A ∪ B = { 1, 2, 3, 4 } J(A, B) = 2 / 4 자카드 유사도는 0." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://lameld.github.io/post/kko_blind_2018_news/" />
@@ -21,22 +21,25 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="[Programmers][Kakao Blind 2018] 뉴스 클러스터링"/>
-<meta name="twitter:description" content="문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/17677&lt;/a&gt;
-  문제 설명
+<meta name="twitter:description" content="카카오 블라인드 테스트 2018 - 뉴스 클러스터링 문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/17677
+ 문제 설명
  자카드 유사도  집합 A = { 1, 2, 3 }, 집합 B = { 2, 3, 4 } A ∩ B = { 2, 3 } A ∪ B = { 1, 2, 3, 4 } J(A, B) = 2 / 4 자카드 유사도는 0."/>
 
 
 <meta itemprop="name" content="[Programmers][Kakao Blind 2018] 뉴스 클러스터링">
-<meta itemprop="description" content="문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/17677&lt;/a&gt;
-  문제 설명
+<meta itemprop="description" content="카카오 블라인드 테스트 2018 - 뉴스 클러스터링 문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/17677
+ 문제 설명
  자카드 유사도  집합 A = { 1, 2, 3 }, 집합 B = { 2, 3, 4 } A ∩ B = { 2, 3 } A ∪ B = { 1, 2, 3, 4 } J(A, B) = 2 / 4 자카드 유사도는 0.">
+
+
 <meta itemprop="datePublished" content="2019-11-24T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2019-11-24T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="510">
+<meta itemprop="wordCount" content="517">
 
 
 
 <meta itemprop="keywords" content="c&#43;&#43;,programmers,kakao blind 2018," />
+
 
 <link rel="stylesheet" href="https://lameld.github.io/css/layout.css" />
 
@@ -120,31 +123,34 @@ if (!doNotTrack) {
 </div>
 
     
-    <div class="content"> <!-- raw HTML omitted -->
-<p>문제 출처 : <!-- raw HTML omitted --><a href="https://programmers.co.kr/learn/courses/30/lessons/17677%3C/a%3E">https://programmers.co.kr/learn/courses/30/lessons/17677&lt;/a&gt;</a></p>
+    <div class="content"> <h1>카카오 블라인드 테스트 2018 - 뉴스 클러스터링</h1>
+
+<p>문제 출처 : <a href="https://programmers.co.kr/learn/courses/30/lessons/17677">https://programmers.co.kr/learn/courses/30/lessons/17677</a></p>
+
 <ul>
-<li>
-<p>문제 설명</p>
+<li><p>문제 설명</p>
+
 <ol>
 <li>자카드 유사도
+
 <ul>
 <li>집합 A = { 1, 2, 3 }, 집합 B = { 2, 3, 4 }</li>
 <li><code>A ∩ B</code> = { 2, 3 }</li>
 <li><code>A ∪ B</code> = { 1, 2, 3, 4 }</li>
 <li>J(A, B) = 2 / 4</li>
 <li>자카드 유사도는 0.5이다.</li>
-</ul>
-</li>
+</ul></li>
 <li>중복을 허용하는 다중집합에서의 자카드 유사도
+
 <ul>
 <li>집합 A = { 1, 1, 2, 2, 3 }, 집합 B = { 1, 2, 2, 4, 5 }</li>
 <li><code>A ∩ B</code> = { 1, 2, 2 }</li>
 <li><code>A ∪ B</code> = { 1, 1, 2, 2, 3, 4, 5 }</li>
 <li>J(A, B) = 3 / 7</li>
 <li>자카드 유사도는 약 0.42이다.</li>
-</ul>
-</li>
+</ul></li>
 <li>자카드 유사도를 문자열 사이에 적용
+
 <ul>
 <li>두 글자씩 끊어서 다중집합을 만든다.</li>
 <li>FRANCE -&gt; { FR, RA, AN, NC, CE }, FRENCH -&gt; { FR, RE, EN, NC, CH }</li>
@@ -152,28 +158,29 @@ if (!doNotTrack) {
 <li>합집합 = { FR, NC, RA, AN, CE, RE, EN, CH }</li>
 <li>J(FRANCE, FRENCH) =  2 / 8</li>
 <li>자카드 유사도는 0.25이다.</li>
-</ul>
-</li>
+</ul></li>
 <li>비교에 있어서 대문자와 소문자의 차이는 무시한다.</li>
 <li>다중집합을 만듦에 있어서 두 문자가 영문자일 경우에만 집합에 포함한다.
+
 <ul>
-<li>&ldquo;ab+&quot;문자가 있으면 &ldquo;ab&quot;는 포함하고 &ldquo;b+&quot;는 포함하지 않는다.</li>
-</ul>
-</li>
-<li>유사도는 0에서 1사이의 실수이므로 65536을 곱한 후에 소수점 아래를 버린다.</li>
-</ol>
-</li>
-<li>
-<p>문제 풀이</p>
+<li>&ldquo;ab+&ldquo;문자가 있으면 &ldquo;ab&rdquo;는 포함하고 &ldquo;b+&ldquo;는 포함하지 않는다.</li>
+</ul></li>
+<li>유사도는 0에서 1사이의 실수이므로 65536을 곱한 후에 소수점 아래를 버린다.
+<br /></li>
+</ol></li>
+
+<li><p>문제 풀이</p>
+
 <ul>
 <li>두 문자열을 대문자로 바꾸고 다중집합을 만든다.</li>
-<li>교집합과 합집합을 만들어 자카드 유사도를 구한뒤 65536을 곱한뒤 리턴한다.</li>
+<li>교집합과 합집합을 만들어 자카드 유사도를 구한뒤 65536을 곱한뒤 리턴한다.
+<br /></li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <blockquote>
 <p>Code</p>
-</blockquote>
+
 <pre><code>#include &lt;string&gt;
 #include &lt;vector&gt;
 #include &lt;queue&gt;
@@ -287,7 +294,9 @@ int solution(string str1, string str2)
 
 	return answer;
 }
-</code></pre> </div>
+</code></pre>
+</blockquote>
+ </div>
     <footer class="post-footer">
 
   <div class="post-footer-data">

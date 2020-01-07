@@ -18,8 +18,8 @@
       
       <guid>https://lameld.github.io/post/ds_array/</guid>
       <description>Array(배열)  정적 배열 (Static Array)  기본적인 배열을 의미한다. C++에서 간단하게 선언이 가능하다.     1차원
- int arr0[3];int arr1[10] = { 0, };int arr2 = { 1,2,3,4 }; 2차원
- int arr0[3][7];int arr1[10][10] = { { 0, }, };int arr2 = { { 1,2}, { 3,4 } }; 3차원 이상의 배열도 [ ]를 추가하여 선언이 가능하다.</description>
+int arr0[3]; int arr1[10] = { 0, }; int arr2 = { 1,2,3,4 };  2차원
+int arr0[3][7]; int arr1[10][10] = { { 0, }, }; int arr2 = { { 1,2}, { 3,4 } };  3차원 이상의 배열도 [ ]를 추가하여 선언이 가능하다.</description>
     </item>
     
   </channel>

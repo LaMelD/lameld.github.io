@@ -7,12 +7,12 @@
 <meta name="description" content="Personal blog." />
 <meta name="keywords" content="" />
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.62.0" />
+<meta name="generator" content="Hugo 0.59.1" />
 
 <link rel="canonical" href="https://lameld.github.io/post/kko_blind_2018_dart/">
 <meta property="og:title" content="[Programmers][Kakao Blind 2018] 다트 게임" />
-<meta property="og:description" content="문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/17682&lt;/a&gt;
-  규칙
+<meta property="og:description" content="카카오 블라인드 테스트 2018 - 다트 게임 문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/17682
+ 규칙
  다트 게임은 총 3번의 기회로 구성된다. 각 기회마다 얻을 수 있는 점수는 0 ~ 10점까지이다. 점수와 함께 S(점수의 1승), D(점수의 2승), T(점수의 3승)가 주어진다. 옵션으로 *(해당 점수와 이전에 얻은 점수를 각각 2배로 한다), #(해당 점수를 마이너스한다)이 존재한다." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://lameld.github.io/post/kko_blind_2018_dart/" />
@@ -21,22 +21,25 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="[Programmers][Kakao Blind 2018] 다트 게임"/>
-<meta name="twitter:description" content="문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/17682&lt;/a&gt;
-  규칙
+<meta name="twitter:description" content="카카오 블라인드 테스트 2018 - 다트 게임 문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/17682
+ 규칙
  다트 게임은 총 3번의 기회로 구성된다. 각 기회마다 얻을 수 있는 점수는 0 ~ 10점까지이다. 점수와 함께 S(점수의 1승), D(점수의 2승), T(점수의 3승)가 주어진다. 옵션으로 *(해당 점수와 이전에 얻은 점수를 각각 2배로 한다), #(해당 점수를 마이너스한다)이 존재한다."/>
 
 
 <meta itemprop="name" content="[Programmers][Kakao Blind 2018] 다트 게임">
-<meta itemprop="description" content="문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/17682&lt;/a&gt;
-  규칙
+<meta itemprop="description" content="카카오 블라인드 테스트 2018 - 다트 게임 문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/17682
+ 규칙
  다트 게임은 총 3번의 기회로 구성된다. 각 기회마다 얻을 수 있는 점수는 0 ~ 10점까지이다. 점수와 함께 S(점수의 1승), D(점수의 2승), T(점수의 3승)가 주어진다. 옵션으로 *(해당 점수와 이전에 얻은 점수를 각각 2배로 한다), #(해당 점수를 마이너스한다)이 존재한다.">
+
+
 <meta itemprop="datePublished" content="2019-11-21T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2019-11-21T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="264">
+<meta itemprop="wordCount" content="272">
 
 
 
 <meta itemprop="keywords" content="c&#43;&#43;,programmers,kakao blind 2018," />
+
 
 <link rel="stylesheet" href="https://lameld.github.io/css/layout.css" />
 
@@ -120,11 +123,13 @@ if (!doNotTrack) {
 </div>
 
     
-    <div class="content"> <!-- raw HTML omitted -->
-<p>문제 출처 : <!-- raw HTML omitted --><a href="https://programmers.co.kr/learn/courses/30/lessons/17682%3C/a%3E">https://programmers.co.kr/learn/courses/30/lessons/17682&lt;/a&gt;</a></p>
+    <div class="content"> <h1>카카오 블라인드 테스트 2018 - 다트 게임</h1>
+
+<p>문제 출처 : <a href="https://programmers.co.kr/learn/courses/30/lessons/17682">https://programmers.co.kr/learn/courses/30/lessons/17682</a></p>
+
 <ul>
-<li>
-<p>규칙</p>
+<li><p>규칙</p>
+
 <ol>
 <li>다트 게임은 총 3번의 기회로 구성된다.</li>
 <li>각 기회마다 얻을 수 있는 점수는 0 ~ 10점까지이다.</li>
@@ -132,17 +137,17 @@ if (!doNotTrack) {
 <li>옵션으로 *(해당 점수와 이전에 얻은 점수를 각각 2배로 한다), #(해당 점수를 마이너스한다)이 존재한다.</li>
 <li>*는 첫번째 기회에도 등장할 수 있으며, 이 때 해당점수만 2배로 한다.</li>
 <li>*, #은 둘 중 하나만 존재하거나 존재하지 않을 수 있다.</li>
-<li>S, D, T는 점수마다 하나씩 존재한다.</li>
-</ol>
-</li>
-<li>
-<p>입력 형식 : 1S2D*3T(점수 | 보너스 | [ 옵션 ] )</p>
-</li>
+<li>S, D, T는 점수마다 하나씩 존재한다.
+<br /></li>
+</ol></li>
+
+<li><p>입력 형식 : 1S2D*3T(점수 | 보너스 | [ 옵션 ] )</p></li>
 </ul>
+
 <blockquote>
-<p>풀이<!-- raw HTML omitted -->
+<p>풀이<br>
 점수를 입력받고 S, D, T를 판별한다. 이후 보너스를 판별하여 현재의 점수를 수정하고 옵션을 확인하여 , 현재 기회에서 얻은 점수를 저장한다.</p>
-</blockquote>
+
 <pre><code>#include &lt;string&gt;
 
 using namespace std;
@@ -208,7 +213,9 @@ int solution(string dartResult)
 	int answer = nums[1] + nums[2] + nums[3];
 	return answer;
 }
-</code></pre> </div>
+</code></pre>
+</blockquote>
+ </div>
     <footer class="post-footer">
 
   <div class="post-footer-data">

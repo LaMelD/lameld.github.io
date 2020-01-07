@@ -7,7 +7,7 @@
 <meta name="description" content="Personal blog." />
 <meta name="keywords" content="" />
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.62.0" />
+<meta name="generator" content="Hugo 0.59.1" />
 
 <link rel="canonical" href="https://lameld.github.io/post/ds_queue/">
 <meta property="og:title" content="[Data Structure] Queue" />
@@ -24,13 +24,16 @@
 
 <meta itemprop="name" content="[Data Structure] Queue">
 <meta itemprop="description" content="Queue(큐) 1. 개념  Queue는 FIFO(First In First Out)의 원리로 동작하는 자료구조이다. 동일한 자료의 집합을 다룬다는 면에서 Stack과 비슷하지만 가장 먼저 들어간 자료가 가장 늦게 나온다는 점이 다르다. 넣은 순서대로 자료를 꺼내가므로 순서대로 처리해야 하는 자료를 임시작으로 저장하는 용도로 흔히 사용한다.">
+
+
 <meta itemprop="datePublished" content="2019-11-15T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2019-11-15T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="402">
+<meta itemprop="wordCount" content="408">
 
 
 
 <meta itemprop="keywords" content="c&#43;&#43;,data structure,queue," />
+
 
 <link rel="stylesheet" href="https://lameld.github.io/css/layout.css" />
 
@@ -114,32 +117,44 @@ if (!doNotTrack) {
 </div>
 
     
-    <div class="content"> <h1 id="queue">Queue(큐)</h1>
-<h3 id="1-">1. 개념</h3>
+    <div class="content"> 
+
+<h1 id="queue-큐">Queue(큐)</h1>
+
+<h3 id="1-개념">1. 개념</h3>
+
 <ul>
 <li>Queue는 FIFO(First In First Out)의 원리로 동작하는 자료구조이다.</li>
 <li>동일한 자료의 집합을 다룬다는 면에서 Stack과 비슷하지만 가장 먼저 들어간 자료가 가장 늦게 나온다는 점이 다르다.</li>
 <li>넣은 순서대로 자료를 꺼내가므로 순서대로 처리해야 하는 자료를 임시작으로 저장하는 용도로 흔히 사용한다.</li>
 <li>저장되는 자료의 타입이 동일하므로 배열 또는 연결리스트로 Queue를 구현할 수 있다.</li>
 </ul>
-<!-- raw HTML omitted -->
+
+<p><img src="https://lameld.github.io/images/queue1.png" width=30% height=30%></p>
+
 <blockquote>
 <ol>
-<li>선형 큐(Linear Queue)<!-- raw HTML omitted -->
-선형 큐는 큐의 가장 단순한 형태로써, 큐의 가장 앞을 가리키는 front와 가장 뒤를 가리키는 rear를 갖는다. 자료를 추가하면, 현재 rear가 가리키는 위치에 자료를 추가하고, rear는 1만큼 증가한다. 자료를 꺼내면, 현재 front가 가리키는 위치의 자료를 꺼내고 front는 1만큼 증가한다.<!-- raw HTML omitted --></li>
+<li>선형 큐(Linear Queue)<br>
+선형 큐는 큐의 가장 단순한 형태로써, 큐의 가장 앞을 가리키는 front와 가장 뒤를 가리키는 rear를 갖는다. 자료를 추가하면, 현재 rear가 가리키는 위치에 자료를 추가하고, rear는 1만큼 증가한다. 자료를 꺼내면, 현재 front가 가리키는 위치의 자료를 꺼내고 front는 1만큼 증가한다.<br></li>
 </ol>
 </blockquote>
-<!-- raw HTML omitted -->
+
+<p><img src="https://lameld.github.io/images/queue2.png"></p>
+
 <blockquote>
-<ol start="2">
+<ol>
 <li>환영 큐(Circular Queue)
 환영 큐는 선형 큐에서 pop 연산이 반복될 수록 큐에 저장할 수 있는 공간이 감소하는 문제점을 극복하기 위해 고안되었다. 기존의 선형 큐를 원형으로 구성한 새로운 형태의 큐를 이용한다. 환형 큐의 구조는 아래와 같다.</li>
 </ol>
 </blockquote>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+
+<p><img src="https://lameld.github.io/images/queue3.png"></p>
+
+<hr>
+
+<h3 id="2-구현-circular-queue">2. 구현 : Circular Queue</h3>
+
 <blockquote>
-</blockquote>
 <pre><code>#include &lt;iostream&gt;
 #include &lt;cstring&gt;
 
@@ -250,16 +265,19 @@ int main()
 
 	return 0;
 }
-</code></pre><blockquote>
+</code></pre>
+
 <p>결과</p>
-</blockquote>
+
 <pre><code>capacity가 20인 CircularQueue를 생성합니다
 0부터 19까지 20개를 Queue에 넣습니다.
 꽉 찼습니다.
 Queue의 Front를 출력하고 Pop하는 동작을 20번 반복합니다.
 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19
 비어있습니다.
-</code></pre> </div>
+</code></pre>
+</blockquote>
+ </div>
     <footer class="post-footer">
 
   <div class="post-footer-data">

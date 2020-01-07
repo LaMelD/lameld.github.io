@@ -7,12 +7,12 @@
 <meta name="description" content="Personal blog." />
 <meta name="keywords" content="" />
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.62.0" />
+<meta name="generator" content="Hugo 0.59.1" />
 
 <link rel="canonical" href="https://lameld.github.io/post/kko_blind_2019_muzi/">
 <meta property="og:title" content="[Programmers][Kakao Blind 2019] 무지의 먹방 라이브" />
-<meta property="og:description" content="문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/42891&lt;/a&gt;
-  문제 설명
+<meta property="og:description" content="카카오 블라인드 테스트 2019 - 무지의 먹방 라이브 문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/42891
+ 문제 설명
  회전판에 먹어야 할 N개의 음식이 있다. 무지는 1번 음식부터 먹기 시작하며, 회전판은 번호가 증가하는 순서대로 음식을 무지 앞으로 가져다 놓는다. 무지는 음식 하나를 1초 동안 섭취한 후 남은 음식은 그대로 두고, 다음 음식을 섭취한다." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://lameld.github.io/post/kko_blind_2019_muzi/" />
@@ -21,22 +21,25 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="[Programmers][Kakao Blind 2019] 무지의 먹방 라이브"/>
-<meta name="twitter:description" content="문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/42891&lt;/a&gt;
-  문제 설명
+<meta name="twitter:description" content="카카오 블라인드 테스트 2019 - 무지의 먹방 라이브 문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/42891
+ 문제 설명
  회전판에 먹어야 할 N개의 음식이 있다. 무지는 1번 음식부터 먹기 시작하며, 회전판은 번호가 증가하는 순서대로 음식을 무지 앞으로 가져다 놓는다. 무지는 음식 하나를 1초 동안 섭취한 후 남은 음식은 그대로 두고, 다음 음식을 섭취한다."/>
 
 
 <meta itemprop="name" content="[Programmers][Kakao Blind 2019] 무지의 먹방 라이브">
-<meta itemprop="description" content="문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/42891&lt;/a&gt;
-  문제 설명
+<meta itemprop="description" content="카카오 블라인드 테스트 2019 - 무지의 먹방 라이브 문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/42891
+ 문제 설명
  회전판에 먹어야 할 N개의 음식이 있다. 무지는 1번 음식부터 먹기 시작하며, 회전판은 번호가 증가하는 순서대로 음식을 무지 앞으로 가져다 놓는다. 무지는 음식 하나를 1초 동안 섭취한 후 남은 음식은 그대로 두고, 다음 음식을 섭취한다.">
+
+
 <meta itemprop="datePublished" content="2019-11-24T18:15:07&#43;09:00" />
 <meta itemprop="dateModified" content="2019-11-24T18:15:07&#43;09:00" />
-<meta itemprop="wordCount" content="470">
+<meta itemprop="wordCount" content="478">
 
 
 
 <meta itemprop="keywords" content="c&#43;&#43;,programmers,kakao blind 2019," />
+
 
 <link rel="stylesheet" href="https://lameld.github.io/css/layout.css" />
 
@@ -120,29 +123,31 @@ if (!doNotTrack) {
 </div>
 
     
-    <div class="content"> <!-- raw HTML omitted -->
-<p>문제 출처 : <!-- raw HTML omitted --><a href="https://programmers.co.kr/learn/courses/30/lessons/42891%3C/a%3E">https://programmers.co.kr/learn/courses/30/lessons/42891&lt;/a&gt;</a></p>
+    <div class="content"> <h1>카카오 블라인드 테스트 2019 - 무지의 먹방 라이브</h1>
+
+<p>문제 출처 : <a href="https://programmers.co.kr/learn/courses/30/lessons/42891">https://programmers.co.kr/learn/courses/30/lessons/42891</a></p>
+
 <ul>
-<li>
-<p>문제 설명</p>
+<li><p>문제 설명</p>
+
 <ol>
 <li>회전판에 먹어야 할 N개의 음식이 있다.</li>
 <li>무지는 1번 음식부터 먹기 시작하며, 회전판은 번호가 증가하는 순서대로 음식을 무지 앞으로 가져다 놓는다.</li>
 <li>무지는 음식 하나를 1초 동안 섭취한 후 남은 음식은 그대로 두고, 다음 음식을 섭취한다.</li>
 <li>무지가 먹방을 시작한 지 K초 후에 네트워크 장애로 인해 방송이 잠시 중단되었다가 정상화 후 다시 방송을 이어갈 때, 몇 번 음식부터 섭취해야하는지 알고자 한다.</li>
 <li>더 이상 섭취할 음식이 없다면 <code>-1</code> 을 반환한다.</li>
-</ol>
-</li>
-<li>
-<p>문제 풀이</p>
+</ol></li>
+
+<li><p>문제 풀이</p>
+
 <ul>
 <li>K초까지 어떤 음식을 먹었는지 계산하여 다음 음식의 번호를 리턴한다.</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <blockquote>
 <p>Code</p>
-</blockquote>
+
 <pre><code>#include &lt;algorithm&gt;
 #include &lt;string&gt;
 #include &lt;vector&gt;
@@ -294,7 +299,9 @@ int solution(vector&lt;int&gt; food_times, long long k)
 
 	return 0;
 }
-</code></pre> </div>
+</code></pre>
+</blockquote>
+ </div>
     <footer class="post-footer">
 
   <div class="post-footer-data">

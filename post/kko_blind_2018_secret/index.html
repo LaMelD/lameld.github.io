@@ -7,11 +7,11 @@
 <meta name="description" content="Personal blog." />
 <meta name="keywords" content="" />
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.62.0" />
+<meta name="generator" content="Hugo 0.59.1" />
 
 <link rel="canonical" href="https://lameld.github.io/post/kko_blind_2018_secret/">
 <meta property="og:title" content="[Programmers][Kakao Blind 2018] 비밀지도" />
-<meta property="og:description" content="문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/17681&lt;/a&gt;
+<meta property="og:description" content="카카오 블라인드 테스트 2018 - 비밀지도 문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/17681
  문제 설명  지도는 한 변의 길이가 n 인 정사각형 배열 형태로, 각 칸은 공백 또는 &ldquo;#&ldquo;으로 이루어져 있다. 전체 지도는 두 장의 지도를 겹쳐서 얻을 수 있다. 지도A, 지도B 두 지도는 각각 정수 배열로 암호화 되어 있다." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://lameld.github.io/post/kko_blind_2018_secret/" />
@@ -20,20 +20,23 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="[Programmers][Kakao Blind 2018] 비밀지도"/>
-<meta name="twitter:description" content="문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/17681&lt;/a&gt;
+<meta name="twitter:description" content="카카오 블라인드 테스트 2018 - 비밀지도 문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/17681
  문제 설명  지도는 한 변의 길이가 n 인 정사각형 배열 형태로, 각 칸은 공백 또는 &ldquo;#&ldquo;으로 이루어져 있다. 전체 지도는 두 장의 지도를 겹쳐서 얻을 수 있다. 지도A, 지도B 두 지도는 각각 정수 배열로 암호화 되어 있다."/>
 
 
 <meta itemprop="name" content="[Programmers][Kakao Blind 2018] 비밀지도">
-<meta itemprop="description" content="문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/17681&lt;/a&gt;
+<meta itemprop="description" content="카카오 블라인드 테스트 2018 - 비밀지도 문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/17681
  문제 설명  지도는 한 변의 길이가 n 인 정사각형 배열 형태로, 각 칸은 공백 또는 &ldquo;#&ldquo;으로 이루어져 있다. 전체 지도는 두 장의 지도를 겹쳐서 얻을 수 있다. 지도A, 지도B 두 지도는 각각 정수 배열로 암호화 되어 있다.">
+
+
 <meta itemprop="datePublished" content="2019-11-23T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2019-11-23T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="174">
+<meta itemprop="wordCount" content="180">
 
 
 
 <meta itemprop="keywords" content="c&#43;&#43;,programmers,kakao blind 2018," />
+
 
 <link rel="stylesheet" href="https://lameld.github.io/css/layout.css" />
 
@@ -117,30 +120,36 @@ if (!doNotTrack) {
 </div>
 
     
-    <div class="content"> <!-- raw HTML omitted -->
-<p>문제 출처 : <!-- raw HTML omitted --><a href="https://programmers.co.kr/learn/courses/30/lessons/17681%3C/a%3E">https://programmers.co.kr/learn/courses/30/lessons/17681&lt;/a&gt;</a></p>
+    <div class="content"> <h1>카카오 블라인드 테스트 2018 - 비밀지도</h1>
+
+<p>문제 출처 : <a href="https://programmers.co.kr/learn/courses/30/lessons/17681">https://programmers.co.kr/learn/courses/30/lessons/17681</a></p>
+
 <ul>
 <li>문제 설명
+
 <ol>
 <li>지도는 한 변의 길이가 <code>n</code> 인 정사각형 배열 형태로, 각 칸은 공백 또는 &ldquo;#&ldquo;으로 이루어져 있다.</li>
 <li>전체 지도는 두 장의 지도를 겹쳐서 얻을 수 있다. 지도A, 지도B</li>
 <li>두 지도는 각각 정수 배열로 암호화 되어 있다.</li>
-<li>암호화된 배열은 지도의 각 가로줄에서 벽 부분을 1, 공백부분을 0으로 부호화했을 때 얻어지는 이진수에 해당한는 값의 배열이다.</li>
-</ol>
-</li>
+<li>암호화된 배열은 지도의 각 가로줄에서 벽 부분을 1, 공백부분을 0으로 부호화했을 때 얻어지는 이진수에 해당한는 값의 배열이다.
+<br /></li>
+</ol></li>
 </ul>
-<!-- raw HTML omitted -->
+
+<p><img src="https://lameld.github.io/images/secret1.png"></p>
+
 <ul>
 <li>문제 풀이
+
 <ul>
 <li>입력 받은 정수를 각각 2진수로 변환한다.</li>
 <li>지도A와 지도B를 or연산을 통해서 전체 지도를 구한다.</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <blockquote>
 <p>Code</p>
-</blockquote>
+
 <pre><code>#include &lt;string&gt;
 #include &lt;vector&gt;
 
@@ -176,7 +185,9 @@ vector&lt;string&gt; solution(int n, vector&lt;int&gt; arr1, vector&lt;int&gt; a
 
 	return ret;
 }
-</code></pre> </div>
+</code></pre>
+</blockquote>
+ </div>
     <footer class="post-footer">
 
   <div class="post-footer-data">

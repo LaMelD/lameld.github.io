@@ -7,13 +7,13 @@
 <meta name="description" content="Personal blog." />
 <meta name="keywords" content="" />
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.62.0" />
+<meta name="generator" content="Hugo 0.59.1" />
 
 <link rel="canonical" href="https://lameld.github.io/post/kko_blind_2020_circular/">
 <meta property="og:title" content="[Programmers][Kakao Blind 2020] 외벽 점검" />
-<meta property="og:description" content="문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/60062&lt;/a&gt;
-  문제 설명
- 외벽이 원형으로 이루어진 레스토랑의 외벽을 점검한다. 외벽의 총 둘레는 n미터이다. 최소한의 인원을 투입하여 취약 지점을 점검한다. 정북 방향 지점을 0으로 한다. 인원들 각각이 1시간 동안 이동할 수 있는 거리는 다르다. 최대로 투입 가능한 인원의 수는 8명이 한계이다." />
+<meta property="og:description" content="카카오 블라인드 테스트 2020 - 외벽 점검 문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/60062
+ 문제 설명
+ 외벽이 원형으로 이루어진 레스토랑의 외벽을 점검한다. 외벽의 총 둘레는 n미터이다. 최소한의 인원을 투입하여 취약 지점을 점검한다. 정북 방향 지점을 0으로 한다. 인원들 각각이 1시간 동안 이동할 수 있는 거리는 다르다." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://lameld.github.io/post/kko_blind_2020_circular/" />
 <meta property="article:published_time" content="2019-11-27T11:22:33+09:00" />
@@ -21,22 +21,25 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="[Programmers][Kakao Blind 2020] 외벽 점검"/>
-<meta name="twitter:description" content="문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/60062&lt;/a&gt;
-  문제 설명
- 외벽이 원형으로 이루어진 레스토랑의 외벽을 점검한다. 외벽의 총 둘레는 n미터이다. 최소한의 인원을 투입하여 취약 지점을 점검한다. 정북 방향 지점을 0으로 한다. 인원들 각각이 1시간 동안 이동할 수 있는 거리는 다르다. 최대로 투입 가능한 인원의 수는 8명이 한계이다."/>
+<meta name="twitter:description" content="카카오 블라인드 테스트 2020 - 외벽 점검 문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/60062
+ 문제 설명
+ 외벽이 원형으로 이루어진 레스토랑의 외벽을 점검한다. 외벽의 총 둘레는 n미터이다. 최소한의 인원을 투입하여 취약 지점을 점검한다. 정북 방향 지점을 0으로 한다. 인원들 각각이 1시간 동안 이동할 수 있는 거리는 다르다."/>
 
 
 <meta itemprop="name" content="[Programmers][Kakao Blind 2020] 외벽 점검">
-<meta itemprop="description" content="문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/60062&lt;/a&gt;
-  문제 설명
- 외벽이 원형으로 이루어진 레스토랑의 외벽을 점검한다. 외벽의 총 둘레는 n미터이다. 최소한의 인원을 투입하여 취약 지점을 점검한다. 정북 방향 지점을 0으로 한다. 인원들 각각이 1시간 동안 이동할 수 있는 거리는 다르다. 최대로 투입 가능한 인원의 수는 8명이 한계이다.">
+<meta itemprop="description" content="카카오 블라인드 테스트 2020 - 외벽 점검 문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/60062
+ 문제 설명
+ 외벽이 원형으로 이루어진 레스토랑의 외벽을 점검한다. 외벽의 총 둘레는 n미터이다. 최소한의 인원을 투입하여 취약 지점을 점검한다. 정북 방향 지점을 0으로 한다. 인원들 각각이 1시간 동안 이동할 수 있는 거리는 다르다.">
+
+
 <meta itemprop="datePublished" content="2019-11-27T11:22:33&#43;09:00" />
 <meta itemprop="dateModified" content="2019-11-27T11:22:33&#43;09:00" />
-<meta itemprop="wordCount" content="564">
+<meta itemprop="wordCount" content="571">
 
 
 
 <meta itemprop="keywords" content="c&#43;&#43;,programmers,kakao blind 2020," />
+
 
 <link rel="stylesheet" href="https://lameld.github.io/css/layout.css" />
 
@@ -120,11 +123,13 @@ if (!doNotTrack) {
 </div>
 
     
-    <div class="content"> <!-- raw HTML omitted -->
-<p>문제 출처 : <!-- raw HTML omitted --><a href="https://programmers.co.kr/learn/courses/30/lessons/60062%3C/a%3E">https://programmers.co.kr/learn/courses/30/lessons/60062&lt;/a&gt;</a></p>
+    <div class="content"> <h1>카카오 블라인드 테스트 2020 - 외벽 점검</h1>
+
+<p>문제 출처 : <a href="https://programmers.co.kr/learn/courses/30/lessons/60062">https://programmers.co.kr/learn/courses/30/lessons/60062</a></p>
+
 <ul>
-<li>
-<p>문제 설명</p>
+<li><p>문제 설명</p>
+
 <ul>
 <li>외벽이 원형으로 이루어진 레스토랑의 외벽을 점검한다.</li>
 <li>외벽의 총 둘레는 n미터이다.</li>
@@ -133,53 +138,61 @@ if (!doNotTrack) {
 <li>인원들 각각이 1시간 동안 이동할 수 있는 거리는 다르다.</li>
 <li>최대로 투입 가능한 인원의 수는 8명이 한계이다.</li>
 <li>취약점의 최대 갯수는 15곳이다.</li>
-<li>모든 인원을 투입해도 취약점을 전부 점검할 수 없을 경우 -1을 리턴한다.</li>
+<li>모든 인원을 투입해도 취약점을 전부 점검할 수 없을 경우 -1을 리턴한다.
+<br /></li>
+</ul></li>
+
+<li><p>예제</p></li>
 </ul>
-</li>
-<li>
-<p>예제</p>
-</li>
-</ul>
+
 <blockquote>
 <ol>
-<li>n = 12, weak = { 1, 5, 6, 10 }, dist = { 1, 2, 3, 4 }</li>
-</ol>
-</blockquote>
+<li><p>n = 12, weak = { 1, 5, 6, 10 }, dist = { 1, 2, 3, 4 }</p>
+
 <pre><code>1. 4m를 이동할 수 있는 인원은 10m 지점에서 출발하여 시계방향으로 돌아 1m 위치에 있는 취약 지점에서 외벽 점검을 마친다.
 2. 2m를 이동할 수 있는 인원은 4.5m 지점에서 출발하여 6.5지점에서 외벽 점검을 마친다.
 
 이 외의 여러 방법이 있지만, 두 명보다 적은 인원을 투입하는 방법은 없다. 따라서 친구를 최소 두 명 투입해야 한다.
-</code></pre><!-- raw HTML omitted -->
-<blockquote>
-<ol start="2">
-<li>n = 12, weak = { 1, 3, 4, 9, 10 }, dist = { 3, 5, 7 }</li>
+</code></pre></li>
 </ol>
-</blockquote>
+
+<p><img src="https://lameld.github.io/images/circular1.jpg" width=50% height=50%></p>
+
+<ol>
+<li><p>n = 12, weak = { 1, 3, 4, 9, 10 }, dist = { 3, 5, 7 }</p>
+
 <pre><code>1. 7m를 이동할 수 있는 인원이 4m 지점에서 출발하여 반시계 방향으로 점검을 돌면 모든 취약 지점을 점검할 수 있다.
 
 따라서 인원을 최소 한 명 투입하면 된다.
-</code></pre><!-- raw HTML omitted -->
+</code></pre></li>
+</ol>
+
+<p><img src="https://lameld.github.io/images/circular2.jpg" width=50% height=50%></p>
+</blockquote>
+
 <ul>
 <li>문제 풀이
+
 <ol>
 <li>dist 배열을 내림차순으로 정렬한다.(많은 지역을 커버할 수 있는 인원을 우선으로한다)</li>
 <li>레스토랑이 원형으로 되어 있으므로 weak 배열을 초기 버전부터시작하여 가장 앞의 취약점에 n을 더하여 취약점의 위치를 재조정한다.
+
 <ul>
 <li>n = 5, weak = { 1, 3, 4 } : 초기 (1번재 반복)</li>
 <li>weak = { 3, 4, 6 } : 2번째 반복</li>
 <li>weak = { 4, 6, 8 } : 3번째 반복</li>
-</ul>
-</li>
+</ul></li>
 <li>선발 인원을 1명 부터 최대 인원까지 부여한다.</li>
 <li>각각 선발된 인원으로 모든 취약점이 커버될 수 있는지 판단한다.</li>
 <li>모든 취약점이 커버될 수 있다면 answer값을 갱신해준다.</li>
-<li>모든 경우를 진행했지만 answer값에 변화가 없다면 -1을 리턴한다.</li>
-</ol>
-</li>
+<li>모든 경우를 진행했지만 answer값에 변화가 없다면 -1을 리턴한다.
+<br /></li>
+</ol></li>
 </ul>
+
 <blockquote>
 <p>Code</p>
-</blockquote>
+
 <pre><code>#include &lt;algorithm&gt;
 #include &lt;string&gt;
 #include &lt;vector&gt;
@@ -281,7 +294,9 @@ int solution(int n, vector&lt;int&gt; weak, vector&lt;int&gt; dist)
 
 	return answer;
 }
-</code></pre> </div>
+</code></pre>
+</blockquote>
+ </div>
     <footer class="post-footer">
 
   <div class="post-footer-data">

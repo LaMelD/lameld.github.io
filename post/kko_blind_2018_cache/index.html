@@ -7,14 +7,13 @@
 <meta name="description" content="Personal blog." />
 <meta name="keywords" content="" />
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.62.0" />
+<meta name="generator" content="Hugo 0.59.1" />
 
 <link rel="canonical" href="https://lameld.github.io/post/kko_blind_2018_cache/">
 <meta property="og:title" content="[Programmers][Kakao Blind 2018] 캐시" />
-<meta property="og:description" content="문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/17680&lt;/a&gt;
-  문제 설명
- 캐시 교체 알고리즘은 LRU(Least Recently Used) 를 사용한다. cache hit 일 경우 실행시간은 1이다. cache miss 일 경우 실행시간은 5이다. 총 실행 시간을 출력한다.    문제 풀이
- 캐시 크기만큼의 배열을 생성한다." />
+<meta property="og:description" content="카카오 블라인드 테스트 2018 - 캐시 문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/17680
+ 문제 설명
+ 캐시 교체 알고리즘은 LRU(Least Recently Used) 를 사용한다. cache hit 일 경우 실행시간은 1이다. cache miss 일 경우 실행시간은 5이다. 총 실행 시간을 출력한다.   문제 풀이" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://lameld.github.io/post/kko_blind_2018_cache/" />
 <meta property="article:published_time" content="2019-11-22T00:00:00+00:00" />
@@ -22,24 +21,25 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="[Programmers][Kakao Blind 2018] 캐시"/>
-<meta name="twitter:description" content="문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/17680&lt;/a&gt;
-  문제 설명
- 캐시 교체 알고리즘은 LRU(Least Recently Used) 를 사용한다. cache hit 일 경우 실행시간은 1이다. cache miss 일 경우 실행시간은 5이다. 총 실행 시간을 출력한다.    문제 풀이
- 캐시 크기만큼의 배열을 생성한다."/>
+<meta name="twitter:description" content="카카오 블라인드 테스트 2018 - 캐시 문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/17680
+ 문제 설명
+ 캐시 교체 알고리즘은 LRU(Least Recently Used) 를 사용한다. cache hit 일 경우 실행시간은 1이다. cache miss 일 경우 실행시간은 5이다. 총 실행 시간을 출력한다.   문제 풀이"/>
 
 
 <meta itemprop="name" content="[Programmers][Kakao Blind 2018] 캐시">
-<meta itemprop="description" content="문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/17680&lt;/a&gt;
-  문제 설명
- 캐시 교체 알고리즘은 LRU(Least Recently Used) 를 사용한다. cache hit 일 경우 실행시간은 1이다. cache miss 일 경우 실행시간은 5이다. 총 실행 시간을 출력한다.    문제 풀이
- 캐시 크기만큼의 배열을 생성한다.">
+<meta itemprop="description" content="카카오 블라인드 테스트 2018 - 캐시 문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/17680
+ 문제 설명
+ 캐시 교체 알고리즘은 LRU(Least Recently Used) 를 사용한다. cache hit 일 경우 실행시간은 1이다. cache miss 일 경우 실행시간은 5이다. 총 실행 시간을 출력한다.   문제 풀이">
+
+
 <meta itemprop="datePublished" content="2019-11-22T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2019-11-22T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="293">
+<meta itemprop="wordCount" content="299">
 
 
 
 <meta itemprop="keywords" content="c&#43;&#43;,programmers,kakao blind 2018," />
+
 
 <link rel="stylesheet" href="https://lameld.github.io/css/layout.css" />
 
@@ -123,32 +123,36 @@ if (!doNotTrack) {
 </div>
 
     
-    <div class="content"> <!-- raw HTML omitted -->
-<p>문제 출처 : <!-- raw HTML omitted --><a href="https://programmers.co.kr/learn/courses/30/lessons/17680%3C/a%3E">https://programmers.co.kr/learn/courses/30/lessons/17680&lt;/a&gt;</a></p>
+    <div class="content"> <h1>카카오 블라인드 테스트 2018 - 캐시</h1>
+
+<p>문제 출처 : <a href="https://programmers.co.kr/learn/courses/30/lessons/17680">https://programmers.co.kr/learn/courses/30/lessons/17680</a></p>
+
 <ul>
-<li>
-<p>문제 설명</p>
+<li><p>문제 설명</p>
+
 <ol>
 <li>캐시 교체 알고리즘은 <code>LRU(Least Recently Used)</code> 를 사용한다.</li>
 <li><code>cache hit</code> 일 경우 실행시간은 1이다.</li>
 <li><code>cache miss</code> 일 경우 실행시간은 5이다.</li>
-<li>총 실행 시간을 출력한다.</li>
-</ol>
-</li>
-<li>
-<p>문제 풀이</p>
+<li>총 실행 시간을 출력한다.
+<br /></li>
+</ol></li>
+
+<li><p>문제 풀이</p>
+
 <ul>
 <li>캐시 크기만큼의 배열을 생성한다.</li>
 <li>캐시가 비어있다면 데이터를 넣는다. 데이터를 넣을 때 사용된 시간을 함께 넣는다.</li>
 <li>cache miss이고 비어 있는 캐시가 없다면 가장 오랫동안 사용되지 않은 데이터를 교체한다.</li>
 <li>cache miss이고 비어 있는 캐시가 있다면 비어 있는 공간에 데이터와 사용된 시간을 넣는다.</li>
-<li>cache hit가 일어나면 해당 cache의 사용된 시간을 갱신한다.</li>
+<li>cache hit가 일어나면 해당 cache의 사용된 시간을 갱신한다.
+<br /></li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <blockquote>
 <p>Code</p>
-</blockquote>
+
 <pre><code>#include &lt;string&gt;
 #include &lt;vector&gt;
 
@@ -235,7 +239,9 @@ int solution(int cacheSize, vector&lt;string&gt; cities)
 
 	return cnt;
 }
-</code></pre> </div>
+</code></pre>
+</blockquote>
+ </div>
     <footer class="post-footer">
 
   <div class="post-footer-data">
