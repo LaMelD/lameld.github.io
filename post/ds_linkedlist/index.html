@@ -128,8 +128,7 @@ if (!doNotTrack) {
 <li>[ 배열 ] 과 비교했을 때 추가 및 삭제가 쉽다는 장점이 있지만 접근할 때 O(n)만큼 걸린다는 단점이 있습니다.</li>
 </ul>
 
-<p><br><br>
-<hr></p>
+<hr />
 
 <h3 id="2-구현">2. 구현</h3>
 
@@ -156,34 +155,33 @@ if (!doNotTrack) {
 </ul>
 
 <blockquote>
-<pre><code>template &lt;class T&gt;
-class Node
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#6ab825;font-weight:bold">template</span> &lt;<span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">T</span>&gt;
+<span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">Node</span>
 {
-private:
+<span style="color:#6ab825;font-weight:bold">private</span>:
 	T data;
 	Node&lt;T&gt;* pnext;
-public:
+<span style="color:#6ab825;font-weight:bold">public</span>:
 	Node();
 	Node(T);
-	T getData() { return this-&gt;data; }
-	void setData(T n) { this-&gt;data = n; }
-	singlenode&lt;T&gt;* getNext() { return this-&gt;pnext; }
-	void setNext(singlenode&lt;T&gt;* pnode) { this-&gt;pnext = pnode; }
+	T <span style="color:#447fcf">getData</span>() { <span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#6ab825;font-weight:bold">this</span>-&gt;data; }
+	<span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">setData</span>(T n) { <span style="color:#6ab825;font-weight:bold">this</span>-&gt;data = n; }
+	singlenode&lt;T&gt;* getNext() { <span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#6ab825;font-weight:bold">this</span>-&gt;pnext; }
+	<span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">setNext</span>(singlenode&lt;T&gt;* pnode) { <span style="color:#6ab825;font-weight:bold">this</span>-&gt;pnext = pnode; }
 };
-template &lt;class T&gt;
+<span style="color:#6ab825;font-weight:bold">template</span> &lt;<span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">T</span>&gt;
 Node&lt;T&gt;::Node()
 {
-	this-&gt;data = 0;
-	this-&gt;pnext = NULL;
+	<span style="color:#6ab825;font-weight:bold">this</span>-&gt;data = <span style="color:#3677a9">0</span>;
+	<span style="color:#6ab825;font-weight:bold">this</span>-&gt;pnext = <span style="color:#24909d">NULL</span>;
 }
-template &lt;class T&gt;
+<span style="color:#6ab825;font-weight:bold">template</span> &lt;<span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">T</span>&gt;
 Node&lt;T&gt;::Node(T n)
 {
-	this-&gt;data = n;
-	this-&gt;pnext = NULL;
+	<span style="color:#6ab825;font-weight:bold">this</span>-&gt;data = n;
+	<span style="color:#6ab825;font-weight:bold">this</span>-&gt;pnext = <span style="color:#24909d">NULL</span>;
 }
-</code></pre>
-</blockquote>
+</code></pre></div></blockquote>
 
 <p><br></p>
 
@@ -212,26 +210,25 @@ Node&lt;T&gt;::Node(T n)
 </ul>
 
 <blockquote>
-<pre><code>template &lt;class T&gt;
-class SingleLinkedList
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#6ab825;font-weight:bold">template</span> &lt;<span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">T</span>&gt;
+<span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">SingleLinkedList</span>
 {
-private:
+<span style="color:#6ab825;font-weight:bold">private</span>:
 	Node&lt;T&gt;* phead;
 	Node&lt;T&gt;* ptail;
-	int ssize;
-public:
+	<span style="color:#6ab825;font-weight:bold">int</span> ssize;
+<span style="color:#6ab825;font-weight:bold">public</span>:
 	SingleLinkedList();
-	bool isEmpty() { return this-&gt;phead == NULL ? true : false; }
-	int size() { return this-&gt;ssize; }
-	Node&lt;T&gt;* getHead() { return this-&gt;phead; }
-	T getData(int);
-	void AddFront(T);
-	void AddBack(T);
-	void InsertNode(Node&lt;T&gt;*, T);
-	void DeleteNode(int);
+	<span style="color:#6ab825;font-weight:bold">bool</span> <span style="color:#447fcf">isEmpty</span>() { <span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#6ab825;font-weight:bold">this</span>-&gt;phead == <span style="color:#24909d">NULL</span> ? <span style="color:#24909d">true</span> : <span style="color:#24909d">false</span>; }
+	<span style="color:#6ab825;font-weight:bold">int</span> <span style="color:#447fcf">size</span>() { <span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#6ab825;font-weight:bold">this</span>-&gt;ssize; }
+	Node&lt;T&gt;* getHead() { <span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#6ab825;font-weight:bold">this</span>-&gt;phead; }
+	T <span style="color:#447fcf">getData</span>(<span style="color:#6ab825;font-weight:bold">int</span>);
+	<span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">AddFront</span>(T);
+	<span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">AddBack</span>(T);
+	<span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">InsertNode</span>(Node&lt;T&gt;*, T);
+	<span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">DeleteNode</span>(<span style="color:#6ab825;font-weight:bold">int</span>);
 };
-</code></pre>
-</blockquote>
+</code></pre></div></blockquote>
 
 <p><br></p>
 
@@ -241,325 +238,311 @@ public:
 
 <blockquote>
 <p>getData(int n) : phead부터 n번째 data를 리턴한다.</p>
-
-<pre><code>template &lt;class T&gt;
-T SingleLinkedList&lt;T&gt;::getValue(int n)
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#6ab825;font-weight:bold">template</span> &lt;<span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">T</span>&gt;
+T SingleLinkedList&lt;T&gt;::getValue(<span style="color:#6ab825;font-weight:bold">int</span> n)
 {
-	Node&lt;T&gt;* tmp = this-&gt;phead;
-	for (int i = 0; i &lt; n; i++)
+	Node&lt;T&gt;* tmp = <span style="color:#6ab825;font-weight:bold">this</span>-&gt;phead;
+	<span style="color:#6ab825;font-weight:bold">for</span> (<span style="color:#6ab825;font-weight:bold">int</span> i = <span style="color:#3677a9">0</span>; i &lt; n; i++)
 	{
 		tmp = tmp-&gt;getNext();
 	}
 	
-	return tmp-&gt;getData();
+	<span style="color:#6ab825;font-weight:bold">return</span> tmp-&gt;getData();
 }
-</code></pre>
-
+</code></pre></div>
 <p>AddFront(T n) : List의 맨 앞에 추가한다.</p>
-
-<pre><code>template &lt;class T&gt;
-void SingleLinkedList&lt;T&gt;::AddFront(T n)
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#6ab825;font-weight:bold">template</span> &lt;<span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">T</span>&gt;
+<span style="color:#6ab825;font-weight:bold">void</span> SingleLinkedList&lt;T&gt;::AddFront(T n)
 {
-	Node&lt;T&gt;* tmp = new Node&lt;T&gt;(n);
+	Node&lt;T&gt;* tmp = <span style="color:#6ab825;font-weight:bold">new</span> Node&lt;T&gt;(n);
 
-	this-&gt;ssize++;
+	<span style="color:#6ab825;font-weight:bold">this</span>-&gt;ssize++;
 
-	if (this-&gt;phead == NULL)
+	<span style="color:#6ab825;font-weight:bold">if</span> (<span style="color:#6ab825;font-weight:bold">this</span>-&gt;phead == <span style="color:#24909d">NULL</span>)
 	{
-		this-&gt;phead = tmp;
-		this-&gt;ptail = tmp;
+		<span style="color:#6ab825;font-weight:bold">this</span>-&gt;phead = tmp;
+		<span style="color:#6ab825;font-weight:bold">this</span>-&gt;ptail = tmp;
 	}
-	else
+	<span style="color:#6ab825;font-weight:bold">else</span>
 	{
-		tmp-&gt;setNext(this-&gt;phead);
-		this-&gt;phead = tmp;
+		tmp-&gt;setNext(<span style="color:#6ab825;font-weight:bold">this</span>-&gt;phead);
+		<span style="color:#6ab825;font-weight:bold">this</span>-&gt;phead = tmp;
 	}
-</code></pre>
-
+</code></pre></div>
 <p>AddBack(T n) : List의 맨 뒤에 추가한다</p>
-
-<pre><code>template &lt;class T&gt;
-void SingleLinkedList&lt;T&gt;::AddBack(T n)
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#6ab825;font-weight:bold">template</span> &lt;<span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">T</span>&gt;
+<span style="color:#6ab825;font-weight:bold">void</span> SingleLinkedList&lt;T&gt;::AddBack(T n)
 {
-	Node&lt;T&gt;* tmp = new Node&lt;T&gt;(n);
+	Node&lt;T&gt;* tmp = <span style="color:#6ab825;font-weight:bold">new</span> Node&lt;T&gt;(n);
 
-	this-&gt;ssize++;
+	<span style="color:#6ab825;font-weight:bold">this</span>-&gt;ssize++;
 
-	if (this-&gt;phead == NULL)
+	<span style="color:#6ab825;font-weight:bold">if</span> (<span style="color:#6ab825;font-weight:bold">this</span>-&gt;phead == <span style="color:#24909d">NULL</span>)
 	{
-		this-&gt;phead = tmp;
-		this-&gt;ptail = tmp;
+		<span style="color:#6ab825;font-weight:bold">this</span>-&gt;phead = tmp;
+		<span style="color:#6ab825;font-weight:bold">this</span>-&gt;ptail = tmp;
 	}
-	else
+	<span style="color:#6ab825;font-weight:bold">else</span>
 	{
-		this-&gt;ptail-&gt;setNext(tmp);
-		this-&gt;ptail = tmp;
+		<span style="color:#6ab825;font-weight:bold">this</span>-&gt;ptail-&gt;setNext(tmp);
+		<span style="color:#6ab825;font-weight:bold">this</span>-&gt;ptail = tmp;
 	}
 }
-</code></pre>
-
+</code></pre></div>
 <p>InsertNode(Node&lt;T&gt;* prev, T n) : prev 노드 뒤에 n의 value를 갖는 노드를 추가한다.</p>
-
-<pre><code>template &lt;class T&gt;
-void SingleLinkedList&lt;T&gt;::InsertNode(Node&lt;T&gt;* previous, T n)
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#6ab825;font-weight:bold">template</span> &lt;<span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">T</span>&gt;
+<span style="color:#6ab825;font-weight:bold">void</span> SingleLinkedList&lt;T&gt;::InsertNode(Node&lt;T&gt;* previous, T n)
 {
-	Node&lt;T&gt;* tmp = new Node&lt;T&gt;(n);
+	Node&lt;T&gt;* tmp = <span style="color:#6ab825;font-weight:bold">new</span> Node&lt;T&gt;(n);
 
-	this-&gt;ssize++;
+	<span style="color:#6ab825;font-weight:bold">this</span>-&gt;ssize++;
 
 	tmp-&gt;setNext(previous-&gt;getNext());
 	previous-&gt;setNext(tmp);
 }
-</code></pre>
-
+</code></pre></div>
 <p>DeleteNode(int n) : phead부터 n번째 인덱스의 다음 node를 삭제한다.</p>
-
-<pre><code>template &lt;class T&gt;
-void SingleLinkedList&lt;T&gt;::DeleteNode(int n)
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#6ab825;font-weight:bold">template</span> &lt;<span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">T</span>&gt;
+<span style="color:#6ab825;font-weight:bold">void</span> SingleLinkedList&lt;T&gt;::DeleteNode(<span style="color:#6ab825;font-weight:bold">int</span> n)
 {
-	if (ssize != 0 &amp;&amp; n &lt; ssize)
+	<span style="color:#6ab825;font-weight:bold">if</span> (ssize != <span style="color:#3677a9">0</span> &amp;&amp; n &lt; ssize)
 	{
-		this-&gt;ssize--;
+		<span style="color:#6ab825;font-weight:bold">this</span>-&gt;ssize--;
 
-		if (n == 0)
+		<span style="color:#6ab825;font-weight:bold">if</span> (n == <span style="color:#3677a9">0</span>)
 		{
-			this-&gt;phead = this-&gt;phead-&gt;getNext();
+			<span style="color:#6ab825;font-weight:bold">this</span>-&gt;phead = <span style="color:#6ab825;font-weight:bold">this</span>-&gt;phead-&gt;getNext();
 		}
-		else
+		<span style="color:#6ab825;font-weight:bold">else</span>
 		{
-			Node&lt;T&gt;* previous = this-&gt;phead;
+			Node&lt;T&gt;* previous = <span style="color:#6ab825;font-weight:bold">this</span>-&gt;phead;
 			Node&lt;T&gt;* tmp = previous-&gt;getNext();
 
-			for (int i = 1; i &lt; n; i++)
+			<span style="color:#6ab825;font-weight:bold">for</span> (<span style="color:#6ab825;font-weight:bold">int</span> i = <span style="color:#3677a9">1</span>; i &lt; n; i++)
 			{
 				previous = tmp;
 				tmp = previous-&gt;getNext();
 			}
-			if (n == ssize)
+			<span style="color:#6ab825;font-weight:bold">if</span> (n == ssize)
 			{
-				this-&gt;ptail = previous;
-				previous-&gt;setNext(NULL);
+				<span style="color:#6ab825;font-weight:bold">this</span>-&gt;ptail = previous;
+				previous-&gt;setNext(<span style="color:#24909d">NULL</span>);
 			}
 			previous-&gt;setNext(tmp-&gt;getNext());
 		}
 
-		if (ssize == 0)
+		<span style="color:#6ab825;font-weight:bold">if</span> (ssize == <span style="color:#3677a9">0</span>)
 		{
-			this-&gt;phead = NULL;
-			this-&gt;ptail = NULL;
+			<span style="color:#6ab825;font-weight:bold">this</span>-&gt;phead = <span style="color:#24909d">NULL</span>;
+			<span style="color:#6ab825;font-weight:bold">this</span>-&gt;ptail = <span style="color:#24909d">NULL</span>;
 		}
 	}
 }
-</code></pre>
-</blockquote>
+</code></pre></div></blockquote>
 
 <p><br>
 - 전체 코드</p>
 
 <blockquote>
-<pre><code>#include &lt;iostream&gt;
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;iostream&gt;</span><span style="color:#cd2828;font-weight:bold">
+</span><span style="color:#cd2828;font-weight:bold"></span>
+<span style="color:#6ab825;font-weight:bold">using</span> <span style="color:#6ab825;font-weight:bold">namespace</span> std;
 
-using namespace std;
-
-template &lt;class T&gt;
-class Node
+<span style="color:#6ab825;font-weight:bold">template</span> &lt;<span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">T</span>&gt;
+<span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">Node</span>
 {
-private:
+<span style="color:#6ab825;font-weight:bold">private</span>:
 	T data;
 	Node&lt;T&gt;* pnext;
 
-public:
+<span style="color:#6ab825;font-weight:bold">public</span>:
 	Node();
 	Node(T);
-	T getData() { return this-&gt;data; }
-	void setData(T n) { this-&gt;data = n; }
-	Node&lt;T&gt;* getNext() { return this-&gt;pnext; }
-	void setNext(Node&lt;T&gt;* pnode) { this-&gt;pnext = pnode; }
+	T <span style="color:#447fcf">getData</span>() { <span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#6ab825;font-weight:bold">this</span>-&gt;data; }
+	<span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">setData</span>(T n) { <span style="color:#6ab825;font-weight:bold">this</span>-&gt;data = n; }
+	Node&lt;T&gt;* getNext() { <span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#6ab825;font-weight:bold">this</span>-&gt;pnext; }
+	<span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">setNext</span>(Node&lt;T&gt;* pnode) { <span style="color:#6ab825;font-weight:bold">this</span>-&gt;pnext = pnode; }
 };
-template &lt;class T&gt;
+<span style="color:#6ab825;font-weight:bold">template</span> &lt;<span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">T</span>&gt;
 Node&lt;T&gt;::Node()
 {
-	this-&gt;data = 0;
-	this-&gt;pnext = NULL;
+	<span style="color:#6ab825;font-weight:bold">this</span>-&gt;data = <span style="color:#3677a9">0</span>;
+	<span style="color:#6ab825;font-weight:bold">this</span>-&gt;pnext = <span style="color:#24909d">NULL</span>;
 }
-template &lt;class T&gt;
+<span style="color:#6ab825;font-weight:bold">template</span> &lt;<span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">T</span>&gt;
 Node&lt;T&gt;::Node(T n)
 {
-	this-&gt;data = n;
-	this-&gt;pnext = NULL;
+	<span style="color:#6ab825;font-weight:bold">this</span>-&gt;data = n;
+	<span style="color:#6ab825;font-weight:bold">this</span>-&gt;pnext = <span style="color:#24909d">NULL</span>;
 }
 
-template &lt;class T&gt;
-class SingleLinkedList
+<span style="color:#6ab825;font-weight:bold">template</span> &lt;<span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">T</span>&gt;
+<span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">SingleLinkedList</span>
 {
-private:
+<span style="color:#6ab825;font-weight:bold">private</span>:
 	Node&lt;T&gt;* phead;
 	Node&lt;T&gt;* ptail;
-	int ssize;
+	<span style="color:#6ab825;font-weight:bold">int</span> ssize;
 
-public:
+<span style="color:#6ab825;font-weight:bold">public</span>:
 	SingleLinkedList();
-	bool isEmpty() { return this-&gt;phead == NULL ? true : false; }
-	int size() { return this-&gt;ssize; }
-	Node&lt;T&gt;* getHead() { return this-&gt;phead; }
-	T getData(int);
-	void AddFront(T);
-	void AddBack(T);
-	void InsertNode(Node&lt;T&gt;*, T);
-	void DeleteNode(int);
+	<span style="color:#6ab825;font-weight:bold">bool</span> <span style="color:#447fcf">isEmpty</span>() { <span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#6ab825;font-weight:bold">this</span>-&gt;phead == <span style="color:#24909d">NULL</span> ? <span style="color:#24909d">true</span> : <span style="color:#24909d">false</span>; }
+	<span style="color:#6ab825;font-weight:bold">int</span> <span style="color:#447fcf">size</span>() { <span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#6ab825;font-weight:bold">this</span>-&gt;ssize; }
+	Node&lt;T&gt;* getHead() { <span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#6ab825;font-weight:bold">this</span>-&gt;phead; }
+	T <span style="color:#447fcf">getData</span>(<span style="color:#6ab825;font-weight:bold">int</span>);
+	<span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">AddFront</span>(T);
+	<span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">AddBack</span>(T);
+	<span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">InsertNode</span>(Node&lt;T&gt;*, T);
+	<span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">DeleteNode</span>(<span style="color:#6ab825;font-weight:bold">int</span>);
 };
-template &lt;class T&gt;
+<span style="color:#6ab825;font-weight:bold">template</span> &lt;<span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">T</span>&gt;
 SingleLinkedList&lt;T&gt;::SingleLinkedList()
 {
-	this-&gt;phead = NULL;
-	this-&gt;ptail = NULL;
-	this-&gt;ssize = 0;
+	<span style="color:#6ab825;font-weight:bold">this</span>-&gt;phead = <span style="color:#24909d">NULL</span>;
+	<span style="color:#6ab825;font-weight:bold">this</span>-&gt;ptail = <span style="color:#24909d">NULL</span>;
+	<span style="color:#6ab825;font-weight:bold">this</span>-&gt;ssize = <span style="color:#3677a9">0</span>;
 }
-template &lt;class T&gt;
-void SingleLinkedList&lt;T&gt;::AddFront(T n)
+<span style="color:#6ab825;font-weight:bold">template</span> &lt;<span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">T</span>&gt;
+<span style="color:#6ab825;font-weight:bold">void</span> SingleLinkedList&lt;T&gt;::AddFront(T n)
 {
-	Node&lt;T&gt;* tmp = new Node&lt;T&gt;(n);
+	Node&lt;T&gt;* tmp = <span style="color:#6ab825;font-weight:bold">new</span> Node&lt;T&gt;(n);
 
-	this-&gt;ssize++;
+	<span style="color:#6ab825;font-weight:bold">this</span>-&gt;ssize++;
 
-	if (this-&gt;phead == NULL)
+	<span style="color:#6ab825;font-weight:bold">if</span> (<span style="color:#6ab825;font-weight:bold">this</span>-&gt;phead == <span style="color:#24909d">NULL</span>)
 	{
-		this-&gt;phead = tmp;
-		this-&gt;ptail = tmp;
+		<span style="color:#6ab825;font-weight:bold">this</span>-&gt;phead = tmp;
+		<span style="color:#6ab825;font-weight:bold">this</span>-&gt;ptail = tmp;
 	}
-	else
+	<span style="color:#6ab825;font-weight:bold">else</span>
 	{
-		tmp-&gt;setNext(this-&gt;phead);
-		this-&gt;phead = tmp;
-	}
-}
-template &lt;class T&gt;
-void SingleLinkedList&lt;T&gt;::AddBack(T n)
-{
-	Node&lt;T&gt;* tmp = new Node&lt;T&gt;(n);
-
-	this-&gt;ssize++;
-
-	if (this-&gt;phead == NULL)
-	{
-		this-&gt;phead = tmp;
-		this-&gt;ptail = tmp;
-	}
-	else
-	{
-		this-&gt;ptail-&gt;setNext(tmp);
-		this-&gt;ptail = tmp;
+		tmp-&gt;setNext(<span style="color:#6ab825;font-weight:bold">this</span>-&gt;phead);
+		<span style="color:#6ab825;font-weight:bold">this</span>-&gt;phead = tmp;
 	}
 }
-template &lt;class T&gt;
-void SingleLinkedList&lt;T&gt;::InsertNode(Node&lt;T&gt;* previous, T n)
+<span style="color:#6ab825;font-weight:bold">template</span> &lt;<span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">T</span>&gt;
+<span style="color:#6ab825;font-weight:bold">void</span> SingleLinkedList&lt;T&gt;::AddBack(T n)
 {
-	Node&lt;T&gt;* tmp = new Node&lt;T&gt;(n);
+	Node&lt;T&gt;* tmp = <span style="color:#6ab825;font-weight:bold">new</span> Node&lt;T&gt;(n);
 
-	this-&gt;ssize++;
+	<span style="color:#6ab825;font-weight:bold">this</span>-&gt;ssize++;
+
+	<span style="color:#6ab825;font-weight:bold">if</span> (<span style="color:#6ab825;font-weight:bold">this</span>-&gt;phead == <span style="color:#24909d">NULL</span>)
+	{
+		<span style="color:#6ab825;font-weight:bold">this</span>-&gt;phead = tmp;
+		<span style="color:#6ab825;font-weight:bold">this</span>-&gt;ptail = tmp;
+	}
+	<span style="color:#6ab825;font-weight:bold">else</span>
+	{
+		<span style="color:#6ab825;font-weight:bold">this</span>-&gt;ptail-&gt;setNext(tmp);
+		<span style="color:#6ab825;font-weight:bold">this</span>-&gt;ptail = tmp;
+	}
+}
+<span style="color:#6ab825;font-weight:bold">template</span> &lt;<span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">T</span>&gt;
+<span style="color:#6ab825;font-weight:bold">void</span> SingleLinkedList&lt;T&gt;::InsertNode(Node&lt;T&gt;* previous, T n)
+{
+	Node&lt;T&gt;* tmp = <span style="color:#6ab825;font-weight:bold">new</span> Node&lt;T&gt;(n);
+
+	<span style="color:#6ab825;font-weight:bold">this</span>-&gt;ssize++;
 
 	tmp-&gt;setNext(previous-&gt;getNext());
 	previous-&gt;setNext(tmp);
 }
-template &lt;class T&gt;
-void SingleLinkedList&lt;T&gt;::DeleteNode(int n)
+<span style="color:#6ab825;font-weight:bold">template</span> &lt;<span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">T</span>&gt;
+<span style="color:#6ab825;font-weight:bold">void</span> SingleLinkedList&lt;T&gt;::DeleteNode(<span style="color:#6ab825;font-weight:bold">int</span> n)
 {
-	if (ssize != 0 &amp;&amp; n &lt; ssize)
+	<span style="color:#6ab825;font-weight:bold">if</span> (ssize != <span style="color:#3677a9">0</span> &amp;&amp; n &lt; ssize)
 	{
-		this-&gt;ssize--;
+		<span style="color:#6ab825;font-weight:bold">this</span>-&gt;ssize--;
 
-		if (n == 0)
+		<span style="color:#6ab825;font-weight:bold">if</span> (n == <span style="color:#3677a9">0</span>)
 		{
-			this-&gt;phead = this-&gt;phead-&gt;getNext();
+			<span style="color:#6ab825;font-weight:bold">this</span>-&gt;phead = <span style="color:#6ab825;font-weight:bold">this</span>-&gt;phead-&gt;getNext();
 		}
-		else
+		<span style="color:#6ab825;font-weight:bold">else</span>
 		{
-			Node&lt;T&gt;* previous = this-&gt;phead;
+			Node&lt;T&gt;* previous = <span style="color:#6ab825;font-weight:bold">this</span>-&gt;phead;
 			Node&lt;T&gt;* tmp = previous-&gt;getNext();
 
-			for (int i = 1; i &lt; n; i++)
+			<span style="color:#6ab825;font-weight:bold">for</span> (<span style="color:#6ab825;font-weight:bold">int</span> i = <span style="color:#3677a9">1</span>; i &lt; n; i++)
 			{
 				previous = tmp;
 				tmp = previous-&gt;getNext();
 			}
-			if (n == ssize)
+			<span style="color:#6ab825;font-weight:bold">if</span> (n == ssize)
 			{
-				this-&gt;ptail = previous;
-				previous-&gt;setNext(NULL);
+				<span style="color:#6ab825;font-weight:bold">this</span>-&gt;ptail = previous;
+				previous-&gt;setNext(<span style="color:#24909d">NULL</span>);
 			}
 			previous-&gt;setNext(tmp-&gt;getNext());
 		}
 
-		if (ssize == 0)
+		<span style="color:#6ab825;font-weight:bold">if</span> (ssize == <span style="color:#3677a9">0</span>)
 		{
-			this-&gt;phead = NULL;
-			this-&gt;ptail = NULL;
+			<span style="color:#6ab825;font-weight:bold">this</span>-&gt;phead = <span style="color:#24909d">NULL</span>;
+			<span style="color:#6ab825;font-weight:bold">this</span>-&gt;ptail = <span style="color:#24909d">NULL</span>;
 		}
 	}
 }
-template &lt;class T&gt;
-T SingleLinkedList&lt;T&gt;::getData(int n)
+<span style="color:#6ab825;font-weight:bold">template</span> &lt;<span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">T</span>&gt;
+T SingleLinkedList&lt;T&gt;::getData(<span style="color:#6ab825;font-weight:bold">int</span> n)
 {
-	Node* tmp = this-&gt;phead;
-	for (int i = 0; i &lt; n; i++)
+	Node* tmp = <span style="color:#6ab825;font-weight:bold">this</span>-&gt;phead;
+	<span style="color:#6ab825;font-weight:bold">for</span> (<span style="color:#6ab825;font-weight:bold">int</span> i = <span style="color:#3677a9">0</span>; i &lt; n; i++)
 	{
 		tmp = tmp-&gt;getNext();
 	}
 
-	return tmp-&gt;getData();
+	<span style="color:#6ab825;font-weight:bold">return</span> tmp-&gt;getData();
 }
 
-int main()
+<span style="color:#6ab825;font-weight:bold">int</span> <span style="color:#447fcf">main</span>()
 {
-	SingleLinkedList&lt;int&gt;* sli = new SingleLinkedList&lt;int&gt;();
+	SingleLinkedList&lt;<span style="color:#6ab825;font-weight:bold">int</span>&gt;* sli = <span style="color:#6ab825;font-weight:bold">new</span> SingleLinkedList&lt;<span style="color:#6ab825;font-weight:bold">int</span>&gt;();
 
-	sli-&gt;AddBack(2);
-	sli-&gt;AddBack(3);
-	sli-&gt;AddBack(9);
-	sli-&gt;AddBack(10);
+	sli-&gt;AddBack(<span style="color:#3677a9">2</span>);
+	sli-&gt;AddBack(<span style="color:#3677a9">3</span>);
+	sli-&gt;AddBack(<span style="color:#3677a9">9</span>);
+	sli-&gt;AddBack(<span style="color:#3677a9">10</span>);
 
-	sli-&gt;AddFront(4);
-	sli-&gt;AddFront(5);
-	sli-&gt;AddFront(6);
-	sli-&gt;AddFront(7);
-	sli-&gt;AddFront(8);
+	sli-&gt;AddFront(<span style="color:#3677a9">4</span>);
+	sli-&gt;AddFront(<span style="color:#3677a9">5</span>);
+	sli-&gt;AddFront(<span style="color:#3677a9">6</span>);
+	sli-&gt;AddFront(<span style="color:#3677a9">7</span>);
+	sli-&gt;AddFront(<span style="color:#3677a9">8</span>);
 
-	cout &lt;&lt; &quot;2, 3, 9, 10을 앞에 추가하고, 4, 5, 6, 7, 8을 뒤에 추가한 결과 :&quot;;
-	Node&lt;int&gt;* tmp = sli-&gt;getHead();
-	for (int i = 0; i &lt; sli-&gt;size(); i++)
+	cout &lt;&lt; <span style="color:#ed9d13">&#34;2, 3, 9, 10을 앞에 추가하고, 4, 5, 6, 7, 8을 뒤에 추가한 결과 :&#34;</span>;
+	Node&lt;<span style="color:#6ab825;font-weight:bold">int</span>&gt;* tmp = sli-&gt;getHead();
+	<span style="color:#6ab825;font-weight:bold">for</span> (<span style="color:#6ab825;font-weight:bold">int</span> i = <span style="color:#3677a9">0</span>; i &lt; sli-&gt;size(); i++)
 	{
-		cout &lt;&lt; ' ' &lt;&lt; tmp-&gt;getData();
+		cout &lt;&lt; <span style="color:#ed9d13">&#39; &#39;</span> &lt;&lt; tmp-&gt;getData();
 		tmp = tmp-&gt;getNext();
 	}
-	cout &lt;&lt; '\n';
+	cout &lt;&lt; <span style="color:#ed9d13">&#39;\n&#39;</span>;
 
-	Node&lt;int&gt;* ptr = sli-&gt;getHead();
+	Node&lt;<span style="color:#6ab825;font-weight:bold">int</span>&gt;* ptr = sli-&gt;getHead();
 	ptr = ptr-&gt;getNext()-&gt;getNext();
 
-	cout &lt;&lt; &quot;앞에서 3번째 인덱스 뒤에 150을 추가한다\n&quot;;
-	sli-&gt;InsertNode(ptr, 150);
+	cout &lt;&lt; <span style="color:#ed9d13">&#34;앞에서 3번째 인덱스 뒤에 150을 추가한다</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>;
+	sli-&gt;InsertNode(ptr, <span style="color:#3677a9">150</span>);
 
-	cout &lt;&lt; &quot;5번째 인덱스 뒤의 노드를 삭제한다\n&quot;;
-	sli-&gt;DeleteNode(5);
-	cout &lt;&lt; &quot;최종 리스트 :&quot;;
+	cout &lt;&lt; <span style="color:#ed9d13">&#34;5번째 인덱스 뒤의 노드를 삭제한다</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>;
+	sli-&gt;DeleteNode(<span style="color:#3677a9">5</span>);
+	cout &lt;&lt; <span style="color:#ed9d13">&#34;최종 리스트 :&#34;</span>;
 	tmp = sli-&gt;getHead();
-	for (int i = 0; i &lt; sli-&gt;size(); i++)
+	<span style="color:#6ab825;font-weight:bold">for</span> (<span style="color:#6ab825;font-weight:bold">int</span> i = <span style="color:#3677a9">0</span>; i &lt; sli-&gt;size(); i++)
 	{
-		cout &lt;&lt; ' ' &lt;&lt; tmp-&gt;getData();
+		cout &lt;&lt; <span style="color:#ed9d13">&#39; &#39;</span> &lt;&lt; tmp-&gt;getData();
 		tmp = tmp-&gt;getNext();
 	}
-	cout &lt;&lt; '\n';
+	cout &lt;&lt; <span style="color:#ed9d13">&#39;\n&#39;</span>;
 }
-</code></pre>
-
-<p>출력<br></p>
-
-<pre><code>2, 3, 9, 10을 앞에 추가하고, 4, 5, 6, 7, 8을 뒤에 추가한 결과 : 8 7 6 5 4 2 3 9 10
+</code></pre></div>
+<p>출력</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-txt" data-lang="txt">2, 3, 9, 10을 앞에 추가하고, 4, 5, 6, 7, 8을 뒤에 추가한 결과 : 8 7 6 5 4 2 3 9 10
 앞에서 3번째 인덱스 뒤에 150을 추가한다
 5번째 인덱스 뒤의 노드를 삭제한다
-최종 리스트 : 8 7 6 150 5 2 3 9 10
-</code></pre>
-</blockquote>
+최종 리스트 : 8 7 6 150 5 2 3 9 10</code></pre></div></blockquote>
  </div>
     <footer class="post-footer">
 

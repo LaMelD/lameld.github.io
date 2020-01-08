@@ -40,7 +40,7 @@ berryz web share ip :: http://121.140.73.126 (공인 IP)
 
 <meta itemprop="datePublished" content="2020-01-06T09:34:37&#43;09:00" />
 <meta itemprop="dateModified" content="2020-01-06T09:34:37&#43;09:00" />
-<meta itemprop="wordCount" content="826">
+<meta itemprop="wordCount" content="1162">
 
 
 
@@ -322,7 +322,7 @@ berryz web share ip :: <a href="http://121.140.73.126">http://121.140.73.126</a>
 <h2 id="4-동적-라우팅-프로토콜-rip">4. 동적 라우팅 프로토콜 - RIP</h2>
 
 <ul>
-<li>RIP : 라우터의 개수가 적은 경로를 최적의 경로로 설정한다. Distance Vector Routing Protocol</li>
+<li>RIP Protocol : 라우터의 개수가 적은 경로를 최적의 경로로 설정한다. Distance Vector Routing Protocol</li>
 <li>Routing table의 교환 : 각 라우터는 30sec 마다 공유한다.</li>
 <li>V1 과 V2
 
@@ -400,6 +400,191 @@ configure terminal
         network [알고 있는 네트워크 대역]
 </code></pre>
 </blockquote>
+
+<h2 id="5-동적-라우팅-프로토콜-eigrp">5. 동적 라우팅 프로토콜 - EIGRP</h2>
+
+<ul>
+<li>EIGRP Protocol
+
+<ul>
+<li>Cisco에서 만든 Cisco 전용 라우팅 프로토콜</li>
+<li>Auto-summary 적용되어 있음</li>
+<li>라우팅 정보 전송을 위해 IP 프로토콜 88번 사용</li>
+<li>IGRP가 발전된 라우팅 프로토콜</li>
+<li>DUAL 알고리즘 사용하여 최적 경로와 후속 경로 산출</li>
+<li>Convergen time이 빠르다</li>
+<li>AD값은 내부가 90, 외부가 170</li>
+<li>AS(Autonomous System) 단위로 구성</li>
+<li>Classless Routing protocol</li>
+</ul></li>
+<li>장점
+
+<ul>
+<li>빠르다</li>
+<li>부하분산 지원(Unequal cost)</li>
+<li>OSPF에 비해 설정이 간단하다</li>
+</ul></li>
+
+<li><p>단점</p>
+
+<ul>
+<li>Cisco 전용 Routing protocol이기에 Cisco router에서만 동작</li>
+<li>대규모 네트워크 구성은 힘들다(라우팅 테이블이 매우 커짐)</li>
+</ul></li>
+
+<li><p>EIGRP Packet : 이웃을 맺고 라우팅 정보를 교환한다.</p>
+
+<ul>
+<li>Hello packet</li>
+<li>Update packet</li>
+<li>Query packet</li>
+<li>Reply packet</li>
+<li>ACK(Acknowledgement) packet</li>
+</ul></li>
+
+<li><p>라우팅 경로 계산 절차</p>
+
+<ul>
+<li>Hello packet을 인접 Router가 서로 교환 한 후 Neighbor 관계를 맺고 Neighbor table을 생성한다.</li>
+<li>Update packet을 통해 라우팅 정보를 교환하고 Topology table을 생성한다.</li>
+<li>Topology table 정보를 종합해서 라우팅 경로를 계산하고 Best path를 Routing table에 저장한다.</li>
+</ul></li>
+
+<li><p>특정 네트워크로 가는 경로 또는 인접 Router가 다운되었을 때</p>
+
+<ol>
+<li></li>
+<li></li>
+<li>ㅁㅁ<br />
+ㅁ0000ㄻ</li>
+</ol></li>
+
+<li><p>EIGRP 메트릭</p>
+
+<ul>
+<li></li>
+<li></li>
+<li></li>
+</ul></li>
+
+<li><p>DUAL 알고리즘</p>
+
+<ul>
+<li>메트릭을 구하고</li>
+<li>FD값을 구하고 가장 낮은 경로가 최적경로로 선출</li>
+<li>남아있는 경로 중 AD 값이 FD값보다 작은 경우 후속 경로로 선출</li>
+</ul></li>
+</ul>
+
+<h2 id="5-동적-라우팅-프로토콜-ospf-정리가-필요하다">5. 동적 라우팅 프로토콜 - OSPF // 정리가 필요하다.</h2>
+
+<ul>
+<li><p>OSPF Protocol</p>
+
+<ul>
+<li>Link-state 라우팅 프로토콜</li>
+<li>Classless 라우팅 프로토콜</li>
+<li>Metric(메트릭) cost 사용</li>
+<li>Multicast를 사용하여 정보 전달</li>
+<li>AD값 : 110</li>
+<li>SPF(Shortest path First) 또는 Dijkstra 알고리즘 이용(경로 계산)</li>
+</ul></li>
+
+<li><p>장점</p>
+
+<ul>
+<li>area 단위로 구성 &ndash;&gt; 대규모 네트워크를 안정적으로 운영 가능
+
+<ul>
+<li></li>
+</ul></li>
+<li>Stub이라는 강력한 축양 기능이 있다&hellip;..
+
+<ul>
+<li></li>
+</ul></li>
+<li>표준 Routing Protocol</li>
+<li>Convergence time이 전반적으로 빠른 편이다.</li>
+</ul></li>
+
+<li><p>단점</p>
+
+<ul>
+<li>설정이 복잡하다
+
+<ul>
+<li>네트워크 종류에 따라 동작하는 방식과 설정이 다르다.</li>
+</ul></li>
+
+<li><p>네트워크의 종류</p>
+
+<ul>
+<li>Broadcast Multi Access</li>
+<li>Point-to-point</li>
+<li>Point-to-Multipoint</li>
+<li>Non Broadcast Multi Access
+<br /></li>
+</ul></li>
+
+<li><p>Broadcast Multi Access</p></li>
+
+<li><p>Non Broadcast Multi Access</p></li>
+
+<li><p>Point-to-point</p></li>
+
+<li><p>Point-to-Multipoint(찾아보자)</p></li>
+</ul></li>
+
+<li><p>Packet</p>
+
+<ul>
+<li>Hello packet
+
+<ul>
+<li>내용</li>
+</ul></li>
+<li>DBD packet
+
+<ul>
+<li>내용</li>
+</ul></li>
+<li>LSR packet
+
+<ul>
+<li>내용</li>
+</ul></li>
+<li>LSR packet
+
+<ul>
+<li>내용</li>
+</ul></li>
+<li>LSU packet
+
+<ul>
+<li>내용</li>
+</ul></li>
+<li>LSAck packet
+
+<ul>
+<li>내용</li>
+</ul></li>
+</ul></li>
+
+<li><p>과정</p>
+
+<ol>
+<li>OSPF를 설정한 Router끼리 Hello packet을 교환해서 Neighbor 혹은 adjancent Neighbor를 맺는다
+
+<ul>
+<li>adjancent Neighbor &ndash;&gt; 라우팅 정보(LSA:Link State Advertisement)를 교환하는 네이버</li>
+</ul></li>
+<li>adjancent 네이버인 Router간 라우팅 정보를 서로 교환. 전송 받은 LSA를 Link-State-DB에 저장</li>
+<li>LSA를 모두 교환하고 SPF 또는 다익스트라 알고리즘을 이용하여 각 목적지까지의 최적 경로를 계산 후 Routing table에 올린다.</li>
+<li>네트워크의 상태가 변하면 다시 위의 과정을 반복해서 Routing table을 생성</li>
+</ol></li>
+
+<li></li>
+</ul>
  </div>
     <footer class="post-footer">
 
