@@ -40,7 +40,7 @@ berryz web share ip :: http://121.140.73.126 (공인 IP)
 
 <meta itemprop="datePublished" content="2020-01-06T09:34:37&#43;09:00" />
 <meta itemprop="dateModified" content="2020-01-06T09:34:37&#43;09:00" />
-<meta itemprop="wordCount" content="2501">
+<meta itemprop="wordCount" content="2563">
 
 
 
@@ -997,7 +997,19 @@ ex)
 <blockquote>
 <p>실습 자료</p>
 
-<pre><code></code></pre>
+<pre><code>Standard ACL
+    1. R2는 출발지가 10.10.10.0/24인 트래픽만 fa 0/1으로 들어오는 것을 차단하시오.
+    2. R2는 출발지가 10.10.10.0/24인 트래픽이 fa 0/1으로 들어오는 것을 차단하시오.
+    3. R1에서 출발지가 20.20.20.0/24인 트래픽이 fa 0/0으로 나가는 것을 차단하시오.
+    4. R1에서 출발지가 10.10.10.56/24인 트래픽만 fa 0/0으로 나가는 것을 허용하시오.
+        새롭게 패킷을 만들기 전에 ACL검사를 한다.
+        목적지에 가까운 곳에 in을 막는 것으로 설정을 한다.
+Extended ACL
+    1. 
+    2. 
+    3. 
+    5. 
+</code></pre>
 </blockquote>
  </div>
     <footer class="post-footer">
