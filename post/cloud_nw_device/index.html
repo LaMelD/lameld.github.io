@@ -1014,7 +1014,7 @@ Standard ACL
         새롭게 패킷을 만들기 전에 ACL검사를 한다.
         목적지에 가까운 곳에 in을 막는 것으로 설정을 한다.
 
-        
+
 Extended ACL
     1. R2에 있는 30.30.30.0/24 네트워크에는 외부에서 들어오는 트래픽 중 출발지의 주소가 10.10.10.0/24이고 목적지의 주소가 30.30.30.56/32인 트래픽만 접속이 가능하도록 허용하시오.(ip :: 모든 프로토콜 :: 트래픽)
         configure terminal
@@ -1052,8 +1052,8 @@ Extended ACL
         configure terminal
             access-list 101 permit udp any any eq 69
             access-list 101 permit tcp any any eq 80
-            int fa 0/0
-                ip access-group 101 out
+            int fa 1/1
+                ip access-group 101 in
                 exit
 </code></pre>
 </blockquote>
