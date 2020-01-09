@@ -40,7 +40,7 @@ berryz web share ip :: http://121.140.73.126 (공인 IP)
 
 <meta itemprop="datePublished" content="2020-01-06T09:34:37&#43;09:00" />
 <meta itemprop="dateModified" content="2020-01-06T09:34:37&#43;09:00" />
-<meta itemprop="wordCount" content="2563">
+<meta itemprop="wordCount" content="2809">
 
 
 
@@ -962,11 +962,14 @@ configure terminal
 <blockquote>
 <p>확장 ACL 설정</p>
 
-<pre><code>configure terminal
+<pre><code>//생성
+configure terminal
     access-list [list number] [permit | deny] [protocol] [source addr] [mask] [destination addr] [mask] ['eq' operator port]
+//적용
+    interface [cable] [nubmer/number]
+        ip access-group [access list number] [in | out]
 
-ex)
-
+//자세한 사용 방법은 실습에서 보시길 바랍니다.
 </code></pre>
 </blockquote>
 
@@ -997,18 +1000,61 @@ ex)
 <blockquote>
 <p>실습 자료</p>
 
-<pre><code>Standard ACL
+<pre><code>*permit이든 deny이든 조건에 맞는 것(from, to가 일치하는 것)이 나온다면 리스트를 빠져나온다*
+
+Standard ACL
     1. R2는 출발지가 10.10.10.0/24인 트래픽만 fa 0/1으로 들어오는 것을 차단하시오.
+
     2. R2는 출발지가 10.10.10.0/24인 트래픽이 fa 0/1으로 들어오는 것을 차단하시오.
+
     3. R1에서 출발지가 20.20.20.0/24인 트래픽이 fa 0/0으로 나가는 것을 차단하시오.
+
     4. R1에서 출발지가 10.10.10.56/24인 트래픽만 fa 0/0으로 나가는 것을 허용하시오.
+        host 10.10.10.56 == 10.10.10.56 0.0.0.0
         새롭게 패킷을 만들기 전에 ACL검사를 한다.
         목적지에 가까운 곳에 in을 막는 것으로 설정을 한다.
+
+        
 Extended ACL
-    1. 
-    2. 
-    3. 
-    5. 
+    1. R2에 있는 30.30.30.0/24 네트워크에는 외부에서 들어오는 트래픽 중 출발지의 주소가 10.10.10.0/24이고 목적지의 주소가 30.30.30.56/32인 트래픽만 접속이 가능하도록 허용하시오.(ip :: 모든 프로토콜 :: 트래픽)
+        configure terminal
+            access-list 101 permit ip 10.10.10.0 0.0.0.255 host 30.30.30.56
+            (access-list 101 deny ip any any) // 생략됨
+        
+            int fa 0/1
+                ip access-group 101 in
+                exit
+        
+        목적지가 30.30.30.56/32 이고 출발지가 10.10.10.0/24인 패킷 중 icmp 프로토콜은 차단 나머지는 허용
+        목적지가 30.30.30.56/32 이고 출발지가 20.20.20.0/24인 패킷 중 icmp만 허용
+
+        configure terminal
+            access-list 101 permit icmp 20.20.20.0 0.0.0.255 host 30.30.30.56
+            access-list 101 deny icmp 10.10.10.0 0.0.0.255 host 30.30.30.56
+            access-list 101 permit ip 10.10.10.0 0.0.0.255 host 30.30.30.56
+
+    2. R1에서 외부에 나가는 트래픽 중 목적지의 주소가 30.30.30.0/24인 트래픽만 차단하고 나머지는 전송이 가능하도록 허용하시오.
+        configure terminal
+            access-list 101 deny ip any 30.30.30.0 0.0.0.255
+            access-list 101 permit ip any any
+            int fa 0/0
+                ip access-group 101 out
+                exit
+    3. R2에 외부에서 들어오는 트래픽 중 목적지가 tFTP 서버(IP 주소:30.30.30.56, 포트번호 69)인 것만 차단하고 나머지 트래픽은 허용하시오.
+        configure terminal
+            access-list 101 deny udp any host 30.30.30.56 eq 69
+            access-list 101 permit ip any any
+            int fa 0/1
+                ip access-group 101 in
+                exit
+
+    4. R1에서 20.20.20.0/24 네트워크에서 외부로 나가는 트래픽 중에 tFTP(69), HTTP(80)만 허용하고 나머지는 차단하시오.
+        configure terminal
+            access-list 101 permit udp any any eq 69
+            access-list 101 permit tcp any any eq 80
+            int fa 0/0
+                ip access-group 101 out
+                exit
 </code></pre>
 </blockquote>
  </div>
