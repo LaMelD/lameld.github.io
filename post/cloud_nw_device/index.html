@@ -40,7 +40,7 @@ berryz web share ip :: http://121.140.73.126 (공인 IP)
 
 <meta itemprop="datePublished" content="2020-01-06T09:34:37&#43;09:00" />
 <meta itemprop="dateModified" content="2020-01-06T09:34:37&#43;09:00" />
-<meta itemprop="wordCount" content="1162">
+<meta itemprop="wordCount" content="2196">
 
 
 
@@ -585,6 +585,313 @@ configure terminal
 
 <li></li>
 </ul>
+
+<blockquote>
+<p>명령어</p>
+
+<pre><code>vmware 설명
+1. bridged
+	Host PC의 네트워크 대역이랑 같은 네트워크 대역을 사용하는 가상의 네트워크 장치
+
+2. host-only
+	host PC랑만 연결된 가상의 네트워크 장치
+	host PC의 가상의 랜카드와 연결됨 --&gt; guest(가상 머신)이 host와 연결은 되지만 인터넷에는 연결 안됨
+	GNS3를 이용해서 외부랑 연결 가능
+	
+3. NAT
+	host PC의 IP를 공인 IP로 사용하는 사설 네트워크 대역을 만드는 가상의 네트워크 장치
+	
+	
+	
+conf t
+int fa 0/0
+ip addr 10.10.10.2 255.255.255.0
+no sh
+end
+
+
+
+0.0.0.0 알고 있는것 이외의 모든 IP --&gt; 지정된 게이트웨이로 나간다(설정)
+127.0.0.0 자기 자신
+
+
+라우팅 default 설정
+
+conf t
+ip route 0.0.0.0 0.0.0.0 게이트웨이IP
+
+
+
+----------------------------------------------------------------------------------------------
+명령어
+
+&lt;R1&gt;
+
+Router&gt;enable                               -&gt; 유저 모드에서 프리빌리지 모드로 들어간다. (단축키 en)
+
+Router#configure terminal                   -&gt; 프리빌리지 모드에서 글로벌 컨피그 모드로 들어간다. (단축키 conf t)
+
+Router(config)#hostname R1                  -&gt; 라우터 이름 R1으로 변경
+
+
+R1(config)#no ip domain-lookup              -&gt; 명령어를 잘못 입력하면 라우터는 Domain name으로 인식하고 다른 라우터에게
+                                                                  브로드캐스트를 뿌려서 찾기때문에 한동안 명령어 입력을 못한다.
+                                                                 이를 방지하기 위한 명령어 
+
+R1(config)#line con 0                                  -&gt; 콘솔 라인 모드로 들어간다.
+R1(config-line)#exec-timeout 0 0               -&gt; 콘솔 라인은 일정시간이 지나면 끊어지는데 이를 방지한다. 
+R1(config-line)#logging synchronous          -&gt; 명령어 입력중 로그메시지가 뜰 경우 명령어와 겹쳐져 확인하기가 힘들다. 이를 방지한다. 
+R1(config-line)#exit                                   -&gt; 글로벌 컨피그 모드로 나온다. 
+                 
+
+R1(config)#enable password ccna             -&gt; 유저 모드에서 프리빌리지 모드에 들어갈때 사용되는 암호 (인크립션 X)
+                                                                 (no service password-encryption이 디폴트 설정이기 때문에 인크립션이 안된다.              
+                                                                  service password-encryption 명령어를 치면 password도 인크립션 된다.
+                                                                 다시 no service password-encryption을 쳐도 인크립션이 풀리지 않는다.)
+
+
+R1(config)#enable secret cisco              -&gt; 유저모드에서 프리빌리지 모드에 들어갈때 사용되는 암호 (인크립션 된다.)
+                                                               (password와 동시에 있을 경우 secret이 password를 대신한다. 즉, 우선순위)
+
+R1(config)#interface FastEthernet0/0                             -&gt; 인터페이스 모드로 들어간다. 
+R1(config-if)#ip address 192.10.5.254 255.255.255.0    -&gt; 이더넷 구간 IP 할당
+R1(config-if)#no shutdown                                                  -&gt; 인터페이스는 항상 열어줘야 한다.
+R1(config-if)#exit                                                   -&gt; 다시 글로벌 컨피그 모드로 나온다.
+
+R1(config)#interface Serial0/0                         -&gt; 인터페이스 모드로 들어간다.
+R1(config-if)#ip address 201.100.10.1 255.255.255.0    -&gt; 시리얼 인터페이스 IP할당
+R1(config-if)#no shutdown                                  -&gt; 인터페이스는 항상 열어줘야 한다.
+R1(config-if)#exit                                          -&gt; 다시 글로벌 컨피그 모드로 나온다.
+
+R1(config)#line vty 0 4                                -&gt; virtual terminal 라인 모드로 들어간다. 
+R1(config-line)#password ccna                          -&gt; password 설정
+R1(config-line)#login                                  -&gt; 외부에서 telnet 접속시 password 확인한다. (디폴트 설정)
+R1(config-line)#exit                                   -&gt; 다시 글로벌 컨피그 모드로 나온다.
+
+
+ =&gt; 지금까지의 설정한 내용은 RAM에 running-config로 올라가 있다. 
+    전원이 꺼지거나 재부팅 될 경우 자동으로 삭제된다. (램은 휘발성 메모리이기 때문에)
+    때문에 설정한 내용을 저장하기 위해서는 NVRAM에 있는 startup-config로 저장해야 한다.
+    (NVRAM은 비휘발성 메모리이다. -&gt; 전원이 꺼져도 내용이 저장돼 있다.)
+    저장한 내용은 전원을 껐다가 다시킬 경우 혹은 재부팅을 할 경우 startup-config의 설정 내용이
+    자동으로 RAM위로 내용을 올려서 설정한 내용이 유지가 된다.
+
+R1#write (단축키 wr) 
+
+혹은
+
+R1#copy running-config startup-config (단축키 copy run start)
+
+명령어로 설정한 내용을 NVRAM에 저장한다. (둘 다 같은 의미)
+
+ * CCNA 시험 중 시뮬레이션 문제에서는 반드시 설정을 완료하고 저장해야 한다.
+   저장 내용을 확인하는 명령어는 'R1#show startup-config' -&gt; 즉, startup-config에 있는 내용을 확인한다. 
+
+
+
+&lt;R2&gt;
+
+Router&gt;enable                                        -&gt; 유저 모드에서 프리빌리지 모드로 들어간다. (단축키 en)
+
+Router#configure terminal                            -&gt; 프리빌리지 모드에서 글로벌 컨피그 모드로 들어간다. (단축키 conf t)
+
+Router(config)#hostname R2                           -&gt; 라우터 이름 R2으로 변경
+
+R2(config)#no ip domain-lookup                       -&gt; 명령어를 잘못 입력하면 라우터는 DNS로 인식하고 다른 라우터에게
+                                                                           브로드캐스트를 뿌려서 찾기때문에 한동안 명령어 입력을 못한다.
+                                                                          이를 방지하기 위한 명령어 
+
+R2(config)#line con 0                                -&gt; 콘솔 라인 모드로 들어간다.
+R2(config-line)#exec-timeout 0 0                     -&gt; 콘솔 라인은 일정시간이 지나면 끊어지는데 이를 방지한다. 
+R2(config-line)#logging synchronous                  -&gt; 명령어 입력중 로그메시지가 뜰 경우 명령어와 겹쳐져 확인하기가 힘들다. 이를 방지한다. 
+R2(config-line)#exit                                 -&gt; 글로벌 컨피그 모드로 나온다.
+        
+R2(config)#interface FastEthernet0/0                 -&gt; 인터페이스 모드로 들어간다.
+R2(config-if)#ip address 195.7.5.254 255.255.255.0   -&gt; 이더넷 구간 IP 할당
+R2(config-if)#no shutdown                                -&gt; 인터페이스는 항상 열어줘야 한다.
+R2(config-if)#exit                                   -&gt; 다시 글로벌 컨피그 모드로 나온다.
+
+R2(config)#interface Serial0/1
+R2(config-if)#ip address 201.100.10.2 255.255.255.0
+R2(config-if)#clock rate 64000                                -&gt; 라우터끼리 연결되었을 경우 시리얼 케이블 중 DCE가 연결된 쪽은 반드시 
+R2(config-if)#no shutdown                                           clock rate를 줘야한다. (clock rate ? 치면 입력가능한 값이 나온다.)
+R2(config-if)#exit                                                        (디지털 데이터를 시그널로 정확히 인식하게 하기 위해서)
+                                                                                   R2#show controllers s 0/1 -&gt; DCE인지 DTE인지 확인 가능
+                                                       
+                                                          
+R2(config)#line vty 0 4
+R2(config-line)#password ccna
+R2(config-line)#no login                             -&gt; 외부에서 telnet 접속시 password를 확인하지 않고 바로 접속하게 한다.
+R2(config-line)#exit
+
+
+
+
+
+
+
+
+
+
+
+
+
+장치에 연결된 부분 ip 설정
+
+configure terminal
+	interface fa [물리적 포트 번호 : 0/0]
+		ip address [설정ip] [서브넷 마스크]
+		no shutdown
+		exit
+	exit
+
+
+
+Route 설정(static 설정)
+
+configure terminal
+	ip route [target 네트워크 대역] [target 서브넷 마스크] [destination :: 현재의 게이트웨이가 될 곳]
+	exit
+
+
+
+
+RIP 프로토콜 설정
+
+configure terminal
+	router rip
+		version 2
+		no auto-summary
+		network [알고 있는 네트워크 대역]
+
+
+EIGRP 프로토콜 설정
+	R1(config)#router eigrp &lt;AS number&gt; 		(1)  
+	R1(config)#no auto-summary 			(2)
+	
+	R1(config)#eigrp router-id x.x.x.x 		(3) --------------&gt; 일단 하지 않아도 됨...
+	
+	R1(config)#network x.x.x.x y.y.y.y		(4)
+
+	(1) AS 번호를 지정한다.(1~65535), EIGRP로 동작하는 모든 라우터는 동일한 AS번호를 가져야 한다.
+
+	(2) 자동 축약을 취소한다.
+
+	(3) 라우터ID. 임의로 설정하지 않을 경우 루프백 인터페이스에서 가장 높은 IP주소가 설정  
+		루프백 인터페이스가 없을 경우 물리적 인터페이스에서 가장 높은 IP주소가 설정 (관리용)  
+		(설정을 안해도 EIGRP는 정상적으로 동작 (스스로 설정하니까))
+		  
+	(4) 인접한 네트워크 대역 광고
+		y.y.y.y : 와일드카드 마스크 (서브넷 마스크의 not이라고 생각하면 된다)
+		대역을 나누는게 아니다...?
+		
+		
+		광고 할때 쓰인다 -&gt; RIP와 비슷한 맥락.....
+		여러개를 묶기 위해서.....
+		
+		
+	메트릭 계산 시 필요한 값 -&gt; router에서 show interface fastEthernet [인터페이스 번호] 입력 후 값 확인
+
+
+라우터 secondary 설정
+configure terminal
+	interface loopbackc 0
+		ip address [ip] [서브넷 마스크]
+		ip address [ip] [서브넷 마스크] secondary
+		ip address [ip] [서브넷 마스크] secondary
+		ip address [ip] [서브넷 마스크] secondary
+		no sh
+		exit
+	exit
+		
+
+확인 command
+show ip interface brief
+show ip route
+show ip eigrp neighbors
+show ip eigrp topology
+
+
+축약 -&gt; 서브네팅의 역방향
+162.10.0.1/22	-&gt;	162.10.0.0/22
+162.10.1.1/22
+162.10.2.1/22
+162.10.3.1/22
+
+162.10.4.1/22	-&gt;	162.10.4.0/22
+162.10.5.1/22
+162.10.6.1/22
+162.10.7.1/22
+
+162.10.8.1/22	-&gt;	162.10.8.0/22
+162.10.9.1/22
+162.10.10.1/22
+162.10.11.1/22
+
+162.10.12.1/22	-&gt;	162.10.12.0/22
+162.10.13.1/22
+162.10.14.1/22
+162.10.15.1/22
+
+
+configure terminal
+	interface fastEthernet [interface 번호]
+		ip summary-address eigrp [AS] [ip] [서브넷 마스크]
+
+
+key 설정
+configure terminal
+	key chain [key 이름]
+		key [id 번호]
+			key-string [password]
+			exit
+		exit
+	
+	int fa 0/1
+		ip authentication key-chain [라우팅 프로토콜] [키 이름]
+		ip authentication mode [라우팅 프로토콜] md5
+		exit
+
+
+
+OSPF 데이터 베이스 보기
+sh ip ospf database
+
+
+OSPF 프로토콜의 설정
+configure terminal
+	router ospf 1
+		router-id [ip-id]
+		network [네트워크 대역] [와일드 카드] [Area number]
+
+
+OSPF에서의 축약
+	조건1. ABR 또는 ASBR에서만 축약이 가능하다.(경계상에 있는 라우터)
+	조건2. 동일 area 장비에게는 축약된 정보를 전달할 수 없다.
+	interface에서가 아닌 라우터 설정에서 축약을 실시한다.
+		router ospf [number]
+			area [축약하려는 구역의 number] range [ip] [축약]
+
+
+
+Router 설정 저장
+copy running-config startup-config
+
+
+&lt;&lt;재분배&gt;&gt;
+- ASBR에서 설정하기!! :: eigrp - ospf
+- from과 to를 잘 생각해야 한다.
+configure terminal
+	//eigrp의 내용을 ospf로 재분배(전달/전환) 한다
+	router ospf [pid]
+		redistribute eigrp [AS number] 10 subnets
+		exit
+	
+	//ospf의 내용을  eigrp로 재분배(전달/전환) 한다
+	router eigrp [AS number]
+		redistribute ospf [pid] metric [b/w] [dly] [reliability] [loading] [MTU] 
+</code></pre>
+</blockquote>
  </div>
     <footer class="post-footer">
 
