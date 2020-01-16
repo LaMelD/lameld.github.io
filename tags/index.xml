@@ -6,10 +6,28 @@
     <description>Recent content in Tags on LaMelD&#39;s Dev Life</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>UTF-8</language>
-    <lastBuildDate>Mon, 06 Jan 2020 09:34:37 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 13 Jan 2020 10:31:27 +0900</lastBuildDate>
     
 	<atom:link href="https://lameld.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>cloud</title>
+      <link>https://lameld.github.io/tags/cloud/</link>
+      <pubDate>Mon, 13 Jan 2020 10:31:27 +0900</pubDate>
+      
+      <guid>https://lameld.github.io/tags/cloud/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>study_hardware</title>
+      <link>https://lameld.github.io/tags/study_hardware/</link>
+      <pubDate>Mon, 13 Jan 2020 10:31:27 +0900</pubDate>
+      
+      <guid>https://lameld.github.io/tags/study_hardware/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>study_network</title>

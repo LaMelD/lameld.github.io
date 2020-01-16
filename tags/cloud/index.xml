@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>cloud on LaMelD&#39;s Dev Life</title>
+    <link>https://lameld.github.io/tags/cloud/</link>
+    <description>Recent content in cloud on LaMelD&#39;s Dev Life</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>UTF-8</language>
+    <lastBuildDate>Mon, 13 Jan 2020 10:31:27 +0900</lastBuildDate>
+    
+	<atom:link href="https://lameld.github.io/tags/cloud/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>[CLOUD] Hardware</title>
+      <link>https://lameld.github.io/post/cloud_hw/</link>
+      <pubDate>Mon, 13 Jan 2020 10:31:27 +0900</pubDate>
+      
+      <guid>https://lameld.github.io/post/cloud_hw/</guid>
+      <description>HW운영관리 200113 Monday ~ 2001?? ???day 1. Linux(리눅스)  리눅스란?
+ 컴퓨터 운영체제의 한 종류 윈도우와는 다르게 오픈 소스 운영체제 소스코드가 공개되어 있기 때문에 다양한 리눅스 기반의 운영체제가 존재  구글의 안드로이드도 리눅스를 기반으로 만든 운영체제   운영체제란?</description>
+    </item>
+    
+    <item>
+      <title>[CLOUD] Network Device</title>
+      <link>https://lameld.github.io/post/cloud_nw_device/</link>
+      <pubDate>Mon, 06 Jan 2020 09:34:37 +0900</pubDate>
+      
+      <guid>https://lameld.github.io/post/cloud_nw_device/</guid>
+      <description>네트워크 장비 200106 Monday ~ 200110 Friday berryz web share ip :: http://192.168.0.100 (사설 IP)
+berryz web share ip :: http://121.140.73.126 (공인 IP)
+복습 :: http://www.ddarahakit.kro.kr
+1. 계층별 장비와 케이블  계층 별 장비
+ Physical Layer &amp;ndash;&amp;gt; Repeater, Hub Data link Layer &amp;ndash;&amp;gt; Switch, Bridge Network Layer &amp;ndash;&amp;gt; Router, L3 Switch</description>
+    </item>
+    
+    <item>
+      <title>[CLOUD] Network</title>
+      <link>https://lameld.github.io/post/cloud_nw/</link>
+      <pubDate>Tue, 31 Dec 2019 13:23:21 +0900</pubDate>
+      
+      <guid>https://lameld.github.io/post/cloud_nw/</guid>
+      <description>네트워크 191230 Monday ~ 200103 Friday berryz web share ip :: http://192.168.0.100 (사설 IP)
+berryz web share ip :: http://121.140.73.126 (공인 IP)
+복습 :: http://www.ddarahakit.kro.kr -&amp;gt; kro.kr 도메인은 무료?
+ 기본적으로 알아야 할 컴퓨터 기초
+ 데이터 표현
+ 2진법, 10진법, 16진법(0x00)  HW 구성요소</description>
+    </item>
+    
+  </channel>
+</rss>
