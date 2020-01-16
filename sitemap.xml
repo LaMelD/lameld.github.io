@@ -9,46 +9,51 @@
   
   <url>
     <loc>https://lameld.github.io/categories/</loc>
-    <lastmod>2020-01-13T10:31:27+09:00</lastmod>
+    <lastmod>2020-01-16T13:35:04+09:00</lastmod>
   </url>
   
   <url>
     <loc>https://lameld.github.io/categories/cloud/</loc>
-    <lastmod>2020-01-13T10:31:27+09:00</lastmod>
+    <lastmod>2020-01-16T13:35:04+09:00</lastmod>
   </url>
   
   <url>
     <loc>https://lameld.github.io/tags/cloud/</loc>
-    <lastmod>2020-01-13T10:31:27+09:00</lastmod>
+    <lastmod>2020-01-16T13:35:04+09:00</lastmod>
   </url>
   
   <url>
-    <loc>https://lameld.github.io/post/cloud_hw/</loc>
-    <lastmod>2020-01-13T10:31:27+09:00</lastmod>
+    <loc>https://lameld.github.io/post/cloud_hw_linux/</loc>
+    <lastmod>2020-01-16T13:35:04+09:00</lastmod>
   </url>
   
   <url>
     <loc>https://lameld.github.io/</loc>
-    <lastmod>2020-01-13T10:31:27+09:00</lastmod>
+    <lastmod>2020-01-16T13:35:04+09:00</lastmod>
   </url>
   
   <url>
     <loc>https://lameld.github.io/post/</loc>
-    <lastmod>2020-01-13T10:31:27+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lameld.github.io/tags/study_hardware/</loc>
-    <lastmod>2020-01-13T10:31:27+09:00</lastmod>
+    <lastmod>2020-01-16T13:35:04+09:00</lastmod>
   </url>
   
   <url>
     <loc>https://lameld.github.io/categories/study_hardware/</loc>
-    <lastmod>2020-01-13T10:31:27+09:00</lastmod>
+    <lastmod>2020-01-16T13:35:04+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lameld.github.io/tags/study_hardware/</loc>
+    <lastmod>2020-01-16T13:35:04+09:00</lastmod>
   </url>
   
   <url>
     <loc>https://lameld.github.io/tags/</loc>
+    <lastmod>2020-01-16T13:35:04+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lameld.github.io/post/cloud_hw_linux_basic/</loc>
     <lastmod>2020-01-13T10:31:27+09:00</lastmod>
   </url>
   
@@ -58,12 +63,12 @@
   </url>
   
   <url>
-    <loc>https://lameld.github.io/categories/study_network/</loc>
+    <loc>https://lameld.github.io/tags/study_network/</loc>
     <lastmod>2020-01-06T09:34:37+09:00</lastmod>
   </url>
   
   <url>
-    <loc>https://lameld.github.io/tags/study_network/</loc>
+    <loc>https://lameld.github.io/categories/study_network/</loc>
     <lastmod>2020-01-06T09:34:37+09:00</lastmod>
   </url>
   
@@ -238,12 +243,12 @@
   </url>
   
   <url>
-    <loc>https://lameld.github.io/tags/c&#43;&#43;-stl/</loc>
+    <loc>https://lameld.github.io/categories/c&#43;&#43;-stl/</loc>
     <lastmod>2019-11-16T20:08:14+09:00</lastmod>
   </url>
   
   <url>
-    <loc>https://lameld.github.io/categories/c&#43;&#43;-stl/</loc>
+    <loc>https://lameld.github.io/tags/c&#43;&#43;-stl/</loc>
     <lastmod>2019-11-16T20:08:14+09:00</lastmod>
   </url>
   
@@ -273,12 +278,12 @@
   </url>
   
   <url>
-    <loc>https://lameld.github.io/tags/data-structure/</loc>
+    <loc>https://lameld.github.io/categories/data-structure/</loc>
     <lastmod>2019-11-15T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://lameld.github.io/categories/data-structure/</loc>
+    <loc>https://lameld.github.io/tags/data-structure/</loc>
     <lastmod>2019-11-15T00:00:00+00:00</lastmod>
   </url>
   
