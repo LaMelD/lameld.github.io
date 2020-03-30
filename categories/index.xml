@@ -1,96 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Categories on LaMelD&#39;s Dev Life</title>
-    <link>https://lameld.github.io/categories/</link>
-    <description>Recent content in Categories on LaMelD&#39;s Dev Life</description>
+    <title>Categories on LaMelD&#39;s dev Story</title>
+    <link>/categories/</link>
+    <description>Recent content in Categories on LaMelD&#39;s dev Story</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>UTF-8</language>
-    <lastBuildDate>Thu, 16 Jan 2020 13:35:04 +0900</lastBuildDate>
+    <language>en-us</language>
     
-	<atom:link href="https://lameld.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>cloud</title>
-      <link>https://lameld.github.io/categories/cloud/</link>
-      <pubDate>Thu, 16 Jan 2020 13:35:04 +0900</pubDate>
-      
-      <guid>https://lameld.github.io/categories/cloud/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>study_hardware</title>
-      <link>https://lameld.github.io/categories/study_hardware/</link>
-      <pubDate>Thu, 16 Jan 2020 13:35:04 +0900</pubDate>
-      
-      <guid>https://lameld.github.io/categories/study_hardware/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>study_network</title>
-      <link>https://lameld.github.io/categories/study_network/</link>
-      <pubDate>Mon, 06 Jan 2020 09:34:37 +0900</pubDate>
-      
-      <guid>https://lameld.github.io/categories/study_network/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>sw expert academy d4</title>
-      <link>https://lameld.github.io/categories/sw-expert-academy-d4/</link>
-      <pubDate>Fri, 29 Nov 2019 17:38:30 +0900</pubDate>
-      
-      <guid>https://lameld.github.io/categories/sw-expert-academy-d4/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Kakao Blind 2020</title>
-      <link>https://lameld.github.io/categories/kakao-blind-2020/</link>
-      <pubDate>Wed, 27 Nov 2019 11:22:43 +0900</pubDate>
-      
-      <guid>https://lameld.github.io/categories/kakao-blind-2020/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Kakao Blind 2019</title>
-      <link>https://lameld.github.io/categories/kakao-blind-2019/</link>
-      <pubDate>Sun, 24 Nov 2019 18:15:23 +0900</pubDate>
-      
-      <guid>https://lameld.github.io/categories/kakao-blind-2019/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Kakao Blind 2018</title>
-      <link>https://lameld.github.io/categories/kakao-blind-2018/</link>
-      <pubDate>Sun, 24 Nov 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://lameld.github.io/categories/kakao-blind-2018/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>c&#43;&#43; stl</title>
-      <link>https://lameld.github.io/categories/c&#43;&#43;-stl/</link>
-      <pubDate>Sat, 16 Nov 2019 20:08:14 +0900</pubDate>
-      
-      <guid>https://lameld.github.io/categories/c&#43;&#43;-stl/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>data structure</title>
-      <link>https://lameld.github.io/categories/data-structure/</link>
-      <pubDate>Fri, 15 Nov 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://lameld.github.io/categories/data-structure/</guid>
-      <description></description>
-    </item>
     
   </channel>
 </rss>
