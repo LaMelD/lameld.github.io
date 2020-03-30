@@ -8,6 +8,16 @@
   </url>
   
   <url>
+    <loc>https://lameld.github.io/datastructure/</loc>
+    <lastmod>2020-03-30T09:14:39+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lameld.github.io/cloudbasic/</loc>
+    <lastmod>2020-03-30T09:14:39+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://lameld.github.io/kakao/</loc>
     <lastmod>2018-11-28T15:14:39+10:00</lastmod>
   </url>
@@ -143,12 +153,7 @@
   </url>
   
   <url>
-    <loc>https://lameld.github.io/study/cloud_hw_linux/</loc>
-    <lastmod>2020-01-16T13:35:04+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lameld.github.io/study/</loc>
+    <loc>https://lameld.github.io/cloudbasic/cloud_hw_linux/</loc>
     <lastmod>2020-01-16T13:35:04+09:00</lastmod>
   </url>
   
@@ -168,12 +173,12 @@
   </url>
   
   <url>
-    <loc>https://lameld.github.io/study/cloud_hw_linux_basic/</loc>
+    <loc>https://lameld.github.io/cloudbasic/cloud_hw_linux_basic/</loc>
     <lastmod>2020-01-13T10:31:27+09:00</lastmod>
   </url>
   
   <url>
-    <loc>https://lameld.github.io/study/cloud_nw_device/</loc>
+    <loc>https://lameld.github.io/cloudbasic/cloud_nw_device/</loc>
     <lastmod>2020-01-06T09:34:37+09:00</lastmod>
   </url>
   
@@ -188,7 +193,7 @@
   </url>
   
   <url>
-    <loc>https://lameld.github.io/study/cloud_nw/</loc>
+    <loc>https://lameld.github.io/cloudbasic/cloud_nw/</loc>
     <lastmod>2019-12-31T13:23:21+09:00</lastmod>
   </url>
   
@@ -208,12 +213,12 @@
   </url>
   
   <url>
-    <loc>https://lameld.github.io/study/stl_queue/</loc>
+    <loc>https://lameld.github.io/datastructure/stl_queue/</loc>
     <lastmod>2019-11-16T20:08:14+09:00</lastmod>
   </url>
   
   <url>
-    <loc>https://lameld.github.io/study/stl_vector/</loc>
+    <loc>https://lameld.github.io/datastructure/stl_vector/</loc>
     <lastmod>2019-11-16T20:08:14+09:00</lastmod>
   </url>
   
@@ -243,22 +248,22 @@
   </url>
   
   <url>
-    <loc>https://lameld.github.io/study/ds_array/</loc>
+    <loc>https://lameld.github.io/datastructure/ds_array/</loc>
     <lastmod>2019-11-15T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://lameld.github.io/study/ds_queue/</loc>
+    <loc>https://lameld.github.io/datastructure/ds_queue/</loc>
     <lastmod>2019-11-15T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://lameld.github.io/study/ds_linkedlist/</loc>
+    <loc>https://lameld.github.io/datastructure/ds_linkedlist/</loc>
     <lastmod>2019-11-15T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://lameld.github.io/study/ds_stack/</loc>
+    <loc>https://lameld.github.io/datastructure/ds_stack/</loc>
     <lastmod>2019-11-15T00:00:00+00:00</lastmod>
   </url>
   

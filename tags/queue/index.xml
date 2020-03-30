@@ -13,19 +13,19 @@
     
     <item>
       <title>[C&#43;&#43; STL] Queue</title>
-      <link>https://lameld.github.io/study/stl_queue/</link>
+      <link>https://lameld.github.io/datastructure/stl_queue/</link>
       <pubDate>Sat, 16 Nov 2019 20:08:14 +0900</pubDate>
       
-      <guid>https://lameld.github.io/study/stl_queue/</guid>
+      <guid>https://lameld.github.io/datastructure/stl_queue/</guid>
       <description>C++ STL Queue  내부적으로는 deque, list로 구성되어 있다. queue구조로 동작하도록 멤버 함수를 제공해준다. 헤더파일에 존재한다. std namespace를 사용하면 편리하다.  기본 생성자   기본 생성자 형식 : queue&amp;lt;[data type]&amp;gt; [변수이름] queue&amp;lt;int&amp;gt; q;queue&amp;lt;sting&amp;gt; q; 내부 컨테이너 구조를 바꾸는 생성자 형식 : queue&amp;lt;[data type], [container Type]&amp;gt; [변수이름]</description>
     </item>
     
     <item>
       <title>[Data Structure] Queue</title>
-      <link>https://lameld.github.io/study/ds_queue/</link>
+      <link>https://lameld.github.io/datastructure/ds_queue/</link>
       <pubDate>Fri, 15 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://lameld.github.io/study/ds_queue/</guid>
+      <guid>https://lameld.github.io/datastructure/ds_queue/</guid>
       <description>Queue(큐) 1. 개념  Queue는 FIFO(First In First Out)의 원리로 동작하는 자료구조이다. 동일한 자료의 집합을 다룬다는 면에서 Stack과 비슷하지만 가장 먼저 들어간 자료가 가장 늦게 나온다는 점이 다르다. 넣은 순서대로 자료를 꺼내가므로 순서대로 처리해야 하는 자료를 임시작으로 저장하는 용도로 흔히 사용한다.</description>
     </item>
     

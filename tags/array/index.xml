@@ -13,10 +13,10 @@
     
     <item>
       <title>[Data Structure] Array</title>
-      <link>https://lameld.github.io/study/ds_array/</link>
+      <link>https://lameld.github.io/datastructure/ds_array/</link>
       <pubDate>Fri, 15 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://lameld.github.io/study/ds_array/</guid>
+      <guid>https://lameld.github.io/datastructure/ds_array/</guid>
       <description>Array(배열)  정적 배열 (Static Array)  기본적인 배열을 의미한다. C++에서 간단하게 선언이 가능하다.     1차원
  int arr0[3];int arr1[10] = { 0, };int arr2 = { 1,2,3,4 }; 2차원</description>
     </item>
