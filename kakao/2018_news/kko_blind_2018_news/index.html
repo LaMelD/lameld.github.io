@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>[Programmers][Kakao Blind 2019] 실패율 - LaMelD&#39;s dev Story</title>
+  <title>[Programmers][Kakao Blind 2018] 뉴스 클러스터링 - LaMelD&#39;s dev Story</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
   <link rel="icon" href="https://lameld.github.io/favicon.png">
@@ -188,7 +188,7 @@
       <a href="https://lameld.github.io/kakao/update/kko_blind_2019_open/">[Programmers][Kakao Blind 2019] 오픈채팅방</a>
     </li>
     
-    <li class="">
+    <li class="active ">
       <a href="https://lameld.github.io/kakao/2018_news/kko_blind_2018_news/">[Programmers][Kakao Blind 2018] 뉴스 클러스터링</a>
     </li>
     
@@ -196,7 +196,7 @@
       <a href="https://lameld.github.io/kakao/update/kko_blind_2019_block/">[Programmers][Kakao Blind 2019] 블록 게임</a>
     </li>
     
-    <li class="active ">
+    <li class="">
       <a href="https://lameld.github.io/kakao/update/kko_blind_2019_fail/">[Programmers][Kakao Blind 2019] 실패율</a>
     </li>
     
@@ -223,29 +223,56 @@
         </div>
         <div class="col-12 col-md-9">
           
-<h1 class="title">[Programmers][Kakao Blind 2019] 실패율</h1>
+<h1 class="title">[Programmers][Kakao Blind 2018] 뉴스 클러스터링</h1>
 <div class="content ">
   <!-- raw HTML omitted -->
-<p>문제 출처 : <!-- raw HTML omitted --><a href="https://programmers.co.kr/learn/courses/30/lessons/42889">https://programmers.co.kr/learn/courses/30/lessons/42889</a><!-- raw HTML omitted --></p>
+<p>문제 출처 : <!-- raw HTML omitted --><a href="https://programmers.co.kr/learn/courses/30/lessons/17677">https://programmers.co.kr/learn/courses/30/lessons/17677</a><!-- raw HTML omitted --></p>
 <ul>
 <li>
 <p>문제 설명</p>
 <ol>
-<li>실패율 = A / B
+<li>자카드 유사도
 <ul>
-<li>A : 스테이지에 도달했으나 클리어하지 못한 플레이어 수</li>
-<li>B : 스테이지에 도달한 플레이어 수</li>
+<li>집합 A = { 1, 2, 3 }, 집합 B = { 2, 3, 4 }</li>
+<li><code>A ∩ B</code> = { 2, 3 }</li>
+<li><code>A ∪ B</code> = { 1, 2, 3, 4 }</li>
+<li>J(A, B) = 2 / 4</li>
+<li>자카드 유사도는 0.5이다.</li>
 </ul>
 </li>
-<li>B가 0인 경우 실패율은 0으로 정의한다.</li>
-<li>실패율이 높은 스테이지부터 내림차순으로 정렬된 배열을 리턴한다.</li>
+<li>중복을 허용하는 다중집합에서의 자카드 유사도
+<ul>
+<li>집합 A = { 1, 1, 2, 2, 3 }, 집합 B = { 1, 2, 2, 4, 5 }</li>
+<li><code>A ∩ B</code> = { 1, 2, 2 }</li>
+<li><code>A ∪ B</code> = { 1, 1, 2, 2, 3, 4, 5 }</li>
+<li>J(A, B) = 3 / 7</li>
+<li>자카드 유사도는 약 0.42이다.</li>
+</ul>
+</li>
+<li>자카드 유사도를 문자열 사이에 적용
+<ul>
+<li>두 글자씩 끊어서 다중집합을 만든다.</li>
+<li>FRANCE -&gt; { FR, RA, AN, NC, CE }, FRENCH -&gt; { FR, RE, EN, NC, CH }</li>
+<li>교집합 = { FR, NC }</li>
+<li>합집합 = { FR, NC, RA, AN, CE, RE, EN, CH }</li>
+<li>J(FRANCE, FRENCH) =  2 / 8</li>
+<li>자카드 유사도는 0.25이다.</li>
+</ul>
+</li>
+<li>비교에 있어서 대문자와 소문자의 차이는 무시한다.</li>
+<li>다중집합을 만듦에 있어서 두 문자가 영문자일 경우에만 집합에 포함한다.
+<ul>
+<li>&ldquo;ab+&quot;문자가 있으면 &ldquo;ab&quot;는 포함하고 &ldquo;b+&quot;는 포함하지 않는다.</li>
+</ul>
+</li>
+<li>유사도는 0에서 1사이의 실수이므로 65536을 곱한 후에 소수점 아래를 버린다.</li>
 </ol>
 </li>
 <li>
 <p>문제 풀이</p>
 <ul>
-<li>모든 스테이지 A, B를 확정시킨다.</li>
-<li>실패율을 비교하여 정렬을 진행한 뒤 스테이지 number만 리턴한다.</li>
+<li>두 문자열을 대문자로 바꾸고 다중집합을 만든다.</li>
+<li>교집합과 합집합을 만들어 자카드 유사도를 구한뒤 65536을 곱한뒤 리턴한다.</li>
 </ul>
 </li>
 </ul>
@@ -254,88 +281,114 @@
 </blockquote>
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">#include &lt;string&gt;
 #include &lt;vector&gt;
-#include &lt;algorithm&gt;
+#include &lt;queue&gt;
+#include &lt;functional&gt;
 
 using namespace std;
 
-struct node
+int power(int a, int b)
 {
-	int stage;
-	int playing;
-	int arrive;
-	bool iszero;
-};
+	int ret = 1;
 
-vector&lt;int&gt; solution(int N, vector&lt;int&gt; stages)
-{
-	vector&lt;node&gt; ret;
-
-	for (int i = 1; i &lt;= N; i++)
+	for (int i = 0; i &lt; b; i++)
 	{
-		int arrive = 0;
-		int playing = 0;
-		node input;
-		input.stage = i;
-		for (int j = 0; j &lt; stages.size(); j++)
-		{
-			if (i &lt;= stages[j])
-			{
-				if (i == stages[j])
-				{
-					playing++;
-				}
-				arrive++;
-			}
-		}
+		ret *= a;
+	}
 
-		if (arrive == 0)
+	return ret;
+}
+
+bool is_alpha(char a)
+{
+	if (&#39;a&#39; &lt;= a &amp;&amp; a &lt;= &#39;z&#39;)
+	{
+		return true;
+	}
+
+	if (&#39;A&#39; &lt;= a &amp;&amp; a &lt;= &#39;Z&#39;)
+	{
+		return true;
+	}
+
+	return false;
+}
+
+int solution(string str1, string str2)
+{
+	priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt;&gt; s1;
+	priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt;&gt; s2;
+	//char : 8bit이므로
+	const int cmp = power(2, 8);
+	int tmp;
+
+	for (int i = 0; i &lt; str1.length() - 1; i++)
+	{
+		//둘다 영문자일 경우
+		if (is_alpha(str1[i]) &amp;&amp; is_alpha(str1[i + 1]))
 		{
-			input.iszero = 1;
-			ret.push_back(input);
+			//두 문자를 모두 대문자로 바꾸고
+			str1[i] = toupper(str1[i]);
+			str1[i + 1] = toupper(str1[i + 1]);
+			//왼쪽 문자에 cmp(2^8)을 곱하고 뒷 문자를 더하여 정수형 int에 더한다.
+			tmp = str1[i] * cmp + str1[i + 1];
+			s1.push(tmp);
 		}
 		else
 		{
-			input.iszero = 0;
-			input.arrive = arrive;
-			input.playing = playing;
-			ret.push_back(input);
+			continue;
 		}
 	}
 
-	sort(ret.begin(), ret.end(), [](node a, node b)
-		{
-			//소트 조건에서 비교한다
-			if (a.iszero &amp;&amp; b.iszero)
-			{
-				return a.stage &lt; b.stage;
-			}
-
-			if (a.iszero)
-			{
-				return false;
-			}
-
-			if (b.iszero)
-			{
-				return true;
-			}
-
-			long long aa, bb;
-			aa = (long long)a.playing * (long long)b.arrive;
-			bb = (long long)b.playing * (long long)a.arrive;
-			if (aa == bb)
-			{
-				return a.stage &lt; b.stage;
-			}
-			return aa &gt; bb;
-		}
-	);
-
-	vector&lt;int&gt; answer;
-	for (int i = 0; i &lt; N; i++)
+	for (int i = 0; i &lt; str2.length() - 1; i++)
 	{
-		answer.push_back(ret[i].stage);
+		//둘다 영문자일 경우
+		if (is_alpha(str2[i]) &amp;&amp; is_alpha(str2[i + 1]))
+		{
+			//두 문자를 모두 대문자로 바꾸고
+			str2[i] = toupper(str2[i]);
+			str2[i + 1] = toupper(str2[i + 1]);
+			//왼쪽 문자에 cmp(2^8)을 곱하고 뒷 문자를 더하여 정수형 int에 더한다.
+			tmp = str2[i] * cmp + str2[i + 1];
+			s2.push(tmp);
+		}
+		else
+		{
+			continue;
+		}
 	}
+
+	int intersection = 0;
+	int sum = s1.size() + s2.size();
+
+	//두 다중집합의 크기가 0이라면 65536을 리턴
+	if (sum == 0)
+	{
+		return 65536;
+	}
+
+	//교집합을 구한다.
+	while (!s1.empty() &amp;&amp; !s2.empty())
+	{
+		if (s1.top() == s2.top())
+		{
+			s1.pop();
+			s2.pop();
+			intersection++;
+		}
+		else if (s1.top() &lt; s2.top())
+		{
+			s1.pop();
+		}
+		else
+		{
+			s2.pop();
+		}
+	}
+
+	//합집합 = (두 집합의 크기의 합) - (교집합)
+	sum = sum - intersection;
+
+	int answer = intersection * 65536 / sum;
 
 	return answer;
 }

@@ -13,13 +13,18 @@
   </url>
   
   <url>
-    <loc>https://lameld.github.io/kakao/kko_blind_2018_cache/</loc>
+    <loc>https://lameld.github.io/kakao/2018_cache/</loc>
     <lastmod>2019-11-22T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://lameld.github.io/docs/install-hugo/</loc>
     <lastmod>2019-02-11T19:27:37+10:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lameld.github.io/kakao/2018_dart/</loc>
+    <lastmod>2019-11-21T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -238,7 +243,7 @@
   </url>
   
   <url>
-    <loc>https://lameld.github.io/kakao/update/kko_blind_2018_news/</loc>
+    <loc>https://lameld.github.io/kakao/2018_news/kko_blind_2018_news/</loc>
     <lastmod>2019-11-24T00:00:00+00:00</lastmod>
   </url>
   
@@ -268,12 +273,7 @@
   </url>
   
   <url>
-    <loc>https://lameld.github.io/kakao/update/kko_blind_2018_dart/</loc>
-    <lastmod>2019-11-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lameld.github.io/kakao/update/kko_blind_2018_friendsblock/</loc>
+    <loc>https://lameld.github.io/kakao/2018_friendsblock/kko_blind_2018_friendsblock/</loc>
     <lastmod>2019-11-21T00:00:00+00:00</lastmod>
   </url>
   
