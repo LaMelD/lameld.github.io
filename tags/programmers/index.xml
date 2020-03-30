@@ -129,16 +129,6 @@
     </item>
     
     <item>
-      <title>[Programmers][Kakao Blind 2018] 뉴스 클러스터링</title>
-      <link>https://lameld.github.io/kakao/2018_news/kko_blind_2018_news/</link>
-      <pubDate>Sun, 24 Nov 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://lameld.github.io/kakao/2018_news/kko_blind_2018_news/</guid>
-      <description>문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/17677  문제 설명
- 자카드 유사도  집합 A = { 1, 2, 3 }, 집합 B = { 2, 3, 4 } A ∩ B = { 2, 3 } A ∪ B = { 1, 2, 3, 4 } J(A, B) = 2 / 4 자카드 유사도는 0.</description>
-    </item>
-    
-    <item>
       <title>[Programmers][Kakao Blind 2019] 블록 게임</title>
       <link>https://lameld.github.io/kakao/update/kko_blind_2019_block/</link>
       <pubDate>Sun, 24 Nov 2019 00:00:00 +0000</pubDate>
@@ -184,15 +174,6 @@
       <guid>https://lameld.github.io/kakao/update/kko_blind_2018_shuttle/</guid>
       <description>문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/17678  문제 설명
  셔틀은 09:00 부터 총 n 회 t 분 간격으로 역에 도착하며, 하나의 셔틀에는 최대 m 명의 승객이 탈 수 있다. 셔틀은 도착했을 때 도착한 순간 대기열에 선 크루까지 포함해서 대기 순서대로 태우고 바로 출발한다.</description>
-    </item>
-    
-    <item>
-      <title>[Programmers][Kakao Blind 2018] 프렌즈 4 블록</title>
-      <link>https://lameld.github.io/kakao/2018_friendsblock/kko_blind_2018_friendsblock/</link>
-      <pubDate>Thu, 21 Nov 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://lameld.github.io/kakao/2018_friendsblock/kko_blind_2018_friendsblock/</guid>
-      <description>문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/17679 같은 모양의 카카오프렌즈 블록이 2×2 형태로 4개가 붙어있을 경우 사라지면서 점수를 얻는 게임이다.     풀이  왼쪽 상단부터 오른쪽 하단까지 지울 수 2x2 형태로 4개가 붙어있는 경우를 탐색한다.</description>
     </item>
     
   </channel>
