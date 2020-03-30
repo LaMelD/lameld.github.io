@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>[DS] Queue - LaMelD&#39;s dev Story</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="icon" href="https://lameld.github.io/favicon.png">
+
+  
+  
+  <link rel="stylesheet" href="/css/style.min.6aa5eecd4ca7c47fb2ca9b0775a7bd787e3e64a2eadf0fef8c9f924498f49127.css">
+  
+
+  
+
+</head>
+
+<body class='page page-default-single'>
+  <div id="main-menu-mobile" class="main-menu-mobile">
+  <ul>
+    
+    
+    <li class="menu-item-home">
+      <a href="/">
+        <span>Home</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-kakao">
+      <a href="/kakao/">
+        <span>Kakao</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-swea">
+      <a href="/swea/">
+        <span>Swea</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-datastructure">
+      <a href="/datastructure/">
+        <span>DataStructure</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-cloudbasic">
+      <a href="/cloudbasic/">
+        <span>CloudBasic</span>
+      </a>
+    </li>
+    
+  </ul>
+</div>
+  <div class="wrapper">
+    <div class='header'>
+  <div class="container">
+    <div class="logo">
+      <a href="https://lameld.github.io"><img alt="Logo" src="/images/logo.svg" /></a>
+    </div>
+    <div class="logo-mobile">
+      <a href="https://lameld.github.io"><img alt="Logo" src="/images/logo-mobile.svg" /></a>
+    </div>
+    <div id="main-menu" class="main-menu">
+  <ul>
+    
+    
+    <li class="menu-item-home">
+      <a href="/">
+        <span>Home</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-kakao">
+      <a href="/kakao/">
+        <span>Kakao</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-swea">
+      <a href="/swea/">
+        <span>Swea</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-datastructure">
+      <a href="/datastructure/">
+        <span>DataStructure</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-cloudbasic">
+      <a href="/cloudbasic/">
+        <span>CloudBasic</span>
+      </a>
+    </li>
+    
+  </ul>
+</div>
+    <button id="toggle-main-menu-mobile" class="hamburger hamburger--slider" type="button">
+  <span class="hamburger-box">
+    <span class="hamburger-inner"></span>
+  </span>
+</button>
+  </div>
+</div>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <div class="container pt-2 pt-md-6 pb-3 pb-md-6">
+      <div class="row">
+        <div class="col-12 col-md-3 mb-3">
+          <div class="sidebar">
+            
+<div class="docs-menu">
+  <h4>Datastructure</h4>
+  <ul>
+    
+    <li class="">
+      <a href="https://lameld.github.io/datastructure/dsarray/">[DS] Array</a>
+    </li>
+    
+    <li class="">
+      <a href="https://lameld.github.io/datastructure/dslinkedlist/">[Data Structure] Single Linked List</a>
+    </li>
+    
+    <li class="active ">
+      <a href="https://lameld.github.io/datastructure/dsqueue/">[DS] Queue</a>
+    </li>
+    
+    <li class="">
+      <a href="https://lameld.github.io/datastructure/dsstack/">[Data Structure] Stack</a>
+    </li>
+    
+    <li class="">
+      <a href="https://lameld.github.io/datastructure/stlqueue/">[C&#43;&#43; STL] Queue</a>
+    </li>
+    
+    <li class="">
+      <a href="https://lameld.github.io/datastructure/stlvector/">[C&#43;&#43; STL] Vector</a>
+    </li>
+    
+  </ul>
+</div>
+
+          </div>
+        </div>
+        <div class="col-12 col-md-9">
+          
+<h1 class="title">[DS] Queue</h1>
+<div class="content ">
+  <h1 id="queue큐">Queue(큐)</h1>
+<h3 id="1-개념">1. 개념</h3>
+<ul>
+<li>Queue는 FIFO(First In First Out)의 원리로 동작하는 자료구조이다.</li>
+<li>동일한 자료의 집합을 다룬다는 면에서 Stack과 비슷하지만 가장 먼저 들어간 자료가 가장 늦게 나온다는 점이 다르다.</li>
+<li>넣은 순서대로 자료를 꺼내가므로 순서대로 처리해야 하는 자료를 임시작으로 저장하는 용도로 흔히 사용한다.</li>
+<li>저장되는 자료의 타입이 동일하므로 배열 또는 연결리스트로 Queue를 구현할 수 있다.</li>
+</ul>
+<p><img src="/images/queue1.png" alt="IMAGE"></p>
+<ul>
+<li>선형 큐(Linear Queue)
+<ul>
+<li>선형 큐는 큐의 가장 단순한 형태로써, 큐의 가장 앞을 가리키는 front와 가장 뒤를 가리키는 rear를 갖는다. 자료를 추가하면, 현재 rear가 가리키는 위치에 자료를 추가하고, rear는 1만큼 증가한다. 자료를 꺼내면, 현재 front가 가리키는 위치의 자료를 꺼내고 front는 1만큼 증가한다.</li>
+</ul>
+</li>
+</ul>
+<p><img src="/images/queue2.png" alt=""></p>
+<ul>
+<li>환영 큐(Circular Queue)
+<ul>
+<li>환영 큐는 선형 큐에서 pop 연산이 반복될 수록 큐에 저장할 수 있는 공간이 감소하는 문제점을 극복하기 위해 고안되었다. 기존의 선형 큐를 원형으로 구성한 새로운 형태의 큐를 이용한다. 환형 큐의 구조는 아래와 같다.</li>
+</ul>
+</li>
+</ul>
+<p><img src="/images/queue3.png" alt=""></p>
+<hr>
+<h3 id="2-구현--circular-queue">2. 구현 : Circular Queue</h3>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+
+using namespace std;
+
+template &lt;class T&gt;
+class CircularQueue
+{
+private :
+	T* queue;
+	int front = 0;
+	int rear = 0;
+	int capacity;
+public :
+	CircularQueue();
+	CircularQueue(int);
+	bool isEmpty();
+	bool isFull();
+	void Push(T);
+	void Pop();
+	T Front();
+};
+
+template &lt;class T&gt;
+CircularQueue&lt;T&gt;::CircularQueue()
+{
+	this-&gt;capacity = 10;
+	this-&gt;queue = new T[this-&gt;capacity + 1];
+}
+
+template &lt;class T&gt;
+CircularQueue&lt;T&gt;::CircularQueue(int capacity)
+{
+	this-&gt;capacity = capacity + 1;
+	this-&gt;queue = new T[this-&gt;capacity];
+}
+
+template &lt;class T&gt;
+bool CircularQueue&lt;T&gt;::isEmpty()
+{
+	if (this-&gt;front == this-&gt;rear)
+	{
+		return true;
+	}
+	return false;
+}
+
+template &lt;class T&gt;
+bool CircularQueue&lt;T&gt;::isFull()
+{
+	if ((this-&gt;rear + 1) % this-&gt;capacity == this-&gt;front)
+	{
+		return true;
+	}
+	return false;
+}
+
+template &lt;class T&gt;
+void CircularQueue&lt;T&gt;::Push(T data)
+{
+	if (!this-&gt;isFull())
+	{
+		this-&gt;queue[this-&gt;rear] = data;
+		this-&gt;rear = (this-&gt;rear + 1) % capacity;
+	}
+}
+
+template &lt;class T&gt;
+void CircularQueue&lt;T&gt;::Pop()
+{
+	if (!this-&gt;isEmpty())
+	{
+		this-&gt;front = (this-&gt;front + 1) % this-&gt;capacity;
+	}
+}
+
+template &lt;class T&gt;
+T CircularQueue&lt;T&gt;::Front()
+{
+	if (!this-&gt;isEmpty())
+	{
+		return this-&gt;queue[this-&gt;front];
+	}
+}
+
+int main()
+{
+	CircularQueue&lt;int&gt; q(20);
+	cout &lt;&lt; &#34;capacity가 20인 CircularQueue를 생성합니다.\n0부터 19까지 20개를 Queue에 넣습니다.\n&#34;;
+	for (int i = 0; i &lt; 20; i++)
+	{
+		q.Push(i);
+	}
+	if (q.isFull())
+	{
+		cout &lt;&lt; &#34;꽉 찼습니다.\n&#34;;
+	}
+	cout &lt;&lt; &#34;Queue의 Front를 출력하고 Pop하는 동작을 20번 반복합니다.\n&#34;;
+	for (int i = 0; i &lt; 20; i++)
+	{
+		cout &lt;&lt; q.Front() &lt;&lt; &#39; &#39;;
+		q.Pop();
+	}
+	if (q.isEmpty())
+	{
+		cout &lt;&lt; &#34;\n비어있습니다.\n&#34;;
+	}
+
+	return 0;
+}
+</code></pre></div><blockquote>
+<p>결과</p>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">capacity가 20인 CircularQueue를 생성합니다
+0부터 19까지 20개를 Queue에 넣습니다.
+꽉 찼습니다.
+Queue의 Front를 출력하고 Pop하는 동작을 20번 반복합니다.
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19
+비어있습니다.
+</code></pre></div>
+</div>
+</div>
+
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+  <div class="sub-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="sub-footer-inner">
+          <ul>
+            <li class="zerostatic"><a href="https://www.zerostatic.io">www.zerostatic.io</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/scripts.min.1237ff71925bb8625c97a9af8db4c54525258bedfd7c47493daaff723bea755e.js"></script>
+  
+
+  
+  
+  
+    
+  
+
+
+</body>
+
+</html>

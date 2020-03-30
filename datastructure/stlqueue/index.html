@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>[C&#43;&#43; STL] Queue - LaMelD&#39;s dev Story</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="icon" href="https://lameld.github.io/favicon.png">
+
+  
+  
+  <link rel="stylesheet" href="/css/style.min.6aa5eecd4ca7c47fb2ca9b0775a7bd787e3e64a2eadf0fef8c9f924498f49127.css">
+  
+
+  
+
+</head>
+
+<body class='page page-default-single'>
+  <div id="main-menu-mobile" class="main-menu-mobile">
+  <ul>
+    
+    
+    <li class="menu-item-home">
+      <a href="/">
+        <span>Home</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-kakao">
+      <a href="/kakao/">
+        <span>Kakao</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-swea">
+      <a href="/swea/">
+        <span>Swea</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-datastructure">
+      <a href="/datastructure/">
+        <span>DataStructure</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-cloudbasic">
+      <a href="/cloudbasic/">
+        <span>CloudBasic</span>
+      </a>
+    </li>
+    
+  </ul>
+</div>
+  <div class="wrapper">
+    <div class='header'>
+  <div class="container">
+    <div class="logo">
+      <a href="https://lameld.github.io"><img alt="Logo" src="/images/logo.svg" /></a>
+    </div>
+    <div class="logo-mobile">
+      <a href="https://lameld.github.io"><img alt="Logo" src="/images/logo-mobile.svg" /></a>
+    </div>
+    <div id="main-menu" class="main-menu">
+  <ul>
+    
+    
+    <li class="menu-item-home">
+      <a href="/">
+        <span>Home</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-kakao">
+      <a href="/kakao/">
+        <span>Kakao</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-swea">
+      <a href="/swea/">
+        <span>Swea</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-datastructure">
+      <a href="/datastructure/">
+        <span>DataStructure</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-cloudbasic">
+      <a href="/cloudbasic/">
+        <span>CloudBasic</span>
+      </a>
+    </li>
+    
+  </ul>
+</div>
+    <button id="toggle-main-menu-mobile" class="hamburger hamburger--slider" type="button">
+  <span class="hamburger-box">
+    <span class="hamburger-inner"></span>
+  </span>
+</button>
+  </div>
+</div>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <div class="container pt-2 pt-md-6 pb-3 pb-md-6">
+      <div class="row">
+        <div class="col-12 col-md-3 mb-3">
+          <div class="sidebar">
+            
+<div class="docs-menu">
+  <h4>Datastructure</h4>
+  <ul>
+    
+    <li class="">
+      <a href="https://lameld.github.io/datastructure/dsarray/">[DS] Array</a>
+    </li>
+    
+    <li class="">
+      <a href="https://lameld.github.io/datastructure/dslinkedlist/">[Data Structure] Single Linked List</a>
+    </li>
+    
+    <li class="">
+      <a href="https://lameld.github.io/datastructure/dsqueue/">[DS] Queue</a>
+    </li>
+    
+    <li class="">
+      <a href="https://lameld.github.io/datastructure/dsstack/">[Data Structure] Stack</a>
+    </li>
+    
+    <li class="active ">
+      <a href="https://lameld.github.io/datastructure/stlqueue/">[C&#43;&#43; STL] Queue</a>
+    </li>
+    
+    <li class="">
+      <a href="https://lameld.github.io/datastructure/stlvector/">[C&#43;&#43; STL] Vector</a>
+    </li>
+    
+  </ul>
+</div>
+
+          </div>
+        </div>
+        <div class="col-12 col-md-9">
+          
+<h1 class="title">[C&#43;&#43; STL] Queue</h1>
+<div class="content ">
+  <h1 id="c-stl-queue">C++ STL Queue</h1>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<ul>
+<li>내부적으로는 deque, list로 구성되어 있다.</li>
+<li>queue구조로 동작하도록 멤버 함수를 제공해준다.</li>
+<li><!-- raw HTML omitted --> 헤더파일에 존재한다.</li>
+<li>std namespace를 사용하면 편리하다.
+<!-- raw HTML omitted --></li>
+<li>기본 생성자</li>
+</ul>
+<blockquote>
+<p>기본 생성자 형식 : queue&lt;[data type]&gt; [변수이름]<!-- raw HTML omitted --></p>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">queue&lt;int&gt; q;
+queue&lt;sting&gt; q;
+</code></pre></div><blockquote>
+<p>내부 컨테이너 구조를 바꾸는 생성자 형식 : queue&lt;[data type], [container Type]&gt; [변수이름]</p>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">queue&lt;int, list&lt;int&gt;&gt; q;
+queue&lt;string, list&lt;string&gt;&gt; q;
+</code></pre></div><ul>
+<li>멤버 함수</li>
+</ul>
+<blockquote>
+<p>front()</p>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">첫번째 원소에 접근합니다.
+들어간지 가장 오래된 원소.
+const value_type&amp; front() const
+</code></pre></div><blockquote>
+<p>back()</p>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">마지막 원소에 접근합니다.
+가장 최근에 들어간 원소
+const value_type&amp; back() const
+</code></pre></div><blockquote>
+<p>empty()</p>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">비어있으면 true
+size가 0이면 true
+</code></pre></div><blockquote>
+<p>size()</p>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">원소의 갯수를 반환합니다.
+</code></pre></div><blockquote>
+<p>push()</p>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">초기화된 원소를 queue안에 집어 넣는다.
+</code></pre></div><blockquote>
+<p>pop()</p>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">들어간지 가장 오래된 원소를 삭제한다.
+맨 앞에 있는 원소를 삭제한다.
+반환형이 void이므로 앞의 원소를 참조하려면 front를 사용해야 한다.
+</code></pre></div><!-- raw HTML omitted -->
+<h2 id="priority-queue">priority queue</h2>
+<p>////////////////////////////////////////////////////<!-- raw HTML omitted -->
+이후에 작성 예정.</p>
+
+</div>
+</div>
+
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+  <div class="sub-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="sub-footer-inner">
+          <ul>
+            <li class="zerostatic"><a href="https://www.zerostatic.io">www.zerostatic.io</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/scripts.min.1237ff71925bb8625c97a9af8db4c54525258bedfd7c47493daaff723bea755e.js"></script>
+  
+
+  
+  
+  
+    
+  
+
+
+</body>
+
+</html>
