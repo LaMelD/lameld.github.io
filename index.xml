@@ -34,16 +34,6 @@
     </item>
     
     <item>
-      <title>Install Hugo</title>
-      <link>https://lameld.github.io/docs/install-hugo/</link>
-      <pubDate>Mon, 11 Feb 2019 19:27:37 +1000</pubDate>
-      
-      <guid>https://lameld.github.io/docs/install-hugo/</guid>
-      <description>To use this theme you will need to have Hugo installed. If you don&amp;rsquo;t already have Hugo installed please follow the official installation guide
-Check Hugo Version This theme uses Hugo Pipes to compile SCSS and minify assets.</description>
-    </item>
-    
-    <item>
       <title>[2018] 다트 게임</title>
       <link>https://lameld.github.io/kakao/2018_dart/</link>
       <pubDate>Thu, 21 Nov 2019 00:00:00 +0000</pubDate>
@@ -52,16 +42,6 @@ Check Hugo Version This theme uses Hugo Pipes to compile SCSS and minify assets.
       <description>문제 출처
   규칙
  다트 게임은 총 3번의 기회로 구성된다. 각 기회마다 얻을 수 있는 점수는 0 ~ 10점까지이다. 점수와 함께 S(점수의 1승), D(점수의 2승), T(점수의 3승)가 주어진다. 옵션으로 *(해당 점수와 이전에 얻은 점수를 각각 2배로 한다), #(해당 점수를 마이너스한다)이 존재한다.</description>
-    </item>
-    
-    <item>
-      <title>Install Theme</title>
-      <link>https://lameld.github.io/docs/install-theme/</link>
-      <pubDate>Mon, 11 Feb 2019 19:27:37 +1000</pubDate>
-      
-      <guid>https://lameld.github.io/docs/install-theme/</guid>
-      <description>Create a new Hugo site hugo new site mynewsiteThis will create a fresh Hugo site in the folder mynewsite.
-Install theme Copy or git clone this theme into the sites themes folder mynewsite/themes</description>
     </item>
     
     <item>
@@ -83,33 +63,6 @@ Install theme Copy or git clone this theme into the sites themes folder mynewsit
       <guid>https://lameld.github.io/kakao/2018_friendsblock/</guid>
       <description>카카오 블라인드 테스트 2018 - 프렌즈 4 블록 문제 출처
  같은 모양의 카카오프렌즈 블록이 2×2 형태로 4개가 붙어있을 경우 사라지면서 점수를 얻는 게임이다.   풀이  왼쪽 상단부터 오른쪽 하단까지 지울 수 2x2 형태로 4개가 붙어있는 경우를 탐색한다.</description>
-    </item>
-    
-    <item>
-      <title>Configuration</title>
-      <link>https://lameld.github.io/docs/configure/</link>
-      <pubDate>Mon, 11 Feb 2019 19:30:08 +1000</pubDate>
-      
-      <guid>https://lameld.github.io/docs/configure/</guid>
-      <description>Syntax highlighting and menus can be configured via &lt;code&gt;config.toml&lt;/code&gt;.</description>
-    </item>
-    
-    <item>
-      <title>Specimen</title>
-      <link>https://lameld.github.io/docs/specimen/</link>
-      <pubDate>Mon, 11 Feb 2019 19:27:37 +1000</pubDate>
-      
-      <guid>https://lameld.github.io/docs/specimen/</guid>
-      <description>Markdown Test Page  Headings Paragraphs Blockquotes Lists Horizontal rule Table Code Inline elements   Headings Heading one Sint sit cillum pariatur eiusmod nulla pariatur ipsum. Sit laborum anim qui mollit tempor pariatur nisi minim dolor.</description>
-    </item>
-    
-    <item>
-      <title>Hugo Whisper</title>
-      <link>https://lameld.github.io/docs/example/</link>
-      <pubDate>Mon, 11 Feb 2019 19:27:37 +1000</pubDate>
-      
-      <guid>https://lameld.github.io/docs/example/</guid>
-      <description>&lt;p&gt;Whisper is a minimal documentation theme built for Hugo. The design &amp;amp; functionality is intentionally minimal.&lt;/p&gt;</description>
     </item>
     
     <item>
