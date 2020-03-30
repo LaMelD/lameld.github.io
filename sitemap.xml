@@ -73,12 +73,12 @@
   </url>
   
   <url>
-    <loc>/categories/study_hardware/</loc>
+    <loc>/tags/study_hardware/</loc>
     <lastmod>2020-01-16T13:35:04+09:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/study_hardware/</loc>
+    <loc>/categories/study_hardware/</loc>
     <lastmod>2020-01-16T13:35:04+09:00</lastmod>
   </url>
   
@@ -98,12 +98,12 @@
   </url>
   
   <url>
-    <loc>/categories/study_network/</loc>
+    <loc>/tags/study_network/</loc>
     <lastmod>2020-01-06T09:34:37+09:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/study_network/</loc>
+    <loc>/categories/study_network/</loc>
     <lastmod>2020-01-06T09:34:37+09:00</lastmod>
   </url>
   
@@ -143,27 +143,147 @@
   </url>
   
   <url>
-    <loc>/categories/kakao-blind-2018/</loc>
-    <lastmod>2019-11-22T00:00:00+00:00</lastmod>
+    <loc>/categories/kakao-blind-2020/</loc>
+    <lastmod>2019-11-27T11:22:43+09:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/kakao-blind-2018/</loc>
-    <lastmod>2019-11-22T00:00:00+00:00</lastmod>
+    <loc>/tags/kakao-blind-2020/</loc>
+    <lastmod>2019-11-27T11:22:43+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/kakao/update/kko_blind_2020_block/</loc>
+    <lastmod>2019-11-27T11:22:43+09:00</lastmod>
   </url>
   
   <url>
     <loc>/tags/programmers/</loc>
+    <lastmod>2019-11-27T11:22:43+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/kakao/update/kko_blind_2020_circular/</loc>
+    <lastmod>2019-11-27T11:22:33+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/kakao/update/kko_blind_2020_pole/</loc>
+    <lastmod>2019-11-27T11:22:18+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/kakao/update/kko_blind_2020_lyrics/</loc>
+    <lastmod>2019-11-27T11:21:48+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/kakao/update/kko_blind_2020_lock/</loc>
+    <lastmod>2019-11-27T11:21:28+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/kakao/update/kko_blind_2020_convert/</loc>
+    <lastmod>2019-11-27T11:21:17+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/kakao/update/kko_blind_2020_zip/</loc>
+    <lastmod>2019-11-27T11:21:08+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/kakao-blind-2019/</loc>
+    <lastmod>2019-11-24T18:15:23+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/kakao-blind-2019/</loc>
+    <lastmod>2019-11-24T18:15:23+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/kakao/update/kko_blind_2019_matching/</loc>
+    <lastmod>2019-11-24T18:15:23+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/kakao/update/kko_blind_2019_way/</loc>
+    <lastmod>2019-11-24T18:15:16+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/kakao/update/kko_blind_2019_muzi/</loc>
+    <lastmod>2019-11-24T18:15:07+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/kakao/update/kko_blind_2019_key/</loc>
+    <lastmod>2019-11-24T18:15:02+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/kakao/update/kko_blind_2019_open/</loc>
+    <lastmod>2019-11-24T18:14:39+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/kakao-blind-2018/</loc>
+    <lastmod>2019-11-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/kakao-blind-2018/</loc>
+    <lastmod>2019-11-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/kakao/update/kko_blind_2018_news/</loc>
+    <lastmod>2019-11-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/kakao/update/kko_blind_2019_block/</loc>
+    <lastmod>2019-11-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/kakao/update/kko_blind_2019_fail/</loc>
+    <lastmod>2019-11-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/kakao/update/kko_blind_2018_secret/</loc>
+    <lastmod>2019-11-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/kakao/update/kko_blind_2018_traffic/</loc>
+    <lastmod>2019-11-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/kakao/update/kko_blind_2018_shuttle/</loc>
     <lastmod>2019-11-22T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/c&#43;&#43;-stl/</loc>
-    <lastmod>2019-11-16T20:08:14+09:00</lastmod>
+    <loc>/kakao/update/kko_blind_2018_dart/</loc>
+    <lastmod>2019-11-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/kakao/update/kko_blind_2018_friendsblock/</loc>
+    <lastmod>2019-11-21T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/categories/c&#43;&#43;-stl/</loc>
+    <lastmod>2019-11-16T20:08:14+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/c&#43;&#43;-stl/</loc>
     <lastmod>2019-11-16T20:08:14+09:00</lastmod>
   </url>
   
