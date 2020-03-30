@@ -7,7 +7,7 @@
   <title>Specimen - LaMelD&#39;s dev Story</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
-  <link rel="icon" href="favicon.png">
+  <link rel="icon" href="https://lameld.github.io/favicon.png">
 
   
   
@@ -59,10 +59,10 @@
     <div class='header'>
   <div class="container">
     <div class="logo">
-      <a href=""><img alt="Logo" src="/images/logo.svg" /></a>
+      <a href="https://lameld.github.io"><img alt="Logo" src="/images/logo.svg" /></a>
     </div>
     <div class="logo-mobile">
-      <a href=""><img alt="Logo" src="/images/logo-mobile.svg" /></a>
+      <a href="https://lameld.github.io"><img alt="Logo" src="/images/logo-mobile.svg" /></a>
     </div>
     <div id="main-menu" class="main-menu">
   <ul>
@@ -133,23 +133,23 @@
   <ul>
     
     <li class="">
-      <a href="/docs/install-hugo/">Install Hugo</a>
+      <a href="https://lameld.github.io/docs/install-hugo/">Install Hugo</a>
     </li>
     
     <li class="">
-      <a href="/docs/install-theme/">Install Theme</a>
+      <a href="https://lameld.github.io/docs/install-theme/">Install Theme</a>
     </li>
     
     <li class="">
-      <a href="/docs/configure/">Configuration</a>
+      <a href="https://lameld.github.io/docs/configure/">Configuration</a>
     </li>
     
     <li class="active ">
-      <a href="/docs/specimen/">Specimen</a>
+      <a href="https://lameld.github.io/docs/specimen/">Specimen</a>
     </li>
     
     <li class="">
-      <a href="/docs/example/">Hugo Whisper</a>
+      <a href="https://lameld.github.io/docs/example/">Hugo Whisper</a>
     </li>
     
   </ul>
@@ -309,16 +309,16 @@ Deserunt officia esse aliquip consectetur duis ut labore laborum commodo aliquip
 <span class="p">)</span>
 
 <span class="kd">func</span> <span class="nf">handler</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Fprintf</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="s">&#34;Hi there, I love %s!&#34;</span><span class="p">,</span> <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="p">]</span><span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Fprintf</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="s">&#34;Hi there, I love %s!&#34;</span><span class="p">,</span> <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
 <span class="p">}</span>
 
-<span class="kd">func</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
     <span class="nx">http</span><span class="p">.</span><span class="nf">HandleFunc</span><span class="p">(</span><span class="s">&#34;/&#34;</span><span class="p">,</span> <span class="nx">handler</span><span class="p">)</span>
     <span class="nx">http</span><span class="p">.</span><span class="nf">ListenAndServe</span><span class="p">(</span><span class="s">&#34;:8080&#34;</span><span class="p">,</span> <span class="kc">nil</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div><p>Ex amet id ex aliquip id do laborum excepteur exercitation elit sint commodo occaecat nostrud est. Nostrud pariatur esse veniam laborum non sint magna sit laboris minim in id. Aliqua pariatur pariatur excepteur adipisicing irure culpa consequat commodo et ex id ad.</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">myFunction</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;myDIV&#39;</span><span class="p">)</span><span class="p">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">myFunction</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;myDIV&#39;</span><span class="p">);</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">x</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">===</span> <span class="s1">&#39;none&#39;</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">x</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s1">&#39;block&#39;</span><span class="p">;</span>
   <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>

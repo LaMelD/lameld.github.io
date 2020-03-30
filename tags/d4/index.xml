@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>D4 on LaMelD&#39;s dev Story</title>
-    <link>/tags/d4/</link>
+    <link>https://lameld.github.io/tags/d4/</link>
     <description>Recent content in D4 on LaMelD&#39;s dev Story</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 29 Nov 2019 17:38:30 +0900</lastBuildDate>
     
-	<atom:link href="/tags/d4/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://lameld.github.io/tags/d4/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>[SW Expert Academy][D4] 2819</title>
-      <link>/swea/swea_2819/</link>
+      <link>https://lameld.github.io/swea/swea_2819/</link>
       <pubDate>Fri, 29 Nov 2019 17:38:30 +0900</pubDate>
       
-      <guid>/swea/swea_2819/</guid>
+      <guid>https://lameld.github.io/swea/swea_2819/</guid>
       <description>문제 출처
   문제 설명
  4 x 4 크기의 격자판이 있다. 격자판의 각 격자칸에는 0부터 9사이의 숫자가 적혀 있다. 격자판의 임의의 위치에서 시작한다. 동서남북 네 방향으로 인접한 격자로 총 6회 이동하여 각 칸에 숫자를 차례로 이어 붙인다.</description>

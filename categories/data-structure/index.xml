@@ -2,49 +2,49 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>data structure on LaMelD&#39;s dev Story</title>
-    <link>/categories/data-structure/</link>
+    <link>https://lameld.github.io/categories/data-structure/</link>
     <description>Recent content in data structure on LaMelD&#39;s dev Story</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 15 Nov 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/categories/data-structure/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://lameld.github.io/categories/data-structure/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>[Data Structure] Array</title>
-      <link>/study/ds_array/</link>
+      <link>https://lameld.github.io/study/ds_array/</link>
       <pubDate>Fri, 15 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>/study/ds_array/</guid>
+      <guid>https://lameld.github.io/study/ds_array/</guid>
       <description>Array(배열)  정적 배열 (Static Array)  기본적인 배열을 의미한다. C++에서 간단하게 선언이 가능하다.     1차원
  int arr0[3];int arr1[10] = { 0, };int arr2 = { 1,2,3,4 }; 2차원</description>
     </item>
     
     <item>
       <title>[Data Structure] Queue</title>
-      <link>/study/ds_queue/</link>
+      <link>https://lameld.github.io/study/ds_queue/</link>
       <pubDate>Fri, 15 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>/study/ds_queue/</guid>
+      <guid>https://lameld.github.io/study/ds_queue/</guid>
       <description>Queue(큐) 1. 개념  Queue는 FIFO(First In First Out)의 원리로 동작하는 자료구조이다. 동일한 자료의 집합을 다룬다는 면에서 Stack과 비슷하지만 가장 먼저 들어간 자료가 가장 늦게 나온다는 점이 다르다. 넣은 순서대로 자료를 꺼내가므로 순서대로 처리해야 하는 자료를 임시작으로 저장하는 용도로 흔히 사용한다.</description>
     </item>
     
     <item>
       <title>[Data Structure] Single Linked List</title>
-      <link>/study/ds_linkedlist/</link>
+      <link>https://lameld.github.io/study/ds_linkedlist/</link>
       <pubDate>Fri, 15 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>/study/ds_linkedlist/</guid>
+      <guid>https://lameld.github.io/study/ds_linkedlist/</guid>
       <description>Single Linked List (단순 연결 리스트) 1. 개념  하나의 노드에 필요한 정보를 담고 다음에 해당하는 노드를 가리키고 있는 자료구조로 포인터를 이용해 자료들을 선형으로 연결한 자료구조이다. [ 배열 ] 과 비교했을 때 추가 및 삭제가 쉽다는 장점이 있지만 접근할 때 O(n)만큼 걸린다는 단점이 있습니다.</description>
     </item>
     
     <item>
       <title>[Data Structure] Stack</title>
-      <link>/study/ds_stack/</link>
+      <link>https://lameld.github.io/study/ds_stack/</link>
       <pubDate>Fri, 15 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>/study/ds_stack/</guid>
+      <guid>https://lameld.github.io/study/ds_stack/</guid>
       <description>Stack(스택) 1. 개념  가장 늦게 들어간 자료가 가장 먼저 나가는 구조이다. 후입선출(LIFO, Last In First Out)이라고도 부른다. Stack에 데이터를 넣는 행동을 push, 데이터를 빼는 행동을 pop이라 한다. Stack의 가장 위 데이터를 가르키는 포인터를 top이라고 한다.</description>
     </item>
     

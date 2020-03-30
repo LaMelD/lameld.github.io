@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>array on LaMelD&#39;s dev Story</title>
-    <link>/tags/array/</link>
+    <link>https://lameld.github.io/tags/array/</link>
     <description>Recent content in array on LaMelD&#39;s dev Story</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 15 Nov 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tags/array/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://lameld.github.io/tags/array/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>[Data Structure] Array</title>
-      <link>/study/ds_array/</link>
+      <link>https://lameld.github.io/study/ds_array/</link>
       <pubDate>Fri, 15 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>/study/ds_array/</guid>
+      <guid>https://lameld.github.io/study/ds_array/</guid>
       <description>Array(배열)  정적 배열 (Static Array)  기본적인 배열을 의미한다. C++에서 간단하게 선언이 가능하다.     1차원
  int arr0[3];int arr1[10] = { 0, };int arr2 = { 1,2,3,4 }; 2차원</description>
     </item>
