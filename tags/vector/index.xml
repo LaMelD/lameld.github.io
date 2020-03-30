@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>vector on LaMelD&#39;s Dev Life</title>
-    <link>https://lameld.github.io/tags/vector/</link>
-    <description>Recent content in vector on LaMelD&#39;s Dev Life</description>
+    <title>vector on LaMelD&#39;s dev Story</title>
+    <link>/tags/vector/</link>
+    <description>Recent content in vector on LaMelD&#39;s dev Story</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>UTF-8</language>
+    <language>en-us</language>
     <lastBuildDate>Sat, 16 Nov 2019 20:08:14 +0900</lastBuildDate>
     
-	<atom:link href="https://lameld.github.io/tags/vector/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/vector/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>[C&#43;&#43; STL] Vector</title>
-      <link>https://lameld.github.io/post/stl_vector/</link>
+      <link>/study/stl_vector/</link>
       <pubDate>Sat, 16 Nov 2019 20:08:14 +0900</pubDate>
       
-      <guid>https://lameld.github.io/post/stl_vector/</guid>
-      <description>vector는 자동으로 메모리가 할당되는 배열이라고 생각하면 됩니다. template를 사용하기 때문에 데이터 타입은 마음데로 넣을 수 있습니다. Stack과 비슷한 구조를 가지고 있으며, 맨 뒤에서 삽입과 삭제가 가능합니다. 중간의 값을 삭제하거나 삽입이 가능하지만, 배열기반이므로 삽입과 삭제가 빈번하게 일어난다면 효율이 떨어집니다.   헤더파일을 추가해야한다.</description>
+      <guid>/study/stl_vector/</guid>
+      <description>vector는 자동으로 메모리가 할당되는 배열이라고 생각하면 됩니다. template를 사용하기 때문에 데이터 타입은 마음데로 넣을 수 있습니다. Stack과 비슷한 구조를 가지고 있으며, 맨 뒤에서 삽입과 삭제가 가능합니다. 중간의 값을 삭제하거나 삽입이 가능하지만, 배열기반이므로 삽입과 삭제가 빈번하게 일어난다면 효율이 떨어집니다.</description>
     </item>
     
   </channel>

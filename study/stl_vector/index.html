@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>[C&#43;&#43; STL] Vector - LaMelD&#39;s dev Story</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="icon" href="favicon.png">
+
+  
+  
+  <link rel="stylesheet" href="/css/style.min.6aa5eecd4ca7c47fb2ca9b0775a7bd787e3e64a2eadf0fef8c9f924498f49127.css">
+  
+
+  
+
+</head>
+
+<body class='page page-default-single'>
+  <div id="main-menu-mobile" class="main-menu-mobile">
+  <ul>
+    
+    
+    <li class="menu-item-home">
+      <a href="/">
+        <span>Home</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-docs">
+      <a href="/docs/">
+        <span>Docs</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-kakao">
+      <a href="/kakao/">
+        <span>Kakao</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-swea">
+      <a href="/swea/">
+        <span>Swea</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-study">
+      <a href="/study/">
+        <span>Study</span>
+      </a>
+    </li>
+    
+  </ul>
+</div>
+  <div class="wrapper">
+    <div class='header'>
+  <div class="container">
+    <div class="logo">
+      <a href=""><img alt="Logo" src="/images/logo.svg" /></a>
+    </div>
+    <div class="logo-mobile">
+      <a href=""><img alt="Logo" src="/images/logo-mobile.svg" /></a>
+    </div>
+    <div id="main-menu" class="main-menu">
+  <ul>
+    
+    
+    <li class="menu-item-home">
+      <a href="/">
+        <span>Home</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-docs">
+      <a href="/docs/">
+        <span>Docs</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-kakao">
+      <a href="/kakao/">
+        <span>Kakao</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-swea">
+      <a href="/swea/">
+        <span>Swea</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-study">
+      <a href="/study/">
+        <span>Study</span>
+      </a>
+    </li>
+    
+  </ul>
+</div>
+    <button id="toggle-main-menu-mobile" class="hamburger hamburger--slider" type="button">
+  <span class="hamburger-box">
+    <span class="hamburger-inner"></span>
+  </span>
+</button>
+  </div>
+</div>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <div class="container pt-2 pt-md-6 pb-3 pb-md-6">
+      <div class="row">
+        <div class="col-12 col-md-3 mb-3">
+          <div class="sidebar">
+            
+<div class="docs-menu">
+  <h4>Study</h4>
+  <ul>
+    
+    <li class="">
+      <a href="/study/cloud_hw_linux/">[CLOUD] Hardware Linux</a>
+    </li>
+    
+    <li class="">
+      <a href="/study/cloud_hw_linux_basic/">[CLOUD] Hardware Linux Basic</a>
+    </li>
+    
+    <li class="">
+      <a href="/study/cloud_nw_device/">[CLOUD] Network Device</a>
+    </li>
+    
+    <li class="">
+      <a href="/study/cloud_nw/">[CLOUD] Network</a>
+    </li>
+    
+    <li class="">
+      <a href="/study/stl_queue/">[C&#43;&#43; STL] Queue</a>
+    </li>
+    
+    <li class="active ">
+      <a href="/study/stl_vector/">[C&#43;&#43; STL] Vector</a>
+    </li>
+    
+    <li class="">
+      <a href="/study/ds_array/">[Data Structure] Array</a>
+    </li>
+    
+    <li class="">
+      <a href="/study/ds_queue/">[Data Structure] Queue</a>
+    </li>
+    
+    <li class="">
+      <a href="/study/ds_linkedlist/">[Data Structure] Single Linked List</a>
+    </li>
+    
+    <li class="">
+      <a href="/study/ds_stack/">[Data Structure] Stack</a>
+    </li>
+    
+  </ul>
+</div>
+
+          </div>
+        </div>
+        <div class="col-12 col-md-9">
+          
+<h1 class="title">[C&#43;&#43; STL] Vector</h1>
+<div class="content ">
+  <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<ul>
+<li>vector는 자동으로 메모리가 할당되는 배열이라고 생각하면 됩니다.</li>
+<li>template를 사용하기 때문에 데이터 타입은 마음데로 넣을 수 있습니다.</li>
+<li>Stack과 비슷한 구조를 가지고 있으며, 맨 뒤에서 삽입과 삭제가 가능합니다.</li>
+<li>중간의 값을 삭제하거나 삽입이 가능하지만, 배열기반이므로 삽입과 삭제가 빈번하게 일어난다면 효율이 떨어집니다.</li>
+</ul>
+<!-- raw HTML omitted -->
+<ul>
+<li><!-- raw HTML omitted --> 헤더파일을 추가해야한다.</li>
+<li>선언 : vector&lt;[data type]&gt; [변수이름]
+<ul>
+<li>vector&lt;int&gt; v;</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>비어있는 vector v를 생성합니다.</p>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">vector&lt;int&gt; v;
+</code></pre></div><blockquote>
+<p>기본값(0)으로 초기화 된 N개의 원소를 가지는 vector v를 생성합니다.</p>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">vector&lt;int&gt; v(N);
+</code></pre></div><blockquote>
+<p>K로 초기화된 N개의 원소를 가지는 vector v를 생성합니다.</p>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">vector&lt;int&gt; v(N, K);
+</code></pre></div><blockquote>
+<p>v2는 v1 vector를 복사해서 생성됩니다.</p>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">vector&lt;int&gt; v2(v1);
+</code></pre></div><!-- raw HTML omitted -->
+<ul>
+<li>vector<!-- raw HTML omitted --> v를 생성한 상태라고 가정한다.</li>
+</ul>
+<blockquote>
+<p>v.assign(n, k);</p>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">k의 값으로 5개의 원소 할당
+</code></pre></div><blockquote>
+<p>v.at(index);</p>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">index 번째 원소를 참조한다.
+v[index] 보다 속도는 느리지만, 범위를 점검하므로 안전하다.
+</code></pre></div><blockquote>
+<p>v[index];</p>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">index 번째 원소를 참조한다.
+범위를 점검하지 않으므로 속도가 v.at(index) 보다 빠르다.
+</code></pre></div><blockquote>
+<p>v.front();</p>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">첫번째 원소를 참조한다.
+</code></pre></div><blockquote>
+<p>v.back();</p>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">마지막 원소를 참조한다.
+</code></pre></div><blockquote>
+<p>v.clear();</p>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">모든 원소를 제거한다.
+원소만 제거하고 메모리는 남아있다.(size만 줄어들고 capacity는 그대로)
+</code></pre></div><blockquote>
+<p>v.push_back(k);</p>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">마지막 원소 뒤에 원소 k를 삽입한다.
+</code></pre></div><blockquote>
+<p>v.pop_back();</p>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">마지막 원소를 제거한다.
+</code></pre></div><blockquote>
+<p>v.begin();</p>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">첫번째 원소를 가리킨다.(iterator와 사용)
+</code></pre></div><blockquote>
+<p>v.end();</p>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">마지막의 &#34;다음&#34;을 가리킨다.(iterator와 사용)
+</code></pre></div><blockquote>
+<p>v.rbegin();</p>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">reverse begin을 가리킨다.(거꾸로 해서 첫번째 원소)
+</code></pre></div><blockquote>
+<p>v.rend();</p>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">reverse end를 가리킨다. (거꾸로 해서 마지막의 다음을 가리킨다)
+</code></pre></div><blockquote>
+<p>v.reserve(n);</p>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">n개의 원소를 저장할 위치를 예약(동적할당)한다.
+</code></pre></div><blockquote>
+<p>v.resize(n);</p>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">크기를 n으로 변경한다.
+</code></pre></div><blockquote>
+<p>v.resize(n, k);</p>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">크기를 n으로 변경한다.
+더 커졌을 경우 인자의 값을 3으로 초기화 한다.
+</code></pre></div><blockquote>
+<p>v.size();</p>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">원소의 갯수를 리턴한다.
+</code></pre></div><blockquote>
+<p>v.capacity();</p>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">할당된 공간의 크기를 리턴한다.
+</code></pre></div><blockquote>
+<p>v2.swap(v1);</p>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">v1과 v2의 원소와 capacity를 바꿔준다.
+</code></pre></div><blockquote>
+<p>v.insert(index, n, k);</p>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">index번째 위치에 n개의 k값을 삽입한다.(이후의 데이터는 뒤로 밀린다)
+</code></pre></div><blockquote>
+<p>v.insert(index, k);</p>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">index번째 위치에 k값을 삽입한다.
+삽입한 위치의 iterator를 반환한다.
+</code></pre></div><blockquote>
+<p>v.erase(iterator);</p>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">iterator가 가리키는 원소를 제거한다.
+size만 줄어들고 capacity는 그대로 남는다.
+--- erase에 관련 내용은 추후에 추가하겠습니다. ---
+</code></pre></div><blockquote>
+<p>v.empty();</p>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">vector가 비어있으면 true를 리턴한다.
+비어 있는 기준은 size가 0이라는 의미이다.
+</code></pre></div><!-- raw HTML omitted -->
+<ul>
+<li>size : 할당된 메모리 안에 data가 들어있는 갯수</li>
+<li>capacity : 할당된 메모리의 크기
+<!-- raw HTML omitted --></li>
+<li>vector<!-- raw HTML omitted --> v 에서 push를 진행한 뒤 pop을 하면 size는 증가하고 감소하지만, capacity는 증가하기만 한다.</li>
+<li>DS Array에서 배열의 크기를 2배로 증가시키는 방법과 유사하다.</li>
+</ul>
+
+</div>
+</div>
+
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+  <div class="sub-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="sub-footer-inner">
+          <ul>
+            <li class="zerostatic"><a href="https://www.zerostatic.io">www.zerostatic.io</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/scripts.min.1237ff71925bb8625c97a9af8db4c54525258bedfd7c47493daaff723bea755e.js"></script>
+  
+
+  
+  
+  
+    
+  
+
+
+</body>
+
+</html>

@@ -6,9 +6,73 @@
     <description>Recent content in Categories on LaMelD&#39;s dev Story</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <lastBuildDate>Thu, 16 Jan 2020 13:35:04 +0900</lastBuildDate>
     
 	<atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>cloud</title>
+      <link>/categories/cloud/</link>
+      <pubDate>Thu, 16 Jan 2020 13:35:04 +0900</pubDate>
+      
+      <guid>/categories/cloud/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>study_hardware</title>
+      <link>/categories/study_hardware/</link>
+      <pubDate>Thu, 16 Jan 2020 13:35:04 +0900</pubDate>
+      
+      <guid>/categories/study_hardware/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>study_network</title>
+      <link>/categories/study_network/</link>
+      <pubDate>Mon, 06 Jan 2020 09:34:37 +0900</pubDate>
+      
+      <guid>/categories/study_network/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>sw expert academy d4</title>
+      <link>/categories/sw-expert-academy-d4/</link>
+      <pubDate>Fri, 29 Nov 2019 17:38:30 +0900</pubDate>
+      
+      <guid>/categories/sw-expert-academy-d4/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Kakao Blind 2018</title>
+      <link>/categories/kakao-blind-2018/</link>
+      <pubDate>Fri, 22 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/kakao-blind-2018/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>c&#43;&#43; stl</title>
+      <link>/categories/c&#43;&#43;-stl/</link>
+      <pubDate>Sat, 16 Nov 2019 20:08:14 +0900</pubDate>
+      
+      <guid>/categories/c&#43;&#43;-stl/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>data structure</title>
+      <link>/categories/data-structure/</link>
+      <pubDate>Fri, 15 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/data-structure/</guid>
+      <description></description>
+    </item>
     
   </channel>
 </rss>
