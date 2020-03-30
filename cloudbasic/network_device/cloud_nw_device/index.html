@@ -413,8 +413,6 @@
 </ul>
 </li>
 </ul>
-<blockquote>
-</blockquote>
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">라우터(CISCO)
 a. interface에 연결된 부분 ip 설정
 configure terminal
@@ -615,10 +613,10 @@ configure terminal
 <li>네트워크의 상태가 변하면 다시 위의 과정을 반복해서 Routing table을 생성</li>
 </ol>
 </li>
-</ul>
-<blockquote>
+<li>
 <p>명령어</p>
-</blockquote>
+</li>
+</ul>
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">vmware 설명
 1. bridged
 	Host PC의 네트워크 대역이랑 같은 네트워크 대역을 사용하는 가상의 네트워크 장치
@@ -953,10 +951,10 @@ configure terminal
 <li>permit이면 packet을 정해진 경로로 전송하고 deny면 packet의 흐름을 차단</li>
 </ul>
 </li>
-</ul>
-<blockquote>
+<li>
 <p>기본 ACL 적용</p>
-</blockquote>
+</li>
+</ul>
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">configure terminal
     //생성
     access-list [number] [permit | deny] [네트워크 대역] [와일드카드]
@@ -994,7 +992,8 @@ configure terminal
 
 //자세한 사용 방법은 실습에서 보시길 바랍니다.
 </code></pre></div><ul>
-<li>ACL 설정 방법
+<li>
+<p>ACL 설정 방법</p>
 <ul>
 <li>
 <p>inbound :: 내부로 들어올 때 필터링</p>
@@ -1019,10 +1018,10 @@ configure terminal
 </li>
 </ul>
 </li>
-</ul>
-<blockquote>
+<li>
 <p>실습 자료</p>
-</blockquote>
+</li>
+</ul>
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">*permit이든 deny이든 조건에 맞는 것(from, to가 일치하는 것)이 나온다면 리스트를 빠져나온다*
 
 Standard ACL
