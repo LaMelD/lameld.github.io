@@ -44,10 +44,10 @@
     
     <item>
       <title>Network Device</title>
-      <link>https://lameld.github.io/cloudbasic/network_device/cloud_nw_device/</link>
+      <link>https://lameld.github.io/cloudbasic/network_device/</link>
       <pubDate>Mon, 06 Jan 2020 09:34:37 +0900</pubDate>
       
-      <guid>https://lameld.github.io/cloudbasic/network_device/cloud_nw_device/</guid>
+      <guid>https://lameld.github.io/cloudbasic/network_device/</guid>
       <description>200106 Monday ~ 200110 Friday  1. 계층별 장비와 케이블   계층 별 장비
  Physical Layer &amp;ndash;&amp;gt; Repeater, Hub Data link Layer &amp;ndash;&amp;gt; Switch, Bridge Network Layer &amp;ndash;&amp;gt; Router, L3 Switch    Physical Layer :: Repeater</description>
     </item>
