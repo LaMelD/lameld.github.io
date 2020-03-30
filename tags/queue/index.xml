@@ -17,8 +17,7 @@
       <pubDate>Sat, 16 Nov 2019 20:08:14 +0900</pubDate>
       
       <guid>https://lameld.github.io/post/stl_queue/</guid>
-      <description>C++ STL Queue  Queue  내부적으로는 deque, list로 구성되어 있다. queue구조로 동작하도록 멤버 함수를 제공해준다.  헤더파일에 존재한다. std namespace를 사용하면 편리하다.  기본 생성자   기본 생성자 형식 : queue&amp;lt;[data type]&amp;gt; [변수이름]
-queue&amp;lt;int&amp;gt; q; queue&amp;lt;sting&amp;gt; q;  내부 컨테이너 구조를 바꾸는 생성자 형식 : queue&amp;lt;[data type], [container Type]&amp;gt; [변수이름]</description>
+      <description>C++ STL Queue  내부적으로는 deque, list로 구성되어 있다. queue구조로 동작하도록 멤버 함수를 제공해준다. 헤더파일에 존재한다. std namespace를 사용하면 편리하다.  기본 생성자   기본 생성자 형식 : queue&amp;lt;[data type]&amp;gt; [변수이름] queue&amp;lt;int&amp;gt; q;queue&amp;lt;sting&amp;gt; q; 내부 컨테이너 구조를 바꾸는 생성자 형식 : queue&amp;lt;[data type], [container Type]&amp;gt; [변수이름]</description>
     </item>
     
     <item>

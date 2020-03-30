@@ -7,14 +7,14 @@
 <meta name="description" content="Personal blog." />
 <meta name="keywords" content="" />
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.59.1" />
+<meta name="generator" content="Hugo 0.62.0" />
 
 <link rel="canonical" href="https://lameld.github.io/post/kko_blind_2019_key/">
 <meta property="og:title" content="[Programmers][Kakao Blind 2019] 후보키" />
-<meta property="og:description" content="카카오 블라인드 테스트 2019 - 후보키 문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/42890
- 문제 설명
- 후보키 : 유일성과 최소성을 만족하는 것을 후보키(Candidate Key)라고 한다. 테이블이 주어졌을 때 후보키의 최대 갯수를 구한다.    유일성(uniqueness)
-릴레이션에 있는 모든 튜플에 대해 유일하게 식별되어야 한다." />
+<meta property="og:description" content="문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/42890&lt;/a&gt;
+  문제 설명
+ 후보키 : 유일성과 최소성을 만족하는 것을 후보키(Candidate Key)라고 한다. 테이블이 주어졌을 때 후보키의 최대 갯수를 구한다.   유일성(uniqueness)
+ 릴레이션에 있는 모든 튜플에 대해 유일하게 식별되어야 한다. &gt;최소성(minimality) 유일성을 가진 키를 구성하는 속성 중 하나라도 제외하는 경우 유일성이 깨지는 것을 의미한다." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://lameld.github.io/post/kko_blind_2019_key/" />
 <meta property="article:published_time" content="2019-11-24T18:15:02+09:00" />
@@ -22,27 +22,24 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="[Programmers][Kakao Blind 2019] 후보키"/>
-<meta name="twitter:description" content="카카오 블라인드 테스트 2019 - 후보키 문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/42890
- 문제 설명
- 후보키 : 유일성과 최소성을 만족하는 것을 후보키(Candidate Key)라고 한다. 테이블이 주어졌을 때 후보키의 최대 갯수를 구한다.    유일성(uniqueness)
-릴레이션에 있는 모든 튜플에 대해 유일하게 식별되어야 한다."/>
+<meta name="twitter:description" content="문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/42890&lt;/a&gt;
+  문제 설명
+ 후보키 : 유일성과 최소성을 만족하는 것을 후보키(Candidate Key)라고 한다. 테이블이 주어졌을 때 후보키의 최대 갯수를 구한다.   유일성(uniqueness)
+ 릴레이션에 있는 모든 튜플에 대해 유일하게 식별되어야 한다. &gt;최소성(minimality) 유일성을 가진 키를 구성하는 속성 중 하나라도 제외하는 경우 유일성이 깨지는 것을 의미한다."/>
 
 
 <meta itemprop="name" content="[Programmers][Kakao Blind 2019] 후보키">
-<meta itemprop="description" content="카카오 블라인드 테스트 2019 - 후보키 문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/42890
- 문제 설명
- 후보키 : 유일성과 최소성을 만족하는 것을 후보키(Candidate Key)라고 한다. 테이블이 주어졌을 때 후보키의 최대 갯수를 구한다.    유일성(uniqueness)
-릴레이션에 있는 모든 튜플에 대해 유일하게 식별되어야 한다.">
-
-
+<meta itemprop="description" content="문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/42890&lt;/a&gt;
+  문제 설명
+ 후보키 : 유일성과 최소성을 만족하는 것을 후보키(Candidate Key)라고 한다. 테이블이 주어졌을 때 후보키의 최대 갯수를 구한다.   유일성(uniqueness)
+ 릴레이션에 있는 모든 튜플에 대해 유일하게 식별되어야 한다. &gt;최소성(minimality) 유일성을 가진 키를 구성하는 속성 중 하나라도 제외하는 경우 유일성이 깨지는 것을 의미한다.">
 <meta itemprop="datePublished" content="2019-11-24T18:15:02&#43;09:00" />
 <meta itemprop="dateModified" content="2019-11-24T18:15:02&#43;09:00" />
-<meta itemprop="wordCount" content="417">
+<meta itemprop="wordCount" content="411">
 
 
 
 <meta itemprop="keywords" content="c&#43;&#43;,programmers,kakao blind 2019," />
-
 
 <link rel="stylesheet" href="https://lameld.github.io/css/layout.css" />
 
@@ -126,46 +123,38 @@ if (!doNotTrack) {
 </div>
 
     
-    <div class="content"> <h1>카카오 블라인드 테스트 2019 - 후보키</h1>
-
-<p>문제 출처 : <a href="https://programmers.co.kr/learn/courses/30/lessons/42890">https://programmers.co.kr/learn/courses/30/lessons/42890</a></p>
-
+    <div class="content"> <!-- raw HTML omitted -->
+<p>문제 출처 : <!-- raw HTML omitted --><a href="https://programmers.co.kr/learn/courses/30/lessons/42890%3C/a%3E">https://programmers.co.kr/learn/courses/30/lessons/42890&lt;/a&gt;</a></p>
 <ul>
-<li><p>문제 설명</p>
-
+<li>
+<p>문제 설명</p>
 <ol>
 <li>후보키 : 유일성과 최소성을 만족하는 것을 후보키(Candidate Key)라고 한다.</li>
-<li>테이블이 주어졌을 때 후보키의 최대 갯수를 구한다.
-<br /></li>
+<li>테이블이 주어졌을 때 후보키의 최대 갯수를 구한다.</li>
 </ol>
-
 <blockquote>
 <p>유일성(uniqueness)</p>
-
+</blockquote>
 <pre><code>릴레이션에 있는 모든 튜플에 대해 유일하게 식별되어야 한다.
-</code></pre>
-
-<p>최소성(minimality)</p>
-
-<pre><code>유일성을 가진 키를 구성하는 속성 중 하나라도 제외하는 경우 유일성이 깨지는 것을 의미한다. 즉, 릴레이션의 모든 튜플을 유일하게 식별할 때 꼭 필요한 속성들로만 구성되어야 한다.
-</code></pre>
-</blockquote></li>
-
-<li><p>아래와 같은 경우에서 후보키는 &ldquo;학번&rdquo;, [&ldquo;이름&rdquo;, &ldquo;전공&rdquo;] 두 개가 된다.
-<img src="https://lameld.github.io/images/key1.jpg"></p></li>
-
-<li><p>문제 풀이</p>
-
+</code></pre><pre><code>  &gt;최소성(minimality)
+</code></pre><pre><code>  유일성을 가진 키를 구성하는 속성 중 하나라도 제외하는 경우 유일성이 깨지는 것을 의미한다. 즉, 릴레이션의 모든 튜플을 유일하게 식별할 때 꼭 필요한 속성들로만 구성되어야 한다.
+</code></pre><pre><code>	
+</code></pre></li>
+<li>
+<p>아래와 같은 경우에서 후보키는 &ldquo;학번&rdquo;, [&ldquo;이름&rdquo;, &ldquo;전공&rdquo;] 두 개가 된다.
+<!-- raw HTML omitted --></p>
+</li>
+<li>
+<p>문제 풀이</p>
 <ul>
 <li>유일성을 만족시키는 키를 모두 후보키 배열에 넣어준다.</li>
-<li>유일성을 만족시키는 후보키들의 최소성을 확인하여 최소성이 만족되지 않는 후보키를 제외시킨다.
-<br /></li>
-</ul></li>
+<li>유일성을 만족시키는 후보키들의 최소성을 확인하여 최소성이 만족되지 않는 후보키를 제외시킨다.</li>
 </ul>
-
+</li>
+</ul>
 <blockquote>
 <p>Code</p>
-
+</blockquote>
 <pre><code>#include &lt;string&gt;
 #include &lt;vector&gt;
 #include &lt;algorithm&gt;
@@ -310,9 +299,7 @@ int solution(vector&lt;vector&lt;string&gt;&gt; relation)
 
 	return ret;
 }
-</code></pre>
-</blockquote>
- </div>
+</code></pre> </div>
     <footer class="post-footer">
 
   <div class="post-footer-data">

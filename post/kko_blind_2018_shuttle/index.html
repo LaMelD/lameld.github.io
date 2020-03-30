@@ -7,12 +7,12 @@
 <meta name="description" content="Personal blog." />
 <meta name="keywords" content="" />
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.59.1" />
+<meta name="generator" content="Hugo 0.62.0" />
 
 <link rel="canonical" href="https://lameld.github.io/post/kko_blind_2018_shuttle/">
 <meta property="og:title" content="[Programmers][Kakao Blind 2018] 셔틀버스" />
-<meta property="og:description" content="카카오 블라인드 테스트 2018 - 셔틀버스 문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/17678
- 문제 설명
+<meta property="og:description" content="문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/17678&lt;/a&gt;
+  문제 설명
  셔틀은 09:00 부터 총 n 회 t 분 간격으로 역에 도착하며, 하나의 셔틀에는 최대 m 명의 승객이 탈 수 있다. 셔틀은 도착했을 때 도착한 순간 대기열에 선 크루까지 포함해서 대기 순서대로 태우고 바로 출발한다." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://lameld.github.io/post/kko_blind_2018_shuttle/" />
@@ -21,25 +21,22 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="[Programmers][Kakao Blind 2018] 셔틀버스"/>
-<meta name="twitter:description" content="카카오 블라인드 테스트 2018 - 셔틀버스 문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/17678
- 문제 설명
+<meta name="twitter:description" content="문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/17678&lt;/a&gt;
+  문제 설명
  셔틀은 09:00 부터 총 n 회 t 분 간격으로 역에 도착하며, 하나의 셔틀에는 최대 m 명의 승객이 탈 수 있다. 셔틀은 도착했을 때 도착한 순간 대기열에 선 크루까지 포함해서 대기 순서대로 태우고 바로 출발한다."/>
 
 
 <meta itemprop="name" content="[Programmers][Kakao Blind 2018] 셔틀버스">
-<meta itemprop="description" content="카카오 블라인드 테스트 2018 - 셔틀버스 문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/17678
- 문제 설명
+<meta itemprop="description" content="문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/17678&lt;/a&gt;
+  문제 설명
  셔틀은 09:00 부터 총 n 회 t 분 간격으로 역에 도착하며, 하나의 셔틀에는 최대 m 명의 승객이 탈 수 있다. 셔틀은 도착했을 때 도착한 순간 대기열에 선 크루까지 포함해서 대기 순서대로 태우고 바로 출발한다.">
-
-
 <meta itemprop="datePublished" content="2019-11-22T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2019-11-22T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="349">
+<meta itemprop="wordCount" content="343">
 
 
 
 <meta itemprop="keywords" content="c&#43;&#43;,programmers,kakao blind 2018," />
-
 
 <link rel="stylesheet" href="https://lameld.github.io/css/layout.css" />
 
@@ -123,22 +120,20 @@ if (!doNotTrack) {
 </div>
 
     
-    <div class="content"> <h1>카카오 블라인드 테스트 2018 - 셔틀버스</h1>
-
-<p>문제 출처 : <a href="https://programmers.co.kr/learn/courses/30/lessons/17678">https://programmers.co.kr/learn/courses/30/lessons/17678</a></p>
-
+    <div class="content"> <!-- raw HTML omitted -->
+<p>문제 출처 : <!-- raw HTML omitted --><a href="https://programmers.co.kr/learn/courses/30/lessons/17678%3C/a%3E">https://programmers.co.kr/learn/courses/30/lessons/17678&lt;/a&gt;</a></p>
 <ul>
-<li><p>문제 설명</p>
-
+<li>
+<p>문제 설명</p>
 <ol>
 <li>셔틀은 <code>09:00</code> 부터 총 <code>n</code> 회 <code>t</code> 분 간격으로 역에 도착하며, 하나의 셔틀에는 최대 <code>m</code> 명의 승객이 탈 수 있다.</li>
 <li>셔틀은 도착했을 때 도착한 순간 대기열에 선 크루까지 포함해서 대기 순서대로 태우고 바로 출발한다. 예를 들어 <code>09:00</code> 에 도착한 셔틀은 자리가 있다면 <code>09:00</code> 에 줄을 선 크루도 탈 수 있다.</li>
 <li>콘(셔틀을 탈 승객)은 게으르기 때문에 같은 시각에 도착한 크루 중 대길에서 제일 뒤에 선다.</li>
 <li>콘이 셔틀을 타고 사무실로 갈 수 있는 제일 늦은 시각을 출력한다.</li>
-</ol></li>
-
-<li><p>풀이</p>
-
+</ol>
+</li>
+<li>
+<p>풀이</p>
 <ul>
 <li>timetable : 사람들이 도착하는 시간을 오름차순으로 정렬한다.</li>
 <li>shuttleTime : 셔틀버스가 도착하는 시간을 담고 있는 배열</li>
@@ -146,12 +141,12 @@ if (!doNotTrack) {
 <li>timetable을 처음부터 돌면서 탈 수 있는 버스가 있는지 확인하고 탈 수 있는 버스가 있다면 shuttle에 기록해준다.</li>
 <li>마지막 버스가 만원이라면 가장 늦게온 사람보다 1분 먼저 도착하면 된다.</li>
 <li>마지막 버스가 만원이 아니라면 버스 도착시간에 정류장에 도착하면 된다.</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <blockquote>
 <p>code</p>
-
+</blockquote>
 <pre><code>#include &lt;string&gt;
 #include &lt;vector&gt;
 #include &lt;algorithm&gt;
@@ -229,9 +224,7 @@ string solution(int n, int t, int m, vector&lt;string&gt; timetable)
 
 	return ret;
 }
-</code></pre>
-</blockquote>
- </div>
+</code></pre> </div>
     <footer class="post-footer">
 
   <div class="post-footer-data">
