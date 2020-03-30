@@ -66,6 +66,71 @@
     </item>
     
     <item>
+      <title>[2018] 비밀지도</title>
+      <link>https://lameld.github.io/kakao/2018_secret/</link>
+      <pubDate>Sat, 23 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://lameld.github.io/kakao/2018_secret/</guid>
+      <description>문제 출처
+ 문제 설명  지도는 한 변의 길이가 n 인 정사각형 배열 형태로, 각 칸은 공백 또는 &amp;ldquo;#&amp;ldquo;으로 이루어져 있다. 전체 지도는 두 장의 지도를 겹쳐서 얻을 수 있다.</description>
+    </item>
+    
+    <item>
+      <title>[2018] 셔틀버스</title>
+      <link>https://lameld.github.io/kakao/2018_shuttle/</link>
+      <pubDate>Fri, 22 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://lameld.github.io/kakao/2018_shuttle/</guid>
+      <description>문제 출처
+  문제 설명
+ 셔틀은 09:00 부터 총 n 회 t 분 간격으로 역에 도착하며, 하나의 셔틀에는 최대 m 명의 승객이 탈 수 있다. 셔틀은 도착했을 때 도착한 순간 대기열에 선 크루까지 포함해서 대기 순서대로 태우고 바로 출발한다.</description>
+    </item>
+    
+    <item>
+      <title>[2018] 추석 트래픽</title>
+      <link>https://lameld.github.io/kakao/2018_traffic/</link>
+      <pubDate>Sat, 23 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://lameld.github.io/kakao/2018_traffic/</guid>
+      <description>문제 출처
+  처리량의 변화가 어디서 일어나는지 알아내는 것에 어려움이 있었다. 큰 문제를 작은 문제로 나누어 풀어나간다는 것에 초점을 두고 하나의 로그데이터를 살펴보았을 때 어디서 처리량의 변화가 일어나는지 확인하였다. 이 과정에서 시간이 정말 오래걸렸다.</description>
+    </item>
+    
+    <item>
+      <title>[2018] 블록 게임</title>
+      <link>https://lameld.github.io/kakao/2019_block/</link>
+      <pubDate>Sun, 24 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://lameld.github.io/kakao/2019_block/</guid>
+      <description>문제 출처
+  문제 설명
+ 아래와 같이 12가지 모양의 블록이 배치되어 있다.  2. 1x1 크기의 검은 블록을 떨어뜨려 기존에 놓인 블록을 합해 속이 꽉 채워진 직사각형을 만들어 그 블록을 없앨 수 있다.</description>
+    </item>
+    
+    <item>
+      <title>[2019] 실패율</title>
+      <link>https://lameld.github.io/kakao/2019_fail/</link>
+      <pubDate>Sun, 24 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://lameld.github.io/kakao/2019_fail/</guid>
+      <description>문제 출처
+  문제 설명
+ 실패율 = A / B  A : 스테이지에 도달했으나 클리어하지 못한 플레이어 수 B : 스테이지에 도달한 플레이어 수   B가 0인 경우 실패율은 0으로 정의한다.</description>
+    </item>
+    
+    <item>
+      <title>[2019] 후보키</title>
+      <link>https://lameld.github.io/kakao/2019_key/</link>
+      <pubDate>Sun, 24 Nov 2019 18:15:02 +0900</pubDate>
+      
+      <guid>https://lameld.github.io/kakao/2019_key/</guid>
+      <description>문제 출처
+  문제 설명
+ 후보키 : 유일성과 최소성을 만족하는 것을 후보키(Candidate Key)라고 한다. 테이블이 주어졌을 때 후보키의 최대 갯수를 구한다.   유일성(uniqueness)
+릴레이션에 있는 모든 튜플에 대해 유일하게 식별되어야 한다.</description>
+    </item>
+    
+    <item>
       <title>[CLOUD] Hardware Linux</title>
       <link>https://lameld.github.io/study/cloud_hw_linux/</link>
       <pubDate>Thu, 16 Jan 2020 13:35:04 +0900</pubDate>
@@ -205,17 +270,6 @@ berryz web share ip :: http://121.140.73.126 (공인 IP)
     </item>
     
     <item>
-      <title>[Programmers][Kakao Blind 2019] 후보키</title>
-      <link>https://lameld.github.io/kakao/update/kko_blind_2019_key/</link>
-      <pubDate>Sun, 24 Nov 2019 18:15:02 +0900</pubDate>
-      
-      <guid>https://lameld.github.io/kakao/update/kko_blind_2019_key/</guid>
-      <description>문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/42890  문제 설명
- 후보키 : 유일성과 최소성을 만족하는 것을 후보키(Candidate Key)라고 한다. 테이블이 주어졌을 때 후보키의 최대 갯수를 구한다.   유일성(uniqueness)
- 릴레이션에 있는 모든 튜플에 대해 유일하게 식별되어야 한다.</description>
-    </item>
-    
-    <item>
       <title>[Programmers][Kakao Blind 2019] 오픈채팅방</title>
       <link>https://lameld.github.io/kakao/update/kko_blind_2019_open/</link>
       <pubDate>Sun, 24 Nov 2019 18:14:39 +0900</pubDate>
@@ -223,54 +277,6 @@ berryz web share ip :: http://121.140.73.126 (공인 IP)
       <guid>https://lameld.github.io/kakao/update/kko_blind_2019_open/</guid>
       <description>문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/42888  문제 설명
  오픈채팅방에선 친구가 아닌 사람들과 대화가 가능하다. 채칭방에 들어오거나 나갈 때 메시지가 출력된다. 닉네임을 변경하는 방법은 2가지가 있다.  채팅방을 나간 후, 새로운 닉네임으로 다시 들어온다.</description>
-    </item>
-    
-    <item>
-      <title>[Programmers][Kakao Blind 2019] 블록 게임</title>
-      <link>https://lameld.github.io/kakao/update/kko_blind_2019_block/</link>
-      <pubDate>Sun, 24 Nov 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://lameld.github.io/kakao/update/kko_blind_2019_block/</guid>
-      <description>문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/42894  문제 설명
- 아래와 같이 12가지 모양의 블록이 배치되어 있다.  1x1 크기의 검은 블록을 떨어뜨려 기존에 놓인 블록을 합해 속이 꽉 채워진 직사각형을 만들어 그 블록을 없앨 수 있다.</description>
-    </item>
-    
-    <item>
-      <title>[Programmers][Kakao Blind 2019] 실패율</title>
-      <link>https://lameld.github.io/kakao/update/kko_blind_2019_fail/</link>
-      <pubDate>Sun, 24 Nov 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://lameld.github.io/kakao/update/kko_blind_2019_fail/</guid>
-      <description>문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/42889  문제 설명
- 실패율 = A / B  A : 스테이지에 도달했으나 클리어하지 못한 플레이어 수 B : 스테이지에 도달한 플레이어 수   B가 0인 경우 실패율은 0으로 정의한다.</description>
-    </item>
-    
-    <item>
-      <title>[Programmers][Kakao Blind 2018] 비밀지도</title>
-      <link>https://lameld.github.io/kakao/update/kko_blind_2018_secret/</link>
-      <pubDate>Sat, 23 Nov 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://lameld.github.io/kakao/update/kko_blind_2018_secret/</guid>
-      <description>문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/17681 문제 설명  지도는 한 변의 길이가 n 인 정사각형 배열 형태로, 각 칸은 공백 또는 &amp;ldquo;#&amp;ldquo;으로 이루어져 있다. 전체 지도는 두 장의 지도를 겹쳐서 얻을 수 있다.</description>
-    </item>
-    
-    <item>
-      <title>[Programmers][Kakao Blind 2018] 추석 트래픽</title>
-      <link>https://lameld.github.io/kakao/update/kko_blind_2018_traffic/</link>
-      <pubDate>Sat, 23 Nov 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://lameld.github.io/kakao/update/kko_blind_2018_traffic/</guid>
-      <description>문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/17676  처리량의 변화가 어디서 일어나는지 알아내는 것에 어려움이 있었다. 큰 문제를 작은 문제로 나누어 풀어나간다는 것에 초점을 두고 하나의 로그데이터를 살펴보았을 때 어디서 처리량의 변화가 일어나는지 확인하였다.</description>
-    </item>
-    
-    <item>
-      <title>[Programmers][Kakao Blind 2018] 셔틀버스</title>
-      <link>https://lameld.github.io/kakao/update/kko_blind_2018_shuttle/</link>
-      <pubDate>Fri, 22 Nov 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://lameld.github.io/kakao/update/kko_blind_2018_shuttle/</guid>
-      <description>문제 출처 : https://programmers.co.kr/learn/courses/30/lessons/17678  문제 설명
- 셔틀은 09:00 부터 총 n 회 t 분 간격으로 역에 도착하며, 하나의 셔틀에는 최대 m 명의 승객이 탈 수 있다. 셔틀은 도착했을 때 도착한 순간 대기열에 선 크루까지 포함해서 대기 순서대로 태우고 바로 출발한다.</description>
     </item>
     
     <item>
