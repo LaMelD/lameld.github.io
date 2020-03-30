@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>[Programmers][Kakao Blind 2020] 가사 검색 - LaMelD&#39;s dev Story</title>
+  <title>[2020] 가사 검색 - LaMelD&#39;s dev Story</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
   <link rel="icon" href="https://lameld.github.io/favicon.png">
@@ -187,19 +187,19 @@
     </li>
     
     <li class="">
-      <a href="https://lameld.github.io/kakao/2020_pole/">[Programmers][Kakao Blind 2020] 기둥과 보 설치</a>
+      <a href="https://lameld.github.io/kakao/2020_lock/">[2020] 자물쇠와 열쇠</a>
     </li>
     
     <li class="active ">
-      <a href="https://lameld.github.io/kakao/2020_lyrics/">[Programmers][Kakao Blind 2020] 가사 검색</a>
+      <a href="https://lameld.github.io/kakao/2020_lyrics/">[2020] 가사 검색</a>
     </li>
     
     <li class="">
-      <a href="https://lameld.github.io/kakao/2020_lock/">[Programmers][Kakao Blind 2020] 자물쇠와 열쇠</a>
+      <a href="https://lameld.github.io/kakao/2020_pole/">[2020] 기둥과 보 설치</a>
     </li>
     
     <li class="">
-      <a href="https://lameld.github.io/kakao/2020_zip/">[Programmers][Kakao Blind 2020] 문자열 압축</a>
+      <a href="https://lameld.github.io/kakao/2020_zip/">[2020] 문자열 압축</a>
     </li>
     
   </ul>
@@ -209,24 +209,27 @@
         </div>
         <div class="col-12 col-md-9">
           
-<h1 class="title">[Programmers][Kakao Blind 2020] 가사 검색</h1>
+<h1 class="title">[2020] 가사 검색</h1>
 <div class="content ">
-  <!-- raw HTML omitted -->
-<p>문제 출처 : <!-- raw HTML omitted --><a href="https://programmers.co.kr/learn/courses/30/lessons/60060">https://programmers.co.kr/learn/courses/30/lessons/60060</a><!-- raw HTML omitted --></p>
+  <p><a href="https://programmers.co.kr/learn/courses/30/lessons/60060">문제 출처</a></p>
 <ul>
 <li>
 <p>문제 설명</p>
 <ul>
-<li>노래 가사에 사용된 단어들 중에 특정 키워드가 몇 개 포함되어 있는지 알 수 있는 프로그램</li>
+<li>
+<p>노래 가사에 사용된 단어들 중에 특정 키워드가 몇 개 포함되어 있는지 알 수 있는 프로그램</p>
+</li>
+<li>
+<p>예시</p>
+<ul>
+<li>&ldquo;fro??&ldquo;는 &ldquo;frodo&rdquo;, &ldquo;front&rdquo;, &ldquo;frost&quot;에 매치되므로 3입니다.</li>
+<li>&ldquo;????o&quot;는 &ldquo;frodo&rdquo;, &ldquo;kakao&quot;에 매치되므로 2입니다.</li>
+<li>&ldquo;fr???&ldquo;는 &ldquo;frodo&rdquo;, &ldquo;front&rdquo;, &ldquo;frost&rdquo;, &ldquo;frame&quot;에 매치되므로 4입니다.</li>
+<li>&ldquo;fro???&ldquo;는 &ldquo;frozen&quot;에 매치되므로 1입니다.</li>
+<li>&ldquo;pro?&ldquo;는 매치되는 가사 단어가 없으므로 0 입니다.</li>
 </ul>
-<blockquote>
-<p>예제<!-- raw HTML omitted -->
-&ldquo;fro??&ldquo;는 &ldquo;frodo&rdquo;, &ldquo;front&rdquo;, &ldquo;frost&quot;에 매치되므로 3입니다.<!-- raw HTML omitted -->
-&ldquo;????o&quot;는 &ldquo;frodo&rdquo;, &ldquo;kakao&quot;에 매치되므로 2입니다.<!-- raw HTML omitted -->
-&ldquo;fr???&ldquo;는 &ldquo;frodo&rdquo;, &ldquo;front&rdquo;, &ldquo;frost&rdquo;, &ldquo;frame&quot;에 매치되므로 4입니다.<!-- raw HTML omitted -->
-&ldquo;fro???&ldquo;는 &ldquo;frozen&quot;에 매치되므로 1입니다.<!-- raw HTML omitted -->
-&ldquo;pro?&ldquo;는 매치되는 가사 단어가 없으므로 0 입니다.</p>
-</blockquote>
+</li>
+</ul>
 </li>
 <li>
 <p>문제 풀이</p>
@@ -242,177 +245,174 @@
 </ul>
 </li>
 </ul>
-<blockquote>
-<p>Code</p>
-</blockquote>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">#include &lt;algorithm&gt;
-#include &lt;vector&gt;
-#include &lt;string&gt;
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 
-using namespace std;
+<span class="c1">//소문자로만 이루어져 있기 때문에 알파벳 개수만큼을 max로 한다.
+</span><span class="c1"></span><span class="k">const</span> <span class="kt">int</span> <span class="n">Max_Trie_Children</span> <span class="o">=</span> <span class="mi">26</span><span class="p">;</span>
+<span class="c1">//문자열의 길이가 최대 10000이기에 최대를 10001로 한다.
+</span><span class="c1"></span><span class="k">const</span> <span class="kt">int</span> <span class="n">Max_Word_Size</span> <span class="o">=</span> <span class="mi">10001</span><span class="p">;</span>
 
-//소문자로만 이루어져 있기 때문에 알파벳 개수만큼을 max로 한다.
-const int Max_Trie_Children = 26;
-//문자열의 길이가 최대 10000이기에 최대를 10001로 한다.
-const int Max_Word_Size = 10001;
+<span class="c1">//문자를 인덱스로 변경
+</span><span class="c1"></span><span class="kt">int</span> <span class="nf">alphatoindex</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="n">alpha</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="k">return</span> <span class="n">alpha</span> <span class="o">-</span> <span class="sc">&#39;a&#39;</span><span class="p">;</span>
+<span class="p">}</span>
 
-//문자를 인덱스로 변경
-int alphatoindex(const char alpha)
-{
-	return alpha - &#39;a&#39;;
-}
+<span class="c1">//와일드 카드 : &#39;?&#39; 판별
+</span><span class="c1"></span><span class="kt">bool</span> <span class="nf">IsWildCard</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="n">alpha</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="k">return</span> <span class="n">alpha</span> <span class="o">==</span> <span class="sc">&#39;?&#39;</span><span class="p">;</span>
+<span class="p">}</span>
 
-//와일드 카드 : &#39;?&#39; 판별
-bool IsWildCard(const char alpha)
-{
-	return alpha == &#39;?&#39;;
-}
+<span class="c1">//노드가 되는 myTrie 객체의 구성
+</span><span class="c1"></span><span class="k">class</span> <span class="nc">myTrie</span>
+<span class="p">{</span>
+<span class="k">private</span> <span class="o">:</span>
+	<span class="n">vector</span><span class="o">&lt;</span><span class="n">myTrie</span><span class="o">*&gt;</span> <span class="n">child</span><span class="p">;</span>
+	<span class="c1">//몇 개의 문자열이 겹치는지 알려주기 위한 변수
+</span><span class="c1"></span>	<span class="kt">int</span> <span class="n">matchCnt</span><span class="p">;</span>
+	<span class="c1">//문자의 끝을 알려주기 위한 변수
+</span><span class="c1"></span>	<span class="kt">bool</span> <span class="n">Terminal</span><span class="p">;</span>
 
-//노드가 되는 myTrie 객체의 구성
-class myTrie
-{
-private :
-	vector&lt;myTrie*&gt; child;
-	//몇 개의 문자열이 겹치는지 알려주기 위한 변수
-	int matchCnt;
-	//문자의 끝을 알려주기 위한 변수
-	bool Terminal;
+<span class="k">private</span> <span class="o">:</span>
+	<span class="kt">void</span> <span class="n">insert</span><span class="p">(</span><span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="kt">int</span><span class="p">);</span>
+	<span class="kt">int</span> <span class="nf">find</span><span class="p">(</span><span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="kt">int</span><span class="p">);</span>
 
-private :
-	void insert(const string&amp;, const int);
-	int find(const string&amp;, const int);
+<span class="k">public</span> <span class="o">:</span>
+	<span class="n">myTrie</span><span class="p">();</span>
 
-public :
-	myTrie();
+	<span class="kt">void</span> <span class="nf">insert</span><span class="p">(</span><span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span><span class="p">);</span>
+	<span class="kt">int</span> <span class="nf">find</span><span class="p">(</span><span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span><span class="p">);</span>
+<span class="p">};</span>
+<span class="n">myTrie</span><span class="o">::</span><span class="n">myTrie</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="k">this</span><span class="o">-&gt;</span><span class="n">child</span> <span class="o">=</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">myTrie</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">Max_Trie_Children</span><span class="p">);</span>
+	<span class="k">this</span><span class="o">-&gt;</span><span class="n">matchCnt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="k">this</span><span class="o">-&gt;</span><span class="n">Terminal</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="n">myTrie</span><span class="o">::</span><span class="n">insert</span><span class="p">(</span><span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">word</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="k">this</span><span class="o">-&gt;</span><span class="n">insert</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+	<span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="n">myTrie</span><span class="o">::</span><span class="n">insert</span><span class="p">(</span><span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">word</span><span class="p">,</span> <span class="kt">int</span> <span class="n">idx</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="k">this</span><span class="o">-&gt;</span><span class="n">matchCnt</span><span class="o">++</span><span class="p">;</span>
 
-	void insert(const string&amp;);
-	int find(const string&amp;);
-};
-myTrie::myTrie()
-{
-	this-&gt;child = vector&lt;myTrie*&gt;(Max_Trie_Children);
-	this-&gt;matchCnt = 0;
-	this-&gt;Terminal = false;
-}
-void myTrie::insert(const string&amp; word)
-{
-	this-&gt;insert(word, 0);
-	return;
-}
-void myTrie::insert(const string&amp; word, int idx)
-{
-	this-&gt;matchCnt++;
+	<span class="k">if</span> <span class="p">(</span><span class="n">idx</span> <span class="o">==</span> <span class="n">word</span><span class="p">.</span><span class="n">length</span><span class="p">())</span>
+	<span class="p">{</span>
+		<span class="k">this</span><span class="o">-&gt;</span><span class="n">Terminal</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+		<span class="k">return</span><span class="p">;</span>
+	<span class="p">}</span>
 
-	if (idx == word.length())
-	{
-		this-&gt;Terminal = true;
-		return;
-	}
+	<span class="kt">char</span> <span class="n">alpha</span> <span class="o">=</span> <span class="n">word</span><span class="p">[</span><span class="n">idx</span><span class="p">];</span>
+	<span class="kt">int</span> <span class="n">childIndex</span> <span class="o">=</span> <span class="n">alphatoindex</span><span class="p">(</span><span class="n">alpha</span><span class="p">);</span>
+	<span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">child</span><span class="p">[</span><span class="n">childIndex</span><span class="p">]</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="k">this</span><span class="o">-&gt;</span><span class="n">child</span><span class="p">[</span><span class="n">childIndex</span><span class="p">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">myTrie</span><span class="p">();</span>
+	<span class="p">}</span>
 
-	char alpha = word[idx];
-	int childIndex = alphatoindex(alpha);
-	if (this-&gt;child[childIndex] == NULL)
-	{
-		this-&gt;child[childIndex] = new myTrie();
-	}
+	<span class="k">this</span><span class="o">-&gt;</span><span class="n">child</span><span class="p">[</span><span class="n">childIndex</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">insert</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
 
-	this-&gt;child[childIndex]-&gt;insert(word, idx + 1);
+	<span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="n">myTrie</span><span class="o">::</span><span class="n">find</span><span class="p">(</span><span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">target</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="k">return</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">find</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="n">myTrie</span><span class="o">::</span><span class="n">find</span><span class="p">(</span><span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">target</span><span class="p">,</span> <span class="kt">int</span> <span class="n">idx</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">idx</span> <span class="o">==</span> <span class="n">target</span><span class="p">.</span><span class="n">length</span><span class="p">())</span>
+	<span class="p">{</span>
+		<span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">Terminal</span><span class="p">)</span>
+		<span class="p">{</span>
+			<span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+		<span class="p">}</span>
+		<span class="k">else</span>
+		<span class="p">{</span>
+			<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
 
-	return;
-}
-int myTrie::find(const string&amp; target)
-{
-	return this-&gt;find(target, 0);
-}
-int myTrie::find(const string&amp; target, int idx)
-{
-	if (idx == target.length())
-	{
-		if (this-&gt;Terminal)
-		{
-			return 1;
-		}
-		else
-		{
-			return 0;
-		}
-	}
+	<span class="kt">char</span> <span class="n">alpha</span> <span class="o">=</span> <span class="n">target</span><span class="p">[</span><span class="n">idx</span><span class="p">];</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">IsWildCard</span><span class="p">(</span><span class="n">alpha</span><span class="p">))</span>
+	<span class="p">{</span>
+		<span class="k">return</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">matchCnt</span><span class="p">;</span>
+	<span class="p">}</span>
 
-	char alpha = target[idx];
-	if (IsWildCard(alpha))
-	{
-		return this-&gt;matchCnt;
-	}
+	<span class="kt">int</span> <span class="n">childIndex</span> <span class="o">=</span> <span class="n">alphatoindex</span><span class="p">(</span><span class="n">alpha</span><span class="p">);</span>
+	<span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">child</span><span class="p">[</span><span class="n">childIndex</span><span class="p">]</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="p">}</span>
 
-	int childIndex = alphatoindex(alpha);
-	if (this-&gt;child[childIndex] == NULL)
-	{
-		return 0;
-	}
+	<span class="k">return</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">child</span><span class="p">[</span><span class="n">childIndex</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">find</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
 
-	return this-&gt;child[childIndex]-&gt;find(target, idx + 1);
-}
+<span class="c1">//전체적인 구조를 담는 Lyrics 객체의 구조
+</span><span class="c1"></span><span class="k">class</span> <span class="nc">LyricS</span>
+<span class="p">{</span>
+<span class="k">private</span> <span class="o">:</span>
+	<span class="n">vector</span><span class="o">&lt;</span><span class="n">myTrie</span><span class="o">&gt;</span> <span class="n">trie</span><span class="p">;</span>
+	<span class="n">vector</span><span class="o">&lt;</span><span class="n">myTrie</span><span class="o">&gt;</span> <span class="n">reversetrie</span><span class="p">;</span>
 
-//전체적인 구조를 담는 Lyrics 객체의 구조
-class LyricS
-{
-private :
-	vector&lt;myTrie&gt; trie;
-	vector&lt;myTrie&gt; reversetrie;
+<span class="k">public</span> <span class="o">:</span>
+	<span class="n">LyricS</span><span class="p">();</span>
+	<span class="kt">void</span> <span class="nf">insert</span><span class="p">(</span><span class="n">string</span><span class="p">);</span>
+	<span class="kt">int</span> <span class="nf">find</span><span class="p">(</span><span class="n">string</span><span class="p">);</span>
+<span class="p">};</span>
+<span class="n">LyricS</span><span class="o">::</span><span class="n">LyricS</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="c1">//와일드 카드가 queries에서 전방, 후방 배치가 가능하므로 정방향, 역방향을 만든다.
+</span><span class="c1"></span>	<span class="k">this</span><span class="o">-&gt;</span><span class="n">trie</span> <span class="o">=</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">myTrie</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Max_Word_Size</span><span class="p">);</span>
+	<span class="k">this</span><span class="o">-&gt;</span><span class="n">reversetrie</span> <span class="o">=</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">myTrie</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Max_Word_Size</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="n">LyricS</span><span class="o">::</span><span class="n">insert</span><span class="p">(</span><span class="n">string</span> <span class="n">word</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="c1">//입력받은 문자열을 길이에 맞는 트라이 구조에 넣는다.
+</span><span class="c1"></span>	<span class="k">this</span><span class="o">-&gt;</span><span class="n">trie</span><span class="p">[</span><span class="n">word</span><span class="p">.</span><span class="n">length</span><span class="p">()].</span><span class="n">insert</span><span class="p">(</span><span class="n">word</span><span class="p">);</span>
+	<span class="n">reverse</span><span class="p">(</span><span class="n">word</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">word</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+	<span class="k">this</span><span class="o">-&gt;</span><span class="n">reversetrie</span><span class="p">[</span><span class="n">word</span><span class="p">.</span><span class="n">length</span><span class="p">()].</span><span class="n">insert</span><span class="p">(</span><span class="n">word</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="n">LyricS</span><span class="o">::</span><span class="n">find</span><span class="p">(</span><span class="n">string</span> <span class="n">target</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="c1">//길이에 맞는 트라이 구조에 들어가 문자열이 매치될 수 있는지 판단한다.
+</span><span class="c1"></span>
+	<span class="c1">//와일드 카드가 전방배치되었을 경우
+</span><span class="c1"></span>	<span class="k">if</span> <span class="p">(</span><span class="n">target</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;?&#39;</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">reverse</span><span class="p">(</span><span class="n">target</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">target</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+		<span class="k">return</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">reversetrie</span><span class="p">[</span><span class="n">target</span><span class="p">.</span><span class="n">length</span><span class="p">()].</span><span class="n">find</span><span class="p">(</span><span class="n">target</span><span class="p">);</span>
+	<span class="p">}</span>
+	<span class="c1">//와일드 카드가 후방배치되었을 경우
+</span><span class="c1"></span>	<span class="k">else</span>
+	<span class="p">{</span>
+		<span class="k">return</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">trie</span><span class="p">[</span><span class="n">target</span><span class="p">.</span><span class="n">length</span><span class="p">()].</span><span class="n">find</span><span class="p">(</span><span class="n">target</span><span class="p">);</span>
+	<span class="p">}</span>
+<span class="p">}</span>
 
-public :
-	LyricS();
-	void insert(string);
-	int find(string);
-};
-LyricS::LyricS()
-{
-	//와일드 카드가 queries에서 전방, 후방 배치가 가능하므로 정방향, 역방향을 만든다.
-	this-&gt;trie = vector&lt;myTrie&gt;(Max_Word_Size);
-	this-&gt;reversetrie = vector&lt;myTrie&gt;(Max_Word_Size);
-}
-void LyricS::insert(string word)
-{
-	//입력받은 문자열을 길이에 맞는 트라이 구조에 넣는다.
-	this-&gt;trie[word.length()].insert(word);
-	reverse(word.begin(), word.end());
-	this-&gt;reversetrie[word.length()].insert(word);
-}
-int LyricS::find(string target)
-{
-	//길이에 맞는 트라이 구조에 들어가 문자열이 매치될 수 있는지 판단한다.
+<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">solution</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">words</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">queries</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">ans</span><span class="p">(</span><span class="n">queries</span><span class="p">.</span><span class="n">size</span><span class="p">(),</span> <span class="mi">0</span><span class="p">);</span>
 
-	//와일드 카드가 전방배치되었을 경우
-	if (target[0] == &#39;?&#39;)
-	{
-		reverse(target.begin(), target.end());
-		return this-&gt;reversetrie[target.length()].find(target);
-	}
-	//와일드 카드가 후방배치되었을 경우
-	else
-	{
-		return this-&gt;trie[target.length()].find(target);
-	}
-}
+	<span class="n">LyricS</span> <span class="n">root</span><span class="p">;</span>
 
-vector&lt;int&gt; solution(vector&lt;string&gt; words, vector&lt;string&gt; queries)
-{
-	vector&lt;int&gt; ans(queries.size(), 0);
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">words</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">root</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">words</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+	<span class="p">}</span>
 
-	LyricS root;
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">queries</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">ans</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">root</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">queries</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+	<span class="p">}</span>
 
-	for (int i = 0; i &lt; words.size(); i++)
-	{
-		root.insert(words[i]);
-	}
-
-	for (int i = 0; i &lt; queries.size(); i++)
-	{
-		ans[i] = root.find(queries[i]);
-	}
-
-	return ans;
-}
+	<span class="k">return</span> <span class="n">ans</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre></div>
 </div>
 </div>

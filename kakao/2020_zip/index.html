@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>[Programmers][Kakao Blind 2020] 문자열 압축 - LaMelD&#39;s dev Story</title>
+  <title>[2020] 문자열 압축 - LaMelD&#39;s dev Story</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
   <link rel="icon" href="https://lameld.github.io/favicon.png">
@@ -187,19 +187,19 @@
     </li>
     
     <li class="">
-      <a href="https://lameld.github.io/kakao/2020_pole/">[Programmers][Kakao Blind 2020] 기둥과 보 설치</a>
+      <a href="https://lameld.github.io/kakao/2020_lock/">[2020] 자물쇠와 열쇠</a>
     </li>
     
     <li class="">
-      <a href="https://lameld.github.io/kakao/2020_lyrics/">[Programmers][Kakao Blind 2020] 가사 검색</a>
+      <a href="https://lameld.github.io/kakao/2020_lyrics/">[2020] 가사 검색</a>
     </li>
     
     <li class="">
-      <a href="https://lameld.github.io/kakao/2020_lock/">[Programmers][Kakao Blind 2020] 자물쇠와 열쇠</a>
+      <a href="https://lameld.github.io/kakao/2020_pole/">[2020] 기둥과 보 설치</a>
     </li>
     
     <li class="active ">
-      <a href="https://lameld.github.io/kakao/2020_zip/">[Programmers][Kakao Blind 2020] 문자열 압축</a>
+      <a href="https://lameld.github.io/kakao/2020_zip/">[2020] 문자열 압축</a>
     </li>
     
   </ul>
@@ -209,10 +209,9 @@
         </div>
         <div class="col-12 col-md-9">
           
-<h1 class="title">[Programmers][Kakao Blind 2020] 문자열 압축</h1>
+<h1 class="title">[2020] 문자열 압축</h1>
 <div class="content ">
-  <!-- raw HTML omitted -->
-<p>문제 출처 : <!-- raw HTML omitted --><a href="https://programmers.co.kr/learn/courses/30/lessons/60057">https://programmers.co.kr/learn/courses/30/lessons/60057</a><!-- raw HTML omitted --></p>
+  <p><a href="https://programmers.co.kr/learn/courses/30/lessons/60057">문제 출처</a></p>
 <ul>
 <li>문제 설명</li>
 </ul>
@@ -235,160 +234,157 @@
 </ul>
 </li>
 </ul>
-<blockquote>
-<p>Code</p>
-</blockquote>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">#include &lt;string&gt;
-#include &lt;vector&gt;
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 
-using namespace std;
+<span class="kt">int</span> <span class="nf">min</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="k">return</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="n">b</span> <span class="o">?</span> <span class="nl">a</span> <span class="p">:</span> <span class="n">b</span><span class="p">;</span>
+<span class="p">}</span>
 
-int min(int a, int b)
-{
-	return a &lt; b ? a : b;
-}
+<span class="kt">int</span> <span class="nf">solution</span><span class="p">(</span><span class="n">string</span> <span class="n">s</span><span class="p">)</span> 
+<span class="p">{</span>
+	<span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">length</span><span class="p">();</span>
 
-int solution(string s) 
-{
-	int n = s.length();
+	<span class="kt">int</span> <span class="n">ret</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span>
+	<span class="kt">int</span> <span class="n">idx</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+	<span class="c1">//압축의 길이가 전체의 반을 넘어간다면
+</span><span class="c1"></span>	<span class="c1">//압축을 시도해봤자이기 때문에
+</span><span class="c1"></span>	<span class="k">while</span> <span class="p">(</span><span class="n">idx</span> <span class="o">&lt;=</span> <span class="p">(</span><span class="n">n</span> <span class="o">/</span> <span class="mi">2</span><span class="p">))</span>
+	<span class="p">{</span>
+		<span class="kt">int</span> <span class="n">cmp</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+		<span class="kt">int</span> <span class="n">cur</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+		<span class="n">string</span> <span class="n">a</span> <span class="o">=</span> <span class="s">&#34;&#34;</span><span class="p">;</span>
+		<span class="n">string</span> <span class="n">b</span> <span class="o">=</span> <span class="s">&#34;&#34;</span><span class="p">;</span>
+		<span class="kt">int</span> <span class="n">samecount</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">cur</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">cur</span> <span class="o">+</span> <span class="n">idx</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+		<span class="p">{</span>
+			<span class="n">a</span> <span class="o">+=</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+		<span class="p">}</span>
+		<span class="n">cur</span> <span class="o">+=</span> <span class="n">idx</span><span class="p">;</span>
 
-	int ret = n;
-	int idx = 1;
-	//압축의 길이가 전체의 반을 넘어간다면
-	//압축을 시도해봤자이기 때문에
-	while (idx &lt;= (n / 2))
-	{
-		int cmp = 0;
-		int cur = 0;
-		string a = &#34;&#34;;
-		string b = &#34;&#34;;
-		int samecount = 1;
-		for (int i = cur; i &lt; cur + idx; i++)
-		{
-			a += s[i];
-		}
-		cur += idx;
+		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">cur</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+		<span class="p">{</span>
+			<span class="n">b</span> <span class="o">+=</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
 
-		for (int i = cur; i &lt; n; i++)
-		{
-			b += s[i];
+			<span class="c1">//단위 길이(idx)에 도달한다면
+</span><span class="c1"></span>			<span class="k">if</span> <span class="p">(</span><span class="n">b</span><span class="p">.</span><span class="n">length</span><span class="p">()</span> <span class="o">==</span> <span class="n">idx</span><span class="p">)</span>
+			<span class="p">{</span>
+				<span class="c1">//두 개가 같다면
+</span><span class="c1"></span>				<span class="k">if</span> <span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="p">)</span>
+				<span class="p">{</span>
+					<span class="c1">//카운트를 올려주고
+</span><span class="c1"></span>					<span class="n">samecount</span><span class="o">++</span><span class="p">;</span>
 
-			//단위 길이(idx)에 도달한다면
-			if (b.length() == idx)
-			{
-				//두 개가 같다면
-				if (a == b)
-				{
-					//카운트를 올려주고
-					samecount++;
+					<span class="c1">//마지막 문자라면
+</span><span class="c1"></span>					<span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+					<span class="p">{</span>
+						<span class="c1">//카운트의 자리수만큼 cmp에 더해준다
+</span><span class="c1"></span>						<span class="k">if</span> <span class="p">(</span><span class="n">samecount</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">)</span>
+						<span class="p">{</span>
+							<span class="n">cmp</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+						<span class="p">}</span>
+						<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">samecount</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">)</span>
+						<span class="p">{</span>
+							<span class="n">cmp</span> <span class="o">+=</span> <span class="mi">2</span><span class="p">;</span>
+						<span class="p">}</span>
+						<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">samecount</span> <span class="o">&lt;</span> <span class="mi">1000</span><span class="p">)</span>
+						<span class="p">{</span>
+							<span class="n">cmp</span> <span class="o">+=</span> <span class="mi">3</span><span class="p">;</span>
+						<span class="p">}</span>
+						<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">samecount</span> <span class="o">==</span> <span class="mi">1000</span><span class="p">)</span>
+						<span class="p">{</span>
+							<span class="n">cmp</span> <span class="o">+=</span> <span class="mi">4</span><span class="p">;</span>
+						<span class="p">}</span>
 
-					//마지막 문자라면
-					if (i == n - 1)
-					{
-						//카운트의 자리수만큼 cmp에 더해준다
-						if (samecount &lt; 10)
-						{
-							cmp += 1;
-						}
-						else if (samecount &lt; 100)
-						{
-							cmp += 2;
-						}
-						else if (samecount &lt; 1000)
-						{
-							cmp += 3;
-						}
-						else if (samecount == 1000)
-						{
-							cmp += 4;
-						}
+						<span class="c1">//마지막으로 같았던 문자의 길이를 더해준다
+</span><span class="c1"></span>						<span class="n">cmp</span> <span class="o">+=</span> <span class="n">idx</span><span class="p">;</span>
+					<span class="p">}</span>
+				<span class="p">}</span>
+				<span class="k">else</span>
+				<span class="p">{</span>
+					<span class="c1">//카운트가 1이 아닐 경우
+</span><span class="c1"></span>					<span class="c1">//카운트의 자리수만큼 cmp에 더해준다
+</span><span class="c1"></span>					<span class="k">if</span> <span class="p">(</span><span class="n">samecount</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span>
+					<span class="p">{</span>
+						<span class="k">if</span> <span class="p">(</span><span class="n">samecount</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">)</span>
+						<span class="p">{</span>
+							<span class="n">cmp</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+						<span class="p">}</span>
+						<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">samecount</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">)</span>
+						<span class="p">{</span>
+							<span class="n">cmp</span> <span class="o">+=</span> <span class="mi">2</span><span class="p">;</span>
+						<span class="p">}</span>
+						<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">samecount</span> <span class="o">&lt;</span> <span class="mi">1000</span><span class="p">)</span>
+						<span class="p">{</span>
+							<span class="n">cmp</span> <span class="o">+=</span> <span class="mi">3</span><span class="p">;</span>
+						<span class="p">}</span>
+						<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">samecount</span> <span class="o">==</span> <span class="mi">1000</span><span class="p">)</span>
+						<span class="p">{</span>
+							<span class="n">cmp</span> <span class="o">+=</span> <span class="mi">4</span><span class="p">;</span>
+						<span class="p">}</span>
+					<span class="p">}</span>
 
-						//마지막으로 같았던 문자의 길이를 더해준다
-						cmp += idx;
-					}
-				}
-				else
-				{
-					//카운트가 1이 아닐 경우
-					//카운트의 자리수만큼 cmp에 더해준다
-					if (samecount != 1)
-					{
-						if (samecount &lt; 10)
-						{
-							cmp += 1;
-						}
-						else if (samecount &lt; 100)
-						{
-							cmp += 2;
-						}
-						else if (samecount &lt; 1000)
-						{
-							cmp += 3;
-						}
-						else if (samecount == 1000)
-						{
-							cmp += 4;
-						}
-					}
+					<span class="c1">//이전 길이를 더해준다
+</span><span class="c1"></span>					<span class="n">cmp</span> <span class="o">+=</span> <span class="n">idx</span><span class="p">;</span>
+					<span class="c1">//a를 교체한다
+</span><span class="c1"></span>					<span class="n">a</span> <span class="o">=</span> <span class="n">b</span><span class="p">;</span>
+					<span class="c1">//카운트롤 1로 갱신해준다
+</span><span class="c1"></span>					<span class="n">samecount</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
 
-					//이전 길이를 더해준다
-					cmp += idx;
-					//a를 교체한다
-					a = b;
-					//카운트롤 1로 갱신해준다
-					samecount = 1;
+					<span class="c1">//마지막 문자라면
+</span><span class="c1"></span>					<span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+					<span class="p">{</span>
+						<span class="c1">//b의 문자열 길이를 더해준다
+</span><span class="c1"></span>						<span class="n">cmp</span> <span class="o">+=</span> <span class="n">idx</span><span class="p">;</span>
+					<span class="p">}</span>
+				<span class="p">}</span>
 
-					//마지막 문자라면
-					if (i == n - 1)
-					{
-						//b의 문자열 길이를 더해준다
-						cmp += idx;
-					}
-				}
+				<span class="c1">//b를 flush한다
+</span><span class="c1"></span>				<span class="n">b</span> <span class="o">=</span> <span class="s">&#34;&#34;</span><span class="p">;</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
 
-				//b를 flush한다
-				b = &#34;&#34;;
-			}
-		}
+		<span class="c1">//단위 길이에 미치지 못하고 문자열이 끝났을 때
+</span><span class="c1"></span>		<span class="k">if</span> <span class="p">(</span><span class="n">b</span><span class="p">.</span><span class="n">length</span><span class="p">()</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
+		<span class="p">{</span>
+			<span class="c1">//카운트가 1이면 이전 문자의 길이와 현재 문자의 길이를 더해준다
+</span><span class="c1"></span>			<span class="k">if</span> <span class="p">(</span><span class="n">samecount</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span>
+			<span class="p">{</span>
+				<span class="c1">//카운트의 자리수만큼 cmp에 더해준다
+</span><span class="c1"></span>				<span class="k">if</span> <span class="p">(</span><span class="n">samecount</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">)</span>
+				<span class="p">{</span>
+					<span class="n">cmp</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+				<span class="p">}</span>
+				<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">samecount</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">)</span>
+				<span class="p">{</span>
+					<span class="n">cmp</span> <span class="o">+=</span> <span class="mi">2</span><span class="p">;</span>
+				<span class="p">}</span>
+				<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">samecount</span> <span class="o">&lt;</span> <span class="mi">1000</span><span class="p">)</span>
+				<span class="p">{</span>
+					<span class="n">cmp</span> <span class="o">+=</span> <span class="mi">3</span><span class="p">;</span>
+				<span class="p">}</span>
+				<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">samecount</span> <span class="o">==</span> <span class="mi">1000</span><span class="p">)</span>
+				<span class="p">{</span>
+					<span class="n">cmp</span> <span class="o">+=</span> <span class="mi">4</span><span class="p">;</span>
+				<span class="p">}</span>
+			<span class="p">}</span>
+			<span class="c1">//이전 문자열과 현재 문자열의 길이를 더해준다
+</span><span class="c1"></span>			<span class="n">cmp</span> <span class="o">+=</span> <span class="n">idx</span><span class="p">;</span>
+			<span class="n">cmp</span> <span class="o">+=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">b</span><span class="p">.</span><span class="n">length</span><span class="p">();</span>
+		<span class="p">}</span>
 
-		//단위 길이에 미치지 못하고 문자열이 끝났을 때
-		if (b.length() != 0)
-		{
-			//카운트가 1이면 이전 문자의 길이와 현재 문자의 길이를 더해준다
-			if (samecount != 1)
-			{
-				//카운트의 자리수만큼 cmp에 더해준다
-				if (samecount &lt; 10)
-				{
-					cmp += 1;
-				}
-				else if (samecount &lt; 100)
-				{
-					cmp += 2;
-				}
-				else if (samecount &lt; 1000)
-				{
-					cmp += 3;
-				}
-				else if (samecount == 1000)
-				{
-					cmp += 4;
-				}
-			}
-			//이전 문자열과 현재 문자열의 길이를 더해준다
-			cmp += idx;
-			cmp += (int)b.length();
-		}
-
-		//최솟값을 ret에 갱신한다.
-		ret = min(ret, cmp);
+		<span class="c1">//최솟값을 ret에 갱신한다.
+</span><span class="c1"></span>		<span class="n">ret</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="n">cmp</span><span class="p">);</span>
 		
-		//단위 길이를 늘린다.
-		idx++;
-	}
+		<span class="c1">//단위 길이를 늘린다.
+</span><span class="c1"></span>		<span class="n">idx</span><span class="o">++</span><span class="p">;</span>
+	<span class="p">}</span>
 
-	return ret;
-}
+	<span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre></div>
 </div>
 </div>
