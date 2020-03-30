@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Sweas on LaMelD&#39;s dev Story</title>
+    <title>SW Expert Academy on LaMelD&#39;s dev Story</title>
     <link>https://lameld.github.io/swea/</link>
-    <description>Recent content in Sweas on LaMelD&#39;s dev Story</description>
+    <description>Recent content in SW Expert Academy on LaMelD&#39;s dev Story</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 29 Nov 2019 17:38:30 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 30 Mar 2020 09:14:39 +0900</lastBuildDate>
     
 	<atom:link href="https://lameld.github.io/swea/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>[SW Expert Academy][D4] 2819</title>
-      <link>https://lameld.github.io/swea/swea_2819/</link>
+      <title>[D4] 2819</title>
+      <link>https://lameld.github.io/swea/2819/</link>
       <pubDate>Fri, 29 Nov 2019 17:38:30 +0900</pubDate>
       
-      <guid>https://lameld.github.io/swea/swea_2819/</guid>
-      <description>문제 출처
+      <guid>https://lameld.github.io/swea/2819/</guid>
+      <description>2819 - 격자판의 숫자 이어 붙이기 문제 출처
   문제 설명
- 4 x 4 크기의 격자판이 있다. 격자판의 각 격자칸에는 0부터 9사이의 숫자가 적혀 있다. 격자판의 임의의 위치에서 시작한다. 동서남북 네 방향으로 인접한 격자로 총 6회 이동하여 각 칸에 숫자를 차례로 이어 붙인다.</description>
+ 4 x 4 크기의 격자판이 있다. 격자판의 각 격자칸에는 0부터 9사이의 숫자가 적혀 있다. 격자판의 임의의 위치에서 시작한다.</description>
     </item>
     
   </channel>

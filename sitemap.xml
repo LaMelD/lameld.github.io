@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://lameld.github.io/swea/</loc>
+    <lastmod>2020-03-30T09:14:39+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://lameld.github.io/kakao/</loc>
     <lastmod>2018-11-28T15:14:39+10:00</lastmod>
   </url>
@@ -10,6 +15,11 @@
   <url>
     <loc>https://lameld.github.io/docs/</loc>
     <lastmod>2018-11-28T15:14:39+10:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lameld.github.io/swea/2819/</loc>
+    <lastmod>2019-11-29T17:38:30+09:00</lastmod>
   </url>
   
   <url>
@@ -129,32 +139,7 @@
   
   <url>
     <loc>https://lameld.github.io/tags/c&#43;&#43;/</loc>
-    <lastmod>2019-11-29T17:38:30+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lameld.github.io/tags/d4/</loc>
-    <lastmod>2019-11-29T17:38:30+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lameld.github.io/tags/sw-expert-academy/</loc>
-    <lastmod>2019-11-29T17:38:30+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lameld.github.io/categories/sw-expert-academy-d4/</loc>
-    <lastmod>2019-11-29T17:38:30+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lameld.github.io/swea/swea_2819/</loc>
-    <lastmod>2019-11-29T17:38:30+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lameld.github.io/swea/</loc>
-    <lastmod>2019-11-29T17:38:30+09:00</lastmod>
+    <lastmod>2019-11-27T11:22:43+09:00</lastmod>
   </url>
   
   <url>

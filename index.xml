@@ -12,6 +12,17 @@
     
     
     <item>
+      <title>[D4] 2819</title>
+      <link>https://lameld.github.io/swea/2819/</link>
+      <pubDate>Fri, 29 Nov 2019 17:38:30 +0900</pubDate>
+      
+      <guid>https://lameld.github.io/swea/2819/</guid>
+      <description>2819 - 격자판의 숫자 이어 붙이기 문제 출처
+  문제 설명
+ 4 x 4 크기의 격자판이 있다. 격자판의 각 격자칸에는 0부터 9사이의 숫자가 적혀 있다. 격자판의 임의의 위치에서 시작한다.</description>
+    </item>
+    
+    <item>
       <title>[2018] 캐시</title>
       <link>https://lameld.github.io/kakao/2018_cache/</link>
       <pubDate>Fri, 22 Nov 2019 00:00:00 +0000</pubDate>
@@ -142,17 +153,6 @@ berryz web share ip :: http://121.140.73.126 (공인 IP)
 berryz web share ip :: http://121.140.73.126 (공인 IP)
 복습 :: http://www.ddarahakit.kro.kr -&amp;gt; kro.kr 도메인은 무료?
    기본적으로 알아야 할 컴퓨터 기초</description>
-    </item>
-    
-    <item>
-      <title>[SW Expert Academy][D4] 2819</title>
-      <link>https://lameld.github.io/swea/swea_2819/</link>
-      <pubDate>Fri, 29 Nov 2019 17:38:30 +0900</pubDate>
-      
-      <guid>https://lameld.github.io/swea/swea_2819/</guid>
-      <description>문제 출처
-  문제 설명
- 4 x 4 크기의 격자판이 있다. 격자판의 각 격자칸에는 0부터 9사이의 숫자가 적혀 있다. 격자판의 임의의 위치에서 시작한다. 동서남북 네 방향으로 인접한 격자로 총 6회 이동하여 각 칸에 숫자를 차례로 이어 붙인다.</description>
     </item>
     
     <item>
