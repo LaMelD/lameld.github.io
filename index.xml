@@ -50,7 +50,7 @@
       <guid>https://lameld.github.io/datastructure/dsarray/</guid>
       <description>Array(배열)   정적 배열 (Static Array)
  기본적인 배열을 의미한다. C++에서 간단하게 선언이 가능하다.    1차원
-  int arr0[3];int arr1[10] = { 0, };int arr2 = { 1,2,3,4 }; 2차원  int arr0[3][7];int arr1[10][10] = { { 0, }, };int arr2 = { { 1,2}, { 3,4 } }; 3차원 이상의 배열도 를 추가하여 선언이 가능하다.</description>
+  int arr0[3];int arr1[10] = { 0, };int arr2 = { 1,2,3,4 }; 2차원  int arr0[3][7];int arr1[10][10] = { { 0, }, };int arr2 = { { 1,2}, { 3,4 } }; 3차원 이상의 배열도 [ ]를 추가하여 선언이 가능하다.</description>
     </item>
     
     <item>
@@ -75,7 +75,7 @@
     </item>
     
     <item>
-      <title>[Data Structure] Single Linked List</title>
+      <title>[DS] Single Linked List</title>
       <link>https://lameld.github.io/datastructure/dslinkedlist/</link>
       <pubDate>Fri, 15 Nov 2019 00:00:00 +0000</pubDate>
       
@@ -143,7 +143,7 @@
     </item>
     
     <item>
-      <title>[Data Structure] Stack</title>
+      <title>[DS] Stack</title>
       <link>https://lameld.github.io/datastructure/dsstack/</link>
       <pubDate>Fri, 15 Nov 2019 00:00:00 +0000</pubDate>
       
@@ -168,7 +168,11 @@
       <pubDate>Sat, 16 Nov 2019 20:08:14 +0900</pubDate>
       
       <guid>https://lameld.github.io/datastructure/stlqueue/</guid>
-      <description>C++ STL Queue  내부적으로는 deque, list로 구성되어 있다. queue구조로 동작하도록 멤버 함수를 제공해준다. 헤더파일에 존재한다. std namespace를 사용하면 편리하다.  기본 생성자   기본 생성자 형식 : queue&amp;lt;[data type]&amp;gt; [변수이름] queue&amp;lt;int&amp;gt; q;queue&amp;lt;sting&amp;gt; q; 내부 컨테이너 구조를 바꾸는 생성자 형식 : queue&amp;lt;[data type], [container Type]&amp;gt; [변수이름]</description>
+      <description>Queue   내부적으로는 deque, list로 구성되어 있다.
+  queue구조로 동작하도록 멤버 함수를 제공해준다.
+  &amp;lt;queue&amp;gt; 헤더파일에 존재한다.
+  std namespace를 사용하면 편리하다.
+  기본 생성자</description>
     </item>
     
     <item>
@@ -187,7 +191,7 @@
       <pubDate>Sat, 16 Nov 2019 20:08:14 +0900</pubDate>
       
       <guid>https://lameld.github.io/datastructure/stlvector/</guid>
-      <description>vector는 자동으로 메모리가 할당되는 배열이라고 생각하면 됩니다. template를 사용하기 때문에 데이터 타입은 마음데로 넣을 수 있습니다. Stack과 비슷한 구조를 가지고 있으며, 맨 뒤에서 삽입과 삭제가 가능합니다. 중간의 값을 삭제하거나 삽입이 가능하지만, 배열기반이므로 삽입과 삭제가 빈번하게 일어난다면 효율이 떨어집니다.</description>
+      <description>개념  vector는 자동으로 메모리가 할당되는 배열이라고 생각하면 됩니다. template를 사용하기 때문에 데이터 타입은 마음데로 넣을 수 있습니다. Stack과 비슷한 구조를 가지고 있으며, 맨 뒤에서 삽입과 삭제가 가능합니다. 중간의 값을 삭제하거나 삽입이 가능하지만, 배열기반이므로 삽입과 삭제가 빈번하게 일어난다면 효율이 떨어집니다.</description>
     </item>
     
     <item>

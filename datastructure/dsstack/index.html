@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>[Data Structure] Stack - LaMelD&#39;s dev Story</title>
+  <title>[DS] Stack - LaMelD&#39;s dev Story</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
   <link rel="icon" href="https://lameld.github.io/favicon.png">
@@ -139,7 +139,7 @@
     </li>
     
     <li class="">
-      <a href="https://lameld.github.io/datastructure/dslinkedlist/">[Data Structure] Single Linked List</a>
+      <a href="https://lameld.github.io/datastructure/dslinkedlist/">[DS] Single Linked List</a>
     </li>
     
     <li class="">
@@ -147,7 +147,7 @@
     </li>
     
     <li class="active ">
-      <a href="https://lameld.github.io/datastructure/dsstack/">[Data Structure] Stack</a>
+      <a href="https://lameld.github.io/datastructure/dsstack/">[DS] Stack</a>
     </li>
     
     <li class="">
@@ -165,7 +165,7 @@
         </div>
         <div class="col-12 col-md-9">
           
-<h1 class="title">[Data Structure] Stack</h1>
+<h1 class="title">[DS] Stack</h1>
 <div class="content ">
   <h1 id="stack스택">Stack(스택)</h1>
 <h3 id="1-개념">1. 개념</h3>
@@ -201,231 +201,229 @@
 </ul>
 </li>
 </ul>
-<blockquote>
-</blockquote>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">template &lt;class T&gt;
-class Stack
-{
-private :
-	T* stack;
-	T top;
-	int capacity;
-public :
-	Stack();
-	Stack(int);
-	T Top();
-	void Push(T);
-	void Pop();
-	bool isEmpty();
-	bool isFull();
-};
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">Stack</span>
+<span class="p">{</span>
+<span class="k">private</span> <span class="o">:</span>
+	<span class="n">T</span><span class="o">*</span> <span class="n">stack</span><span class="p">;</span>
+	<span class="n">T</span> <span class="n">top</span><span class="p">;</span>
+	<span class="kt">int</span> <span class="n">capacity</span><span class="p">;</span>
+<span class="k">public</span> <span class="o">:</span>
+	<span class="n">Stack</span><span class="p">();</span>
+	<span class="n">Stack</span><span class="p">(</span><span class="kt">int</span><span class="p">);</span>
+	<span class="n">T</span> <span class="nf">Top</span><span class="p">();</span>
+	<span class="kt">void</span> <span class="nf">Push</span><span class="p">(</span><span class="n">T</span><span class="p">);</span>
+	<span class="kt">void</span> <span class="nf">Pop</span><span class="p">();</span>
+	<span class="kt">bool</span> <span class="nf">isEmpty</span><span class="p">();</span>
+	<span class="kt">bool</span> <span class="nf">isFull</span><span class="p">();</span>
+<span class="p">};</span>
 </code></pre></div><ul>
-<li>각 멤버 함수의 구현</li>
-</ul>
-<blockquote>
+<li>
+<p>각 멤버 함수의 구현</p>
+</li>
+<li>
 <p>Stack()</p>
-</blockquote>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">template &lt;class T&gt;
-Stack&lt;T&gt;::Stack()
-{
-	this-&gt;capacity = 10;
-	this-&gt;stack = new T[this-&gt;capacity];
-	this-&gt;top = -1;
-}
-</code></pre></div><blockquote>
-<p>Stack(int capacity)</p>
-</blockquote>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">template &lt;class T&gt;
-Stack&lt;T&gt;::Stack(int capacity)
-{
-	this-&gt;capacity = capacity;
-	this-&gt;stack = new T[this-&gt;capacity];
-	this-&gt;top = -1;
-}
-</code></pre></div><blockquote>
-<p>T Top()</p>
-</blockquote>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">template &lt;class T&gt;
-T Stack&lt;T&gt;::Top()
-{
-	T ret = NULL;
-	if (!this-&gt;isEmpty())
-	{
-		ret = this-&gt;stack[top];
-	}
-	return ret;
-}
-</code></pre></div><blockquote>
-<p>void Push(T)</p>
-</blockquote>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">template &lt;class T&gt;
-void Stack&lt;T&gt;::Push(T data)
-{
-	if (!this-&gt;isFull())
-	{
-		this-&gt;stack[++top] = data;
-	}
-}
-</code></pre></div><blockquote>
-<p>void Pop()</p>
-</blockquote>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">template &lt;class T&gt;
-void Stack&lt;T&gt;::Pop()
-{
-	if (!this-&gt;isEmpty())
-	{
-		this-&gt;top--;
-	}
-}
-</code></pre></div><blockquote>
-<p>bool isEmpty()</p>
-</blockquote>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">template &lt;class T&gt;
-bool Stack&lt;T&gt;::isEmpty()
-{
-	if (this-&gt;top == -1)
-	{
-		return true;
-	}
-	return false;
-}
-</code></pre></div><blockquote>
-<p>bool isFull()</p>
-</blockquote>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">template &lt;class T&gt;
-bool Stack&lt;T&gt;::isFull()
-{
-	if (this-&gt;top == (this-&gt;capacity - 1))
-	{
-		return true;
-	}
-	return false;
-}
+</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
+<span class="n">Stack</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">Stack</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="k">this</span><span class="o">-&gt;</span><span class="n">capacity</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+	<span class="k">this</span><span class="o">-&gt;</span><span class="n">stack</span> <span class="o">=</span> <span class="k">new</span> <span class="n">T</span><span class="p">[</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">capacity</span><span class="p">];</span>
+	<span class="k">this</span><span class="o">-&gt;</span><span class="n">top</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><ul>
+<li>Stack(int capacity)</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
+<span class="n">Stack</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">Stack</span><span class="p">(</span><span class="kt">int</span> <span class="n">capacity</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="k">this</span><span class="o">-&gt;</span><span class="n">capacity</span> <span class="o">=</span> <span class="n">capacity</span><span class="p">;</span>
+	<span class="k">this</span><span class="o">-&gt;</span><span class="n">stack</span> <span class="o">=</span> <span class="k">new</span> <span class="n">T</span><span class="p">[</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">capacity</span><span class="p">];</span>
+	<span class="k">this</span><span class="o">-&gt;</span><span class="n">top</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><ul>
+<li>T Top()</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
+<span class="n">T</span> <span class="n">Stack</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">Top</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="n">T</span> <span class="n">ret</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+	<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">isEmpty</span><span class="p">())</span>
+	<span class="p">{</span>
+		<span class="n">ret</span> <span class="o">=</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">stack</span><span class="p">[</span><span class="n">top</span><span class="p">];</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><ul>
+<li>void Push(T)</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
+<span class="kt">void</span> <span class="n">Stack</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">Push</span><span class="p">(</span><span class="n">T</span> <span class="n">data</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">isFull</span><span class="p">())</span>
+	<span class="p">{</span>
+		<span class="k">this</span><span class="o">-&gt;</span><span class="n">stack</span><span class="p">[</span><span class="o">++</span><span class="n">top</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><ul>
+<li>void Pop()</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
+<span class="kt">void</span> <span class="n">Stack</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">Pop</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">isEmpty</span><span class="p">())</span>
+	<span class="p">{</span>
+		<span class="k">this</span><span class="o">-&gt;</span><span class="n">top</span><span class="o">--</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><ul>
+<li>bool isEmpty()</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
+<span class="kt">bool</span> <span class="n">Stack</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">isEmpty</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">top</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><ul>
+<li>bool isFull()</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
+<span class="kt">bool</span> <span class="n">Stack</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">isFull</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">top</span> <span class="o">==</span> <span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">capacity</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+	<span class="p">{</span>
+		<span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre></div><ul>
 <li>전체 코드 및 테스트</li>
 </ul>
-<blockquote>
-</blockquote>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">#include &lt;iostream&gt;
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 
-using namespace std;
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">Stack</span>
+<span class="p">{</span>
+<span class="k">private</span> <span class="o">:</span>
+	<span class="n">T</span><span class="o">*</span> <span class="n">stack</span><span class="p">;</span>
+	<span class="n">T</span> <span class="n">top</span><span class="p">;</span>
+	<span class="kt">int</span> <span class="n">capacity</span><span class="p">;</span>
+<span class="k">public</span> <span class="o">:</span>
+	<span class="n">Stack</span><span class="p">();</span>
+	<span class="n">Stack</span><span class="p">(</span><span class="kt">int</span><span class="p">);</span>
+	<span class="n">T</span> <span class="nf">Top</span><span class="p">();</span>
+	<span class="kt">void</span> <span class="nf">Push</span><span class="p">(</span><span class="n">T</span><span class="p">);</span>
+	<span class="kt">void</span> <span class="nf">Pop</span><span class="p">();</span>
+	<span class="kt">bool</span> <span class="nf">isEmpty</span><span class="p">();</span>
+	<span class="kt">bool</span> <span class="nf">isFull</span><span class="p">();</span>
+<span class="p">};</span>
 
-template &lt;class T&gt;
-class Stack
-{
-private :
-	T* stack;
-	T top;
-	int capacity;
-public :
-	Stack();
-	Stack(int);
-	T Top();
-	void Push(T);
-	void Pop();
-	bool isEmpty();
-	bool isFull();
-};
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
+<span class="n">Stack</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">Stack</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="k">this</span><span class="o">-&gt;</span><span class="n">capacity</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+	<span class="k">this</span><span class="o">-&gt;</span><span class="n">stack</span> <span class="o">=</span> <span class="k">new</span> <span class="n">T</span><span class="p">[</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">capacity</span><span class="p">];</span>
+	<span class="k">this</span><span class="o">-&gt;</span><span class="n">top</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
 
-template &lt;class T&gt;
-Stack&lt;T&gt;::Stack()
-{
-	this-&gt;capacity = 10;
-	this-&gt;stack = new T[this-&gt;capacity];
-	this-&gt;top = -1;
-}
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
+<span class="n">Stack</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">Stack</span><span class="p">(</span><span class="kt">int</span> <span class="n">capacity</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="k">this</span><span class="o">-&gt;</span><span class="n">capacity</span> <span class="o">=</span> <span class="n">capacity</span><span class="p">;</span>
+	<span class="k">this</span><span class="o">-&gt;</span><span class="n">stack</span> <span class="o">=</span> <span class="k">new</span> <span class="n">T</span><span class="p">[</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">capacity</span><span class="p">];</span>
+	<span class="k">this</span><span class="o">-&gt;</span><span class="n">top</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
 
-template &lt;class T&gt;
-Stack&lt;T&gt;::Stack(int capacity)
-{
-	this-&gt;capacity = capacity;
-	this-&gt;stack = new T[this-&gt;capacity];
-	this-&gt;top = -1;
-}
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
+<span class="n">T</span> <span class="n">Stack</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">Top</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="n">T</span> <span class="n">ret</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+	<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">isEmpty</span><span class="p">())</span>
+	<span class="p">{</span>
+		<span class="n">ret</span> <span class="o">=</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">stack</span><span class="p">[</span><span class="n">top</span><span class="p">];</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+<span class="p">}</span>
 
-template &lt;class T&gt;
-T Stack&lt;T&gt;::Top()
-{
-	T ret = NULL;
-	if (!this-&gt;isEmpty())
-	{
-		ret = this-&gt;stack[top];
-	}
-	return ret;
-}
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
+<span class="kt">void</span> <span class="n">Stack</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">Push</span><span class="p">(</span><span class="n">T</span> <span class="n">data</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">isFull</span><span class="p">())</span>
+	<span class="p">{</span>
+		<span class="k">this</span><span class="o">-&gt;</span><span class="n">stack</span><span class="p">[</span><span class="o">++</span><span class="n">top</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">}</span>
 
-template &lt;class T&gt;
-void Stack&lt;T&gt;::Push(T data)
-{
-	if (!this-&gt;isFull())
-	{
-		this-&gt;stack[++top] = data;
-	}
-}
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
+<span class="kt">void</span> <span class="n">Stack</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">Pop</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">isEmpty</span><span class="p">())</span>
+	<span class="p">{</span>
+		<span class="k">this</span><span class="o">-&gt;</span><span class="n">top</span><span class="o">--</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">}</span>
 
-template &lt;class T&gt;
-void Stack&lt;T&gt;::Pop()
-{
-	if (!this-&gt;isEmpty())
-	{
-		this-&gt;top--;
-	}
-}
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
+<span class="kt">bool</span> <span class="n">Stack</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">isEmpty</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">top</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+<span class="p">}</span>
 
-template &lt;class T&gt;
-bool Stack&lt;T&gt;::isEmpty()
-{
-	if (this-&gt;top == -1)
-	{
-		return true;
-	}
-	return false;
-}
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
+<span class="kt">bool</span> <span class="n">Stack</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">isFull</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">top</span> <span class="o">==</span> <span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">capacity</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+	<span class="p">{</span>
+		<span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+<span class="p">}</span>
 
-template &lt;class T&gt;
-bool Stack&lt;T&gt;::isFull()
-{
-	if (this-&gt;top == (this-&gt;capacity - 1))
-	{
-		return true;
-	}
-	return false;
-}
-
-int main()
-{
-	cout &lt;&lt; &#34;capacity가 70인 Stack 생성\n&#34;;
-	Stack&lt;int&gt; stack(70);
-	if (stack.isEmpty())
-	{
-		cout &lt;&lt; &#34;stack이 비어있습니다.\n&#34;;
-	}
-	cout &lt;&lt; &#34;0부터 34까지 stack에 push합니다\n&#34;;
-	for (int i = 0; i &lt; 35; i++)
-	{
-		stack.Push(i);
-	}
-	cout &lt;&lt; &#34;stack의 Top : &#34; &lt;&lt; stack.Top() &lt;&lt; &#39;\n&#39;;
-	cout &lt;&lt; &#34;35부터 69까지 stack에 push합니다\n&#34;;
-	for (int i = 35; i &lt; 70; i++)
-	{
-		stack.Push(i);
-	}
-	cout &lt;&lt; &#34;stack의 Top : &#34; &lt;&lt; stack.Top() &lt;&lt; &#39;\n&#39;;
-	if (stack.isFull())
-	{
-		cout &lt;&lt; &#34;stack이 꽉 찼습니다.\n&#34;;
-	}
-	cout &lt;&lt; &#34;stack에서 15개의 데이터를 pop합니다\n&#34;;
-	for (int i = 0; i &lt; 15; i++)
-	{
-		stack.Pop();
-	}
-	cout &lt;&lt; &#34;stack의 Top : &#34; &lt;&lt; stack.Top() &lt;&lt; &#39;\n&#39;;
-}
-</code></pre></div><blockquote>
-<p>결과</p>
-</blockquote>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;capacity가 70인 Stack 생성</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+	<span class="n">Stack</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">stack</span><span class="p">(</span><span class="mi">70</span><span class="p">);</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">stack</span><span class="p">.</span><span class="n">isEmpty</span><span class="p">())</span>
+	<span class="p">{</span>
+		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;stack이 비어있습니다.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;0부터 34까지 stack에 push합니다</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">35</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">stack</span><span class="p">.</span><span class="n">Push</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+	<span class="p">}</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;stack의 Top : &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">stack</span><span class="p">.</span><span class="n">Top</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;35부터 69까지 stack에 push합니다</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">35</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">70</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">stack</span><span class="p">.</span><span class="n">Push</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+	<span class="p">}</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;stack의 Top : &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">stack</span><span class="p">.</span><span class="n">Top</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">stack</span><span class="p">.</span><span class="n">isFull</span><span class="p">())</span>
+	<span class="p">{</span>
+		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;stack이 꽉 찼습니다.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;stack에서 15개의 데이터를 pop합니다</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">15</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">stack</span><span class="p">.</span><span class="n">Pop</span><span class="p">();</span>
+	<span class="p">}</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;stack의 Top : &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">stack</span><span class="p">.</span><span class="n">Top</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><ul>
+<li>결과</li>
+</ul>
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">capacity가 70인 Stack 생성
 stack이 비어있습니다.
 0부터 34까지 stack에 push합니다
@@ -435,7 +433,10 @@ stack의 Top : 69
 stack이 꽉 찼습니다.
 stack에서 15개의 데이터를 pop합니다
 stack의 Top : 54
-</code></pre></div><!-- raw HTML omitted -->
+</code></pre></div><hr>
+<ul>
+<li>C++ STL vector를 Stack처럼 사용할 수 있습니다. 자세한 내용은 <!-- raw HTML omitted -->[ C++ STL vector ]<!-- raw HTML omitted -->에서 확인하세요.</li>
+</ul>
 
 </div>
 </div>

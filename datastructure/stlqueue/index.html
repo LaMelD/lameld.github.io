@@ -139,7 +139,7 @@
     </li>
     
     <li class="">
-      <a href="https://lameld.github.io/datastructure/dslinkedlist/">[Data Structure] Single Linked List</a>
+      <a href="https://lameld.github.io/datastructure/dslinkedlist/">[DS] Single Linked List</a>
     </li>
     
     <li class="">
@@ -147,7 +147,7 @@
     </li>
     
     <li class="">
-      <a href="https://lameld.github.io/datastructure/dsstack/">[Data Structure] Stack</a>
+      <a href="https://lameld.github.io/datastructure/dsstack/">[DS] Stack</a>
     </li>
     
     <li class="active ">
@@ -167,65 +167,72 @@
           
 <h1 class="title">[C&#43;&#43; STL] Queue</h1>
 <div class="content ">
-  <h1 id="c-stl-queue">C++ STL Queue</h1>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+  <h2 id="queue">Queue</h2>
 <ul>
-<li>내부적으로는 deque, list로 구성되어 있다.</li>
-<li>queue구조로 동작하도록 멤버 함수를 제공해준다.</li>
-<li><!-- raw HTML omitted --> 헤더파일에 존재한다.</li>
-<li>std namespace를 사용하면 편리하다.
-<!-- raw HTML omitted --></li>
-<li>기본 생성자</li>
+<li>
+<p>내부적으로는 deque, list로 구성되어 있다.</p>
+</li>
+<li>
+<p>queue구조로 동작하도록 멤버 함수를 제공해준다.</p>
+</li>
+<li>
+<p><code>&lt;queue&gt;</code> 헤더파일에 존재한다.</p>
+</li>
+<li>
+<p>std namespace를 사용하면 편리하다.</p>
+</li>
+<li>
+<p>기본 생성자</p>
+<ul>
+<li>기본 생성자 형식 : <code>queue&lt;[data type]&gt; [변수이름]</code></li>
 </ul>
-<blockquote>
-<p>기본 생성자 형식 : queue&lt;[data type]&gt; [변수이름]<!-- raw HTML omitted --></p>
-</blockquote>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">queue&lt;int&gt; q;
-queue&lt;sting&gt; q;
-</code></pre></div><blockquote>
-<p>내부 컨테이너 구조를 바꾸는 생성자 형식 : queue&lt;[data type], [container Type]&gt; [변수이름]</p>
-</blockquote>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">queue&lt;int, list&lt;int&gt;&gt; q;
-queue&lt;string, list&lt;string&gt;&gt; q;
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">queue</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">q</span><span class="p">;</span>
+<span class="n">queue</span><span class="o">&lt;</span><span class="n">sting</span><span class="o">&gt;</span> <span class="n">q</span><span class="p">;</span>
 </code></pre></div><ul>
-<li>멤버 함수</li>
+<li>내부 컨테이너 구조를 바꾸는 생성자 형식 : <code>queue&lt;[data type], [container Type]&gt; [변수이름]</code></li>
 </ul>
-<blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">queue</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="n">list</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">q</span><span class="p">;</span>
+<span class="n">queue</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span> <span class="n">list</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;&gt;</span> <span class="n">q</span><span class="p">;</span>
+</code></pre></div></li>
+<li>
+<p>멤버 함수</p>
+</li>
+<li>
 <p>front()</p>
-</blockquote>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">첫번째 원소에 접근합니다.
-들어간지 가장 오래된 원소.
-const value_type&amp; front() const
-</code></pre></div><blockquote>
-<p>back()</p>
-</blockquote>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">마지막 원소에 접근합니다.
-가장 최근에 들어간 원소
-const value_type&amp; back() const
-</code></pre></div><blockquote>
-<p>empty()</p>
-</blockquote>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">비어있으면 true
-size가 0이면 true
-</code></pre></div><blockquote>
-<p>size()</p>
-</blockquote>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">원소의 갯수를 반환합니다.
-</code></pre></div><blockquote>
-<p>push()</p>
-</blockquote>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">초기화된 원소를 queue안에 집어 넣는다.
-</code></pre></div><blockquote>
-<p>pop()</p>
-</blockquote>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">들어간지 가장 오래된 원소를 삭제한다.
-맨 앞에 있는 원소를 삭제한다.
-반환형이 void이므로 앞의 원소를 참조하려면 front를 사용해야 한다.
-</code></pre></div><!-- raw HTML omitted -->
+</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">//첫번째 원소에 접근합니다.
+</span><span class="c1">//들어간지 가장 오래된 원소.
+</span><span class="c1"></span><span class="k">const</span> <span class="n">value_type</span><span class="o">&amp;</span> <span class="n">front</span><span class="p">()</span> <span class="k">const</span>
+</code></pre></div><ul>
+<li>back()</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">//마지막 원소에 접근합니다.
+</span><span class="c1">//가장 최근에 들어간 원소
+</span><span class="c1"></span><span class="k">const</span> <span class="n">value_type</span><span class="o">&amp;</span> <span class="n">back</span><span class="p">()</span> <span class="k">const</span>
+</code></pre></div><ul>
+<li>empty()</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">//비어있으면 true
+</span><span class="c1">//size가 0이면 true
+</span></code></pre></div><ul>
+<li>size()</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">//원소의 갯수를 반환합니다.
+</span></code></pre></div><ul>
+<li>push()</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">//초기화된 원소를 queue안에 집어 넣는다.
+</span></code></pre></div><ul>
+<li>pop()</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">//들어간지 가장 오래된 원소를 삭제한다.
+</span><span class="c1">//맨 앞에 있는 원소를 삭제한다.
+</span><span class="c1">//반환형이 void이므로 앞의 원소를 참조하려면 front를 사용해야 한다.
+</span></code></pre></div><hr>
 <h2 id="priority-queue">priority queue</h2>
-<p>////////////////////////////////////////////////////<!-- raw HTML omitted -->
-이후에 작성 예정.</p>
+<hr>
+<p>이후에 작성 예정.</p>
 
 </div>
 </div>
