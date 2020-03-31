@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://lameld.github.io/gitstudy/</loc>
+    <lastmod>2020-03-31T09:14:39+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://lameld.github.io/swea/</loc>
     <lastmod>2020-03-30T09:14:39+09:00</lastmod>
   </url>
@@ -28,6 +33,11 @@
   </url>
   
   <url>
+    <loc>https://lameld.github.io/gitstudy/ch1/</loc>
+    <lastmod>2019-11-29T17:38:30+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://lameld.github.io/swea/2819/</loc>
     <lastmod>2019-11-29T17:38:30+09:00</lastmod>
   </url>
@@ -48,6 +58,11 @@
   </url>
   
   <url>
+    <loc>https://lameld.github.io/gitstudy/ch2/</loc>
+    <lastmod>2019-11-29T17:38:30+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://lameld.github.io/kakao/2018_dart/</loc>
     <lastmod>2019-11-21T00:00:00+00:00</lastmod>
   </url>
@@ -60,6 +75,11 @@
   <url>
     <loc>https://lameld.github.io/cloudbasic/linux_basic/</loc>
     <lastmod>2020-01-13T10:31:27+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lameld.github.io/gitstudy/ch3/</loc>
+    <lastmod>2019-11-29T17:38:30+09:00</lastmod>
   </url>
   
   <url>
@@ -80,6 +100,16 @@
   <url>
     <loc>https://lameld.github.io/cloudbasic/linux/</loc>
     <lastmod>2020-01-16T13:35:04+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lameld.github.io/gitstudy/ch4/</loc>
+    <lastmod>2019-11-29T17:38:30+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lameld.github.io/gitstudy/ch5/</loc>
+    <lastmod>2019-11-29T17:38:30+09:00</lastmod>
   </url>
   
   <url>
