@@ -35,7 +35,8 @@
       <pubDate>Fri, 29 Nov 2019 17:38:30 +0900</pubDate>
       
       <guid>https://lameld.github.io/gitstudy/ch3/</guid>
-      <description>1. 브랜치(branch)  분기점  master에서 commit한다. 현 상태에서 Feature-1 브랜치를 만들어 새로운 내용을 추가하여 commit한다. master에서 새로운 내용을 넣어 commit한다. 현 상태에서 Feature-2 브랜치를 만들어 새로운 내용을 추가하여 commit 한다.</description>
+      <description>1. 브랜치(branch)   분기점
+ master에서 commit한다. 현 상태에서 Feature-1 브랜치를 만들어 새로운 내용을 추가하여 commit한다. master에서 새로운 내용을 넣어 commit한다. 현 상태에서 Feature-2 브랜치를 만들어 새로운 내용을 추가하여 commit 한다.</description>
     </item>
     
     <item>

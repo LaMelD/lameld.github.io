@@ -177,8 +177,9 @@
 <div class="content ">
   <h3 id="1-브랜치branch">1. 브랜치(branch)</h3>
 <ul>
-<li>분기점
-<img src="/images/branch.PNG" alt="이미지">
+<li>
+<p>분기점</p>
+<p><img src="/images/branch.PNG" alt="이미지"></p>
 <ul>
 <li>master에서 commit한다.</li>
 <li>현 상태에서 Feature-1 브랜치를 만들어 새로운 내용을 추가하여 commit한다.</li>
@@ -370,25 +371,25 @@ $ git log --oneline --branches --graph
 <table>
 <thead>
 <tr>
-<th align="left">프로그램 이름</th>
+<th align="center">프로그램 이름</th>
 <th align="left">설명</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">P4Merge</td>
+<td align="center">P4Merge</td>
 <td align="left">무료이고 직관적이며 사용이 편리하고 병합 기능이 뛰어남. 단축키가 지원되지 않는 단점이 있다.</td>
 </tr>
 <tr>
-<td align="left">Meld</td>
+<td align="center">Meld</td>
 <td align="left">무료이며 오픈소스. 파일을 비교하는 것뿐만 아니라 직접 편집할 수 있다.</td>
 </tr>
 <tr>
-<td align="left">Kdiff3</td>
+<td align="center">Kdiff3</td>
 <td align="left">무료이고 사용이 편리하고 병합 기능이 뛰어나지만 한글이 깨져보일 수 있다.</td>
 </tr>
 <tr>
-<td align="left">Araxis Merge</td>
+<td align="center">Araxis Merge</td>
 <td align="left">유료지만 용량이 큰 파일에서도 잘 동작함</td>
 </tr>
 </tbody>
@@ -425,7 +426,8 @@ $ git log --oneline --branches --graph
 <li>가장 최근에 보관한 stash는 stash@{0}에 담기게 된다.</li>
 </ul>
 </li>
-<li>감추어둔 파일을 꺼내와 계속 수정하거나 커밋할 수 있다. 이때 가장 최근 항목을 되돌리기 위해서 <code>git stash pop</code>을 사용한다.</li>
+<li>감추어둔 파일을 꺼내와 계속 수정하거나 커밋할 수 있다.</li>
+<li>이때 가장 최근 항목을 되돌리기 위해서 <code>git stash pop</code>을 사용한다.</li>
 </ul>
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">$ git init st
 $ cd st
