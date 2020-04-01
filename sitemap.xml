@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://lameld.github.io/python/</loc>
+    <lastmod>2020-04-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://lameld.github.io/gitstudy/</loc>
     <lastmod>2020-03-31T09:14:39+09:00</lastmod>
   </url>
@@ -215,6 +220,26 @@
   <url>
     <loc>https://lameld.github.io/</loc>
     <lastmod>2020-03-30T09:14:39+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lameld.github.io/python/ch01/ch01/</loc>
+  </url>
+  
+  <url>
+    <loc>https://lameld.github.io/python/ch02/ch02/</loc>
+  </url>
+  
+  <url>
+    <loc>https://lameld.github.io/python/ch03/ch03/</loc>
+  </url>
+  
+  <url>
+    <loc>https://lameld.github.io/python/ch04/ch04/</loc>
+  </url>
+  
+  <url>
+    <loc>https://lameld.github.io/python/ch05/ch05/</loc>
   </url>
   
   <url>
