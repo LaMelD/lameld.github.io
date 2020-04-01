@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>1. 파이썬 프로그래밍의 기초, 자료형 - LaMelD&#39;s dev Story</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="icon" href="https://lameld.github.io/favicon.png">
+
+  
+  
+  <link rel="stylesheet" href="/css/style.min.6aa5eecd4ca7c47fb2ca9b0775a7bd787e3e64a2eadf0fef8c9f924498f49127.css">
+  
+
+  
+
+</head>
+
+<body class='page page-default-single'>
+  <div id="main-menu-mobile" class="main-menu-mobile">
+  <ul>
+    
+    
+    <li class="menu-item-home">
+      <a href="/">
+        <span>Home</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-kakao">
+      <a href="/kakao/">
+        <span>Kakao</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-swea">
+      <a href="/swea/">
+        <span>Swea</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-datastructure">
+      <a href="/datastructure/">
+        <span>DataStructure</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-cloudbasic">
+      <a href="/cloudbasic/">
+        <span>CloudBasic</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-git&amp;github">
+      <a href="/gitstudy/">
+        <span>Git&amp;Github</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-python">
+      <a href="/python/">
+        <span>Python</span>
+      </a>
+    </li>
+    
+  </ul>
+</div>
+  <div class="wrapper">
+    <div class='header'>
+  <div class="container">
+    <div class="logo">
+      <a href="https://lameld.github.io"><img alt="Logo" src="/images/logo.svg" /></a>
+    </div>
+    <div class="logo-mobile">
+      <a href="https://lameld.github.io"><img alt="Logo" src="/images/logo-mobile.svg" /></a>
+    </div>
+    <div id="main-menu" class="main-menu">
+  <ul>
+    
+    
+    <li class="menu-item-home">
+      <a href="/">
+        <span>Home</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-kakao">
+      <a href="/kakao/">
+        <span>Kakao</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-swea">
+      <a href="/swea/">
+        <span>Swea</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-datastructure">
+      <a href="/datastructure/">
+        <span>DataStructure</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-cloudbasic">
+      <a href="/cloudbasic/">
+        <span>CloudBasic</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-git&amp;github">
+      <a href="/gitstudy/">
+        <span>Git&amp;Github</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-python">
+      <a href="/python/">
+        <span>Python</span>
+      </a>
+    </li>
+    
+  </ul>
+</div>
+    <button id="toggle-main-menu-mobile" class="hamburger hamburger--slider" type="button">
+  <span class="hamburger-box">
+    <span class="hamburger-inner"></span>
+  </span>
+</button>
+  </div>
+</div>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <div class="container pt-2 pt-md-6 pb-3 pb-md-6">
+      <div class="row">
+        <div class="col-12 col-md-3 mb-3">
+          <div class="sidebar">
+            
+<div class="docs-menu">
+  <h4>Python</h4>
+  <ul>
+    
+    <li class="active ">
+      <a href="https://lameld.github.io/python/ch01/">1. 파이썬 프로그래밍의 기초, 자료형</a>
+    </li>
+    
+    <li class="">
+      <a href="https://lameld.github.io/python/ch02/">2. 프로그램의 구조를 쌓는다! 제어문</a>
+    </li>
+    
+    <li class="">
+      <a href="https://lameld.github.io/python/ch03/">3. 프로그램의 입력과 출력</a>
+    </li>
+    
+    <li class="">
+      <a href="https://lameld.github.io/python/ch04/">4. 파이썬 날개 달기, 클래스</a>
+    </li>
+    
+    <li class="">
+      <a href="https://lameld.github.io/python/ch05/">5. 파이썬 정규 표현식과 XML</a>
+    </li>
+    
+  </ul>
+</div>
+
+          </div>
+        </div>
+        <div class="col-12 col-md-9">
+          
+<h1 class="title">1. 파이썬 프로그래밍의 기초, 자료형</h1>
+<div class="content ">
+  <h3 id="1-숫자형">1. 숫자형</h3>
+<ul>
+<li>숫자 형태로 이루어진 자료형</li>
+<li>정수, 실수, 복소수, 8진수, 16진수 등</li>
+<li>숫자형을 활용하기 위한 연산자
+<ul>
+<li>더하기, 빼기, 곱하기, 나누기, 나머지 연산</li>
+<li>제곱을 나타내는 연산자 : <code>a**b</code></li>
+<li>나눗셈 후 소수점 아랫자리를 버리는 연산자 : <code>7//4</code></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="2-문자열-자료형">2. 문자열 자료형</h3>
+<ul>
+<li>
+<p>문자, 단어 등으로 구성된 문자들의 집합</p>
+<ul>
+<li>아래와 같이 선언이 가능하다.</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">a</span> <span class="o">=</span> <span class="s1">&#39;abc&#39;</span>
+<span class="n">b</span> <span class="o">=</span> <span class="s2">&#34;abc&#34;</span>
+<span class="n">c</span> <span class="o">=</span> <span class="s2">&#34;&#34;&#34;abc&#34;&#34;&#34;</span>   <span class="c1"># 여러 줄을 한번에 쓸 수 있다.</span>
+<span class="n">d</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;abc&#39;&#39;&#39;</span>   <span class="c1"># 여러 줄을 한번에 쓸 수 있다.</span>
+</code></pre></div><ul>
+<li>
+<p>문자열 안에 작은 따옴표를 포함시킬 때 : 큰 따옴표(&quot;)로 묶는다.</p>
+</li>
+<li>
+<p>문자열 안에 큰 따옴표를 포함시킬 때 : 작은 따옴표(&quot;)로 묶는다.</p>
+</li>
+<li>
+<p>백슬래쉬(\)를 사용해서 강제로 일반 문자로 인식시킬 수 있다.</p>
+</li>
+<li>
+<p>이스케이프 코드</p>
+<p><img src="../images/escapecode.PNG" alt="이스케이프 코드"></p>
+</li>
+</ul>
+</li>
+<li>
+<p>문자열 연산</p>
+<ul>
+<li>문자열 더해서 연결하기</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">a</span> <span class="o">=</span> <span class="s2">&#34;this&#34;</span>
+<span class="n">b</span> <span class="o">=</span> <span class="s2">&#34;is python&#34;</span>
+<span class="k">print</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span>
+</code></pre></div><ul>
+<li>문자열 곱하기</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">a</span> <span class="o">=</span> <span class="s2">&#34;hi!&#34;</span>
+<span class="k">print</span><span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>
+</code></pre></div></li>
+<li>
+<p>문자열 인덱싱과 슬라이스</p>
+<ul>
+<li>인덱싱 : 저장한 문자열의 각 문자마다 번호를 매긴다.</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">s</span> <span class="o">=</span> <span class="s2">&#34;Life is too short, You need Python&#34;</span>
+<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>     <span class="c1"># 0 인덱스는 첫번째 인덱스를 가리킨다.</span>
+<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>    <span class="c1"># -1 인덱스는 마지막 인덱스를 가리킨다.</span>
+</code></pre></div><ul>
+<li>슬라이스 : 시작과 끝을 정하여 받아 올 수 있다.</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">s</span> <span class="o">=</span> <span class="s2">&#34;Life is too short, You need Python&#34;</span>
+<span class="k">print</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">]);</span>  <span class="c1"># 0 인덱스부터 3 인덱스까지 4개를 선택적으로 뽑는다.</span>
+<span class="k">print</span><span class="p">(</span><span class="n">s</span><span class="p">[:</span><span class="mi">4</span><span class="p">]);</span>   <span class="c1"># 첫 인덱스부터 3 인덱스까지 선택적으로 뽑는다.</span>
+<span class="k">print</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">10</span><span class="p">])</span>  <span class="c1"># 4 인덱스부터 9 인덱스까지 선택적으로 뽑는다.</span>
+<span class="k">print</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">4</span><span class="p">:])</span>    <span class="c1"># 4 인덱스부터 마지막 인덱스까지 선택적으로 뽑는다.</span>
+<span class="k">print</span><span class="p">(</span><span class="n">s</span><span class="p">[:])</span>     <span class="c1"># 모든 인덱스를 뽑는다.</span>
+</code></pre></div></li>
+<li>
+<p>문자열 포매팅</p>
+<ul>
+<li>숫자 바로 대입</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">a</span> <span class="o">=</span> <span class="mi">150</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;a is </span><span class="si">%d</span><span class="s2">, and b is </span><span class="si">%d</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">))</span>
+</code></pre></div><ul>
+<li>
+<p>문자열 포맷 코드</p>
+<p><img src="../images/formatcode.PNG" alt="문자열 포맷 코드"></p>
+</li>
+<li>
+<p>정렬과 공백</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"> <span class="n">s</span> <span class="o">=</span> <span class="s2">&#34;hi&#34;</span>
+ <span class="k">print</span><span class="p">(</span><span class="s2">&#34;</span><span class="si">%10s</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="n">s</span><span class="p">)</span>       <span class="c1"># 10개의 칸을 주고 오른쪽 정렬</span>
+ <span class="k">print</span><span class="p">(</span><span class="s2">&#34;</span><span class="si">%-10s</span><span class="s2">test&#34;</span> <span class="o">%</span> <span class="n">s</span><span class="p">)</span>  <span class="c1"># 10개의 칸을 주고 왼쪽 정렬</span>
+</code></pre></div><ul>
+<li>소수점 표현하기</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">print</span><span class="p">(</span><span class="s2">&#34;</span><span class="si">%10.4f</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="mf">3.412321414123</span><span class="p">)</span>    <span class="c1"># 10개의 칸을 주고 소수점 아래는 4자리만 포함하고 오른쪽 정렬한다.</span>
+</code></pre></div></li>
+</ul>
+</li>
+<li>
+<p>문자열 관련 함수</p>
+<ul>
+<li>문자 개수 세기(count)</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">s</span> <span class="o">=</span> <span class="s2">&#34;hobby&#34;</span>
+<span class="k">print</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">))</span>
+</code></pre></div><ul>
+<li>위치 알려주기1(find)</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">s</span> <span class="o">=</span> <span class="s2">&#34;Python is best choice&#34;</span>
+<span class="k">print</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">))</span>  <span class="c1"># b가 처음 나온 위치, 문자가 존재하지 않는다면 -1</span>
+</code></pre></div><ul>
+<li>위치 알려주기2(index)</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">s</span> <span class="o">=</span> <span class="s2">&#34;Life is too short&#34;</span>
+<span class="k">print</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">))</span> <span class="c1"># b가 처음 나온 위치, 문자가 존재하지 않는다면 에러</span>
+</code></pre></div><ul>
+<li>문자열 삽입(join)</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span>
+<span class="k">print</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;abcd&#39;</span><span class="p">))</span>   <span class="c1"># abcd라는 문자열의 각각의 문자 사이에 변수 s의 값인 &#39;,&#39;를 삽입한다.</span>
+</code></pre></div><ul>
+<li>소문자를 대문자로 바꾸기(upper)</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">s</span> <span class="o">=</span> <span class="s2">&#34;hi&#34;</span>
+<span class="k">print</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
+</code></pre></div><ul>
+<li>대문자를 소문자로 바꾸기(lower)</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">s</span> <span class="o">=</span> <span class="s2">&#34;HI&#34;</span>
+<span class="k">print</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+</code></pre></div><ul>
+<li>왼쪽 공백 지우기(lstrip)</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">s</span> <span class="o">=</span> <span class="s2">&#34; hi&#34;</span>
+<span class="k">print</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">lstrip</span><span class="p">())</span>
+</code></pre></div><ul>
+<li>오른쪽 공백 지우기(rstrip)</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">s</span> <span class="o">=</span> <span class="s2">&#34;hi &#34;</span>
+<span class="k">print</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">rstrip</span><span class="p">())</span>
+</code></pre></div><ul>
+<li>양쪽 공백 지우기(strip)</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">s</span> <span class="o">=</span> <span class="s2">&#34; hi &#34;</span>
+<span class="k">print</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+</code></pre></div><ul>
+<li>문자열 바꾸기(replace)</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">s</span> <span class="o">=</span> <span class="s2">&#34;Life is too short&#34;</span>
+<span class="k">print</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&#34;short&#34;</span><span class="p">,</span> <span class="s2">&#34;long&#34;</span><span class="p">))</span>
+</code></pre></div><ul>
+<li>문자열 나누기(split)</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">s</span> <span class="o">=</span><span class="s2">&#34;Life is too short&#34;</span>
+<span class="k">print</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>    <span class="c1"># 공백을 기준으로 나누고 리스트 형태로 리턴</span>
+<span class="k">print</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;is&#39;</span><span class="p">))</span>    <span class="c1"># is를 기준으로 나누고 리스트 형태로 리턴</span>
+</code></pre></div></li>
+<li>
+<p>고급 문자열 포매팅</p>
+<ul>
+<li>인덱스를 이용한 포매팅</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">print</span><span class="p">(</span><span class="s2">&#34;{0}, {1}, {0}, {2}, {3}&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&#34;first&#34;</span><span class="p">,</span> <span class="s2">&#34;second&#34;</span><span class="p">,</span> <span class="s2">&#34;third&#34;</span><span class="p">,</span> <span class="s2">&#34;fourth&#34;</span><span class="p">))</span>
+</code></pre></div><ul>
+<li>이름을 이용한 포매팅</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">print</span><span class="p">(</span><span class="s2">&#34;{first}, {second}, {fourth}, {second}&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">first</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">second</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">fourth</span><span class="o">=</span><span class="mi">30</span><span class="p">))</span>
+</code></pre></div><ul>
+<li>혼용한 포매팅</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">num</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">var</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">single</span> <span class="o">=</span> <span class="s2">&#34;solo&#34;</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;{0}, {var}, {string}&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">var</span><span class="o">=</span><span class="n">var</span><span class="p">,</span> <span class="n">string</span><span class="o">=</span><span class="n">single</span><span class="p">))</span>
+</code></pre></div><ul>
+<li>정렬</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">print</span><span class="p">(</span><span class="s2">&#34;{0:&lt;10}&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&#34;hi&#34;</span><span class="p">))</span>   <span class="c1"># 치환되는 문자열을 왼쪽으로 정렬하고 문자열의 총 자리수를 10으로 맞춘다.</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;{0:&gt;10}&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&#34;hi&#34;</span><span class="p">))</span>   <span class="c1"># 치환되는 문자열을 오른쪽으로 정렬하고 문자열의 총 자리수를 10으로 맞춘다.</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;{0:^10}&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&#34;hi&#34;</span><span class="p">))</span>   <span class="c1"># 치환되는 문자열을 중앙으로 정렬하고 문자열의 총 자리수를 10으로 맞춘다.</span>
+</code></pre></div><ul>
+<li>공백 채우기</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">print</span><span class="p">(</span><span class="s2">&#34;{0:=^10}&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&#34;hi&#34;</span><span class="p">))</span>  <span class="c1"># 정렬을 실행한 뒤 공백을 &#39;=&#39;문자로 채운다.</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;{var:=^10}&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">var</span><span class="o">=</span><span class="s2">&#34;hi&#34;</span><span class="p">))</span>  <span class="c1"># 정렬을 실행한 뒤 공백을 &#39;=&#39;문자로 채운다.</span>
+</code></pre></div><ul>
+<li>소수점 표현하기</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">print</span><span class="p">(</span><span class="s2">&#34;{0:0.4f}&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mf">3.124123123</span><span class="p">))</span>   <span class="c1"># 소수점 아래 4자리까지만 표현한다.</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;{0:10.4f}&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mf">3.124123123</span><span class="p">))</span>   <span class="c1"># 총 10자리를 주고 소수점 아래 4자리까지만 표현한다.</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;{var:10.4f}&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">var</span><span class="o">=</span><span class="mf">3.124123123</span><span class="p">))</span>   <span class="c1"># 총 10자리를 주고 소수점 아래 4자리까지만 표현한다.</span>
+</code></pre></div><ul>
+<li>&lsquo;{', &lsquo;}&lsquo;문자 표현하기</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">print</span><span class="p">(</span><span class="s2">&#34;{{ and }}&#34;</span><span class="p">)</span>  <span class="c1"># 2회 반복하여 문자를 표현한다.</span>
+</code></pre></div></li>
+</ul>
+<hr>
+<h3 id="3-리스트-자료형">3. 리스트 자료형</h3>
+<ul>
+<li>리스트의 생성</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">a</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Life&#39;</span><span class="p">,</span> <span class="s1">&#39;is&#39;</span><span class="p">,</span> <span class="s1">&#39;too&#39;</span><span class="p">,</span> <span class="s1">&#39;short&#39;</span><span class="p">]</span>
+<span class="n">d</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;Life&#39;</span><span class="p">,</span> <span class="s1">&#39;is&#39;</span><span class="p">]</span>
+<span class="n">e</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,[</span><span class="s1">&#39;Life&#39;</span><span class="p">,</span> <span class="s1">&#39;is&#39;</span><span class="p">]]</span>
+</code></pre></div><ul>
+<li>리스트의 인덱싱과 슬라이싱
+<ul>
+<li>인덱싱
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>        <span class="c1"># 리스트를 보여준다.</span>
+<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>     <span class="c1"># 첫번째 인덱스에 들어있는 값을 보여준다.</span>
+<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>    <span class="c1"># 마지막 인덱스에 들어있는 값을 보여준다.</span>
+</code></pre></div></li>
+<li>슬라이싱
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>        <span class="c1"># 리스트를 보여준다.</span>
+<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">])</span>   <span class="c1"># 0 인덱스부터 3 인덱스까지 보여준다.(슬라이싱)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">[:</span><span class="mi">4</span><span class="p">])</span>    <span class="c1"># 첫 인덱스부터 3 인덱스까지 보여준다.(슬라이싱)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">5</span><span class="p">])</span>   <span class="c1"># 2 인덱스부터 4 인덱스까지 보여준다.(슬라이싱)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">:])</span>    <span class="c1"># 2 인덱스부터 마지막 인덱스까지 보여준다.(슬라이싱)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">[:])</span>     <span class="c1"># 모든 인덱스를 보여준다.(슬라이싱)</span>
+</code></pre></div></li>
+</ul>
+</li>
+<li>리스트 연산자
+<ul>
+<li>더하기 : 뒤에 붙여준다.(append)</li>
+<li>곱하기 : 리스트를 반복한다.</li>
+</ul>
+</li>
+<li>리스트의 수정, 변경과 삭제
+<ul>
+<li>수정
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</code></pre></div></li>
+<li>연속된 수정
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</code></pre></div></li>
+<li>[] 사용한 요소 삭제
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">a</span><span class="p">[</span><span class="mi">5</span><span class="p">:</span><span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</code></pre></div></li>
+<li>del 함수를 사용한 요소 삭제
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="k">del</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="k">del</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</code></pre></div></li>
+</ul>
+</li>
+<li>리스트 관련 함수
+<ul>
+<li>리스트에 요소 추가(append)
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">a</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>     <span class="c1"># 마지막에 붙여준다.</span>
+</code></pre></div></li>
+<li>리스트 정렬(sort)
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">a</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>        <span class="c1"># 리스트 자체를 정렬한다.</span>
+</code></pre></div></li>
+<li>리스트 뒤집기(reverse)
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">a</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>     <span class="c1"># 리스트 자체를 뒤집는다.</span>
+</code></pre></div></li>
+<li>위치 반환(index)
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>   <span class="c1"># 리스트에 2라는 값이 있으면 위치(인덱스)값을 리턴한다.</span>
+<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>   <span class="c1"># 리스트에 0이라는 값이 있으면 위치(인덱스)값을 리턴한다. 0이라는 값이 존재하지 않기 때문에 오류를 발생시킨다.</span>
+</code></pre></div></li>
+<li>리스트에 요소 삽입(insert)
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">a</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>  <span class="c1"># 0 인덱스 위치에 4를 삽입한다. 원래 0 인덱스는 1 인덱스가 된다.</span>
+</code></pre></div></li>
+<li>리스트 요소 제거(remove)
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">a</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>     <span class="c1"># 처음으로 나오는 2를 제거한다.</span>
+</code></pre></div></li>
+<li>리스트 요소 끄집어내기(pop)
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">pop</span><span class="p">())</span>  <span class="c1"># 마지막 인덱스를 리턴하고 그 요소를 제거한다.</span>
+</code></pre></div></li>
+<li>리스트에 포함된 요소 x의 개수 세기(count)
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>   <span class="c1"># 리스트에서 1의 개수를 리턴한다.</span>
+</code></pre></div></li>
+<li>리스트 확장(extend)
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">a</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>    <span class="c1"># 매개 변수로 리스트만 올 수 있는 더하기 함수이다.</span>
+</code></pre></div></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="4-튜플-자료형">4. 튜플 자료형</h3>
+<ul>
+<li>몇 가지 특징을 제외하고는 리스트와 거의 비슷하다.</li>
+<li>리스트는 &lsquo;[&lsquo;과 &lsquo;]&lsquo;으로 둘러싼다.</li>
+<li>튜플은 &lsquo;(&lsquo;과 &lsquo;)&lsquo;으로 둘러싼다.</li>
+<li><strong>튜플의 요소값은 한 번 정하면 지우거나 변경할 수 없다.</strong></li>
+<li>생성
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">t1</span> <span class="o">=</span> <span class="p">()</span>                         <span class="c1"># 빈 튜플</span>
+<span class="n">t2</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,)</span>                       <span class="c1"># 한개 튜플</span>
+<span class="n">t3</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>                  <span class="c1"># 3개 튜플</span>
+<span class="n">t4</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span>                    <span class="c1"># 괄호 없이 선언한다면 튜플로 인식</span>
+<span class="n">t5</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;ab&#39;</span><span class="p">,</span> <span class="s1">&#39;cd&#39;</span><span class="p">))</span>   <span class="c1"># 2차원 이상도 가능하다.</span>
+</code></pre></div></li>
+<li>튜플의 인덱싱과 슬라이싱, 더하기(+)와 곱하기(*)
+<ul>
+<li>인덱싱</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">t1</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">t1</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+</code></pre></div><ul>
+<li>슬라이싱</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">t1</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">t1</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">])</span>      <span class="c1"># 1 인덱스부터 2 인덱스까지</span>
+<span class="k">print</span><span class="p">(</span><span class="n">t1</span><span class="p">[:</span><span class="mi">3</span><span class="p">])</span>       <span class="c1"># 처음부터 2 인덱스까지</span>
+<span class="k">print</span><span class="p">(</span><span class="n">t1</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">6</span><span class="p">])</span>      <span class="c1"># 3 인덱스부터 5 인덱스까지</span>
+<span class="k">print</span><span class="p">(</span><span class="n">t1</span><span class="p">[</span><span class="mi">3</span><span class="p">:])</span>       <span class="c1"># 3 인덱스부터 마지막까지</span>
+</code></pre></div><ul>
+<li>튜플 더하기</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">t1</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">t2</span> <span class="o">=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">t1</span> <span class="o">+</span> <span class="n">t2</span><span class="p">)</span>      <span class="c1"># 합쳐진 결과를 보여준다.</span>
+</code></pre></div><ul>
+<li>튜플 곱하기</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">t1</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">t1</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)</span>       <span class="c1"># 반복한다.</span>
+</code></pre></div></li>
+</ul>
+<hr>
+<h3 id="5-딕셔너리-자료형">5. 딕셔너리 자료형</h3>
+<ul>
+<li>
+<p>대응 관계를 나타낼 수 있는 자료형으로 연관 배열(associative array) 또는 해시(Hash)라고 한다.</p>
+</li>
+<li>
+<p>순차적으로 해상 요소값을 구하지 않고 Key를 통해 Value를 얻는다.</p>
+</li>
+<li>
+<p>Key에는 변하지 않는 값을 사용하고, Value에는 변하는 값과 변하지 않는 값 모두 사용할 수 있다.</p>
+<ul>
+<li><code>{Key1:Value1, Key2:Value2, Key3:Value3, ...}</code></li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">dic1</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span><span class="s1">&#39;pey&#39;</span><span class="p">,</span> <span class="s1">&#39;phone&#39;</span><span class="p">:</span><span class="s1">&#39;01033212232&#39;</span><span class="p">,</span> <span class="s1">&#39;birth&#39;</span><span class="p">:</span><span class="s1">&#39;1118&#39;</span><span class="p">}</span>
+<span class="n">dic2</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="mi">3</span><span class="p">:(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">):</span><span class="mi">123123901294021</span><span class="p">,</span> <span class="s1">&#39;aaa&#39;</span><span class="p">:</span><span class="mi">12312312</span><span class="p">}</span>
+</code></pre></div></li>
+<li>
+<p>딕셔너리 쌍 추가, 삭제하기</p>
+<ul>
+<li>추가</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">dic</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span><span class="s1">&#39;a&#39;</span><span class="p">}</span>
+<span class="n">dic</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;b&#39;</span>      <span class="c1"># Key가 2이고 Value가 &#39;b&#39;인 딕셔너리 쌍을 a에 추가한다.</span>
+<span class="n">dic</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;c&#39;</span>      <span class="c1"># Key가 1인 쌍이 존재하므로 Value가 &#39;c&#39;로 변경된다.</span>
+</code></pre></div><ul>
+<li>삭제</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">dic</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;hi&#39;</span><span class="p">:</span><span class="s1">&#39;bye&#39;</span><span class="p">}</span>
+<span class="k">del</span> <span class="n">dic</span><span class="p">[</span><span class="s1">&#39;hi&#39;</span><span class="p">]</span>       <span class="c1"># key가 &#39;hi&#39;인 요소를 제거한다.</span>
+</code></pre></div></li>
+<li>
+<p>Key로 Value 접근</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">dic</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;hi&#39;</span><span class="p">:</span><span class="s1">&#39;bye&#39;</span><span class="p">}</span>
+<span class="k">print</span><span class="p">(</span><span class="n">dic</span><span class="p">[</span><span class="s1">&#39;hi&#39;</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">dic</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</code></pre></div></li>
+<li>
+<p>딕셔너리 생성시 주의사항</p>
+<ul>
+<li>Key는 고유한 값이므로 중복되는 Key 값을 설정해 놓으면 하나를 제외한 나머지 것들이 모두 무시된다는 점을 주의해야 한다.</li>
+<li>Key에 튜플은 가능하지만 리스트를 쓸 수 없다.(변할 수 있는 값)</li>
+</ul>
+</li>
+<li>
+<p>딕셔너리 관련 함수</p>
+<ul>
+<li>Key 리스트 만들기(keys)</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">dic</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span><span class="s1">&#39;pey&#39;</span><span class="p">,</span> <span class="s1">&#39;phone&#39;</span><span class="p">:</span><span class="s1">&#39;01123234521&#39;</span><span class="p">,</span> <span class="s1">&#39;birth&#39;</span><span class="p">:</span><span class="s1">&#39;1232&#39;</span><span class="p">}</span>
+<span class="k">print</span><span class="p">(</span><span class="n">dic</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>       <span class="c1"># dict_keys 객체를 리턴한다.</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">dic</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span> <span class="c1"># dict_keys 객체를 리스트로 변환하여 보여준다.</span>
+</code></pre></div><ul>
+<li>Value 리스트 만들기(values)</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">dic</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span><span class="s1">&#39;pey&#39;</span><span class="p">,</span> <span class="s1">&#39;phone&#39;</span><span class="p">:</span><span class="s1">&#39;01123234521&#39;</span><span class="p">,</span> <span class="s1">&#39;birth&#39;</span><span class="p">:</span><span class="s1">&#39;1232&#39;</span><span class="p">}</span>
+<span class="k">print</span><span class="p">(</span><span class="n">dic</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>       <span class="c1"># dict_values 객체를 리턴한다.</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">dic</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span> <span class="c1"># dict_values 객체를 리스트로 변환하여 보여준다.</span>
+</code></pre></div><ul>
+<li>Key, Value 쌍 얻기(items)</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">dic</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span><span class="s1">&#39;pey&#39;</span><span class="p">,</span> <span class="s1">&#39;phone&#39;</span><span class="p">:</span><span class="s1">&#39;01123234521&#39;</span><span class="p">,</span> <span class="s1">&#39;birth&#39;</span><span class="p">:</span><span class="s1">&#39;1232&#39;</span><span class="p">}</span>
+<span class="k">print</span><span class="p">(</span><span class="n">dic</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>          <span class="c1"># dict_items 객체를 리턴한다.</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">dic</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>    <span class="c1"># dict_items 객체를 리스트로 변환하여 보여준다.</span>
+</code></pre></div><ul>
+<li>Key:Value 쌍 모두 지우기(clear)</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">dic</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span><span class="s1">&#39;pey&#39;</span><span class="p">,</span> <span class="s1">&#39;phone&#39;</span><span class="p">:</span><span class="s1">&#39;01123234521&#39;</span><span class="p">,</span> <span class="s1">&#39;birth&#39;</span><span class="p">:</span><span class="s1">&#39;1232&#39;</span><span class="p">}</span>
+<span class="n">dic</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">dic</span><span class="p">)</span>
+</code></pre></div><ul>
+<li>Key로 Value 얻기(get)</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">dic</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span><span class="s1">&#39;pey&#39;</span><span class="p">,</span> <span class="s1">&#39;phone&#39;</span><span class="p">:</span><span class="s1">&#39;01123234521&#39;</span><span class="p">,</span> <span class="s1">&#39;birth&#39;</span><span class="p">:</span><span class="s1">&#39;1232&#39;</span><span class="p">}</span>
+<span class="k">print</span><span class="p">(</span><span class="n">dic</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">))</span>              <span class="c1"># Key가 있으면 Value 리턴</span>
+<span class="k">print</span><span class="p">(</span><span class="n">dic</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">1212312341512125</span><span class="p">))</span>    <span class="c1"># Key가 없으면 None을 리턴</span>
+<span class="k">print</span><span class="p">(</span><span class="n">dic</span><span class="p">[</span><span class="mi">1012031230120310</span><span class="p">])</span>        <span class="c1"># Key가 없으면 오류!</span>
+</code></pre></div><ul>
+<li>해당 Key가 딕셔너리 안에 있는지 조사하기(in)</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">dic</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span><span class="s1">&#39;pey&#39;</span><span class="p">,</span> <span class="s1">&#39;phone&#39;</span><span class="p">:</span><span class="s1">&#39;01123234521&#39;</span><span class="p">,</span> <span class="s1">&#39;birth&#39;</span><span class="p">:</span><span class="s1">&#39;1232&#39;</span><span class="p">}</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;keys&#39;</span> <span class="ow">in</span> <span class="n">dic</span><span class="p">)</span>    <span class="c1"># Key가 없으면 False 리턴</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;name&#39;</span> <span class="ow">in</span> <span class="n">dic</span><span class="p">)</span>    <span class="c1"># Key가 있으면 True 리턴</span>
+</code></pre></div></li>
+</ul>
+<hr>
+<h3 id="6-집합-자료형">6. 집합 자료형</h3>
+<ul>
+<li>집합(set)은 파이선 2.3부터 지원되기 시작한 자료형이다.</li>
+<li>집합에 관련된 것을 쉽게 처리하기 위해 만들어졌다.</li>
+<li>집합 자료형 특징
+<ul>
+<li>중복을 허용하지 않는다.</li>
+<li>순서가 없다.(Unordered)</li>
+<li>set 자료형에 저장된 값을 인덱싱으로 접근하려면 리스트나 튜플로 변환하여 접근하여야 한다.</li>
+</ul>
+</li>
+<li>집합 자료형 생성
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">s1</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="s2">&#34;hello&#34;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span>
+<span class="n">s2</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span>
+</code></pre></div></li>
+<li>집합 자료형 활용
+<ul>
+<li>교집합, 합집합, 차집합 구하기</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">s1</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">s2</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+<span class="c1"># 교집합</span>
+<span class="k">print</span><span class="p">(</span><span class="n">s1</span> <span class="o">&amp;</span> <span class="n">s2</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">s1</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">s2</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">s2</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">s1</span><span class="p">))</span>
+<span class="c1"># 합집합</span>
+<span class="k">print</span><span class="p">(</span><span class="n">s1</span> <span class="o">|</span> <span class="n">s2</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">s1</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">s2</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">s2</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">s1</span><span class="p">))</span>
+<span class="c1"># 차집합</span>
+<span class="k">print</span><span class="p">(</span><span class="n">s1</span> <span class="o">-</span> <span class="n">s2</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">s1</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">s2</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">s2</span> <span class="o">-</span> <span class="n">s1</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">s2</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">s1</span><span class="p">))</span>
+</code></pre></div></li>
+<li>집합 자료형 관련 함수
+<ul>
+<li>값 1개 추가하기(add)</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">s1</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">s1</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span>
+</code></pre></div><ul>
+<li>값 여러 개 추가하기(update)</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">s1</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">s1</span><span class="o">.</span><span class="n">update</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span>
+</code></pre></div><ul>
+<li>특정 값 제거하기(remove)</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">s1</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">s1</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span>
+</code></pre></div></li>
+</ul>
+<hr>
+<h3 id="7-자료형의-참과-거짓">7. 자료형의 참과 거짓</h3>
+<ul>
+<li>
+<p>자료형의 참과 거짓을 구분하는  기준</p>
+<p><img src="../images/truefalse.PNG" alt="구분 기준"></p>
+</li>
+<li>
+<p>반복문과 조건문에서 조건식의 참과 거짓을 판단할 때 쓰인다.</p>
+</li>
+</ul>
+<hr>
+<h3 id="8-자료형의-값을-저장하는-공간-변수">8. 자료형의 값을 저장하는 공간, 변수</h3>
+<ul>
+<li>변수를 만들 때는 =(assignment)기호를 사용한다.</li>
+<li>변수의 자료형을 쓸 필요가 없다.</li>
+<li>변수에 저장된 값을 스스로 판단하여 자료형을 알아낸다.</li>
+<li>변수란? <strong>파이썬에서 사용되는 모든 것</strong></li>
+<li>파이썬에서 모든 리터럴은 객체이다.</li>
+<li>메모리에 생성된 변수 없애기 <code>del([변수명])</code></li>
+<li>리스트를 변수에 넣고 복사하고자 할 때(객체지향의 특징)
+<ul>
+<li>[:]를 이용한 복사</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">a</span>
+<span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="k">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>        <span class="c1"># b = a로 포인터만 준다면 a를 변경하면 b도 변경된다.</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="p">[:]</span>
+<span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4</span>        <span class="c1"># b = a[:] 요소 각각을 복사한다면 a를 변경해도 </span>
+<span class="k">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>        <span class="c1"># b는 변경되지 않는다.</span>
+</code></pre></div><ul>
+<li>copy 모듈을 이용한 복사</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">copy</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">copy</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>     <span class="c1"># b = a[:]와 동일하다.</span>
+<span class="k">print</span><span class="p">(</span><span class="n">b</span> <span class="ow">is</span> <span class="n">a</span><span class="p">)</span>   <span class="c1"># 같다면 True, 다르면 False</span>
+</code></pre></div></li>
+</ul>
+
+</div>
+</div>
+
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+  <div class="sub-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="sub-footer-inner">
+          <ul>
+            <li class="zerostatic"><a href="https://www.zerostatic.io">www.zerostatic.io</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/scripts.min.1237ff71925bb8625c97a9af8db4c54525258bedfd7c47493daaff723bea755e.js"></script>
+  
+
+  
+  
+  
+    
+  
+
+
+</body>
+
+</html>
