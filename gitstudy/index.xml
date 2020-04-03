@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Git &amp; Github on LaMelD&#39;s dev Story</title>
+    <link>https://lameld.github.io/gitstudy/</link>
+    <description>Recent content in Git &amp; Github on LaMelD&#39;s dev Story</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 31 Mar 2020 09:14:39 +0900</lastBuildDate>
+    
+	<atom:link href="https://lameld.github.io/gitstudy/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>1장 : 깃 시작하기</title>
+      <link>https://lameld.github.io/gitstudy/ch1/</link>
+      <pubDate>Fri, 29 Nov 2019 17:38:30 +0900</pubDate>
+      
+      <guid>https://lameld.github.io/gitstudy/ch1/</guid>
+      <description>1. 깃으로 무엇을 할 수 있을까?  버전관리  local 저장소에 관련된 내용 :: git   백업하기  remote 저장소에 관련된 내용 :: github   협업하기  git, github 다루기    2.</description>
+    </item>
+    
+    <item>
+      <title>2장 : 깃으로 버전 관리하기</title>
+      <link>https://lameld.github.io/gitstudy/ch2/</link>
+      <pubDate>Fri, 29 Nov 2019 17:38:30 +0900</pubDate>
+      
+      <guid>https://lameld.github.io/gitstudy/ch2/</guid>
+      <description>1. 깃 저장소  깃 초기화 하기  디렉토리를 하나 새로 만들고 내부를 살펴본 뒤 git init을 하면 .git이라는 디렉토리가 새로 생긴다. .git : 깃을 사용하면 버전이 저장될 &amp;lsquo;저장소&amp;rsquo;  $ mkdir hi-git$ cd hi-git$ ls -al$ git init$ ls -al  2.</description>
+    </item>
+    
+    <item>
+      <title>3장 : 깃과 브랜치</title>
+      <link>https://lameld.github.io/gitstudy/ch3/</link>
+      <pubDate>Fri, 29 Nov 2019 17:38:30 +0900</pubDate>
+      
+      <guid>https://lameld.github.io/gitstudy/ch3/</guid>
+      <description>1. 브랜치(branch)   분기점
+ master에서 commit한다. 현 상태에서 Feature-1 브랜치를 만들어 새로운 내용을 추가하여 commit한다. master에서 새로운 내용을 넣어 commit한다. 현 상태에서 Feature-2 브랜치를 만들어 새로운 내용을 추가하여 commit 한다.</description>
+    </item>
+    
+    <item>
+      <title>4장 : 깃허브로 백업하기</title>
+      <link>https://lameld.github.io/gitstudy/ch4/</link>
+      <pubDate>Fri, 29 Nov 2019 17:38:30 +0900</pubDate>
+      
+      <guid>https://lameld.github.io/gitstudy/ch4/</guid>
+      <description>1. 원격 저장소와 깃허브  원격 저장소  지역 저장소가 아닌 컴퓨터나 서버에 만든 저장소를 말한다. 지역 저장소와 연결되어 있으면서 &amp;lsquo;백업&#39;과 &amp;lsquo;협업&#39;이라는 중요한 역할을 한다.   깃허브로 할 수 있는 일  원격 저장소에서 깃을 사용할 수 있다.</description>
+    </item>
+    
+    <item>
+      <title>5장 : 깃허브로 협업하기</title>
+      <link>https://lameld.github.io/gitstudy/ch5/</link>
+      <pubDate>Fri, 29 Nov 2019 17:38:30 +0900</pubDate>
+      
+      <guid>https://lameld.github.io/gitstudy/ch5/</guid>
+      <description>1. 여러 컴퓨터에서 원격 저장소 함께 사용하기  원격 저장소 복제하기 :: git clone  git clone [복사할 원격 저장소의 URL] 위와 같이 사용하여 원격 저장소에서 복제할 수 있다.(복제한다 == 클론 == 클로닝) git clone [복제할 저장소의 URL] [복제할 디렉토리] 복제할 디렉토리가 없으면 새로 생성해준다.</description>
+    </item>
+    
+  </channel>
+</rss>

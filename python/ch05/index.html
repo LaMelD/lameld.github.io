@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>5. 파이썬 정규 표현식과 XML - LaMelD&#39;s dev Story</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="icon" href="https://lameld.github.io/favicon.png">
+
+  
+  
+  <link rel="stylesheet" href="/css/style.min.6aa5eecd4ca7c47fb2ca9b0775a7bd787e3e64a2eadf0fef8c9f924498f49127.css">
+  
+
+  
+
+</head>
+
+<body class='page page-default-single'>
+  <div id="main-menu-mobile" class="main-menu-mobile">
+  <ul>
+    
+    
+    <li class="menu-item-home">
+      <a href="/">
+        <span>Home</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-kakao">
+      <a href="/kakao/">
+        <span>Kakao</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-swea">
+      <a href="/swea/">
+        <span>Swea</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-datastructure">
+      <a href="/datastructure/">
+        <span>DataStructure</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-cloudbasic">
+      <a href="/cloudbasic/">
+        <span>CloudBasic</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-git&amp;github">
+      <a href="/gitstudy/">
+        <span>Git&amp;Github</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-python">
+      <a href="/python/">
+        <span>Python</span>
+      </a>
+    </li>
+    
+  </ul>
+</div>
+  <div class="wrapper">
+    <div class='header'>
+  <div class="container">
+    <div class="logo">
+      <a href="https://lameld.github.io"><img alt="Logo" src="/images/logo.svg" /></a>
+    </div>
+    <div class="logo-mobile">
+      <a href="https://lameld.github.io"><img alt="Logo" src="/images/logo-mobile.svg" /></a>
+    </div>
+    <div id="main-menu" class="main-menu">
+  <ul>
+    
+    
+    <li class="menu-item-home">
+      <a href="/">
+        <span>Home</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-kakao">
+      <a href="/kakao/">
+        <span>Kakao</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-swea">
+      <a href="/swea/">
+        <span>Swea</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-datastructure">
+      <a href="/datastructure/">
+        <span>DataStructure</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-cloudbasic">
+      <a href="/cloudbasic/">
+        <span>CloudBasic</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-git&amp;github">
+      <a href="/gitstudy/">
+        <span>Git&amp;Github</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-python">
+      <a href="/python/">
+        <span>Python</span>
+      </a>
+    </li>
+    
+  </ul>
+</div>
+    <button id="toggle-main-menu-mobile" class="hamburger hamburger--slider" type="button">
+  <span class="hamburger-box">
+    <span class="hamburger-inner"></span>
+  </span>
+</button>
+  </div>
+</div>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <div class="container pt-2 pt-md-6 pb-3 pb-md-6">
+      <div class="row">
+        <div class="col-12 col-md-3 mb-3">
+          <div class="sidebar">
+            
+<div class="docs-menu">
+  <h4>Python</h4>
+  <ul>
+    
+    <li class="">
+      <a href="https://lameld.github.io/python/ch01/">1. 파이썬 프로그래밍의 기초, 자료형</a>
+    </li>
+    
+    <li class="">
+      <a href="https://lameld.github.io/python/ch02/">2. 프로그램의 구조를 쌓는다! 제어문</a>
+    </li>
+    
+    <li class="">
+      <a href="https://lameld.github.io/python/ch03/">3. 프로그램의 입력과 출력</a>
+    </li>
+    
+    <li class="">
+      <a href="https://lameld.github.io/python/ch04/">4. 파이썬 날개 달기, 클래스</a>
+    </li>
+    
+    <li class="active ">
+      <a href="https://lameld.github.io/python/ch05/">5. 파이썬 정규 표현식과 XML</a>
+    </li>
+    
+  </ul>
+</div>
+
+          </div>
+        </div>
+        <div class="col-12 col-md-9">
+          
+<h1 class="title">5. 파이썬 정규 표현식과 XML</h1>
+<div class="content ">
+  <h3 id="1-정규-표현식-살펴보기">1. 정규 표현식 살펴보기</h3>
+<ul>
+<li>정규식의 필요성
+<ul>
+<li>장황한 parsing을 간편하고 직관적인 코드로 대체할 수 있다.</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">data</span> <span class="o">=</span> <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">park 800905-1049118
+</span><span class="s2">kim 700905-1059119
+</span><span class="s2">&#34;&#34;&#34;</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">):</span>
+    <span class="n">word_result</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="o">==</span> <span class="mi">14</span> <span class="ow">and</span> <span class="n">word</span><span class="p">[:</span><span class="mi">6</span><span class="p">]</span><span class="o">.</span><span class="n">isdigit</span><span class="p">()</span> <span class="ow">and</span> <span class="n">word</span><span class="p">[</span><span class="mi">7</span><span class="p">:]</span><span class="o">.</span><span class="n">isdigit</span><span class="p">():</span>
+            <span class="n">word</span> <span class="o">=</span> <span class="n">word</span><span class="p">[:</span><span class="mi">6</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&#34;-&#34;</span> <span class="o">+</span> <span class="s2">&#34;*******&#34;</span>
+        <span class="n">word_result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">word_result</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">re</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">park 800905-1049118
+</span><span class="s2">kim 700905-1059119
+</span><span class="s2">&#34;&#34;&#34;</span>
+
+<span class="n">pat</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s2">&#34;(\d{6})[-]\d{7}&#34;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">pat</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s2">&#34;\g&lt;1&gt;-*******&#34;</span><span class="p">,</span> <span class="n">data</span><span class="p">))</span>
+</code></pre></div><hr>
+<h3 id="2-정규-표현식-시작하기">2. 정규 표현식 시작하기</h3>
+<ul>
+<li>
+<p>정규 표현식에서 사용하는 메타문자 : <code>. ^ $ * + ? { } [ ] \ | ( )</code></p>
+</li>
+<li>
+<p>문자 클래스 <code>[ ]</code></p>
+<ul>
+<li><code>[와 ] 사이의 문자들과 매치</code></li>
+</ul>
+<p><img src="/images/char_class.PNG" alt="문자 클래스"></p>
+<ul>
+<li>두 문자 사이에 하이픈(-)을 사용하게 되면 두 문자 사이의 범위를 의미함.</li>
+<li>하나의 문자라도 같은게 있다면 매치된다.</li>
+<li>^은 not을 의미한다. : <code>[^0-9]</code>은 숫자가 아닌 문자만 매치된다.</li>
+</ul>
+<p><img src="/images/useful_char_class.PNG" alt="자주 사용하는 문자 클래스"></p>
+</li>
+<li>
+<p>Dot(.)</p>
+<ul>
+<li>정규 표현식의 Dot(.) 메타 문자는 줄바꿈 문자인 \n을 제외한 모든 문자와 매치됨을 의미한다.</li>
+<li><code>a.b</code> : a와 b사이에 줄바굼 문자를 제외한 어떤 문자가 들어가도 매치됨.</li>
+</ul>
+<p><img src="/images/dot.PNG" alt="Dot"></p>
+<ul>
+<li><code>a[.]b</code> : a와 b 사이에 Dot(.) 문자가 있으면 매치</li>
+</ul>
+</li>
+<li>
+<p>반복(*)</p>
+<ul>
+<li><code>ca*t</code> : a가 0번이상 반복되면 매치</li>
+</ul>
+<p><img src="/images/star.PNG" alt="반복"></p>
+</li>
+<li>
+<p>반복(+)</p>
+<ul>
+<li><code>ca+t</code> : a가 1번 이상 반복되면 매치</li>
+</ul>
+<p><img src="/images/plus.PNG" alt="반복"></p>
+</li>
+<li>
+<p>반복({m, n}, ?)</p>
+<ul>
+<li><code>ca{2}t</code> : a가 2번 반복되면 매치</li>
+<li><code>cat{2,5}t</code> : a가 2번이상 5번이하로 반복되면 매치</li>
+<li><code>ca?t</code> : a가 0번 또는 1번 반복되면 매치</li>
+</ul>
+</li>
+<li>
+<p>파이썬에서 정규 표현식을 지원하는 모듈 : re 모듈</p>
+<ul>
+<li><code>import re</code></li>
+</ul>
+<p><img src="/images/re_method.PNG" alt="문자열 검색"></p>
+<ul>
+<li>
+<p>match</p>
+<ul>
+<li>문자열의 처음부터 정규식과 매치되는지 조사한다.</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">re</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;[a-z]+&#39;</span><span class="p">)</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s2">&#34;python&#34;</span><span class="p">)</span>       <span class="c1"># 부합</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s2">&#34;3 python&#34;</span><span class="p">)</span>     <span class="c1"># 3이라는 문자가 정규식에 부합하지 않음</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># 코딩 예시</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="err">정규식</span><span class="p">)</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s2">&#34;조사할 문자열&#34;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">m</span><span class="p">:</span>
+    <span class="err">매치</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="err">매치</span> <span class="err">안됨</span>
+</code></pre></div><ul>
+<li>match 객체를 반환한다.</li>
+</ul>
+</li>
+<li>
+<p>match 객체의 메서드</p>
+<p><img src="/images/match_method.PNG" alt="match"></p>
+</li>
+<li>
+<p>search</p>
+<ul>
+<li>문자열 전체를 검색하기 때문에 &lsquo;3 python'에서 &lsquo;python'과 매치된다.</li>
+</ul>
+</li>
+<li>
+<p>findall</p>
+<ul>
+<li>정규식과 매치되는 것을 리스트 형태로 반환한다.</li>
+</ul>
+</li>
+<li>
+<p>finditer</p>
+<ul>
+<li>findall과 동일하지만 그 결과로 반복 가능한 객체를 반환한다. 각각의 요소는 match 객체이다.</li>
+</ul>
+</li>
+<li>
+<p>모듈 단위로 수행하기</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">p</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;[a-z]+&#39;</span><span class="p">)</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s2">&#34;python&#34;</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">m</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s1">&#39;[a-z]+&#39;</span><span class="p">,</span> <span class="s2">&#34;python&#34;</span><span class="p">)</span>
+</code></pre></div></li>
+</ul>
+</li>
+<li>
+<p>컴파일 옵션</p>
+<p><img src="/images/compile_option.PNG" alt="컴파일 옵션"></p>
+</li>
+<li>
+<p>백슬레쉬 문제</p>
+<ul>
+<li>정규 표현식을 파이썬에서 혼란을 주는 요소 : 백슬래쉬</li>
+<li>&ldquo;\section&quot;을 찾을 때 <code>p = re.compile('\\section')</code>을 사용해야 한다.</li>
+<li>Raw String임을 알려주는 r</li>
+<li><code>p = re.compile('\\section')</code> == <code>p = re.compile(r'\sectino')</code></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="3-강력한-정규-표현식-세계로">3. 강력한 정규 표현식 세계로</h3>
+<ul>
+<li>메타 문자
+<ul>
+<li>| : or과 동일하다.</li>
+<li>^ : 문자열의 맨 처음과 일치함을 뜻한다.</li>
+<li>$ : 문자열의 맨 뒤와 일치함을 뜻한다.</li>
+<li>\A : ^와 동일한 의미이지만 re.MULTILINE 옵션을 사용할 때는 라인과 상관없이 전체 문자열의 처음하고만 매치된다.</li>
+<li>\Z : $와 동일한 의미이지만 re.MULTILINE 옵션을 사용할 때는 라인과 상관없이 전체 문자열의 끝과 매치된다.</li>
+<li>\b : 단어 구분자(whitespace)에 의해 구분된다. 백스페이스와 차별화 해야하기 때문에 기호 r을 꼭 붙여야 한다.</li>
+<li>\B : \b와 반대로 whitespace가 아닌 경우에만 매치된다.</li>
+</ul>
+</li>
+<li>그룹핑
+<ul>
+<li>문자열의 반복을 확인하기위해 그룹을 반들어 매칭한다.</li>
+<li><code>(ABC)+</code> : ABC와 1번 이상 매치되는 것을 찾는다!!
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">re</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;(ABC)+&#39;</span><span class="p">)</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;ABCABCABC OK?&#39;</span><span class="p">)</span>
+</code></pre></div></li>
+</ul>
+</li>
+<li>그룹핑된 문자열에 이름 붙이기
+<ul>
+<li>
+<p>그룹을 인덱스가 아닌 이름을 참조할 수 있다.</p>
+<ul>
+<li><code>(?P&lt;name&gt;\w+)\s+((\d+)[-]\d+[-]\d+)</code></li>
+<li><code>(?P&lt;이름&gt;...)</code> 과 같이 이름을 붙일 수 있다.</li>
+</ul>
+</li>
+<li>
+<p>전방 탐색</p>
+<p><img src="/images/front_search.PNG" alt="전방 탐색"></p>
+<ul>
+<li>긍정형 전방 탐색</li>
+<li>부정형 전반 탐색</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>문자열 바꾸기
+<ul>
+<li>sub 메소드</li>
+<li>sub 메소드와 유사한 subn 메소드</li>
+</ul>
+</li>
+<li>Greedy vs Non-Greedy
+<ul>
+<li>다시 한번 볼 필요가 있다.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="4-파이썬으로-xml-처리하기">4. 파이썬으로 XML 처리하기</h3>
+<ul>
+<li>XML을 처리할 여러가지 라이브러리가 존재한다.</li>
+<li>이 책에선 ElementTree를 사용한다.</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="c">&lt;!-- 생성하려는 xml --&gt;</span>
+<span class="nt">&lt;note</span> <span class="na">date=</span><span class="s">&#34;20151231&#34;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;to&gt;</span>Tove<span class="nt">&lt;/to&gt;</span>
+    <span class="nt">&lt;from&gt;</span>Jani<span class="nt">&lt;/from&gt;</span>
+    <span class="nt">&lt;heading&gt;</span>Reminder<span class="nt">&lt;/heading&gt;</span>
+    <span class="nt">&lt;body&gt;</span>Don&#39;t forget me this weekend!<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/note&gt;</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">xml.etree.ElementTree</span> <span class="kn">import</span> <span class="n">Element</span><span class="p">,</span> <span class="n">dump</span>
+
+<span class="n">note</span> <span class="o">=</span> <span class="n">Element</span><span class="p">(</span><span class="s2">&#34;note&#34;</span><span class="p">)</span>
+<span class="n">to</span> <span class="o">=</span> <span class="n">Element</span><span class="p">(</span><span class="s2">&#34;to&#34;</span><span class="p">)</span>
+<span class="n">to</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s2">&#34;Tove&#34;</span>
+<span class="n">note</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">to</span><span class="p">)</span>
+<span class="n">dump</span><span class="p">(</span><span class="n">note</span><span class="p">)</span>
+</code></pre></div><ul>
+<li>위의 소스의 실행 결과는 다음과 같다.<br>
+<code>&lt;note&gt;&lt;to&gt;Tove&lt;/to&gt;&lt;/note&gt;</code></li>
+<li>SubElement를 이용하면 더 편리하게 태그를 추가할 수 있다.</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">xml.etree.ElementTree</span> <span class="kn">import</span> <span class="n">Element</span><span class="p">,</span> <span class="n">dump</span>
+
+<span class="n">note</span> <span class="o">=</span> <span class="n">Element</span><span class="p">(</span><span class="s2">&#34;note&#34;</span><span class="p">)</span>
+<span class="n">to</span> <span class="o">=</span> <span class="n">Element</span><span class="p">(</span><span class="s2">&#34;to&#34;</span><span class="p">)</span>
+<span class="n">to</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s2">&#34;Tove&#34;</span>
+
+<span class="n">note</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">to</span><span class="p">)</span>
+<span class="n">SubElement</span><span class="p">(</span><span class="n">note</span><span class="p">,</span> <span class="s2">&#34;from&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s2">&#34;Jani&#34;</span>
+
+<span class="n">dump</span><span class="p">(</span><span class="n">note</span><span class="p">)</span>
+</code></pre></div><ul>
+<li>위의 소스의 실행결과는 다음과 같다.<br>
+<code>&lt;note&gt;&lt;to&gt;Tove&lt;/to&gt;&lt;from&gt;Jani&lt;/from&gt;&lt;/note&gt;</code></li>
+<li>다음과 같이 태그 사이에 태그를 추가하거나 특정 태그를 삭제할 수 있다.</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">dummy</span> <span class="o">=</span> <span class="n">Element</span><span class="p">(</span><span class="s2">&#34;dummy&#34;</span><span class="p">)</span>
+<span class="n">note</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">dummy</span><span class="p">)</span>
+<span class="n">note</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">dummy</span><span class="p">)</span>
+</code></pre></div><ul>
+<li>애트리뷰트 추가</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">xml.etree.ElementTree</span> <span class="kn">import</span> <span class="n">Element</span><span class="p">,</span> <span class="n">dump</span>
+
+<span class="n">note</span> <span class="o">=</span> <span class="n">Element</span><span class="p">(</span><span class="s2">&#34;note&#34;</span><span class="p">)</span>
+<span class="n">to</span> <span class="o">=</span> <span class="n">Element</span><span class="p">(</span><span class="s2">&#34;to&#34;</span><span class="p">)</span>
+<span class="n">to</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s2">&#34;Tove&#34;</span>
+
+<span class="n">note</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">to</span><span class="p">)</span>
+<span class="n">SubElement</span><span class="p">(</span><span class="n">note</span><span class="p">,</span> <span class="s2">&#34;from&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s2">&#34;Jani&#34;</span>
+<span class="n">note</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s2">&#34;date&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&#34;20120104&#34;</span>
+
+<span class="n">dump</span><span class="p">(</span><span class="n">note</span><span class="p">)</span>
+</code></pre></div><ul>
+<li>목표 XML 소스</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">xml.etree.ElementTree</span> <span class="kn">import</span> <span class="n">Element</span><span class="p">,</span> <span class="n">dump</span>
+
+<span class="n">note</span> <span class="o">=</span> <span class="n">Element</span><span class="p">(</span><span class="s2">&#34;note&#34;</span><span class="p">)</span>
+<span class="n">note</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s2">&#34;date&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&#34;20151231&#34;</span>
+
+<span class="n">subElement</span><span class="p">(</span><span class="n">note</span><span class="p">,</span> <span class="s2">&#34;to&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s2">&#34;Tove&#34;</span>
+<span class="n">SubElement</span><span class="p">(</span><span class="n">note</span><span class="p">,</span> <span class="s2">&#34;from&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s2">&#34;Jani&#34;</span>
+<span class="n">SubElement</span><span class="p">(</span><span class="n">note</span><span class="p">,</span> <span class="s2">&#34;heading&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s2">&#34;Reminder&#34;</span>
+<span class="n">SubElement</span><span class="p">(</span><span class="n">note</span><span class="p">,</span> <span class="s2">&#34;body&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s2">&#34;Don&#39;t forget me this weekend!&#34;</span>
+
+<span class="n">dump</span><span class="p">(</span><span class="n">note</span><span class="p">)</span>
+</code></pre></div><ul>
+<li>indent 함수
+<ul>
+<li>정렬된 형태의 xml 값을 보기위한 함수</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">xml.etree.ElementTree</span> <span class="kn">import</span> <span class="n">Element</span><span class="p">,</span> <span class="n">dump</span>
+
+<span class="n">note</span> <span class="o">=</span> <span class="n">Element</span><span class="p">(</span><span class="s2">&#34;note&#34;</span><span class="p">)</span>
+<span class="n">note</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s2">&#34;date&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&#34;20151231&#34;</span>
+
+<span class="n">subElement</span><span class="p">(</span><span class="n">note</span><span class="p">,</span> <span class="s2">&#34;to&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s2">&#34;Tove&#34;</span>
+<span class="n">SubElement</span><span class="p">(</span><span class="n">note</span><span class="p">,</span> <span class="s2">&#34;from&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s2">&#34;Jani&#34;</span>
+<span class="n">SubElement</span><span class="p">(</span><span class="n">note</span><span class="p">,</span> <span class="s2">&#34;heading&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s2">&#34;Reminder&#34;</span>
+<span class="n">SubElement</span><span class="p">(</span><span class="n">note</span><span class="p">,</span> <span class="s2">&#34;body&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s2">&#34;Don&#39;t forget me this weekend!&#34;</span>
+
+<span class="k">def</span> <span class="nf">indent</span><span class="p">(</span><span class="n">elem</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">level</span> <span class="o">*</span> <span class="s1">&#39; &#39;</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">elem</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">elem</span><span class="o">.</span><span class="n">text</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">elem</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">():</span>
+            <span class="n">elem</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">elem</span><span class="o">.</span><span class="n">tail</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">elem</span><span class="o">.</span><span class="n">tail</span><span class="o">.</span><span class="n">strip</span><span class="p">():</span>
+            <span class="n">elem</span><span class="o">.</span><span class="n">tail</span> <span class="o">=</span> <span class="n">i</span>
+        <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">elem</span><span class="p">:</span>
+            <span class="n">indent</span><span class="p">(</span><span class="n">elem</span><span class="p">,</span> <span class="n">level</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">elem</span><span class="o">.</span><span class="n">tail</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">elem</span><span class="o">.</span><span class="n">tail</span><span class="o">.</span><span class="n">strip</span><span class="p">():</span>
+            <span class="n">elem</span><span class="o">.</span><span class="n">tail</span> <span class="o">=</span> <span class="n">i</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">level</span> <span class="ow">and</span> <span class="p">(</span><span class="ow">not</span> <span class="n">elem</span><span class="o">.</span><span class="n">tail</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">elem</span><span class="o">.</span><span class="n">tail</span><span class="o">.</span><span class="n">strip</span><span class="p">()):</span>
+            <span class="n">elem</span><span class="o">.</span><span class="n">tail</span> <span class="o">=</span> <span class="n">i</span>
+
+<span class="n">indent</span><span class="p">(</span><span class="n">note</span><span class="p">)</span>
+<span class="n">dump</span><span class="p">(</span><span class="n">note</span><span class="p">)</span>
+</code></pre></div></li>
+<li>XML 문서 파싱하기
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">xml.etree.ElementTree</span> <span class="kn">import</span> <span class="n">parse</span>
+<span class="n">tree</span> <span class="o">=</span> <span class="n">parse</span><span class="p">(</span><span class="s2">&#34;note.xml&#34;</span><span class="p">)</span>
+<span class="n">note</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">getroot</span><span class="p">()</span>
+  
+<span class="c1"># 어트리뷰트 얻기</span>
+<span class="n">date</span> <span class="o">=</span> <span class="n">note</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;date&#34;</span><span class="p">)</span>
+<span class="n">nodata</span> <span class="o">=</span> <span class="n">note</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;nodata&#34;</span><span class="p">,</span> <span class="s2">&#34;기본값&#34;</span><span class="p">)</span>
+<span class="n">keys</span> <span class="o">=</span> <span class="n">note</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+<span class="n">items</span> <span class="o">=</span> <span class="n">note</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+
+<span class="c1"># 태그 접근</span>
+<span class="n">to_tag</span> <span class="o">=</span> <span class="n">note</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;to&#34;</span><span class="p">)</span>
+<span class="n">to_tags</span> <span class="o">=</span> <span class="n">note</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&#34;to&#34;</span><span class="p">)</span>
+<span class="n">to_text</span> <span class="o">=</span> <span class="n">note</span><span class="o">.</span><span class="n">findtext</span><span class="p">(</span><span class="s2">&#34;to&#34;</span><span class="p">)</span>
+<span class="c1"># 순차 접근</span>
+<span class="n">childs</span> <span class="o">=</span> <span class="n">note</span><span class="o">.</span><span class="n">getiterator</span><span class="p">()</span>
+<span class="n">childs</span> <span class="o">=</span> <span class="n">note</span><span class="o">.</span><span class="n">getChildren</span><span class="p">()</span>
+<span class="c1"># 태그명으로 접근</span>
+<span class="n">from_tag</span> <span class="o">=</span> <span class="n">note</span><span class="o">.</span><span class="n">getiterator</span><span class="p">(</span><span class="s2">&#34;from&#34;</span><span class="p">)</span>
+<span class="c1"># 일반적인 사용</span>
+<span class="k">for</span> <span class="n">parent</span> <span class="ow">in</span> <span class="n">tree</span><span class="o">.</span><span class="n">getiterator</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">parent</span><span class="p">:</span>
+        <span class="c1"># 수행 문장</span>
+</code></pre></div></li>
+</ul>
+
+</div>
+</div>
+
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+  <div class="sub-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="sub-footer-inner">
+          <ul>
+            <li class="zerostatic"><a href="https://www.zerostatic.io">www.zerostatic.io</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/scripts.min.1237ff71925bb8625c97a9af8db4c54525258bedfd7c47493daaff723bea755e.js"></script>
+  
+
+  
+  
+  
+    
+  
+
+
+</body>
+
+</html>

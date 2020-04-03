@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>2장 : 깃으로 버전 관리하기 - LaMelD&#39;s dev Story</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="icon" href="https://lameld.github.io/favicon.png">
+
+  
+  
+  <link rel="stylesheet" href="/css/style.min.6aa5eecd4ca7c47fb2ca9b0775a7bd787e3e64a2eadf0fef8c9f924498f49127.css">
+  
+
+  
+
+</head>
+
+<body class='page page-default-single'>
+  <div id="main-menu-mobile" class="main-menu-mobile">
+  <ul>
+    
+    
+    <li class="menu-item-home">
+      <a href="/">
+        <span>Home</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-kakao">
+      <a href="/kakao/">
+        <span>Kakao</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-swea">
+      <a href="/swea/">
+        <span>Swea</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-datastructure">
+      <a href="/datastructure/">
+        <span>DataStructure</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-cloudbasic">
+      <a href="/cloudbasic/">
+        <span>CloudBasic</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-git&amp;github">
+      <a href="/gitstudy/">
+        <span>Git&amp;Github</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-python">
+      <a href="/python/">
+        <span>Python</span>
+      </a>
+    </li>
+    
+  </ul>
+</div>
+  <div class="wrapper">
+    <div class='header'>
+  <div class="container">
+    <div class="logo">
+      <a href="https://lameld.github.io"><img alt="Logo" src="/images/logo.svg" /></a>
+    </div>
+    <div class="logo-mobile">
+      <a href="https://lameld.github.io"><img alt="Logo" src="/images/logo-mobile.svg" /></a>
+    </div>
+    <div id="main-menu" class="main-menu">
+  <ul>
+    
+    
+    <li class="menu-item-home">
+      <a href="/">
+        <span>Home</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-kakao">
+      <a href="/kakao/">
+        <span>Kakao</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-swea">
+      <a href="/swea/">
+        <span>Swea</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-datastructure">
+      <a href="/datastructure/">
+        <span>DataStructure</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-cloudbasic">
+      <a href="/cloudbasic/">
+        <span>CloudBasic</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-git&amp;github">
+      <a href="/gitstudy/">
+        <span>Git&amp;Github</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-python">
+      <a href="/python/">
+        <span>Python</span>
+      </a>
+    </li>
+    
+  </ul>
+</div>
+    <button id="toggle-main-menu-mobile" class="hamburger hamburger--slider" type="button">
+  <span class="hamburger-box">
+    <span class="hamburger-inner"></span>
+  </span>
+</button>
+  </div>
+</div>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <div class="container pt-2 pt-md-6 pb-3 pb-md-6">
+      <div class="row">
+        <div class="col-12 col-md-3 mb-3">
+          <div class="sidebar">
+            
+<div class="docs-menu">
+  <h4>Gitstudy</h4>
+  <ul>
+    
+    <li class="">
+      <a href="https://lameld.github.io/gitstudy/ch1/">1장 : 깃 시작하기</a>
+    </li>
+    
+    <li class="active ">
+      <a href="https://lameld.github.io/gitstudy/ch2/">2장 : 깃으로 버전 관리하기</a>
+    </li>
+    
+    <li class="">
+      <a href="https://lameld.github.io/gitstudy/ch3/">3장 : 깃과 브랜치</a>
+    </li>
+    
+    <li class="">
+      <a href="https://lameld.github.io/gitstudy/ch4/">4장 : 깃허브로 백업하기</a>
+    </li>
+    
+    <li class="">
+      <a href="https://lameld.github.io/gitstudy/ch5/">5장 : 깃허브로 협업하기</a>
+    </li>
+    
+  </ul>
+</div>
+
+          </div>
+        </div>
+        <div class="col-12 col-md-9">
+          
+<h1 class="title">2장 : 깃으로 버전 관리하기</h1>
+<div class="content ">
+  <h3 id="1-깃-저장소">1. 깃 저장소</h3>
+<ul>
+<li>깃 초기화 하기
+<ul>
+<li>디렉토리를 하나 새로 만들고 내부를 살펴본 뒤 <code>git init</code>을 하면 <code>.git</code>이라는 디렉토리가 새로 생긴다.</li>
+<li><code>.git</code> : 깃을 사용하면 버전이 저장될 &lsquo;저장소&rsquo;</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">$ mkdir hi-git
+$ cd hi-git
+$ ls -al
+$ git init
+$ ls -al
+</code></pre></div></li>
+</ul>
+<h3 id="2-버전-만들기">2. 버전 만들기</h3>
+<ul>
+<li>깃에서 버전이란
+<ul>
+<li>문서를 수정하고 저장할 때마다 생기는 것</li>
+<li>원래 파일 이름은 그대로 유지하면서 파일에서 무엇을 변경했는지를 변경 시점마다 저장할 수 있다.</li>
+<li>각 버전마다 작업했던 내용을 확인할 수 있고, 그 버전으로 rollback할 수 있다.</li>
+</ul>
+</li>
+<li>스테이지와 커밋 이해하기
+<ul>
+<li>작업트리 :: workspace
+<ul>
+<li>파일 수정, 저장 등의 작업을하는 디렉토리</li>
+</ul>
+</li>
+<li>스테이지 :: index
+<ul>
+<li>버전으로 만들 파일이 대기하는 곳</li>
+<li>명령어</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">$ git add [파일 또는 디렉토리]
+</code></pre></div></li>
+<li>저장소 :: local repository
+<ul>
+<li>스테이지에 대기하고 있던 파일들을 버전으로 만들어 저장하는 곳</li>
+<li>명렁어</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">$ git commit -m &#34;커밋 메시지 입력&#34;
+</code></pre></div></li>
+<li>순서<br>
+1.작업트리에서 작업을 한다.<br>
+2.작업물을 스테이지에 올린다.<br>
+3.스테이지에 있는 모든 것을 로컬 저장소에 저장한다.</li>
+<li>스테이징과 커밋 한꺼번에 처리하기
+<ul>
+<li>한 번이라도 커밋한 적이 있는 파일을 다시 커밋할 때 사용할 수 있다.</li>
+<li><code>git commit -am &quot;커밋 메시지&quot;</code></li>
+</ul>
+</li>
+<li>현재 깃 상태 확인 :: git status</li>
+<li>깃의 로그 확인 :: git log
+<ul>
+<li>여러가지 옵션을 줄 수 있다.</li>
+<li>대표적인 옵션 :: &ndash;oneline, &ndash;branches, &ndash;graph</li>
+</ul>
+</li>
+<li>변경 사항 확인하기 :: git diff
+<ul>
+<li>작업 디렉토리와 저장소의 차이를 볼 수 있다.<br>
+<img src="/images/work.PNG" alt="이미지 대체"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>버전 만드는 단계마다 파일 상태 알아보기
+<ul>
+<li>tracked 파일과 untracked 파일
+<ul>
+<li>untracked 파일 :: 한번도 깃에서 버전 관리를 하지 않았기 때문에 수정 내역을 추적하지 않음.</li>
+<li>tracked 파일 :: untracked 파일이 아닌 파일</li>
+</ul>
+</li>
+<li>unmodified, modified, staged 상태
+<ul>
+<li>tracked 파일의 상태 확인</li>
+<li>unmodified : 커밋된 이후 수정되지 않은 상태</li>
+<li>modified : 커밋된 이후 수정된 상태</li>
+<li>staged : modified 상태에서 <code>git add [파일 또는 폴더]</code>를 실시하여 스테이지에 올려놓은 상태(커밋 직전의 상태)</li>
+<li>커밋을 실시하면 unmodified 상태로 돌아간다.<br>
+<img src="/images/untracked.PNG" alt="이미지 대체"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>.gitignore 파일로 버전 관리에서 제외하기!
+<ul>
+<li>버전 관리 중인 디렉토리 안에 버전관리를 하지 않을 특정 파일 또는 디렉토리가 있다면 .gitignore 파일을 만들어 목록을 지정할 수 있다.</li>
+<li>예시</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">$ cat .gitignore
+mynote.txt # 파일을 ignore
+temp/ # 폴더를 ignore
+.swp # 확장자를 ignore
+</code></pre></div></li>
+<li>작업 되돌리기(Rollback)
+<ul>
+<li>작업트리에서 수정한 파일 되돌리기 :: <code>git checkout -- [수정한 파일]</code>
+<ul>
+<li>checkout으로 되돌린 내용은 다시 복구할 수 없습니다.</li>
+</ul>
+</li>
+<li>스테이징 되돌리기 :: <code>git reset HEAD [파일이름]</code>
+<ul>
+<li>수정된 파일을 스테이징 했을 때, 스테이징을 취소한는 방법</li>
+</ul>
+</li>
+<li>최신 커밋 되돌리기 :: <code>git reset HEAD^</code>
+<ul>
+<li>가장 마지막에 한 커밋을 취소하는 방법</li>
+<li><code>git reset</code> 명령의 옵션
+<ul>
+<li><code>git reset --soft HEAD^</code> : 최근 커밋을 하기 전 상태로 작업 트리를 되돌립니다.</li>
+<li><code>git reset --mixed HEAD^</code> : 최근 커밋과 스테이징을 하기 전 상태로 작업 트리를 되돌린다. 기본값</li>
+<li><code>git reset --hard HEAD^</code> : 최근 커밋과 스테이징, 파일 수정을 하기 전 상태로 작업 트리를 되돌린다. 되돌린 내용은 복구 불가능</li>
+<li><code>HEAD^</code> 부분에 <code>커밋해시</code>를 넣어주면 특정 커밋 상태로 되돌아갈 수 있습니다.</li>
+</ul>
+</li>
+<li>특정 커밋으로 되돌아간다면 그 이후의 버전을 삭제할 수 있다.</li>
+</ul>
+</li>
+<li>버전 삭제하지 않고 되돌리기 :: <code>git revert [커밋 해쉬를 넣는다]</code>
+<ul>
+<li>나중에 사용할 것을 대비해서 커밋을 되돌리더라도 취소한 커밋을 남겨두어야 할 때가 있다.</li>
+<li>이때는 <code>git reset</code>이 아닌 <code>git revert</code>를 사용한다.<br>
+<img src="/images/work.PNG" alt="이미지 대체"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+  <div class="sub-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="sub-footer-inner">
+          <ul>
+            <li class="zerostatic"><a href="https://www.zerostatic.io">www.zerostatic.io</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/scripts.min.1237ff71925bb8625c97a9af8db4c54525258bedfd7c47493daaff723bea755e.js"></script>
+  
+
+  
+  
+  
+    
+  
+
+
+</body>
+
+</html>
