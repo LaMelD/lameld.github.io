@@ -3,256 +3,163 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://lameld.github.io/python/</loc>
-    <lastmod>2020-04-01T00:00:00+00:00</lastmod>
+    <loc>https://lameld.github.io/docs/example/</loc>
   </url>
   
   <url>
-    <loc>https://lameld.github.io/gitstudy/</loc>
-    <lastmod>2020-03-31T09:14:39+09:00</lastmod>
+    <loc>https://lameld.github.io/docs/mysample/</loc>
   </url>
   
   <url>
-    <loc>https://lameld.github.io/swea/</loc>
-    <lastmod>2020-03-30T09:14:39+09:00</lastmod>
+    <loc>https://lameld.github.io/docs/example/table-of-contents/with-toc/</loc>
   </url>
   
   <url>
-    <loc>https://lameld.github.io/datastructure/</loc>
-    <lastmod>2020-03-30T09:14:39+09:00</lastmod>
+    <loc>https://lameld.github.io/docs/example/table-of-contents/without-toc/</loc>
   </url>
   
   <url>
-    <loc>https://lameld.github.io/cloudbasic/</loc>
-    <lastmod>2020-03-30T09:14:39+09:00</lastmod>
+    <loc>https://lameld.github.io/posts/creating-a-new-theme/</loc>
+    <lastmod>2014-09-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://lameld.github.io/kakao/</loc>
-    <lastmod>2018-11-28T15:14:39+10:00</lastmod>
+    <loc>https://lameld.github.io/posts/migrate-from-jekyll/</loc>
+    <lastmod>2014-03-10T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://lameld.github.io/cloudbasic/network/</loc>
-    <lastmod>2019-12-31T13:23:21+09:00</lastmod>
+    <loc>https://lameld.github.io/docs/example/table-of-contents/</loc>
   </url>
   
   <url>
-    <loc>https://lameld.github.io/python/ch01/</loc>
-    <lastmod>2019-11-29T17:38:30+09:00</lastmod>
+    <loc>https://lameld.github.io/docs/example/collapsed/</loc>
   </url>
   
   <url>
-    <loc>https://lameld.github.io/gitstudy/ch1/</loc>
-    <lastmod>2019-11-29T17:38:30+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lameld.github.io/swea/2819/</loc>
-    <lastmod>2019-11-29T17:38:30+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lameld.github.io/kakao/2018_cache/</loc>
-    <lastmod>2019-11-22T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lameld.github.io/datastructure/dsarray/</loc>
-    <lastmod>2019-11-15T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lameld.github.io/cloudbasic/network_device/</loc>
-    <lastmod>2020-01-06T09:34:37+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lameld.github.io/python/ch02/</loc>
-    <lastmod>2019-11-29T17:38:30+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lameld.github.io/gitstudy/ch2/</loc>
-    <lastmod>2019-11-29T17:38:30+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lameld.github.io/kakao/2018_dart/</loc>
-    <lastmod>2019-11-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lameld.github.io/datastructure/dslinkedlist/</loc>
-    <lastmod>2019-11-15T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lameld.github.io/cloudbasic/linux_basic/</loc>
-    <lastmod>2020-01-13T10:31:27+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lameld.github.io/python/ch03/</loc>
-    <lastmod>2019-11-29T17:38:30+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lameld.github.io/gitstudy/ch3/</loc>
-    <lastmod>2019-11-29T17:38:30+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lameld.github.io/kakao/2018_news/</loc>
-    <lastmod>2019-11-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lameld.github.io/kakao/2018_friendsblock/</loc>
-    <lastmod>2019-11-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lameld.github.io/datastructure/dsqueue/</loc>
-    <lastmod>2019-11-15T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lameld.github.io/cloudbasic/linux/</loc>
-    <lastmod>2020-01-16T13:35:04+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lameld.github.io/python/ch04/</loc>
-    <lastmod>2019-11-29T17:38:30+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lameld.github.io/gitstudy/ch4/</loc>
-    <lastmod>2019-11-29T17:38:30+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lameld.github.io/gitstudy/ch5/</loc>
-    <lastmod>2019-11-29T17:38:30+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lameld.github.io/kakao/2018_secret/</loc>
-    <lastmod>2019-11-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lameld.github.io/datastructure/dsstack/</loc>
-    <lastmod>2019-11-15T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lameld.github.io/python/ch05/</loc>
-    <lastmod>2019-11-29T17:38:30+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lameld.github.io/kakao/2018_shuttle/</loc>
-    <lastmod>2019-11-22T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lameld.github.io/datastructure/stlqueue/</loc>
-    <lastmod>2019-11-16T20:08:14+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lameld.github.io/kakao/2018_traffic/</loc>
-    <lastmod>2019-11-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lameld.github.io/datastructure/stlvector/</loc>
-    <lastmod>2019-11-16T20:08:14+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lameld.github.io/kakao/2019_block/</loc>
-    <lastmod>2019-11-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lameld.github.io/kakao/2019_fail/</loc>
-    <lastmod>2019-11-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lameld.github.io/kakao/2019_key/</loc>
-    <lastmod>2019-11-24T18:15:02+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lameld.github.io/kakao/2019_matching/</loc>
-    <lastmod>2019-11-24T18:15:23+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lameld.github.io/kakao/2019_muzi/</loc>
-    <lastmod>2019-11-24T18:15:07+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lameld.github.io/kakao/2019_open/</loc>
-    <lastmod>2019-11-24T18:14:39+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lameld.github.io/kakao/2019_way/</loc>
-    <lastmod>2019-11-24T18:15:16+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lameld.github.io/kakao/2020_block/</loc>
-    <lastmod>2019-11-27T11:22:43+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lameld.github.io/kakao/2020_circular/</loc>
-    <lastmod>2019-11-27T11:22:33+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lameld.github.io/kakao/2020_convert/</loc>
-    <lastmod>2019-11-27T11:21:17+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lameld.github.io/kakao/2020_lock/</loc>
-    <lastmod>2019-11-27T11:21:28+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lameld.github.io/kakao/2020_lyrics/</loc>
-    <lastmod>2019-11-27T11:21:48+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lameld.github.io/kakao/2020_pole/</loc>
-    <lastmod>2019-11-27T11:22:18+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lameld.github.io/kakao/2020_zip/</loc>
-    <lastmod>2019-11-27T11:21:08+09:00</lastmod>
+    <loc>https://lameld.github.io/posts/</loc>
+    <lastmod>2014-09-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://lameld.github.io/</loc>
-    <lastmod>2020-03-30T09:14:39+09:00</lastmod>
+    <lastmod>2014-09-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://lameld.github.io/categories/</loc>
+    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lameld.github.io/categories/development/</loc>
+    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lameld.github.io/tags/development/</loc>
+    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lameld.github.io/tags/go/</loc>
+    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lameld.github.io/tags/golang/</loc>
+    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lameld.github.io/categories/golang/</loc>
+    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lameld.github.io/tags/hugo/</loc>
+    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://lameld.github.io/tags/</loc>
+    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lameld.github.io/tags/templates/</loc>
+    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lameld.github.io/tags/themes/</loc>
+    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lameld.github.io/posts/goisforlovers/</loc>
+    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lameld.github.io/posts/hugoisforlovers/</loc>
+    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lameld.github.io/docs/example/collapsed/3rd-level/4th-level/</loc>
+  </url>
+  
+  <url>
+    <loc>https://lameld.github.io/docs/example/collapsed/3rd-level/</loc>
+  </url>
+  
+  <url>
+    <loc>https://lameld.github.io/docs/example/hidden/</loc>
+  </url>
+  
+  <url>
+    <loc>https://lameld.github.io/docs/mysample/first/first/</loc>
+  </url>
+  
+  <url>
+    <loc>https://lameld.github.io/docs/mysample/second/second/</loc>
+  </url>
+  
+  <url>
+    <loc>https://lameld.github.io/docs/shortcodes/</loc>
+  </url>
+  
+  <url>
+    <loc>https://lameld.github.io/docs/shortcodes/buttons/</loc>
+  </url>
+  
+  <url>
+    <loc>https://lameld.github.io/docs/shortcodes/columns/</loc>
+  </url>
+  
+  <url>
+    <loc>https://lameld.github.io/docs/shortcodes/expand/</loc>
+  </url>
+  
+  <url>
+    <loc>https://lameld.github.io/docs/shortcodes/hints/</loc>
+  </url>
+  
+  <url>
+    <loc>https://lameld.github.io/docs/shortcodes/katex/</loc>
+  </url>
+  
+  <url>
+    <loc>https://lameld.github.io/docs/shortcodes/mermaid/</loc>
+  </url>
+  
+  <url>
+    <loc>https://lameld.github.io/docs/shortcodes/tabs/</loc>
+  </url>
+  
+  <url>
+    <loc>https://lameld.github.io/docs/</loc>
   </url>
   
 </urlset>
