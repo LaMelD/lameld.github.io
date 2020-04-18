@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://lameld.github.io/django_board/</loc>
+    <lastmod>2020-04-18T09:14:39+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://lameld.github.io/python/</loc>
     <lastmod>2020-04-01T00:00:00+00:00</lastmod>
   </url>
@@ -10,6 +15,11 @@
   <url>
     <loc>https://lameld.github.io/gitstudy/</loc>
     <lastmod>2020-03-31T09:14:39+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lameld.github.io/django_todo/</loc>
+    <lastmod>2020-03-30T09:14:39+09:00</lastmod>
   </url>
   
   <url>
@@ -44,6 +54,16 @@
   
   <url>
     <loc>https://lameld.github.io/gitstudy/ch1/</loc>
+    <lastmod>2019-11-29T17:38:30+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lameld.github.io/django_board/ch1/</loc>
+    <lastmod>2019-11-29T17:38:30+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lameld.github.io/django_todo/ch1/</loc>
     <lastmod>2019-11-29T17:38:30+09:00</lastmod>
   </url>
   
