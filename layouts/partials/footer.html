@@ -1,0 +1,10 @@
+<footer class="site-footer">
+  <div class="container site-footer__inner mono">
+    <span>© {{ now.Year }} {{ site.Params.author }}</span>
+    <span class="site-footer__links">
+      <a href="{{ site.Params.github }}" rel="me noopener" target="_blank">GitHub</a>
+      {{ with .OutputFormats.Get "rss" }}<a href="{{ .Permalink }}">RSS</a>{{ end }}
+      <a href="https://gohugo.io" rel="noopener" target="_blank">Hugo</a>
+    </span>
+  </div>
+</footer>

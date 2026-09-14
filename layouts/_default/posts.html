@@ -1,0 +1,16 @@
+{{ define "main" }}
+{{- $posts := (where site.RegularPages "Section" "not in" site.Params.utilitySections).ByDate.Reverse }}
+<header class="container page-head">
+  <p class="eyebrow mono">{{ len $posts }} posts</p>
+  <h1>{{ .Title }}</h1>
+  {{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
+</header>
+<div class="container">
+  {{ range $posts.GroupByDate "2006" }}
+  <section class="year">
+    <h2 class="label year__label">{{ .Key }}</h2>
+    <ul class="post-list">{{ range .Pages }}{{ partial "post-row.html" . }}{{ end }}</ul>
+  </section>
+  {{ end }}
+</div>
+{{ end }}

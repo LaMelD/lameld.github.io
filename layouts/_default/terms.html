@@ -1,0 +1,11 @@
+{{ define "main" }}
+<header class="container page-head">
+  <p class="eyebrow mono">{{ len .Data.Terms }} tags</p>
+  <h1>{{ .Title }}</h1>
+</header>
+<div class="container">
+  <ul class="tags tags--large">
+    {{ range .Data.Terms.ByCount }}<li><a class="chip" href="{{ .Page.RelPermalink }}">#{{ .Page.Title }} <span class="chip__count">{{ .Count }}</span></a></li>{{ end }}
+  </ul>
+</div>
+{{ end }}

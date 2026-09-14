@@ -1,0 +1,5 @@
+{{- $items := slice }}
+{{- range where site.Sections "Section" "not in" site.Params.utilitySections }}{{ $items = $items | append (dict "page" . "count" (len .RegularPages)) }}{{ end }}
+<div class="series-grid">
+  {{- range sort $items "count" "desc" }}{{ partial "series-card.html" .page }}{{ end }}
+</div>

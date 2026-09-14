@@ -1,73 +1,27 @@
-{{ define "title" }}{{ .Site.Title }}{{ end}}
-{{ define "header_css" }}{{ end }}
-{{ define "body_classes" }}page-home{{ end }}
-{{ define "header_classes" }}{{ end }}
-
-{{ define "meta_tags" }}
-<meta name="description" content="{{ .Site.Params.homepage_meta_tags.meta_description }}" />
-<meta property="og:title" content="{{ .Site.Params.homepage_meta_tags.meta_og_title }}" />
-<meta property="og:type" content="{{ .Site.Params.homepage_meta_tags.meta_og_type }}" />
-<meta property="og:url" content="{{ .Site.Params.homepage_meta_tags.meta_og_url }}" />
-<meta property="og:image" content="{{ .Site.Params.homepage_meta_tags.meta_og_image }}" />
-<meta property="og:description" content="{{ .Site.Params.homepage_meta_tags.meta_og_description }}" />
-<meta name="twitter:card" content="{{ .Site.Params.homepage_meta_tags.meta_twitter_card }}" />
-<meta name="twitter:site" content="{{ .Site.Params.homepage_meta_tags.meta_twitter_site }}" />
-<meta name="twitter:creator" content="{{ .Site.Params.homepage_meta_tags.meta_twitter_creator }}" />
-{{ end }}
-
 {{ define "main" }}
-<div class="strip">
-  <div class="container pt-4 pb-16">
-    <div class="row">
-      <div class="col-12">
-        <h1 class="title">{{ .Title | default .Site.Title }}</h1>
-        <div class="content">
-          {{ .Content }}
-        </div>
-        <a class="button button-primary mb-2" href="{{ .Site.Params.homepage_button_link_kakao | relURL }}">
-          {{ .Site.Params.homepage_button_text_kakao }}
-        </a>
-        <a class="button button-primary mb-2" href="{{ .Site.Params.homepage_button_link_swea | relURL }}">
-          {{ .Site.Params.homepage_button_text_swea }}
-        </a>
-        <a class="button button-primary mb-2" href="{{ .Site.Params.homepage_button_link_datastructure | relURL }}">
-          {{ .Site.Params.homepage_button_text_datastructure }}
-        </a>
-        <a class="button button-primary mb-2" href="{{ .Site.Params.homepage_button_link_cloudbasic | relURL }}">
-          {{ .Site.Params.homepage_button_text_cloudbasic }}
-        </a>
-        <a class="button button-primary mb-2" href="{{ .Site.Params.homepage_button_link_gitstudy | relURL }}">
-          {{ .Site.Params.homepage_button_text_gitstudy }}
-        </a>
-        <a class="button button-primary mb-2" href="{{ .Site.Params.homepage_button_link_python | relURL }}">
-          {{ .Site.Params.homepage_button_text_python }}
-        </a>
-        <a class="button button-primary mb-2" href="{{ .Site.Params.homepage_button_link_djangoboard | relURL }}">
-          {{ .Site.Params.homepage_button_text_djangoboard }}
-        </a>
-        <a class="button button-primary mb-2" href="{{ .Site.Params.homepage_button_link_djangotodo | relURL }}">
-          {{ .Site.Params.homepage_button_text_djangotodo }}
-        </a>
-      </div>
+{{- $util := site.Params.utilitySections }}
+{{- $posts := (where site.RegularPages "Section" "not in" $util).ByDate.Reverse }}
+<section class="intro container">
+  <div class="intro__grid">
+    <div class="intro__name">
+      <h1>{{ site.Params.author }}</h1>
+      <p class="intro__tagline">{{ site.Params.tagline }}</p>
     </div>
+    <dl class="intro__meta">
+      <div><dt class="label">Areas</dt><dd>{{ delimit site.Params.areas " · " }}</dd></div>
+      <div><dt class="label">Languages</dt><dd class="mono">{{ range site.Params.languages }}<span>{{ . }}</span>{{ end }}</dd></div>
+      <div><dt class="label">Cloud</dt><dd>{{ delimit site.Params.cloud " · " }}</dd></div>
+    </dl>
   </div>
-</div>
+</section>
 
-{{ if .Site.Params.homepage_image }}
-<div class="strip">
-  <div class="container pt-4 pb-4">
-    <div class="row justify-content-center">
-      <div class="col-12 col-md-10">
-        <div class="terminal">
-          <img src="{{ .Site.Params.homepage_image | relURL}}" />
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-{{ end }}
+<section class="container section">
+  <div class="section__head"><h2 class="label">Latest</h2><a class="section__more mono" href="{{ "/posts/" | relURL }}">All posts →</a></div>
+  <ul class="post-list">{{ range first 6 $posts }}{{ partial "post-row.html" . }}{{ end }}</ul>
+</section>
 
-{{ end }}
-
-{{ define "footer_js" }}
+<section class="container section">
+  <div class="section__head"><h2 class="label">Series</h2><a class="section__more mono" href="{{ "/series/" | relURL }}">All series →</a></div>
+  {{ partial "series-grid.html" . }}
+</section>
 {{ end }}

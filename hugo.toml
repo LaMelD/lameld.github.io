@@ -1,0 +1,53 @@
+baseURL = "https://lameld.github.io/"
+title = "LaMelD"
+locale = "ko-KR"
+hasCJKLanguage = true
+enableRobotsTXT = true
+capitalizeListTitles = false
+summaryLength = 30
+
+[taxonomies]
+  tag = "tags"
+
+[markup]
+  [markup.goldmark.renderer]
+    unsafe = true
+  [markup.highlight]
+    noClasses = false
+    guessSyntax = true
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 3
+
+[menus]
+  [[menus.main]]
+    name = "Posts"
+    pageRef = "/posts"
+    identifier = "posts"
+    weight = 10
+  [[menus.main]]
+    name = "Series"
+    pageRef = "/series"
+    identifier = "series"
+    weight = 20
+  [[menus.main]]
+    name = "Tags"
+    pageRef = "/tags"
+    identifier = "tags"
+    weight = 30
+  [[menus.main]]
+    name = "About"
+    pageRef = "/about"
+    identifier = "about"
+    weight = 40
+
+[params]
+  author = "LaMelD"
+  tagline = "프론트엔드·백엔드·시스템을 만들고, 클라우드 네이티브 인프라 위에 올립니다."
+  description = "LaMelD의 개발 블로그. 프론트엔드·백엔드·시스템 개발과 AWS·Azure·GCP·Kubernetes 기반 클라우드 네이티브 시스템을 다룹니다."
+  areas = ["Frontend", "Backend", "Systems"]
+  languages = ["TypeScript", "Python", "Go", "PHP"]
+  cloud = ["AWS", "Azure", "GCP", "Docker", "Kubernetes"]
+  github = "https://github.com/LaMelD"
+  # 글 목록·시리즈 목록에서 제외하는 유틸리티 섹션
+  utilitySections = ["posts", "series", "about"]

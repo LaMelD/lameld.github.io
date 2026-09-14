@@ -1,0 +1,5 @@
+<li class="post-row">
+  <time class="post-row__date mono" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006.01.02" }}</time>
+  <a class="post-row__title" href="{{ .RelPermalink }}">{{ .Title }}</a>
+  {{- with .CurrentSection }}{{ if .IsSection }}<a class="post-row__series mono" href="{{ .RelPermalink }}">{{ .Section }}</a>{{ end }}{{ end }}
+</li>

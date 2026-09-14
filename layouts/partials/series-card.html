@@ -1,0 +1,6 @@
+{{- $n := len .RegularPages }}
+<a class="series-card" href="{{ .RelPermalink }}">
+  <span class="series-card__meta mono">{{ .Section }} · {{ $n }} post{{ if ne $n 1 }}s{{ end }}</span>
+  <span class="series-card__title">{{ .Title }}</span>
+  {{ with .Description }}<span class="series-card__desc">{{ . }}</span>{{ end }}
+</a>

@@ -1,11 +1,37 @@
-{{ define "header_css" }}{{ end }}
-{{ define "body_classes" }}page-default-single{{ end }}
-{{ define "header_classes" }}{{ end }}
-
 {{ define "main" }}
-<h1 class="title">{{.Title}}</h1>
-<div class="content {{if .Site.Params.enable_anchor_link}}{{ "anchor-link-enabled" }}{{ end }}">
-  {{.Content}}
-</div>
-</div>
+{{- $toc := and (ne .Params.toc false) (strings.Contains .TableOfContents "<li>") }}
+{{- $section := .CurrentSection }}
+{{- $pages := $section.RegularPages }}{{ $i := -1 }}
+{{- range $k, $p := $pages }}{{ if eq $p.Permalink $.Permalink }}{{ $i = $k }}{{ end }}{{ end }}
+{{- $prev := "" }}{{ $next := "" }}
+{{- if gt $i 0 }}{{ $prev = index $pages (sub $i 1) }}{{ end }}
+{{- if and (ge $i 0) (lt (add $i 1) (len $pages)) }}{{ $next = index $pages (add $i 1) }}{{ end }}
+<article class="container post{{ if $toc }} post--toc{{ end }}">
+  <div class="post__main">
+    <header class="post__header">
+      <p class="eyebrow mono">
+        {{ if $section.IsSection }}<a href="{{ $section.RelPermalink }}">{{ $section.Title }}</a> · {{ end }}<time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006.01.02" }}</time> · {{ .ReadingTime }} min read
+      </p>
+      <h1>{{ .Title }}</h1>
+    </header>
+    <div class="prose">{{ .Content }}</div>
+    {{ with .GetTerms "tags" }}
+    <ul class="tags">{{ range . }}<li><a class="chip" href="{{ .RelPermalink }}">#{{ .LinkTitle }}</a></li>{{ end }}</ul>
+    {{ end }}
+    {{ if or $prev $next }}
+    <nav class="post-nav" aria-label="Series navigation">
+      {{ with $prev }}<a class="post-nav__link post-nav__link--prev" href="{{ .RelPermalink }}"><span class="label">← Previous</span><span class="post-nav__title">{{ .Title }}</span></a>{{ else }}<span></span>{{ end }}
+      {{ with $next }}<a class="post-nav__link post-nav__link--next" href="{{ .RelPermalink }}"><span class="label">Next →</span><span class="post-nav__title">{{ .Title }}</span></a>{{ end }}
+    </nav>
+    {{ end }}
+  </div>
+  {{ if $toc }}
+  <aside class="post__aside">
+    <div class="toc">
+      <p class="label">On this page</p>
+      {{ .TableOfContents }}
+    </div>
+  </aside>
+  {{ end }}
+</article>
 {{ end }}
