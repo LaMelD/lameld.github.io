@@ -1,2 +1,5 @@
 submit.sh
 submit.bat
+public/
+resources/_gen/
+.hugo_build.lock
