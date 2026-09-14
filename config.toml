@@ -1,0 +1,97 @@
+baseURL = "https://lameld.github.io"
+languageCode = "en-us"
+title = "LaMelD's dev Story"
+
+pygmentsCodeFences = true
+pygmentsCodefencesGuessSyntax = true
+pygmentsUseClasses = true
+
+# Controls how many words are printed in the content summary on the docs homepage.
+# See https://gohugo.io/content-management/summaries/
+summaryLength = 30
+
+[[menu.main]]
+    name = "Home"
+    url = "/"
+    weight = 1
+
+[[menu.main]]
+    name = "Kakao"
+    url = "/kakao/"
+    weight = 2
+
+[[menu.main]]
+    name = "Swea"
+    url = "/swea/"
+    weight = 3
+
+[[menu.main]]
+    name = "DataStructure"
+    url = "/datastructure/"
+    weight = 4
+
+[[menu.main]]
+    name = "CloudBasic"
+    url = "/cloudbasic/"
+    weight = 5
+
+[[menu.main]]
+    name = "Git&Github"
+    url = "/gitstudy/"
+    weight = 6
+
+[[menu.main]]
+    name = "Python"
+    url = "/python/"
+    weight = 7
+
+[[menu.main]]
+    name = "Django boardapp"
+    url = "/django_board/"
+    weight = 8
+
+[[menu.main]]
+    name = "Django todoapp"
+    url = "/django_todo/"
+    weight = 9
+
+[params]
+    google_analytics_id=""
+    homepage_button_link_kakao = '/kakao'
+    homepage_button_text_kakao = 'kakao 문제 풀이'
+    homepage_button_link_swea = '/swea'
+    homepage_button_text_swea = 'SWexpertAcademy 문제 풀이'
+    homepage_button_link_gitstudy = '/gitstudy'
+    homepage_button_text_gitstudy = 'Git&Github'
+    homepage_button_link_datastructure = '/datastructure'
+    homepage_button_text_datastructure = '자료구조'
+    homepage_button_link_cloudbasic = '/cloudbasic'
+    homepage_button_text_cloudbasic = '클라우드 기초지식'
+    homepage_button_link_python = '/python'
+    homepage_button_text_python = '점프 투 파이썬'
+    homepage_button_link_djangoboard = '/django_board'
+    homepage_button_text_djangoboard = '장고 Board'
+    homepage_button_link_djangotodo = '/django_todo'
+    homepage_button_text_djangotodo = '장고 Todo'
+    homepage_intro = '이 블로그의 설명을 담겠습니다.'
+    homepage_image = '/images/terminal.gif'
+    # 폴더를 추가하려면 아래에 등록하세요
+    mainSections = ['kakao', 'swea', 'gitstudy', 'datastructure', 'cloudbasic', 'python', 'django_board', 'django_todo']
+
+  ## You can enable to add anchor links to header elements
+  # enable_anchor_link = true
+
+[params.homepage_meta_tags]
+    meta_description = "Hugo"
+    meta_og_title = "Hugo"
+    meta_og_type = "website"
+    meta_og_url = "https://lameld.github.io"
+    meta_og_image = "https://raw.githubusercontent.com/JugglerX/hugo-whisper-theme/master/images/tn.png"
+    meta_og_description = "LaMelD"
+    meta_twitter_card = "summary"
+    meta_twitter_site = "@"
+    meta_twitter_creator = "@"
+
+[params.logo]
+    mobile = "/images/logo.png"
+    standard  = "/images/logo.png"
