@@ -1,0 +1,497 @@
+---
+title: "CH03. 컨테이너 실전 구축 및 배포"
+date: 2020-07-03
+weight: 3
+---
+
+## 1. 어플리케이션과 시스템 내 단일 컨테이너의 적정 비중
+
+- header
+    - 도커를 사용해 시스템을 구축한다는 것 = 자신이 만든 어플 컨테이너 + 공개된 어플/미들웨어 컨테이너
+
+- 컨테이너 1개 = 프로새스 1개?
+    - 도커는 어플리케이션 배포에 특화된 가상화 기술(어플 + 인프라 = 도커 컨테이너)
+    - 정기적으로 작업을 실행하는 어플리케이션
+        - 대부분 스케줄러는 외부 기능에 의존한다.
+        - 스케줄러 기능이 없는 어플리케이션을 사용해 정기 작업을 실행하려면 cron을 사용하는 것이 자연스럽다.
+        - cron은 1개의 상주 프로세스 형태로 동작한다.
+        - 컨테이너 1개 = 프로세스 1개 방식을 택한다면 cron이 1개 컨테이너고 실행되는 작업이 또 1개 컨테이너를 차지하는 형태로 구성해야 한다.
+        - 이런 방법은 지나치게 복잡하므로 간단하게 컨테이너 하나로 cron과 작업 프로세스를 모두 실행하는 방법이 좋다.
+        - 예시
+            - 폴더 구성
+                ```
+                cronjob --- task.sh
+                    |- cron-example
+                    |- Dockerfile
+                ```
+            - task.sh
+                ```sh
+                #!/bin/sh
+                echo "[`date`] Hello!" >> /var/log/cron.log
+                ```
+            - cron-example
+                ```
+                * * * * * root sh /usr/local/bin/task.sh
+                ```
+            - Dockerfile
+                ```Dockerfile
+                FROM ubuntu:16.04
+                RUN apt update
+                RUN apt install -y cron
+                COPY task.sh /usr/local/bin/
+                COPY cron-example /etc/cron.d/
+                RUN chmod 0644 /etc/cron.d/cron-example
+                CMD ["cron", "-f"]
+                ```
+            - 도커 이미지 생성 및 컨테이너 생성
+                ```
+                $ docker image build -t example/cronjob:latest .
+                $ docker container run -d --rm --name cronjob example/cronjob:latest
+                ```
+            - 로그 확인
+                ```
+                $ docker container exec -it cronjob tail -f /var/log/cron.log
+                ```
+    - 자식 프로세스를 너무 의식하지 말 것
+        - 프로세스를 지나치게 의식하면 컨테이너를 제대로 사용할 수 없다.
+        - 아파치 웹 서버 : 클라이언트로부터 요청을 받을 때마다 자식 프로세스를 포크한다.
+        - 엔진엑스 : 마스터 프로세스와 워커프로세스, 캐시 관리 프로세스가 함께 동작한다.
+        - 이런 경우까지 컨테이너 1개 = 프로세스 1개 원칙을 고수하는 것은 비현실 적이다.
+    - **프로세스 1개 = 컨테이너 1개가 되는 경우도 있지만, 이를 꼭 지켜야 할 사항은 아니다.**
+
+- 컨테이너 1개에 하나의 관심사
+    - 도커 공식 입장 : Best Practices for writing Dockerfiles
+        - Each container should have only one concern
+    - 컨테이너 하나가 한 가지 역할이나 문제 영역(도메인)에만 집중해야 한다.
+
+## 2. 컨테이너의 이식성
+
+- header
+    - 도커의 큰 장점 : 이식성
+    - 도커를 사용하면 어플리케이션과 인프라를 컨테이너라는 단위로 분리할 수 있다.
+    - 도커가 설치된 환경이라면 어떤 호스트 운영체제와 플랫폼, 온프레미스 및 클라우드 환경에서도 그대로 작동한다.
+
+- 커널 및 아키텍처의 차이
+    - 도커에서 사용되는 컨테이너형 가상화 기술은 호스트 운영 체제와 커널 리소스를 공유한다.
+    - 도커 컨테이너를 실행하려면 호스트가 특정 CPU 아키텍처 혹은 운영 체제를 사용해야 한다는 의미다.
+
+- 라이브러리와 동적 링크 문제
+    - 어플리케이션이 사용하는 라이브러리에 따라 이식성을 해치는 경우도 있다.
+    - 동적 링크를 사용한 어플리케이션을 도커에 사용하는 경우 문제가 발생할 수 있다.
+        - 네이티브 라이브러리를 정적 링크하여 빌드하면 문제는 해결된다. 하지만 실행 파일의 크기가 커진다.
+        - 도커에서 이러한 문제에 대한 해결책으로 multi-stage builds라는 메커니즘을 제안했다.
+            - 컨테이너를 빌드용과 실행용으로 분리해서 사용하는 방법
+            - 실행용 컨테이너를 빌드에 사용하면서 빌드에 쓰이는 도구로 인해 컨테이너가 지나치게 커지는 것을 방지한다.
+    - **이러한 방법을 사용하더라도 도커의 이식성이 완벽해지는 것은 아니다.**
+
+## 3. 도커 친화적인 어플리케이션
+
+- 환경 변수 활용
+    - 어플리케이션을 만들 때는 일반적으로 재사용성과 유연성을 가질 수 있도록 옵션을 만들어 두고, 이 옵션에 따라 어플리케이션의 동작을 제어한다.
+    - 동작을 제어하는 방법
+        - 실행 시 인자
+        - 설정 파일
+        - 어플리케이션 동작을 환경변수로 제어
+        - 설정 파일에 환경 변수를 포함
+    - 실행 시 인자를 사용
+        - 외부에서 값을 주입받을 수 있다.
+        - 인자가 어무 많아지면 매핑 처리가 복잡해지거나 CMD, ENTRYPOINT 인스트럭션 내용을 관리하기 어려워질 수 있다.
+    - 설정 파일 사용
+        - 컨테이너 보급 이전에도 일반적인 방식
+        - 실행할 어플리케이션에 환경 이름을 부여하고, 그에 따라 설정 파일을 바꿔가며 사용하는 방식
+        - 설정 파일을 컨테이너 밖에서 실행 시 전달하는 형태로 사용한다면 실행 환경을 추가해도 이미지를 새로 빌드할 필요가 없다.
+        - 호스트에 위치한 환경별 설정파일을 컨테이너에 마운트해주는 것도 한 가지 방법이지만, 호스트에 대한 의존성이 생기므로 관리 운영 면에서 좋지 않다.
+    - 어플리케이션 동작을 환경 변수로 제어
+        - 매번 이미지를 다시 빌드하지 않아도 된다.
+        - 시행착오에 드는 시간이 압도적으로 줄어든다.
+        - 어플리케이션 외부에서 설정을 주입하는 형태이므로 이들 환경벼수는 어플리케이션과 별도의 저장소를 통해 관리하느 것이 일반적이다.
+        - 환경변수는 그 특성상 키-값 형태로, 계층적 구조를 가지기 어렵다. 따라서 어플리케이션 쪽에서 매핑을 처리할 때 수고가 많이 든다.
+    - 설정 파일에 환경 변수를 포함
+        - 설정 파일에 환경 변수를 포함하여 환경변수의 장점과 설정 파일의 장점을 모두 취할 수 있다.
+        - 환경별 설정 파일을 어플리케이션에 포함하는 대신, 설정 파일 템플릿에 환경 변수를 포함하는 것이다.
+
+## 4. 퍼시스턴스 데이터를 다루는 기법
+
+- 데이터 볼륨
+    - 도커 컨테이너 안의 디렉터리를 디스크에 퍼시스턴스 데이터로 남기기 위한 메커니즘이다.
+    - 호스트와 컨테이너 사이의 디렉터리 공유 및 재사용 기능을 제공한다.
+    - 이미지를 수정하고 새로 컨테이너를 생성해도 같은 데이터 볼륨을 계속 사용할 수 있다.
+    - 컨테이너를 파기해도 디스크에 그대로 남아있다.
+    - `docker container run [options] -v [호스트_디렉토리]:[컨테이너 디렉토리] 리포지토리명[:태그] [명령] [명령인자...]`
+    - 예시
+        ```
+        $ docker container run -v ${PWD}:/workspace gihyodocker/imagemagick:latest convert -size 100x100 xc:#000000 /workspace/test.jpg
+        $ ls -al
+        ```
+    - 호스트 쪽 데이터 볼륨을 잘못 다루면 어플리케이션에 부정적인 영향을 줄 수 있다.
+
+- 데이터 볼륨 컨테이너
+    - 데이터 볼륨 : 호스트-컨테이너 디렉터리 공유
+    - 데이터 볼륨 컨테이너 : 컨테이너-컨테이너 디렉터리 공유
+    - 데이터를 저장하는 것만이 목적인 컨테이너다.
+    - 데이터 볼륨 컨테이너의 볼륨은 도커에서 관리하는 영역인 호스트 머신의 /var/lib/docker/volumes/ 아래에 위치한다.
+    - 도커가 관리하는 디렉터리 영역에만 영향을 미친다.
+    - 호스트 머신이 컨테이너에 미치는 영향을 최소한으로 억제한다.
+    - 데이터 볼륨 컨테이너가 직접 볼륨을 다뤄주므로 볼륨을 필요로 하는 컨테이너 사용할 호스트 디렉터리를 알 필요가 없고 디렉터리를 제공하는 데이터 볼륨 컨테이너만 지정하면 된다.
+    - 데이터 볼륨이 데이터 볼륨 컨테이넝 안에 캡슐화되어 호스트에 대해 아는 것이 없어도 데이터를 사용할 수 있다.
+    - 컨테이너 안에 든 어플리케이션과 데이터의 결합력이 더 느슨하므로 어플리케이션 컨테이너와 데이터 볼륨을 교체할 수도 있다.
+    - 예시 : 데이터 볼륨에 MySQL 데이터 저장하기
+        - 데이터 볼륨 컨테이너의 Dockerfile
+            ```Dockerfile
+            FROM busybox
+            VOLUME /var/lib/mysql
+            CMD ["bin/true"]
+            ```
+        - 데이터 볼륨 컨테이너의 이미지 생성 및 컨테이너 생성
+            ```
+            $ docker image build -t example/mysql-data:latest .
+            $ docker container run -d --name mysql-data example/mysql-data:latest
+            ```
+        - Mysql 컨테이너 생성
+            ```
+            $ docker container run -d --rm --name mysql \
+            -e MYSQL_ALLOW_EMPTY_PASSWORD="yes" \
+            -e MYSQL_DATABASE="volume_test" \
+            -e MYSQL_USER="test" \
+            -e MYSQL_PASSWORD="qwer1234" \
+            --volumes-from mysql-data \
+            mysql:5.7
+            ```
+        - Mysql 컨테이너 접속
+            ```
+            $ docker container exec -it mysql mysql -u root -p volume_test
+            # 패스워드는 빈 문자열
+            ```
+        - 테이블 생성 및 튜플 생성
+            ```mysql
+            CREATE TABLE user(
+                id int PRIMARY KEY AUTO_INCREMENT,
+                name varchar(255)
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+            INSERT INTO user(name) values('gihyo'), ('docker'), ('Solomon Hykes');
+            ```
+        - 생성 후 테스트를 위해 mysql 컨테이너를 종료 후 다시 시작한다. 그리고 다시 컨테이너를 생성하여 데이터가 남아있는지 확인한다.
+            ```
+            $ docker container stop mysql
+            $ docker container run -d --rm --name mysql \
+            -e MYSQL_ALLOW_EMPTY_PASSWORD="yes" \
+            -e MYSQL_DATABASE="volume_test" \
+            -e MYSQL_USER="test" \
+            -e MYSQL_PASSWORD="qwer1234" \
+            --volumes-from mysql-data \
+            mysql:5.7
+            $ docker container exec -it mysql mysql -u root -p volume_test
+            > select * from user;
+            ```
+    - 데이터 익스포트 및 복원
+        - 데이터 볼륨 : 범위가 같은 도커 호스트 안으로 제한된다.
+        - 결국 데이터 볼륨 컨테이너엥서 사용하던 데이터를 다른 도커 호스트로 이전해야 할 경우가 생긴다.
+        - 예시 :: mysql
+            - busybox 컨테이너를 새로 실행한다.
+            - 데이터 볼륨 컨테이너를 mysql-data로 지정한다.
+            - 컨테이너 안에서 tar로 데이터를 압축한다.
+            - 압축된 파일이 위치한 /tmp 디렉터리를 현재 작업 디렉터리에 마운트 한다.
+            - 압축된 데이터를 호스트에 꺼내올 수 있다.
+            ```
+            $ docker container run -v ${PWD}:/tmp \
+            --volumes-from mysql-data \
+            busybox \
+            tar cvzf /tmp/mysql-backup.tar.gz /var/lib/mysql
+            ```
+
+## 5. 컨테이너 배치 전략
+
+- hearder
+    - 컨테이너를 단일 도커 호스트에만 배치하는 것은 간단하고 개발자가 관리하기도 쉽다.
+    - 많은 트래픽을 처리할 수 있는 실용적인 시스템은 여러 컨테이너가 각기 다른 호스트에 배치되는 경우가 많다.
+    - 컨테이너를 배치하는 방법과 하나 이상의 도커 호스트를 다루는 방법 역시 호스트 하나만을 다룰 때와는 달리 다양한 사항을 고려해야 한다.
+
+- 도커 스웜
+    - 오케스트레이션 도구의 한 종류이다.
+    - 호스트가 여러 대로 나뉘어 있다는 점을 신경 쓰지 앟고 클러스터를 투명하게 다룰 수 있다는 이점도 있다.
+
+        |이름|역할|대응하는 명령어|
+        |---|---|---|
+        |컴포즈|여러 컨테이너로 구성된 도커 어플리케이션을 관리(주로 단일 호스트)|docker-compose|
+        |스웜|클러스터 구축 및 관리(주로 멀티 호스트)|docker swarm|
+        |서비스|스웜에서 클러스터 안의 서비스(컨테이너 하나 이상의 집합)를 관리|docker service|
+        |스택|스웜에서 여러 개의 서비스를 합한 전체 어플리케이션을 관리|docker stack|
+
+    - 여러 대의 도커 호스트로 스웜 클러스터 구성하기
+        - Docker in Docker(dind) : 가상 안의 가상 환경
+        - dind로 아래와 같이 구성할 것이다.
+            - registry 1개
+            - manager 1개
+            - worker 3개
+        - registry
+            - manager와 worker에서 사용할 컨테이너
+            - 외부 도커에 저장된 이미지를 registry 컨테이너에 등록했다가 보내준다.
+        - manager
+            - 스웜 클러스터 전체를 제어하는 역할을 한다.
+            - 여러 대 실행되는 도커 호스트(worker)에 서비스가 담긴 컨테이너를 적절히 배치한다.
+        - 이 구성을 docker-compose로 작성한다. docker-compose.yml
+            ```yml
+            version: "3"
+            services:
+                registry:
+                    container_name: registry
+                    image: registry:2.6
+                    ports:
+                        -   5000:5000
+                    volumes:
+                        -   "./registry-data:/var/lib/registry"
+                
+                manager:
+                    container_name: manager
+                    image: docker:18.05.0-ce-dind
+                    privileged: true
+                    tty: true
+                    ports:
+                        -   8000:80
+                        -   9000:9000
+                    depends_on:
+                        -   registry
+                    expose:
+                        -   3375
+                    command: "--insecure-registry registry:5000"
+                    volumes:
+                        -   "./stack:/stack"
+
+                worker01:
+                    container_name: worker01
+                    image: docker:18.05.0-ce-dind
+                    privileged: true
+                    tty: true
+                    depends_on:
+                        -   manager
+                        -   registry
+                    expose:
+                        -   7946
+                        -   7946/udp
+                        -   4789/udp
+                    command: "--insecure-registry registry:5000"
+
+                worker02:
+                    container_name: worker02
+                    image: docker:18.05.0-ce-dind
+                    privileged: true
+                    tty: true
+                    depends_on:
+                        -   manager
+                        -   registry
+                    expose:
+                        -   7946
+                        -   7946/udp
+                        -   4789/udp
+                    command: "--insecure-registry registry:5000"
+
+                worker03:
+                    container_name: worker03
+                    image: docker:18.05.0-ce-dind
+                    privileged: true
+                    tty: true
+                    depends_on:
+                        -   manager
+                        -   registry
+                    expose:
+                        -   7946
+                        -   7946/udp
+                        -   4789/udp
+                    command: "--insecure-registry registry:5000"
+            ```
+        - 도커 컴포즈 실행
+            ```
+            $ docker-compose up -d
+            $ docker container ls
+            ```
+        - manager에서 docker swarm 시작
+            ```
+            $ docker container exec -it manager docker swarm init
+            Swarm initialized: current node (a7nk8814g3b5xmkapzrfvd4q0) is now a manager.
+            To add a worker to this swarm, run the following command:
+                docker swarm join --token SWMTKN-1-26e7m1uss5zf2nrv63ivgc66a4tr62a3795uo9aelw5iufbhmx-2ktjqzhn6m0k5tiej7lgkmybz 172.18.0.3:2377
+            To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
+            ```
+        - join 토큰을 사용해서 3대의 노드를 스웜 클러스터에 worker로 등록한다.
+            ```
+            $ docker container exec -it worker01 docker swarm join --token SWMTKN-1-26e7m1uss5zf2nrv63ivgc66a4tr62a3795uo9aelw5iufbhmx-2ktjqzhn6m0k5tiej7lgkmybz manager:2377
+            $ docker container exec -it worker02 docker swarm join --token SWMTKN-1-26e7m1uss5zf2nrv63ivgc66a4tr62a3795uo9aelw5iufbhmx-2ktjqzhn6m0k5tiej7lgkmybz manager:2377
+            $ docker container exec -it worker03 docker swarm join --token SWMTKN-1-26e7m1uss5zf2nrv63ivgc66a4tr62a3795uo9aelw5iufbhmx-2ktjqzhn6m0k5tiej7lgkmybz manager:2377
+            ```
+        - 도커 레지스트리에 이미지 등록
+            ```
+            $ docker pull gihyodocker/echo:latest
+            $ docker image tag gihyodocker/echo:latest localhost:5000/example/echo:latest
+            $ docker push localhost:5000/example/echo:latest
+            ```
+
+- 서비스
+    - 어플리케이션을 구성하는 일부 컨테이너를 제어하기 위한 단위로 서비스라는 개념이 생겼다.
+    - 서비스는 manager 컨테이너에서 docker service create 명령으로 생성한다.
+        ```
+        $ docker container exec -it manager docker service create --replicas 1 --publish 8080:8080 --name echo registry:5000/example/echo:latest
+        ```
+    - docker service scale 명령으로 해당 서비스의 컨테이너의 수를 늘리거나 줄일 수 있다.
+        ```
+        $ docker container exec -it manager docker service scale echo=3
+        ```
+    - docker service rm 명령으로 서비스를 삭제할 수 있다.
+        ```
+        $ docker container exec -it manager docker service rm echo
+        ```
+    - 서비스가 레플리카 수를 늘리라고 지시하면 자동으로 컨테이너를 복제하고 이를 여러 노드에 배치한다.
+    - 이러한 특성을 사용해 어플리케이션을 쉽게 스케일 아웃할 수 있다.
+
+- 스택
+    - 스택은 하나 이상의 서비스를 그룹으로 묶는 단위이다.
+    - 어플리케이션 전체 구성을 정의한다.
+    - 서비스 : 어플리케이션 이미지를 하나밖에 다루지 못하지만, 여러 서비스가 협조해 동작하는 형태로는 다양한 어플리케이션을 구성할 수 있다.
+    - 스택 : 이를 구현하기 위한 상위 개념
+    - 스택이 다루는 어플리케이션의 입도(granularity : 여러 요소로 구성된 전체 시스템의 평균 요소 크기나 규모)는 컴포즈와 같다.
+    - 스웜에서 동작하는 스케일 인, 스케일 아웃, 제약 조건 부여가 가능한 컴포즈
+    - 스택을 사용해 배포된 서비스 그룹은 overlay 네트워크에 속한다.
+        - overlay 네트워크 : 여러 도커 호스트에 걸쳐 배포된 컨테이너 그룹을 같은 네트워크에 배치하기 위한 기술을 말한다.
+        - overlay 네트워크를 사용해야 서로 다른 호스트에 위치한 컨테이너끼리 통신할 수 있다.
+    - overlay 네트워크 생성
+        ```
+        $ docker container exec -it manager docker network create --driver=overlay --attachable ch03
+        ```
+    - stack 디렉토리에 ch03-webapi.yml 작성
+        ```yml
+        version: "3"
+        services:
+            nginx:
+                image: registry:5000/gihyodocker/nginx-proxy:latest # 호스트에서 받은 뒤 레지스트리로 푸시해주어야 한다.
+                deploy:
+                    replicas: 3
+                    placement:
+                        constraints: [node.role != manager]
+                environment:
+                    BACKEND_HOST: echo_api:8080                       # api로서 열려있는 포트
+                depends_on:
+                    -   api
+                networks:
+                    -   ch03
+            api:
+                image: registry:5000/example/echo:latest
+                deploy:
+                    replicas: 3
+                    placement:
+                        constraints: [node.role != manager]
+                networks:
+                    -   ch03
+        
+        networks:
+            ch03:
+                external: true
+        ```
+    - stack 배포하기
+        ```
+        $ docker container exec -it manager docker stack deploy -c /stack/ch03-webpi.yml echo
+        $ docker container exec -it manager docker stack services echo
+        $ docker container exec -it manager docker stack ps echo
+        ```
+    - visualizer를 통한 시각화 작업
+        - stack 디렉토리에 visualizer.yml 작성
+            ```yml
+            version: "3"
+            services:
+                app:
+                    image: registry:5000/dockersamples/visualizer:latest
+                    ports:
+                        -   "9000:8080"
+                    volumes:
+                        -   /var/run/docker.sock:/var/run/docker.sock
+                    deploy:
+                        mode: global
+                        placement:
+                            constraints: [node.role == manager]
+            ```
+        - stack 배포
+            ```
+            $ docker container exec -it manager docker stack deploy -c /stack/visualizer.yml visualizer
+            $ docker container exec -it manager docker stack services visualizer
+            $ docker container exec -it manager docker stack ps visualizer
+            ```
+        - localhost:9000에 접속하여 확인한다.
+        - 제거
+            ```
+            $ docker container exec -it manager docker stack rm visualizer
+            ```
+
+- 스웜 클러스터 외부에서 서비스 이용하기
+    - visualizer는 스웜 클러스터 외부에서 접근할 수 있다.
+    - constraints 설정에서 visualizer 컨테이너가 반드시 manager에 배치되도록 했기 때문이다.
+    - echo_nginx 서비스는 여러 컨테이너가 여러 노드에 흩어져 배치돼 있기 때문에 이런 방법을 사용할 수 없다.
+    - 서비스 클러스터 외부에서 오는 트래픽을 목적하는 서비스로 보내주는 프록시 서버가 있어야 한다.
+    - HAProxy 이미지는 컨테이너 외부에서 서비스에 접근할 수 있게 해주는 다리 역할 외에 로드 밸런싱 기능을 제공한다.
+
+- stack 디렉토리에 ch03-ingress.yml 작성
+    ```yml
+    version: "3"
+    services:
+        haproxy:
+            image: registry:5000/dockercloud/haproxy:latest
+            networks:
+                -   ch03
+            volumes:
+                -   /var/run/docker.sock:/var/run/docker.sock
+            deploy:
+                mode: global
+                placement:
+                    constraints:
+                        - node.role == manager
+            ports:
+                -   80:80
+                -   1936:1936 # for stats page
+    
+    networks:
+        ch03:
+            external: true
+    ```
+- stack 디렉토리에 ch03-webapi 수정
+    ```yml
+    version: "3"
+        services:
+            nginx:
+                image: registry:5000/gihyodocker/nginx-proxy:latest # 호스트에서 받은 뒤 레지스트리로 푸시해주어야 한다.
+                deploy:
+                    replicas: 3
+                    placement:
+                        constraints: [node.role != manager]
+                environment:
+                    SERVICE_PORTS: 80
+                    BACKEND_HOST: echo_api:8080                       # api로서 열려있는 포트
+                depends_on:
+                    -   api
+                networks:
+                    -   ch03
+            api:
+                image: registry:5000/example/echo:latest
+                deploy:
+                    replicas: 3
+                    placement:
+                        constraints: [node.role != manager]
+                networks:
+                    -   ch03
+
+    networks:
+        ch03:
+            external: true
+    ```
+- 스택 재배포 및 배포
+    ```
+    $ docker container exec -it manager docker stack deploy -c /stack/ch03-webapi.yml echo
+    $ docker container exec -it manager docker stack deploy -c /stack/ch03-ingress.yml ingress
+    ```
+- 확인
+    ```
+    $ docker container exec -it manager docker stack service ls
+    $ curl http://localhost:8000/
+    ```
+- 도커 스웜의 주요 개념
+    1. 서비스는 레플리카 수(컨테이너 수)를 조절해 컨테이너를 쉽게 복제할 수 있다. 그리고 여러 노드에 레플리카를 배치할 수 있기 때문에 스케일 아웃에 유리하다.
+    2. 서비스로 관리되는 (여러 개의) 레플리카는 서비스명으로 네임 리솔루션되므로 서비스에 대한 트래픽이 각 레플리카로 분산된다.
+    3. 스웜 클러스터 외부에서 스웜에 배포된 서비스를 이용하려면 서비스에 트래픽을 분산시키기 위한 프록시를 갖추어야 한다.
+    4. 스택은 하나 이상의 서비스를 그룹으로 묶을 수 있으며, 여러 서비스로 구성된 어플리케이션을 배포할 때 유용하다.

@@ -1,0 +1,522 @@
+---
+title: "CH05. 쿠버네티스 입문"
+date: 2020-07-01
+weight: 5
+---
+
+## 1. 쿠버네티스란 무엇인가?
+
+- INTRO
+    - 컨테이너 운영을 자동화하기 위한 컨테이너 오케스트레이션 도구( 구글의 주도로 개발되었다. )
+    - 컨테이너를 이용한 어플리케이션 배포할 수 있다.
+    - 다양한 운영 관리 업무를 자동화할 수 있다.
+    - 컨테이너 배치, 스케일링, 로드벨런싱, 헬스 체크 등 기능을 갖추고 있다.
+
+- 도커의 부상과 쿠버네티스의 탄생
+    - 배포 및 컨테이너 배치 전략, 스케일-인 및 스케일-아웃 서시스 디스커버리, 운영 편의성 등 문제가 있었다.
+    - 컨테이너 오케스트레이션 도구의 발표 : 아파치 메소스, AWS의 ECS
+    - 2014년 구글이 오픈소스로 공개한 쿠버네티스.
+    - 오플 소스 소프트웨어이면서도 컨테이너 초창기부터 구글의 노하우가 잘 녹아 있어 다양한 상황에 잘 대응하는 유연성을 갖고 있다.
+    - 구글 외부로부터도 많은 컨트리뷰션을 받아들일 수 있는 체제로 프로젝트가 운영된다는 점도 많은 개발자가 쿠버네티스를 애용하게 된 원인의 하나였다.
+
+- 클라우드 플랫폼의 쿠버네티스 지원
+    - GCP(Google Cloud Platform)의 GKE(Google Kubernetes Engine)
+    - 마이크로소프트 Azure의 AKS(Azure Kubernetes Service)
+    - 아마존 AWS(Amazon Web Service)의 EKS(Elastic Kubernetes Service)
+
+- 도커에 정식 통합
+    - 2017년 10월에 도커와 쿠버네티스의 통합이 정식으로 발표되었다.
+    - 통합 자체는 아직 실험 단계에 있지만, 개발 작업이 활발히 진행되고 있다.
+
+- 쿠터네티스의 역할
+    - 도커
+        - 컨테이너를 관리하는 데몬인 dockerd와 명령행 도구로 구성
+    - 스웜
+        - 여러 대의 호스트를 묶어 기초적인 컨테이너 오케스트레이션 기능을 제공하는 도커 관린 기술
+    - 쿠버네티스
+        - 스웜보다 충실한 기능을 갖춘 컨테이너 오케스트레이션 시스템이자 도커를 빗해 여러 가지 컨테이너 런타임을 다룰 수 있다.
+        - 컴포즈/스태ㄱ/스웜의 기능을 통합해 더 높은 수준의 관리 기능을 제공하는 도구라고 보면 된다.
+
+## 2. 로컬 PC에서 쿠버네티스 실행 --> 구축은 6장에서 다루겠다.
+- kubeadm, kubespray : 클러스터를 구축하기 위해 사용하는 툴
+- kubelet : 클러스터의 모든 머신에서 실행되며 Pod 및 컨테이너 시작 등의 작업을 수행하는 구성 요소
+- kubectl : 쿠버네티스를 다루기 위한 명령행 도구
+    - curl로 최신 릴리즈 다운로드
+        ```
+        $ curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
+        ```
+    - curl로 특정 릴리즈 다운로드 -> `curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`을 바꾼다.
+        ```
+        $ curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.18.0/bin/linux/amd64/kubectl
+        ```
+    - kubectl 바이너리를 실행 가능하게 만든다.
+        ```
+        $ chmod +x ./kubectl
+        ```
+    - 바이너리를 PATH가 설정된 디렉터리로 옮긴다.
+        ```
+        $ sudo mv ./kubectl /usr/local/bin/kubectl
+        ```
+    - 설치한 버전을 확인한다.
+        ```
+        $ kubectl version --client
+        ```
+- 대시보드
+    - apply(배포)
+        ```
+        $ kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v1.8.3/src/deploy/recommended/kubernetes-dashboard.yaml
+        ```
+    - 확인
+        ```
+        $ kubectl get pod --namespace=kube-system -l k8s-app=kubernetes-dashboard
+        ```
+    - 웹 브라우저로 대시보드를 볼 수 있도록 프록시 서버 설정
+        ```
+        $ kubectl proxy
+        ```
+
+## 3. 쿠버네티스의 주요 개념
+
+- 쿠버네티스 리소스 : 애플리케이션을 구성하는 부품과 같은 것으로 노드, 네임스페이스, 파드 등을 가리킨다.
+- 컨테이너와 리소스는 구성 요소로서의 수준이 다른다.
+
+|리소스|용도|
+|:---|:---|
+|노드|컨테이너가 배치되는 서버|
+|네임스페이스|쿠버네티스 클러스터 안의 가상 클러스터|
+|파드|컨테이너의 집합 중 가장 작은 단위로, 컨테이너의 실행 방법을 정의한다.|
+|레플리카세트|같은 스펙을 갖는 파드를 여러 개 생성하고 관리하는 역할을 한다.|
+|디플로이먼트|레플리카 세트의 리비전을 관리한다.|
+|서비스|파드의 집합에 접근하기 위한 경로를 정의한다.|
+|인그레스|서비스를 쿠버네티스 클러스터 외부로 노출시킨다.|
+|컨피그맵|설정 정볼르 정의하고 파드에 전달한다.|
+|퍼시스턴트볼륨|파드가 사용할 스토리지의 크기 및 종류를 정의|
+|퍼시스턴트볼륨클레임|퍼시스턴트 볼륨을 동적으로 확보|
+|스토리지클래스|퍼시스턴트 볼륨이 확보하는 스토리지의 종류를 정의|
+|스테이트풀세트|같은 스펙으로 모두 동일한 파드를 여러 개 생성하고 관리한다.|
+|잡|상주 실행을 목적으로 하지 않는 파드를 여러 개 생성하고 정상적인 종료를 보장한다.|
+|크론잡|크론 문법으로 스케줄링되는 잡|
+|시크릿|인증 정보 같은 기밀 데이터를 정의|
+|롤|네임스페이스 안에서 조작 가능한 쿠버네티스 리소스의 규칙을 정의한다.|
+|롤바인딩|쿠버네티스 리소스 사용자와 롤을 연결 짓는다.|
+|클러스터롤|클러스터 전체적으로 조작 가능한 쿠버네티스 리소스의 규칙을 정의한다.|
+|클러스터롤바인딩|쿠버네티스 리소스 사용자와 클러스터롤을 연결 짓는다.|
+|서비스 계정|파드가 쿠버네티스 리소스를 조작할 때 사용하는 계정|
+
+## 4. 쿠버네티스 클러스와 노드
+
+- 클러스터 : 쿠버네티스의 여러 리소스를 관리하기 위한 집합체
+- 노드 : 쿠버네티스 클러스터의 관리 대상으로 등록된 도커 호스트로, 컨테이너가 배치되는 대상
+- 클러스터에 배치된 노드의 수, 노드의 사양 등에 따라 배치할 수 있는 컨테이너 수가 결정된다.
+- 클러스터의 처리 능력은 노드에 의해 결정된다.
+- 노드 확인 명령
+    ```
+    $ kubectl get nodes
+    ```
+
+## 5. 네임스페이스
+
+- 네임스페이스 : 클러스터 안에 가상 클러스터
+- 클러스터를 처음 구축하면 default, docker, kube-public, kube-system의 네임스페이스 4개가 이미 만들어져 있다.
+- 확인
+    ```
+    $ kubectl get namespaces
+    ```
+- 네임스페이스는 개발팀이 일정 규모 이상일 때 유용하다.
+- 네임스페이스마다 권한을 설정할 수 있으므로 더욱 견고하고 세세하게 권한을 제어할 수 있다.
+
+## 6. 파드(pod)
+
+- 파드 : 컨테이너가 모인 집합체 단위, 하나 이상의 컨테이너로 이루어진다.
+- 결합이 강한 컨테이너를 파드로 묶어 일괄 배포한다.
+- 컨테이너가 하나인 경우에도 파드로 배포한다.
+- [그림1]
+- [그림2]
+- 마스터 노드는 관리용 컴포넌트가 담긴 파드만 배포된 노드이다.
+- 어플리케이션에 사용되는 파드는 배포할 수 없다.
+
+- 파드 생성 및 배포하기
+    - 3장에서 사용했던 nginx-proxy와 echo 어플리케이션, 2개의 컨테이너를 포함하는 파드를 배포한다.
+    - simple-pod.yaml
+        ```yaml
+        apiVersion: v1
+        kind: Pod
+        metadata:
+            name: simple-echo
+        spec:
+            containers:
+                -   name: nginx
+                    image: gihyodocker/nginx:latest
+                    env:
+                        -   name: BACKEND_HOST
+                            value: localhost:8080
+                    ports:
+                        -   containerPort: 80
+                -   name: echo
+                    image: gihyodocker/echo:latest
+                    ports:
+                        -   containerPort: 8080
+        ```
+        - kind : 이 파일에서 정의하는 쿠버네티스 리소스의 유형을 지정, spec 아래의 스키마가 변화한다.
+        - metadata : 리소스에 부여되는 메타데이터. metadata.name 속성 값이 이 리소스의 이름이 된다.
+        - spec : 리소스를 정의하기 위한 속성으로, 파드의 경우 파드를 구성하는 컨테이너를 containers 아래에 정의한다.
+        - containers : name(컨테이너의 이름), image(이미지 태그값), ports(노출시킬 포트), env(환경변수)
+    - 쿠버네티스 클러스터 배포
+        ```
+        $ kubectl apply -f simple-pod.yaml
+        ```
+        - -f 옵션으로 매니페스트 파일에 대한 경로를 지정한다.
+        - apply 명령으로 배포한다.
+
+- 파드 다루기
+    - 파드 목록 가져오기
+        ```
+        $ kubectl get pod
+        ```
+    - 컨테이너 접근
+        ```
+        $ kubectl exec -it simple-echo sh -c nginx
+        ```
+        - 컨테이너가 여러 개인 경우에는 -c 옵션에 컨테이너 명을 지정한다.
+    - 표준 출력을 화면에 출력
+        ```
+        $ kubectl log -f simple-echo -c echo
+        ```
+    - 파드의 삭제
+        ```
+        $ kubectl delete pod simple-echo        # 사용이 끝난 리소스 삭제
+        $ kubectl delete -f simple-pod.yaml     # 매니페스트에 작성된 리소스 전체가 삭제
+        ```
+
+## 7. 레플리카세트
+
+- 파드를 정의한 매니페스트 파일로는 하나밖에 생성할 수 없다.
+- 같은 파드를 여러 개 실행해 가용성을 확보해야 하는 경우 사용한다.
+- 똑같은 정의를 갖는 파드를 여러 개 생성하고 관리하기 위한 리소스
+- 파드의 정의 자체도 레플리카세트를 정의한 yaml 파일에 작성하므로 파드의 설정을 따로 둘 필요 없이 파일 하나로 정의를 완결지을 수 있다.
+
+- simple-replicaset.yaml
+    ```yaml
+    apiVersion: v1
+    kind: ReplicaSet
+    metadata:
+        name: echo
+        labels:
+            app: echo
+    spec:
+        replicas: 3
+        selector:
+            matchLabels:
+                app: echo
+        template:   # template 아래는 파드 리소스 정의와 같다.
+            metadata:
+                labels:
+                    app: echo
+            spec:
+                containers:
+                    -   name: nginx
+                        image: gihyodocker/nginx:latest
+                        env:
+                            -   name: BACKEND_HOST
+                                value: localhost:8080
+                        ports:
+                            -   containerPort: 80
+                    -   name: echo
+                        image: gihyodocker/echo:latest
+                        ports:
+                            -   containerPort: 8080
+    ```
+- 배포 및 확인
+    ```
+    $ kubectl apply -f simple-replicaset.yaml
+    $ kubectl get pod
+    ```
+    - 파드명에 echo-bmc8h와 같이 무작위로 생성된 접미사가 붙는다.
+- 삭제
+    ```
+    $ kubectl delete -f simple-replicaset.yaml
+    ```
+
+## 8. 디플로이먼트
+
+- 레플리카세트를 관리하고 다루기 위한 리소스
+- 파드, 레플리카세트, 디플로이먼트의 관계
+    - [관계]
+
+- simple-deployment.yaml
+    ```yaml
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+        name: echo
+        labels:
+            app: echo
+    spec:
+        replicas: 3
+        selector:
+            matchLabels:
+                app: echo
+        template:   # template 아래는 파드 리소스 정의와 같다.
+            metadata:
+                labels:
+                    app: echo
+            spec:
+                containers:
+                    -   name: nginx
+                        image: gihyodocker/nginx:latest
+                        env:
+                            -   name: BACKEND_HOST
+                                value: localhost:8080
+                        ports:
+                            -   containerPort: 80
+                    -   name: echo
+                        image: gihyodocker/echo:latest
+                        ports:
+                            -   containerPort: 8080
+    ```
+- 디플로이먼트의 정의는 레플리카세트의 정의와 크게 다르지 않다.
+- 디플로이먼트가 레플리카세트의 리비전 관리를 할 수 있다.
+- 배포
+    ```
+    $ kubectl apply -f simple-deployment.yaml --record
+    # --record 옵션 : 이 매니페스트 파일을 어떤 kubectl 명령을 실행했는지 기록을 남긴다.
+    ```
+- 확인
+    ```
+    $ kubectl get pod,replicaset,deployment --selector app=echo
+    ```
+- 디플로이먼트 리비전 확인
+    ```
+    $ kubectl rollout history deployment echo
+    ```
+- 레플리카세트의 생애주기
+    - 파드 개수만 수정하면 레플리카세트가 새로 생성되지 않는다.
+    - 컨테이너의 정의가 수정되면 새로운 리비전이 생성된다. (새로운 파드가 생성되고 기존 파드는 단계적으로 정지됨)
+    - kubectl apply를 실행했을 때 디플로이먼트의 내용이 변경된 경우 새로운 리비전이 생성된다.
+- 롤백 실행하기
+    - 디플로이먼트는 리비전 번호가 기록되므로 특정 리비전의 내용을 확인할 수 있다.
+    - undo를 실행하면 디플로이먼트가 바로 직전 리비전으로 롤백된다.
+        ```
+        $ kubectl rollout undo deployment echo
+        ```
+- 삭제
+    ```
+    $ kubectl delete -f simple-deployment.yaml
+    ```
+
+## 9. 서비스
+
+- 쿠버네티스 클러스터 안에서 파드의 집합(주로 레플리카세트)에 대한 경로나 서비스 디스커버리(API주소가 동적으로 바뀌는 경우에도 클라이언트가 접속 대상을 바꾸지 않고 하나의 이름으로 접근할 수 있도록 하는 기능)를 제공하는 리소스.
+- 서비스의 대상이 되는 파드는 서비스에서 정의하는 레이블 셀렉터로 정해진다.
+
+- 예시
+    - simple-replicaset-with-label.yaml
+        ```yaml
+        apiVersion: apps/v1
+        kind: ReplicaSet
+        metadata:
+            name: echo-spring
+            labels:
+                app: echo
+                release: spring
+        spec:
+            replicas: 3
+            selector:
+                matchLabels:
+                    app: echo
+                    release: spring
+            template:   # template 아래는 파드 리소스 정의와 같다.
+                metadata:
+                    labels:
+                        app: echo
+                        release: spring
+                spec:
+                    containers:
+                        -   name: nginx
+                            image: gihyodocker/nginx:latest
+                            env:
+                                -   name: BACKEND_HOST
+                                    value: localhost:8080
+                            ports:
+                                -   containerPort: 80
+                        -   name: echo
+                            image: gihyodocker/echo:latest
+                            ports:
+                                -   containerPort: 8080
+        
+        ---
+        apiVersion: apps/v1
+        kind: ReplicaSet
+        metadata:
+            name: echo-summer
+            labels:
+                app: echo
+                release: summer
+        spec:
+            replicas: 3
+            selector:
+                matchLabels:
+                    app: echo
+                    release: summer
+            template:   # template 아래는 파드 리소스 정의와 같다.
+                metadata:
+                    labels:
+                        app: echo
+                        release: summer
+                spec:
+                    containers:
+                        -   name: nginx
+                            image: gihyodocker/nginx:latest
+                            env:
+                                -   name: BACKEND_HOST
+                                    value: localhost:8080
+                            ports:
+                                - containerPort: 80
+                        -   name: echo
+                            image: gihyodocker/echo:latest
+                            ports:
+                                -   containerPort: 8080
+        ```
+    - 배포 및 확인
+        ```
+        $ kubectl apply -f simple-replicaset-with-label.yaml
+        $ kubectl get pod -l app=echo -l release=spring
+        $ kubectl get pod -l app=echo -l release=summer
+        ```
+    - release=summer인 파드만 접근할 수 있는 서비스 simple-service.yaml
+        ```yaml
+        apiVersion: v1
+        kind: Service
+        metadata:
+            name: echo
+        spec:
+            selector:
+                app: echo
+                release: summer
+            prots:
+                -   name: http
+                    port: 80
+        ```
+    - 서비스 생성 및 확인
+        ```
+        $ kubectl apply -f simple-service.yaml
+        $ kubectl get service echo
+        ```
+    - 서비스는 기본적으로 쿠버네티스 클러스터 안에서만 접근할 수 있다.
+    - 쿠버네티스 클러스터 안에서 디버깅용 임시 컨테이너를 배포하고 curl 명령으로 HTTP 요청을 보내 확인한다.
+        ```
+        $ kubctl run -i --rm --tty debug --image=gihyodocker/fundamental:0.1.0 --restart=Never -- bash -il
+        debug:/# curl http://echo/
+        ```
+    - 레이블이 summber인 파드와 spring인 파드의 로그를 출력하여 확인한다.
+        ```
+        $ kubectl logs -f echo-summer-[무작위] -c echo
+        $ kubectl logs -f echo-spring-[무작위] -c echo
+        ```
+- ClusterIP 서비스
+    - 서비스의 기본값
+    - ClusterIP를 사용하면 쿠버네티스 클러스터 내부 IP 주소에 서비스를 공개할 수 있다.
+    - 이를 이용해 어떤 파드에서 다른 파드 그룹으로 접근할 때 서비스를 거쳐 가도록 할 ㅅ ㅜ있으며, 서비스명으로 네임 레졸루션이 가능해진다.
+    - 외부로부터는 접근할 수 없다.
+- NodePort 서비스
+    - 클러스터 외부에서 접근할 수 있는 서비스.
+    - 글로벌 포트를 개방한다는 점이 차이점이다.
+    - simple-service-2.yaml
+        ```yaml
+        apiVersion: v1
+        kinde: Service
+        metadata:
+            name: echo
+        spec:
+            type: NodePort
+            selector:
+                app: echo
+            ports:
+                -   name: http
+                    port: 80
+        ```
+    - 서비스 생성 후 확인
+        ```
+        $ kubectl apply -f simple-service-2.yaml
+        $ kubectl get service echo
+        ```
+        - 80번 포트가 클러스터의 포트와 연결된 것을 확인할 수 있다.
+        - 로컬에서 HTTP 요청을 보낼 수 있다.
+- LoadBalancer 서비스
+    - 로컬 쿠버네티스 환경에서는 사용할 수 없는 서비스이다.
+    - 이 서비스는 주로 각 클라우드 플랫폼에서 제공하는 로드 밸런서와 연동하기 위해 사용된다.
+    - GCP의 Cloud Load Balancing, AWS Elastic Load Balancing
+- ExternalName 서비스
+    - 셀렉터도 포트 정의도 없는 상당히 특이한 서비스다.
+    - 쿠버네티스 클러스터에서 외부 호스트를 네임 레졸루션하기 위한 별명을 제공한다.
+    - 아래와 같은 서비스를 생성하면 gihyo.jp를 gihyo로 참조할 수 있다.
+        ```yaml
+        apiVersion: v1
+        kind: Service
+        metadata:
+            name: gihyo
+        spec:
+            type: ExternalName
+            externalName: gihyo.jp
+        ```
+
+## 10. 인그레스
+
+- Intro
+    - NodePort를 사용하여 외부로 서비스를 공개하면 L4 레벨까지만 다룰 수 있기 때문에 HTTP/HTTPS처럼 경로 기반으로 서비스를 전환하는 L7 레벨의 제어는 불가능하다.
+    - 이를 해결하기 위한 리소스가 인그레스이다.
+    - 서비스를 이용한 쿠버네티스 클러스터 외부에 대한 노출과 가상 호스트 및 경로 기반의 정교한 HTTP 라우팅을 양립시킬 수 있다.
+    - HTTP/HTTPS 서비스를 노출하려는 경우에는 십중팔구 인그레스를 사용한다.
+    - 로컬 쿠버네티스 환경에서는 인그레스를 사용해 서비스를 노출시킬 수 없다.
+    - 클러스터 왜부에서 온 HTTP 요청을 라우팅하기 위한 nginx_ingress_controller를 다음과 같이 배포한다.
+        ```
+        $ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/nginx-0.16.2/deploy/mandatory.yaml
+        $ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/nginx-0.16.2/deploy/provider/cloud-generic.yaml
+        ```
+        - 확인
+        ```
+        $ kubectl -n ingress-nginx get service,pod
+        ```
+        - 인그레스 리소스를 사용할 수 있다.
+- 인그레스를 통해 접근하기
+    - simple-service.yaml 수정
+        ```yaml
+        apiVersion: v1
+        kind: Service
+        metadata:
+            name: echo
+        spec:
+            selector:
+                app: echo
+            ports:
+                -   name: http
+                    port: 80
+        ```
+    - 수정된 매니페스트 파일 반영
+        ```
+        $ kubectl apply -f simple-service.yaml
+        ```
+    - simple-ingress.yaml 작성
+        ```yaml
+        apiVersion: extensions/v1beta1
+        kind: Ingress
+        metadata:
+            name: echo
+        spec:
+            rules:
+                -   host: ch05.gihyo.local
+                    http:
+                    paths:
+                        -   path: /
+                            backend:
+                                serviceName: echo
+                                servicePort: 80
+        ```
+    - 배포 및 확인
+        ```
+        $ kubectl apply -f simple-ingress.yaml
+        $ kubectl get ingress
+        $ curl http://localhost -H 'Host: ch05.gihyo.local'
+        ```
+    - metadata.annotations 에 nginx-ingress-controller 자체의 제어 설정을 할 수 있다.
+    

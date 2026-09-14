@@ -1,0 +1,1185 @@
+---
+title: "CH04. 스웜을 이용한 실전 어플리케이션 개발"
+date: 2020-07-01
+weight: 4
+---
+
+## 1. 웹 어플리케이션 구성
+
+- 어플리케이션의 요구 조건
+    - TODO를 등록, 수정, 삭제할 수 있다.
+    - 등록된 TODO의 목록을 출력할 수 있다.
+    - 브라우저에서 사용할 수 있는 웹 어플리케이션이다.
+- 아키텍처
+    - 오케스트레이션 시스템은 도커 스웜 사용
+    - `[아키텍처]`
+    - 구성 요소
+
+        |이미지명|용도|서비스명|스택명|
+        |:---|:---|:---|:---|
+        |MysQL|데이터스토어|mysql_master, mysql_slave|MySQL|
+        |API|데이터스토어를 다룰 API 서버|app_api|Application|
+        |Web|뷰 생성을 담당하는 어플리케이션 서버|frontend_web|Frontend|
+        |Nginx|프록시 서버|app_nginx, frontend_nginx|Appication Frontend|
+    
+    - MySQL
+        - 데이터 스토어
+        - 마스터-슬래브 구조로 마스터에 저장, 슬레이브로 읽기
+    - API
+        - RESTful API
+        - DB에 접근한다.
+    - 웹 UI
+        - DB에 접근하지 않고 API를 경유한다.
+        - Node.js를 사용한다.
+- Nginx
+    - 캐싱, 백엔드에 대한 유연한 라우팅, 접근 로그 생성 등의 역할을 겸한다.
+    - 배치 전략
+        - `[배치전략]`
+        - `docker container exec -it manager docker network create --driver=overlay --attachable todoapp` : 네트워크 생성
+- TODO 어플리케이션의 전체 구조
+    - 데이터 스토어 역할을 할 MySQL 서비스를 마스터-슬레이브 구조로 구축
+    - MySQL과 데이터를 주고받을 API 구현
+    - Nginx를 웹 어플리케이션과 API 사에서 리버스 프록세 역할을 하도록 설정
+    - API를 사용해 서버 사이드 렌더링을 수행할 웹 어플리케이션 구현
+    - 프론트엔드 쪽에 리버스 프록시 배치
+
+## 2. MySQL 서비스 구축
+
+- MySQL 이미지를 만들기 위한 리포지토리 클론
+    - `git clone https://github.com/gihyodocker/tododb`
+    - clone 받은 리포지토리를 기반으로 이미지를 구성한다.
+- 데이터베이스 컨테이너 구성
+    - MySQL 컨테이너는 도커 허브에 등록된 mysql:5.7 이미지를 기반으로 생성한다.
+    - 마스터-블레이브 컨테이너는 두 역할을 모두 수행할 수 있는 하나의 이미지로 생성한다.
+    - MYSQL_MASTER 환경 변수의 유무에 따라 컨테이너가 서로 마스터로 동작할지, 슬레이브로 동작할지가 결정된다.
+    - replicas 값을 조절해 슬레이브를 늘릴 수 있게 한다. 이때 마스터, 슬레이브 모두 일시 정지(다운타임)를 허용한다.
+- 인증 정보
+    - master
+
+        |환경 변수 이름|내용|값|
+        |:---|:---|:---|
+        |MYSQL_ROOT_PASSWORD|root 사용자 패스워드|gihyo|
+        |MYSQL_DATABASE|TODO 어플리케이션에서 사용할 데이터 베이스|tododb|
+        |MYSQL_USER|데이터베이스 사용자명|gihyo|
+        |MYSQL_PASSWORD|패스워드|gihyo|
+        |MYSQL_MASTER|마스터 여부|true|
+
+    - slave
+
+        |환경 변수 이름|내용|값|
+        |:---|:---|:---|
+        |MYSQL_MASTER_HOST|마스터 호스트명|master|
+        |MYSQL_ROOT_PASSWORD|root 사용자 패스워드|gihyo|
+        |MYSQL_DATABASE|TODO 어플리케이션에서 사용할 데이터베이스|tododb|
+        |MYSQL_USER|데이터베이스 사용자명|gihyo|
+        |MYSQL_PASSWORD|패스워드|gihyo|
+        |MYSQL_REPL_USER|마스터에 등록할 레플리케이션 사용자|repl|
+        |MYSQL_REPL_PASSWORD|레플리케이션 사용자 패스워드|gihyo|
+
+- MySQL 설정 : etc/mysql/mysql.conf.d/mysqld.cnf
+    ```cnf
+    [mysqld]
+    character-set-server = utf8mb4
+    collation-server = utf8mb4_general_ci
+    pid-file        = /var/run/mysqld/mysqld.pid
+    socket          = /var/run/mysqld/mysqld.sock
+    datadir         = /var/lib/mysql
+    #log-error      = /var/log/mysql/error.log
+    # By default we only accept connections from localhost
+    #bind-address   = 127.0.0.1
+    # Disabling symbolic-links is recommended to prevent assorted security risks
+    symbolic-links=0
+    relay-log=mysqld-relay-bin
+    relay-log-index=mysqld-relay-bin
+
+    log-bin=/var/log/mysql/mysql-bin.log
+
+    ```
+    - log-bin
+        - 레플리케이션을사용하려면 바이너리 로그가 필요하다.
+        - log-bin은 마스터와 슬레이브 모두 사용하기 때문에 설정에 차이가 없다.
+    - server-id
+        - MySQL 서버를 식별하기 위한 유일 값이다.
+        - 마스터와 슬레이브로 구성된 스택 안에서 중복이 없도록 설정해야한다.
+        - log-bin 아래줄에 생성되도록 tododb/add-server-id.sh에 아래와 같이 작성한다.
+            ```sh
+            #!/bin/bash -e
+            OCTETS=(`hostname -i | tr -s '.' ' '`)
+
+            MYSQL_SERVER_ID=`expr ${OCTETS[2]} \* 256 + ${OCTETS[3]}`
+            echo "server-id=$MYSQL_SERVER_ID" >> /etc/mysql/mysql.conf.d/mysqld.cnf
+            ```
+            - 컨테이너의 IP 주소에서 3,4 번째 옥텟 값을 뽑아 서버 간에 중복되지 않는 server-id 값을 설정한다.
+- 레플리케이션 설정
+    - tododb/prepare.sh
+        ```sh
+        #!/bin/bash -e
+
+        # (1) 환경 변수로 마스터와 슬레이브 지정
+        if [ ! -z "$MYSQL_MASTER" ]; then
+            echo "this container is master"
+            exit 0
+        fi
+
+        echo "prepare as slave"
+
+        # (2) 슬레이브에서 마스터와 통신 가능 여부
+        if [ -z "$MYSQL_MASTER_HOST" ]; then
+            echo "mysql_master_host is not specified" 1>&2
+            exit 1
+        fi
+
+        while :
+        do
+            if mysql -h $MYSQL_MASTER_HOST -u root -p$MYSQL_ROOT_PASSWORD -e "quit" > /dev/null 2>&1 ; then
+                echo "MySQL master is ready!"
+                break
+            else
+                echo "MySQL master is not ready"
+            fi
+            sleep 3
+        done
+
+        # (3) 마스터에 레플리케이션용 사용자 생성 및 권한 부여
+        IP=`hostname -i`
+        IFS='.'
+        set -- $IP
+        SOURCE_IP="$1.$2.%.%"
+        mysql -h $MYSQL_MASTER_HOST -u root -p$MYSQL_ROOT_PASSWORD -e "CREATE USER IF NOT EXISTS '$MYSQL_REPL_USER'@'$SOURCE_IP' IDENTIFIED BY '$MYSQL_REPL_PASSWORD';"
+        mysql -h $MYSQL_MASTER_HOST -u root -p$MYSQL_ROOT_PASSWORD -e "GRANT REPLICATION SLAVE ON *.* TO '$MYSQL_REPL_USER'@'$SOURCE_IP';"
+
+        # (4) 마스터에 binlog 포지션 정보 확인
+        MASTER_STATUS_FILE=/tmp/master-status
+        mysql -h $MYSQL_MASTER_HOST -u root -p$MYSQL_ROOT_PASSWORD -e "SHOW MASTER STATUS\G" > $MASTER_STATUS_FILE
+        BINLOG_FILE=`cat $MASTER_STATUS_FILE | grep File | xargs | cut -d' ' -f2`
+        BINLOG_POSITION=`cat $MASTER_STATUS_FILE | grep Position | xargs | cut -d' ' -f2`
+        echo "BINLOG_FILE=$BINLOG_FILE"
+        echo "BINLOG_POSITION=$BINLOG_POSITION"
+
+        # (5) 레플리케이션 시작
+        mysql -u root -p$MYSQL_ROOT_PASSWORD -e "CHANGE MASTER TO MASTER_HOST='$MYSQL_MASTER_HOST', MASTER_USER='$MYSQL_REPL_USER', MASTER_PASSWORD='$MYSQL_REPL_PASSWORD', MASTER_LOG_FILE='$BINLOG_FILE', MASTER_LOG_POS=$BINLOG_POSITION;"
+        mysql -u root -p$MYSQL_ROOT_PASSWORD -e "START SLAVE;"
+
+        echo "slave started"
+
+        ```
+        1. 환경 변수에 따라 마스터/슬레이브로 설정
+            - MYSQL_MASTER 값에 따라 마스터 혹은 슬레이브로 동작
+        2. 슬레이브와 마스터 간의 통신 확인
+            - 슬레이브에서 마스터에 MySQL 명령ㅇ르 실행하려면 호스트명을 -h 옵션값으로 주면 된다.
+            - 3초마다 마스터와 통신을 확인해 확인되는 경우 무한 루프에서 바로 탈출한다.
+        3. 마스터에 레플리카 사용자 및 권한추가
+        4. 마스터 binlog의 포지션 설정
+        5. 레플리케이션 시작
+- MySQL(master/slave) Dockerfile
+    ```Dockerfile
+    FROM mysql:5.7
+
+    # (1) 패키지 업데이트 및 wget 설치
+    RUN apt-get update
+    RUN apt-get install -y wget
+
+    # (2) entrykit 설치
+    RUN wget https://github.com/progrium/entrykit/releases/download/v0.4.0/entrykit_0.4.0_linux_x86_64.tgz
+    RUN tar -xvzf entrykit_0.4.0_linux_x86_64.tgz
+    RUN rm entrykit_0.4.0_linux_x86_64.tgz
+    RUN mv entrykit /usr/local/bin/
+    RUN entrykit --symlink
+
+    # (3) 스크립트 및 각종 설정 파일 복사
+    COPY add-server-id.sh /usr/local/bin/
+    COPY etc/mysql/mysql.conf.d/mysqld.cnf /etc/mysql/mysql.conf.d/
+    COPY etc/mysql/conf.d/mysql.cnf /etc/mysql/conf.d/
+    COPY prepare.sh /docker-entrypoint-initdb.d
+    COPY init-data.sh /usr/local/bin/
+    COPY sql /sql
+
+    # (4) 스크립트, mysqld 실행
+    ENTRYPOINT [ \
+        "prehook", \
+        "add-server-id.sh", \
+        "--", \
+        "docker-entrypoint.sh" \
+    ]
+
+    CMD ["mysqld"]
+    ```
+    1. wget 설치
+    2. entrykit 설치
+    3. MySQL 컨테이너를 구성하기 위한 파일과 스크립트를 COPY
+    4. 스크립트 및 mysqld 실행
+        - ENTRYPOINT 인스트럭션 값 안에 지정된 docker-entrypoint.sh 스크립트는 tododb에는 없지만 기반 이미지인 mysql:5.7에 포함된 파일이므로 실행할 수 있다.
+        - 이 이미지는 데이터베이스 서버 시작이 완료된 시점마다 /docker-entrypoint-initdb.d 디렉터리에 위치한 스크립트를 실행한다.
+        - add-server-id.sh 스크립트를 docker-entrypoint.sh보다 먼저 실행할 수 있다.
+- 빌드
+    ```
+    $ docker image build -t tododb:latest .
+    $ docker image tag tododb:latest localhost:5000/tododb:latest
+    $ docker push localhost:5000/tododb:latest
+    ```
+- 스웜에서 마스터 및 슬레이브 실행
+    - stack/todo-mysql.yml 작성
+        ```yml
+        version: "3"
+        services:
+        master:
+            image: registry:5000/tododb:latest
+            ports:
+                -   3306:3306
+            deploy:
+                replicas: 1
+                placement:
+                    constraints: [node.role != manager]
+            environment:
+                MYSQL_ROOT_PASSWORD: gihyo
+                MYSQL_DATABASE: tododb
+                MYSQL_USER: gihyo
+                MYSQL_PASSWORD: gihyo
+                MYSQL_MASTER: "true"
+            networks:
+                -   todoapp
+
+        slave:
+            image: registry:5000/tododb:latest
+            deploy:
+                replicas: 2
+                placement:
+                    constraints: [node.role != manager]
+            depends_on:
+                -   master
+            environment:
+                MYSQL_MASTER_HOST: master
+                MYSQL_ROOT_PASSWORD: gihyo
+                MYSQL_DATABASE: tododb
+                MYSQL_USER: gihyo
+                MYSQL_PASSWORD: gihyo
+                MYSQL_REPL_USER: repl
+                MYSQL_REPL_PASSWORD: gihyo
+            networks:
+                -   todoapp
+
+        networks:
+            todoapp:
+                external: true
+        ```
+    - stack 생성 및 조회
+        ```
+        $ docker contaienr exec -it manager docker stack deploy -c /stack/todo-mysql.yml todo_mysql
+        $ docker container exec -it manager docker stack ps todo_mysql
+        $ docker container exec -it manager docker service ls
+        ```
+- MySQL 컨테이너 확인 및 초기 데이터 투입
+    - 노드 ID와 테스크 ID 알아오기 및 데이터 삽입
+        ```
+        $ docker container exec -it manager stack ps todo_mysql
+        $ docker container exec -it {{master 노드}} docker container ls
+        $ docker container exec -it {{msster 노드}} docker contianer exec -it {{컨테이너 id}} init-data.sh
+        ```
+    - 삽입 확인
+        ```
+        $ docker container exec -it {{master 노드}} docker container exec -it {{컨테이너 id}} mysql -u root -p[비밀번호] tododb
+        > select * from todo\G
+        ```
+    - 마스터에 적용한 데이터가 슬레이브에도 적용되었는지 확인한다.
+
+## 3. API 서비스 구축
+
+- API 이미지를 만들기 위한 리포지토리 클론
+    - `git clone https://github.com/gihyodocker/todoapi`
+    - clone 받은 리포지토리를 기반으로 이미지를 구성한다.
+- todoapi의 기본 구조
+    ```
+    todoapi
+    ├── .dockerignore       # 컨테이너에 넣지 않을 파일 및 디렉터리 정의
+    ├── cmd                 
+    │   └── main.go         # 어플리케이션을 시작함
+    ├── db.go               # mysql에 접속
+    ├── Dockerfile          # Dockerfile
+    ├── env.go              # 환경변수를 적절히 생성함
+    ├── go.mod
+    ├── go.sum
+    └── handler.go          # HTTP 요청을 받으면 비즈니스로직을 수행하고 응답을 돌려줌
+    ```
+    - cmd/main.go : 어플리케이션 시작
+        ```go
+        package main
+
+        import (
+                "fmt"
+                "log"
+                "net/http"
+                "os"
+
+                "github.com/gihyodocker/todoapi"
+        )
+
+        func main() {
+
+                // (1) 환경변수 저장 구조체
+                env, err := todoapi.CreateEnv()
+                if err != nil {
+                        fmt.Fprint(os.Stderr, err.Error())
+                        os.Exit(1)
+                }
+
+                // (2) MySQL 마스터에 접속하는데 사용하는 구조체
+                masterDB, err := todoapi.CreateDbMap(env.MasterURL)
+                if err != nil {
+                        fmt.Fprintf(os.Stderr, "%s is invalid database", env.MasterURL)
+                        return
+                }
+
+                // (3) MySQL 슬레이브에 접속하는 데 사용하는 구조체
+                slaveDB, err := todoapi.CreateDbMap(env.SlaveURL)
+                if err != nil {
+                        fmt.Fprintf(os.Stderr, "%s is invalid database", env.SlaveURL)
+                        return
+                }
+
+                mux := http.NewServeMux()
+
+                // (4) 헬스체크에 사용되는 API 핸들러
+                hc := func(w http.ResponseWriter, r *http.Request) {
+                        log.Println("[GET] /hc")
+                        w.Write([]byte("OK"))
+                }
+
+                // (5) TODO API 핸들러
+                todoHandler := todoapi.NewTodoHandler(masterDB, slaveDB)
+
+                // (6) 핸들러 API 엔드포인트로 등록
+                mux.Handle("/todo", todoHandler)
+                mux.HandleFunc("/hc", hc)
+
+                // (7) 서버 포트 및 핸들러 설정, 서버 시작
+                s := http.Server{
+                        Addr:    env.Bind,
+                        Handler: mux,
+                }
+                log.Printf("Listen HTTP Server")
+                if err := s.ListenAndServe(); err != nil {
+                        log.Fatal(err)
+                }
+        }
+        ```
+- 어플리케이션 환경 변수 통제
+    - env.go
+        ```go
+        package todoapi
+
+        import (
+                "errors"
+                "os"
+        )
+
+        // 환경 변수를 저장할 구조체
+        type Env struct {
+                Bind      string
+                MasterURL string
+                SlaveURL  string
+        }
+
+        func CreateEnv() (*Env, error) {
+
+                env := Env{}
+
+                bind := os.Getenv("TODO_BIND") // API 서버 포트 설정
+                if bind == "" {
+                        env.Bind = ":8080"
+                }
+                env.Bind = bind
+
+                masterURL := os.Getenv("TODO_MASTER_URL") // MySQL Master 접속 정보
+                if masterURL == "" {
+                        return nil, errors.New("TODO_MASTER_URL is not specified")
+                }
+                env.MasterURL = masterURL
+
+                slaveURL := os.Getenv("TODO_SLAVE_URL") // MySQL Slave 접속 정보
+                if slaveURL == "" {
+                        return nil, errors.New("TODO_SLAVE_URL is not specified")
+                }
+                env.SlaveURL = slaveURL
+
+                return &env, nil
+        }
+        ```
+- MySQL 접속 및 테이블 매핑
+    - db.go
+        ```go
+        package todoapi
+
+        import (
+                "database/sql"
+                "time"
+
+                _ "github.com/go-sql-driver/mysql"
+                gorp "gopkg.in/gorp.v1"
+        )
+
+        func CreateDbMap(dbURL string) (*gorp.DbMap, error) {
+
+                ds, err := createDatasource(dbURL)
+                if err != nil {
+                        return nil, err
+                }
+
+                db := &gorp.DbMap{
+                        Db: ds,
+                        Dialect: gorp.MySQLDialect{
+                                Engine:   "InnoDB",
+                                Encoding: "utf8mb4",
+                        },
+                }
+
+                db.AddTableWithName(Todo{}, "todo").SetKeys(true, "ID")
+                return db, nil
+        }
+
+        func createDatasource(dbURL string) (*sql.DB, error) {
+
+                db, err := sql.Open("mysql", dbURL)
+                if err != nil {
+                        return nil, err
+                }
+
+                db.SetMaxIdleConns(2)
+                return db, nil
+        }
+
+        type Todo struct {
+                ID      uint      `db:"id"      json:"id"`
+                Title   string    `db:"title"   json:"title"`
+                Content string    `db:"content" json:"content"`
+                Status  string    `db:"status"  json:"status"`
+                Created time.Time `db:"created" json:"created"`
+                Updated time.Time `db:"updated" json:"updated"`
+        }
+        ```
+- 핸들러 구현하기
+    - handler.go
+        ```go
+        package todoapi
+
+        import (
+                "database/sql"
+                "encoding/json"
+                "fmt"
+                "io/ioutil"
+                "log"
+                "net/http"
+                "time"
+
+                gorp "gopkg.in/gorp.v1"
+        )
+
+        // 핸들러에서 DB에 쿼리를 보낼 수 있도록 DB 접속 정보 구조체를 갖는다.
+        type TodoHandler struct {
+                master *gorp.DbMap
+                slave  *gorp.DbMap
+        }
+
+        // Handler 생성 함수
+        func NewTodoHandler(master *gorp.DbMap, slave *gorp.DbMap) http.Handler {
+                return &TodoHandler{
+                        master: master,
+                        slave:  slave,
+                }
+        }
+
+        // HTTP 요청을 받아 비즈니스 로직을 수행하고 응답을 돌려준다.
+        func (h TodoHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+
+                log.Printf("[%s] RemoteAddr=%s\tUserAgent=%s", r.Method, r.RemoteAddr, r.Header.Get("User-Agent"))
+                switch r.Method {
+                case "GET":
+                        h.serveGET(w, r)
+                        return
+                case "POST":
+                        h.servePOST(w, r)
+                        return
+                case "PUT":
+                        h.servePUT(w, r)
+                        return
+                default:
+                        NewErrorResponse(http.StatusMethodNotAllowed, fmt.Sprintf("%s is Unsupported method", r.Method)).Write(w)
+                        return
+                }
+        }
+
+        type errorResponse struct {
+                Status  int    `json:"status"`
+                Message string `json:"message"`
+        }
+
+        func NewErrorResponse(status int, message string) *errorResponse {
+                return &errorResponse{
+                        Status:  status,
+                        Message: message,
+                }
+        }
+
+        func (e *errorResponse) Write(w http.ResponseWriter) {
+                data, err := json.Marshal(e)
+                if err != nil {
+                        log.Println("marshal error json is failed")
+                }
+
+                w.Header().Set("Content-Type", "application/json; charset=utf-8")
+                w.WriteHeader(e.Status)
+                w.Write(data)
+        }
+
+        func (h TodoHandler) serveGET(w http.ResponseWriter, r *http.Request) {
+
+                status := r.URL.Query().Get("status")
+                if status == "" {
+                        status = "TODO"
+                }
+
+                result, err := h.slave.Select(Todo{}, "SELECT * FROM todo WHERE status = ? ORDER BY updated DESC", status)
+                if err != nil {
+                        log.Println(err.Error())
+                        NewErrorResponse(http.StatusInternalServerError, "Execute Query is failed").Write(w)
+                        return
+                }
+
+                todoItems := make([]*Todo, 0)
+
+                for _, e := range result {
+                        todo := e.(*Todo)
+                        todoItems = append(todoItems, todo)
+                }
+
+                data, err := json.Marshal(todoItems)
+                if err != nil {
+                        log.Println(err.Error())
+                        NewErrorResponse(http.StatusInternalServerError, "Marshal JSON is failed").Write(w)
+                        return
+                }
+
+                w.Header().Set("Content-Type", "application/json; charset=utf-8")
+                w.Write(data)
+        }
+
+        type TodoPostPayload struct {
+                Title   string `json:"title"`
+                Content string `json:"content"`
+        }
+
+        func (h TodoHandler) servePOST(w http.ResponseWriter, r *http.Request) {
+
+                raw, err := ioutil.ReadAll(r.Body)
+                if err != nil {
+                        log.Println(err.Error())
+                        NewErrorResponse(http.StatusInternalServerError, "Read payload is failed").Write(w)
+                        return
+                }
+
+                var payload TodoPostPayload
+                if err := json.Unmarshal(raw, &payload); err != nil {
+                        log.Println(err.Error())
+                        NewErrorResponse(http.StatusInternalServerError, "Parse payload is failed").Write(w)
+                        return
+                }
+
+                now := time.Now()
+                todo := Todo{
+                        Title:   payload.Title,
+                        Content: payload.Content,
+                        Status:  "TODO",
+                        Created: now,
+                        Updated: now,
+                }
+
+                if err := h.master.Insert(&todo); err != nil {
+                        log.Println(err.Error())
+                        NewErrorResponse(http.StatusInternalServerError, "Insert Data is failed").Write(w)
+                        return
+                }
+
+                w.Header().Set("Content-Type", "application/json; charset=utf-8")
+                w.WriteHeader(http.StatusCreated)
+        }
+
+        type TodoPutPayload struct {
+                ID      uint   `json:"id"`
+                Title   string `json:"title"`
+                Content string `json:"content"`
+                Status  string `json:"status"`
+        }
+
+        func (h TodoHandler) servePUT(w http.ResponseWriter, r *http.Request) {
+
+                raw, err := ioutil.ReadAll(r.Body)
+                if err != nil {
+                        log.Println(err.Error())
+                        NewErrorResponse(http.StatusInternalServerError, "Read payload is failed").Write(w)
+                        return
+                }
+
+                var payload TodoPutPayload
+                if err := json.Unmarshal(raw, &payload); err != nil {
+                        log.Println(err.Error())
+                        NewErrorResponse(http.StatusInternalServerError, "Parse payload is failed").Write(w)
+                        return
+                }
+
+                var target Todo
+                if err := h.slave.SelectOne(&target, "SELECT * FROM todo WHERE id = ?", payload.ID); err != nil {
+                        if err == sql.ErrNoRows {
+                                NewErrorResponse(http.StatusNotFound, fmt.Sprintf("id=%d is not found", payload.ID)).Write(w)
+                        } else {
+                                log.Println(err.Error())
+                                NewErrorResponse(http.StatusInternalServerError, "Select todo is failed").Write(w)
+                        }
+                        return
+                }
+
+                now := time.Now()
+                todo := Todo{
+                        ID:      payload.ID,
+                        Title:   payload.Title,
+                        Content: payload.Content,
+                        Status:  payload.Status,
+                        Created: target.Created,
+                        Updated: now,
+                }
+
+                if _, err := h.master.Update(&todo); err != nil {
+                        log.Println(err.Error())
+                        NewErrorResponse(http.StatusInternalServerError, "Update Data is failed").Write(w)
+                        return
+                }
+
+                w.Header().Set("Content-Type", "application/json")
+                w.WriteHeader(http.StatusOK)
+        }
+        ```
+    - serveGET
+        - 요청 파라미터 status를 받아 todo 테이블에서 select 쿼리를 실행
+        - JSON 포멧으로 된 레코드의 배열을 응답으로 반환한다.
+    - servePOST
+        - 새로운 TODO를 추가한다.
+        - JSON 포멧으로 전달하여 TODO를 추가한다.
+    - servePUT
+        - 이미 추가된 TODO를 수정한다.
+        - id로 지정된 레코드가 이미 존재하는 경우 해당 레코드를 수정
+        - id로 지정된 레코드가 없는 경우 404를 반환한다.
+- API를 위한 Dockerfile
+    - Dockerfile
+        ```Dockerfile
+        FROM golang:1.13
+
+        WORKDIR /
+        ENV GOPATH /go
+
+        COPY . /go/src/github.com/gihyodocker/todoapi
+        RUN go get github.com/go-sql-driver/mysql
+        RUN go get gopkg.in/gorp.v1
+        RUN cd /go/src/github.com/gihyodocker/todoapi && go build -o bin/todoapi cmd/main.go
+        RUN cd /go/src/github.com/gihyodocker/todoapi && cp bin/todoapi /usr/local/bin/
+
+        CMD ["todoapi"]
+        ```
+- 스웜에서 todoapi 서비스 실행하기
+    - 이미지 생성 및 태그 변경, 리포지토리에 푸시
+        ```
+        $ docker image build -t todoapp:latest .
+        $ docker image tag todoapp:latest localhost:5000/todoapp:latest
+        $ docker push localhost:5000/todoapp:latest
+        ```
+    - stack/todo-app.yml
+        ```yml
+        version: "3"
+        services:
+            api:
+                image: registry:5000/todoapi:latest
+                deploy:
+                replicas: 2
+                environment:
+                    TODO_BIND: ":8080"
+                    TODO_MASTER_URL: "gihyo:gihyo@tcp(todo_mysql_master:3306)/tododb?parseTime=true"
+                    TODO_SLAVE_URL: "gihyo:gihyo@tcp(todo_mysql_slave:3306)/tododb?parseTime=true"
+                networks:
+                    -   todoapp
+
+        networks:
+            todoapp:
+                external: true
+        ```
+    - 서비스 실행 및 확인
+        ```
+        $ docker container exec -it manager docker stack deploy -c /stack/todo-app.yml todo_app
+        $ docker container exec -it manager docker service logs -f todo_app_api
+        ```
+        - 마스터 및 슬레이브에 접속할 수 없는 경우 자동으로 종료된다.
+
+## 4. Nginx 구축
+
+- nginx 이미지를 만들기 위한 리포지토리 클론
+    - `git clone https://github.com/gihyodocker/todonginx`
+    - clone 받은 리포지토리를 기반으로 이미지를 구성한다.
+- nginx 설정
+    - entrykit을 사용하면 컨테이너 실행 시점에서 템플릿에 환경 변수에 설정된 값을 채워 넣는 방식으로 파일을 생성(렌더링)할 수 있다.
+    - nginx.conf.tmpl
+        ```conf
+        user  nginx;
+        worker_processes  {{ var "WORKER_PROCESSES" | default "1" }};               # (1) Nginx에서 사용할 워커 프로세스 수
+
+        error_log  /var/log/nginx/error.log warn;
+        pid        /var/run/nginx.pid;
+
+        events {
+            worker_connections  {{ var "WORKER_CONNECTIONS" | default "1024" }};    # (2) 워커 프로세스가 만들 수 있는 최대 연결 수
+        }
+
+        http {
+            include       /etc/nginx/mime.types;
+            default_type  application/octet-stream;
+
+            log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                            '$status $body_bytes_sent "$http_referer" '
+                            '"$http_user_agent" "$http_x_forwarded_for"';
+
+            access_log  /var/log/nginx/access.log  main;
+
+            sendfile        on;
+            #tcp_nopush     on;
+
+            keepalive_timeout  {{ var "KEEPALIVE_TIMEOUT" | default "65" }};        # (3) 클라이언트와의 접속 유지 시간
+
+            gzip  {{ var "GZIP" | default "on" }};                                  # (4) 응답 내용을 gzip으로 압출할지 여부
+
+            include /etc/nginx/conf.d/*.conf;                                       # (5) conf.d 디렉토리에 .conf파일을 읽겠다.
+        }
+        ```
+    - log.conf
+        - 로그 출력 포맷 정의
+        ```conf
+        log_format json '{'
+                        '"time":"$time_iso8601",'
+                        '"remote_addr":"$remote_addr",'
+                        '"request":"$request",'
+                        '"request_method":"$request_method",'
+                        '"request_length":"$request_length",'
+                        '"request_uri":"$request_uri",'
+                        '"uri":"$uri",'
+                        '"query_string":"$query_string",'
+                        '"status":"$status",'
+                        '"bytes_sent":"$bytes_sent",'
+                        '"body_bytes_sent":"$body_bytes_sent",'
+                        '"referer":"$http_referer",'
+                        '"useragent":"$http_user_agent",'
+                        '"forwardedfor":"$http_x_forwarded_for",'
+                        '"request_time":"$request_time",'
+                        '"upstream_response_time":"$upstream_response_time"'
+                        '}';
+        ```
+    - upstream.conf.tmpl
+        - 백엔드 서버 지정 : 요청을 나눠 줄 백엔드 서버를 정의
+        ```conf
+        upstream backend {
+            server {{ var "BACKEND_HOST" }} max_fails={{ var "BACKEND_MAX_FAILS" | default "3" }} fail_timeout={{ var "BACKEND_FAIL_TIMEOUT" | default "10s" }};
+        }
+        ```
+        - Nginx의 proxy_pass 지시자에 직접 기술할 수도 있지만, upstream 지시자에서 정의하면 프록싱 대상이 되는 서버를 여러 대 지정해 로드 밸런싱 효과를 얻거나 장애 시 쏘리 서버로 이용할 수 있다.
+        - upstream을 사용하는 습관을 길러두는 것이 좋다.
+    - public.conf.tmpl
+        - HTTP 요청에 대한 라우팅 설정
+        ```conf
+        server {
+            listen {{ var "SERVER_PORT" | default "80" }} default_server;
+            server_name {{ var "SERVER_NAME" | default "localhost" }};
+            charset utf-8;
+
+            location / {
+                proxy_pass http://backend;
+                proxy_pass_request_headers on;
+                proxy_set_header host $host;
+                {{ if var "LOG_STDOUT" }}
+                access_log  /dev/stdout json;
+                error_log   /dev/stderr;
+                {{ else }}
+                access_log  /var/log/nginx/backend_access.log json;
+                error_log   /var/log/nginx/backend_error.log;
+                {{ end }}
+                {{ if var "BASIC_AUTH_FILE" }}
+                auth_basic "Restricted";
+                auth_basic_user_file {{ var "BASIC_AUTH_FILE" }};
+                {{ end }}
+            }
+        }
+        ```
+        - SERVER_PORT : Nginx가 열어둘 포트
+        - 가상 호스트로 사용할 값을 SERVER_NAME으로 환경 변수 참조
+        - location 지시자 : 백엔드에 대한 프록시 설정으로, /를 경로로 지정(전달받은 요청은 모두 백엔드로 프록싱)
+- Nginx 컨테이너의 Dockerfile
+    - Dockerfile
+        ```Dockerfile
+        FROM nginx:1.13
+
+        RUN apt-get update
+        RUN apt-get install -y wget
+        RUN wget https://github.com/progrium/entrykit/releases/download/v0.4.0/entrykit_0.4.0_linux_x86_64.tgz
+        RUN tar -xvzf entrykit_0.4.0_linux_x86_64.tgz
+        RUN rm entrykit_0.4.0_linux_x86_64.tgz
+        RUN mv entrykit /usr/local/bin/
+        RUN entrykit --symlink
+
+        RUN rm /etc/nginx/conf.d/*
+        COPY etc/nginx/nginx.conf.tmpl /etc/nginx/
+        COPY etc/nginx/conf.d/ /etc/nginx/conf.d/
+
+        ENTRYPOINT [ \
+        "render", \
+            "/etc/nginx/nginx.conf", \
+            "--", \
+        "render", \
+            "/etc/nginx/conf.d/upstream.conf", \
+            "--", \
+        "render", \
+            "/etc/nginx/conf.d/public.conf", \
+            "--" \
+        ]
+
+        CMD ["nginx", "-g", "daemon off;"]
+        ```
+- Nginx를 거쳐 API에 접근하기
+    - 이미지 생성 및 태그 변경, 리포지토리에 푸시
+        ```
+        $ docker image build -t todonginx:latest .
+        $ docker image tag todonginx:latest localhost:5000/todonginx:latest
+        $ docker push localhost:5000/todonginx:latest
+        ```
+    - stack/todo-app.yml 수정
+        ```yml
+        version: "3"
+        services:
+            nginx:
+                image: registry:5000/todonginx:latest
+                deploy:
+                    replicas: 2
+                    placement:
+                        constraints: [node.role != manager]
+                depends_on:
+                    -   api
+                environment:
+                    WORKER_PROCESSES: 2
+                    WORKER_CONNECTIONS: 1024
+                    KEEPALICE_TIMEOUT: 65
+                    GZIP: "on"
+                    BACKEND_HOST: todo_app_api:8080
+                    BACKEND_MAX_FAILS: 3
+                    BACKEND_FAILE_TIMEOUT: 10s
+                    SERVER_PORT: 80
+                    SERVER_NAME: todo_app_nginx
+                    LOG_STDOUT: "true"
+                networks:
+                    -   todoapp
+
+            api:
+                image: registry:5000/todoapi:latest
+                deploy:
+                    replicas: 2
+                    placement:
+                        constraints: [node.role != manager]
+                environment:
+                    TODO_BIND: ":8080"
+                    TODO_MASTER_URL: "gihyo:gihyo@tcp(todo_mysql_master:3306)/tododb?parseTime=true"
+                    TODO_SLAVE_URL: "gihyo:gihyo@tcp(todo_mysql_slave:3306)/tododb?parseTime=true"
+                networks:
+                    -   todoapp
+
+        networks:
+            todoapp:
+                external: true
+        ```
+    - 서비스 실행 및 확인
+        ```
+        $ docker container exec -it manager docker stack deploy -c /stack/todo-app.yml todo_app
+        $ docker container exec -it manager docker service ls
+        $ docker container exec -it manager docker stack ps todo_app
+        ```
+
+## 5. 웹 서비스 구축
+
+- 웹 서비스 이미지를 만들기 위한 리포지토리 클론
+    - `git clone https://github.com/gihyodocker/todoweb`
+    - clone 받은 리포지토리를 기반으로 이미지를 구성한다.
+    - Node.js -> Vue.js 기반 프레임워크인 Nuxt.js를 사용한다.
+    ```
+    todoweb
+    ├── assets
+    │   ├── README.md
+    │   └── style
+    │       └── app.styl
+    ├── Dockerfile
+    ├── layouts
+    │   ├── default.vue
+    │   └── README.md
+    ├── middleware
+    │   └── README.md
+    ├── nuxt.config.js
+    ├── package.json
+    ├── package-lock.json
+    ├── pages
+    │   ├── index.vue
+    │   └── README.md
+    ├── plugins
+    │   ├── README.md
+    │   └── vuetify.js
+    ├── README.md
+    ├── server.js
+    ├── static
+    │   ├── favicon.ico
+    │   ├── README.md
+    │   └── v.png
+    └── store
+        └── README.md
+    ```
+    - Nuxt.js 코드를 로컬에서 빌드할 수 있게 준비한다.
+    - Nuxt.js 어플리케이션과 도커 이미지를 빌드해 Node.js 실행 컨테이너로 배포한다.
+    - Nginx를 거쳐 웹 어플리케이션에 접근할 수 있게 한다.
+- TODO API 호출 및 페이지 HTML 렌더링
+    - URI는 하나이며 화면 이동은 없다.
+    - 뷰의 구현은 todoweb/pages/index.vue 파일에 모두 들어있다.
+    - 대시보드 구현 역시 todoweb/pages/index.vue 파일에 있다.
+        - HTML 템플릿과 API로부터 데이터를 받아오는 스크립트가 담긴 script 태그로 구성된다.
+        ```html
+        <script>
+        import axios from 'axios'
+        let todoApiUrl = process.env.TODO_API_URL || 'http://localhost:8000'
+
+        export default {
+            async asyncData (context) {
+                const { data: todoItems } = await axios.get(`${todoApiUrl}/todo?status=TODO`)
+                const { data: progressItems } = await axios.get(`${todoApiUrl}/todo?status=PROGRESS`)
+                const { data: doneItems } = await axios.get(`${todoApiUrl}/todo?status=DONE`)
+                return {
+                    todoItems,
+                    progressItems,
+                    doneItems
+                }
+            }
+        }
+        </script>
+        ```
+        - todoweb에서 다른 어플리케이션에 HTTP 요청을 보내기 위해 axios라는 HTTP 클라이언트 라이브러리를 사용한다.
+        - process.env.TODO_API_URL을 통해 TODO API의 URL을 전달하는 화경변수 TODO_API_URL의 값을 참조한다.
+        - TODO, PROGRESS, DONE의 검색 조건은 status라는 요청 파라미터로 지정할 수 있다.
+        - 각 조건에 맞는 아이템을 각각 변수로 나눠 담아서 HTML 페이지를 생성한다.
+- 웹 서비스의 Dockerfile
+    - Dockerfile
+        ```Dockerfile
+        FROM node:9.2.0
+
+        WORKDIR /todoweb
+        COPY . /todoweb
+
+        RUN npm install -g vue-cli@2.9.3
+        RUN npm install
+        RUN npm run build
+
+        ENV HOST 0.0.0.0
+
+        CMD ["npm", "run", "start"]
+
+        EXPOSE 3000
+        ```
+    - 빌드하여 태그를 바꾸고 푸시한다.
+        ```
+        $ docker image build -t todoweb:latest .
+        $ docker image tag todoweb:latest localhost:5000/todoweb:latest
+        $ docker push localhost:5000/todoweb:latest
+        ```
+- 정적 파일을 다루는 방법
+    - Nginx에서 Node.js 웹 어플리케이션을 리버스 프록시 구성을 취하는 경우에는 정적 콘텐츠까지 Node.js가 담당하는 것은 비효율적이다.
+    - 정적 파일은 웹 어플리케이션을 거치지 않고 Nginx에서 바로 응답을 처리하도록한다.
+    - todonginx/etc/nginx/conf.d/nuxt.conf.tmpl
+        ```
+        $ cp todonginx/etc/nginx/conf.d/public.conf.tmpl todonginx/etc/nginx/conf.d/nuxt.conf.tmpl
+        $ vi todonginx/etc/nginx/conf.d/nuxt.conf.tmpl
+        ```
+        ```conf
+        server {
+            listen {{ var "SERVER_PORT" | default "80" }} default_server;
+            server_name {{ var "SERVER_NAME" | default "localhost" }};
+            charset utf-8;
+
+            location /_nuxt/ {
+                alias /var/www/_nuxt/$1;
+                {{ if var "LOG_STDOUT" }}
+                access_log /dev/stdout json;
+                error_log /dev/stderr;
+                {{ else }}
+                access_log /var/log/nginx/assets_access.log json;
+                error_log /var/log/nginx/assets_error.log;
+                {{ end }}
+            }
+
+            location / {
+                proxy_pass http://backend;
+                proxy_pass_request_headers on;
+                proxy_set_header host $host;
+                {{ if var "LOG_STDOUT" }}
+                access_log  /dev/stdout json;
+                error_log   /dev/stderr;
+                {{ else }}
+                access_log  /var/log/nginx/backend_access.log json;
+                error_log   /var/log/nginx/backend_error.log;
+                {{ end }}
+                {{ if var "BASIC_AUTH_FILE" }}
+                auth_basic "Restricted";
+                auth_basic_user_file {{ var "BASIC_AUTH_FILE" }};
+                {{ end }}
+            }
+        }
+        ```
+    - todonginx/Dockerfile-nuxt
+        ```
+        $ cp todonginx/Dockerfile todonginx/Dockerfile-nuxt
+        $ vi todonginx/todonginx/Dockerfile-nuxt
+        ```
+        ```conf
+        FROM nginx:1.13
+
+        RUN apt-get update
+        RUN apt-get install -y wget
+        RUN wget https://github.com/progrium/entrykit/releases/download/v0.4.0/entrykit_0.4.0_linux_x86_64.tgz
+        RUN tar -xvzf entrykit_0.4.0_linux_x86_64.tgz
+        RUN rm entrykit_0.4.0_linux_x86_64.tgz
+        RUN mv entrykit /usr/local/bin/
+        RUN entrykit --symlink
+
+        RUN rm /etc/nginx/conf.d/*
+        COPY etc/nginx/nginx.conf.tmpl /etc/nginx/
+        COPY etc/nginx/conf.d/ /etc/nginx/conf.d/
+
+        ENTRYPOINT [ \
+        "render", \
+            "/etc/nginx/nginx.conf", \
+            "--", \
+        "render", \
+            "/etc/nginx/conf.d/upstream.conf", \
+            "--", \
+        "render", \
+            "/etc/nginx/conf.d/nuxt.conf", \ # public에서 nuxt로 수정됨
+            "--" \
+        ]
+
+        CMD ["nginx", "-g", "daemon off;"]
+        ```
+    - 빌드 및 태그 변경 후 푸시
+        ```
+        $ docker image build -f Dockerfile-nuxt -t todonginx-nuxt:latest .
+        $ docker image tag todonginx-nuxt:latest localhost:5000/todonginx-nuxt:latest
+        $ docker push localhost:5000/todonginx-nuxt:latest
+        ```
+    - 컨테이너 간 볼륨 공유
+        - 애셋 파일은 Nginx 컨테이너가 아닌 todoweb 컨테이너에 존재한다.
+        - 애셋만을 위한 전용 도커 볼륨을 생성하고 nginx와 todoweb 두 컨테이너가 이 볼륨을 공유하는 방법을 사용한다.
+        - Nginx 컨테이너를 수정하지 않고 todoweb컨테이너에 있는 애셋 파일을 Nginx 컨테이너 참조할 수 있다.
+- Nginx를 통한 접근 허용
+    - stack/todo-frontend.yml
+        ```yml
+        version: "3"
+        services:
+            nginx:
+                image: registry:5000/todonginx-nuxt:latest
+                deploy:
+                    replicas: 2
+                    placement:
+                        constraints: [node.role != manager]
+                depends_on:
+                -   web
+                environment:
+                    SERVICE_PORTS: 80
+                    WORKER_PROCESSES: 2
+                    WORKER_CONNECTIONS: 1024
+                    KEEPALIVE_TIMEOUT: 65
+                    GZIP: "on"
+                    BACKEND_HOST: todo_frontend_web:3000
+                    BACKEND_MAX_FAILS: 3
+                    BACKEND_FAIL_TIMEOUT: 10s
+                    SERVER_PORT: 80
+                    SERVER_NAME: localhost
+                    LOG_STDOUT: "true"
+                networks:
+                    -   todoapp
+                volumes:
+                    -   assets:/var/www/_nuxt
+
+            web:
+                image: registry:5000/todoweb:latest
+                deploy:
+                    replicas: 2
+                    placement:
+                        constraints: [node.role != manager]
+                environment:
+                    TODO_API_URL: http://todo_app_nginx
+                networks:
+                    -   todoapp
+                volumes:
+                    -   assets:/todoweb/.nuxt/dist
+
+        networks:
+            todoapp:
+                external: true
+
+        volumes:
+            assets:
+                driver: local
+        ```
+    - 배포 및 확인
+        ```
+        $ docker container exec -it manager docker stack deploy -c /stack/todo-frontend.yml todo_frontend
+        $ docker container exec -it manager docker stack ps todo_frontend
+        $ docker container exec -it manager docker service ls
+        ```
+- 인그레스로 서비스 노출하기
+    - 인그레스를 사용해서 어플리케이션을 스웜 외부로 노출시킨다.
+    - stack/todo-ingress.yml
+        ```yml
+        version: "3"
+        services:
+            haproxy:
+                image: registry:5000/dockercloud/haproxy:latest
+                networks:
+                    -   todoapp
+                volumes:
+                    -   /var/run/docker.sock:/var/run/docker.sock
+                deploy:
+                    mode: global
+                placement:
+                    constraints:
+                        -   node.role == manager
+                ports:
+                    -   80:80
+                    -   1936:1936
+
+        networks:
+            todoapp:
+                external: true
+        ```
+    - 배포 및 확인
+        ```
+        $ docker container exec -it manager docker deploy -c /stack/todo-ingress.yml todo_ingress
+        $ docker container exec -it manager docker ps todo_ingress
+        $ docker container exec -it manager docker service ls
+        $ curl -I http://localhost:8000/        # 매니저 노드의 80 포트는 호스트의 8000번 포트로 포워딩 되어 있다.
+        HTTP/1.1 200 OK
+        Server: nginx/1.13.12
+        Date: Mon, 25 May 2020 11:47:25 GMT
+        Content-Type: text/html; charset=utf-8
+        Content-Length: 19299
+        X-Powered-By: Express
+        ETag: "4b63-sFNCaV8vVyEVn9AhhancmZdCND8"
+        Vary: Accept-Encoding
+        ```
+
+## 6. 컨테이너 오케스트레이션을 적용한 개발 스타일
+
+    - 컨테이너 오케스트레이션을 적용하면 MySQL, API, 웹 서비스 등을 각각 연동시키는 형태로 하나의 어플리케이션을 구축한다.
+    - 이런 방법으로 개발된 어플리케이션은 서비스에 대한 요청을 서비스로 구성하는 여러 컨테이너로 분산시킬 수 있으므로 시스템의 내구성을 향상시킬 수 있다.
+    - 컨테이너의 적절한 노드 배치와 스케일링 등을 컨테이너 오케스트레이션 메커니즘에 맡길 수 있다는 것도 큰 장점이다.

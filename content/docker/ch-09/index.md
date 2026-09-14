@@ -1,0 +1,479 @@
+---
+title: "CH09. 가벼운 도커 이미지 만들기"
+date: 2020-07-02
+weight: 9
+---
+
+- 도커 이미지의 최적하 보다는 어플리케이션의 동작을 우선시했다.
+- 일정 규모 이상의 어플리케이션을 본격적으로 구축하려면 도커 이미지 크기에도 신경 써야 한다.
+
+## 1. 가벼운 도커 이미지가 왜 필요할까
+
+- 이미지 크기 증가에 따라 나타는 문제
+    - 이미지 크기가 미치는 영향
+        - 이미지 빌드 시간(기반 이미지 다운로드 시간 포함)
+        - 이미지를 도커 레지스트리에 등록하는 시간
+        - 컨테이너를 실행할 호스트 혹은 노드에서 이미지를 다운로드하는 시간
+    - 나비효과
+        - 클러스터를 구성하는 노드의 디스크 용량 낭비
+        - CI 소요 시간 증가
+        - 개발 중 시행착오 소요 시간 증가로 인한 생산성 저하
+        - 오토 스케일리으로 컨테이너가 투입되는 소요 시간 증가(노드에 이미지가 없는 경우 새로 받아와야 하므로)
+    - 새 노드에 얼마나 빨리 도커 이미지를 배치할 수 있는가가 중요하다.
+
+## 2. 기반 이미지를 가볍게
+
+- scratch
+    - INTRO
+        - 빈 도커 이미지로, 도커가 이름을 예약한 특수 이미지다.
+        - Dockerfile의 FROM 인스트럭션에서 참조만 가능하다.
+        - 컨테이너 외부로부터 파일을 주입받은 후에야 실체를 갖게 된다.
+        - 현재 존재하는 모든 도커 이미지의 기반 이미지를 따라가 보면 결국 이 scratch 이미지에 이르게 된다.
+        - scratch 이미지는 모든 이미지의 조상 격이다.
+    - scratch 이미지로 만든 이미지 빌드 들여다보기
+        - ubuntu:trusty 이미지의 Dockerfile
+            ```Dockerfile
+            FROM scratch
+            
+            ADD ubuntu-trusty-core-cloudimg-amd64-root.tar.gz /
+
+            RUN set -xe \
+                \
+                && echo '#!/bin/sh' > /usr/sbin/policy-rc.d \
+                && echo 'exit 101' >> /usr/sbin/policy-rc.d \
+                && chmod +x /usr/sbin/policy-rc.d \
+                \
+                && dpkg-divert --local --rename --add /sbin/initctl \
+                && cp -a /usr/sbin/policy-rc.d /sbin/initctl \
+                && sed -i 's/^exit.*/exit 0/' /sbin/initctl \
+                \
+                && echo 'force-unsafe-io' > /etc/dpkg/dpkg.cfg.d/docker-apt-speedup \
+                \
+                && echo 'DPkg::Post-Invoke { "rm -f /var/cache/apt/archives/*.deb /var/cache/apt/archives/partial/*.deb /var/cache/apt/*.bin || true"; };' > /etc/apt/apt.conf.d/docker-clean \
+                && echo 'APT::Update::Post-Invoke { "rm -f /var/cache/apt/archives/*.deb /var/cache/apt/archives/partial*.deb /var/cache/apt/*.bin || true"; };' >> /etc/apt/apt.conf.d/docker-clean \
+                && echo 'Dir::Cache::pkgcache ""; Dir::Cache::srcpkgcache "";' >> /etc/apt/apt.conf.d/docker-clean \
+                \
+                && echo 'Acquire::Languages "none";' > /etc/apt/apt.conf.d/docker-no-languages \
+                \
+                && echo 'Acquire::GzipIndexes "true"; Acquire::CompressionTypes::Order:: "gz";' > /etc/apt/apt.conf.d/docker-gzip-indexes \
+                \
+                && echo 'Apt::AutoRemove::SuggestsImportant "false";' > /etc/apt/apt.conf.d/docker-autoremove-suggests
+            
+            RUN rm -rf /var/lib/apt/lists/*
+            
+            RUN sed -i 's/^#\s*\(deb.*universe\)$/\1/g' /etc/apt/sources.list
+
+            CMD ["/bin/bash"]
+            ```
+            - ubuntu-trusty-core-cloudimg-amd64-root.tar.gz : 우분투 운영체제를 구성하는 최소한의 파일을 디렉토리 구조 그대로 압축한 것
+            - ADD 인스트럭션은 COPY와 다르게 압축해제 기능이 있다.
+            - CMD 인스트럭션에 /bin/bash 명령을 지정하여 컨테이너가 /bin/bash를 포어그라운드로 실행하므로 우분투 서버 자체가 상주 형태로 실행되는 것처럼 보인다.
+    - 어플리케이션을 실행하는데 운영 체제를 구성하는 파일을 모두 사용하는 것은 아니기 때문에 대부분의 파일은 쓸모없이 이미지의 용량만 차지한다.
+    - 간단한 이미지 만들기
+        - hello.go 작성
+            ```golang
+            package main
+            import "fmt"
+
+            func main() {
+                fmt.Println("hello, scratch!")
+            }
+            ```
+        - 바이너리를 복사할 수 있도록 컨테이너 밖에서 컴파일한다.
+            ```
+            $ GOOS=linux GOARCH=amd64 go build hello.go
+            ```
+        - Dockerfile 작성
+            ```Dockerfile
+            FROM scratch
+
+            COPY hello /
+
+            CMD ["/hello"]
+            ```
+        - 이미지 빌드
+            ```
+            $ docker image build ch09/hello:latest .
+            ```
+        - 컨테이너 실행
+            ```
+            $ docker container run -t ch09/hello:latest
+            ```
+        - 이미지 크기 확인
+            ```
+            $ docker image ls | grep hello
+            ```
+        - 프로그래밍 언어로 된 어플리케이션은 언어 런타임이나 라이브러리 등을 이미지에 포함해야 하므로 Go 언어에 비해서 이미지가 커지는 경향이 있다.
+    - 네이티브 라이브러리 링크
+        - C언어나 Go 언어에서 빌드한 실행 바이너리를 컨테이너에 복사하기만 하면 된다.
+        - 어플리케이션이 동적 링크를 사용하는 경우 주의해야 한다.
+        - 빌드시 네이티브 의존 라이브러리를 정적 링크하도록 하면 이미지를 만드는 수고를 크게 덜 수 있다.
+    - 루트 인증서
+        - TLS/SSL이 적용된 웹 사이트에 접근
+        - hello.go 수정
+            ```golang
+            package main
+            import (
+                "fmt"
+                "io/ioutil"
+                "net/http"
+            )
+
+            func main() {
+                fmt.Println("hello, scratch!")
+
+                resp, err := http.Get("https://gihyo.jp/")
+                if err != nil {
+                    panic(err)
+                }
+                defer resp.Body.Close()
+                body, err := ioutil.ReadAll(resp.Body)
+                if err != nil {
+                    panic(err)
+                }
+
+                fmt.Println(string(body))
+            }
+            ```
+        - 이 어플리케이션을 빌드하고 컨테이너로 실행하면 인증서 오류가 발생한다.
+        - TLS/SSL이 적용된 HTTPS 웹 사이트에 접근하려면 루트 인증서가 필요하다.
+        - 일반적인 운영체제라면 루트 인증서가 포함되지만 scratch 이미지에는 루트 인증서 자체가 없기 때문에 오류가 발생한다.
+        - Dockerfile 수정
+            ```Dockerfile
+            FROM scratch
+
+            COPY hello /
+            COPY cacert.pem /etc/ssl/certs/
+
+            CMD ["/hello"]
+            ```
+        - 운영 체제가 포함된 이미지라면 패키지 관리자를 통해 필요한 라이브러리나 도구를 추가할 수 있지만 scratch 이미지에는 패키지 관리자 같은 것이 존재하지 않는다.
+    - scratch 이미지의 실용성
+        - scratch 이미지에서 동작하려면 빌드부터 시작해야 하는 것은 물론, 다양한 의존 모듈이 필요하다.
+        - 디버그를 하려고 해도 셸이 없기 때문에 컨테이너 안의 상황을 파악하기가 어렵다.
+        - 이 점은 이미지의 크기와 트레이드 오프 관계를 가지므로 이러한 부분을 포기하더라도 작은 이미지가 필요한 상황이라면 scratch도 선택지에 포함시킬 수 있다.
+- busybox
+    - INTRO
+        - busybox는 임베디드 시스템에서 많이 사용하는 리눅스 배포판이다.
+        - busybox는 수백 종 이상의 기본 유틸리티를 갖추고 있다.
+        - 일반적인 운영 체제와 달리, 단일 바이너리 파일(/bin/busybox)에 모든 유틸리티가 포함된 형태다.
+        - 모든 명령어 파일이 /bin/busybox로 하드 링킹되어 있다.
+    - 표준 C 라이브러별 이미지
+        - glibc
+            - GNU C 라이브러리를 의미한다.
+            - 다양한 스펙 및 독자적인 확장 기능을 제공하기 때문에 유연하지만 그만큼 라이브러리 크기가 크다.
+            - 잘 사용하지 않는 기능 때문에 디스크 용량을 낭비한다는 문제가 있다.
+        - uclibc
+            - 임베디드 환경에 특화된 가벼운 라이브러리로 추린 것이다.
+        - musl
+            - musl은 정적 링크에 최적화되어 있어 어플리케이션을 이동에 유리한 단일 바이너리로 빌드하기에 좋다.
+            - POSIX 표준을 더 충실히 구현한다.
+        - 아키텍처나 운영 체제가 다른 환경에서 glibc로 빌드한 바이너리는 uClibc나 musl을 사용한 컨테이너에서 실행이 되지 않는다.
+        - 빌드 환경과 실행 환경의 차이를 배제하기 위해 -glibc, -uclibc, -musl과 같은 라이브러리별 이미지를 제공한다.
+    - busybox의 실용성
+        - 최소한의 운영 체제 기능을 제공하면서도 운영 체제로 인한 이미지 크기 증가는 거의 제로에 가깝게 줄여준다.
+        - busybox를 포함한 이미지는 scratch로 만든 이미지보다 1MB 정도 크기가 크지만, 셸을 포함하고 있어 컨테이너 안에서 디버깅 작업이 가능하다.
+        - 에이전트 타입 어플리케이션이나 명령행 도구를 사용하는데 사용할 수 있다.(scratch와 마찬가지로)
+        - 패키지 관리자가 없다.
+        - 이미지 크기에 구애받지 않거나 이미지 빌드가 까다로운 경우에는 우분투나 CentOS 등의 이미지를 사용하는 것이 편리하다.
+- alpine
+    - INTRO
+        - busybox를 기반으로 한 리눅스 배포판으로 '보안, 간결함, 리소스 효율을 중시하는 파워 유저'를 대상으로 설계했으며, 표준 C 라이브러리 구현체 중 musl을 사용한다.
+        - 리눅스 배포판의 표준이라고 할 수 있다.
+        - 패키지 관리자인 apk를 사용할 수 있다.
+        - Dockerfile의 내용이 너무 장황하거나 이미지 빌드에 필요한 사전 준비가 지나치게 늘어나면 이미지 전체 내용을 파악하기 어려워진다. 이런 문제를 해결하려면 쓸 만한 패키지 관리자가 반드시 필요하다.
+    - alpine 컨테이너 실행하기
+        ```
+        $ docker container run -it alpine:3.7 sh
+        ```
+    - 패키지 관리자 apk 사용법
+        - apk의 패키지 리포지토리가 중앙 집권적이라는 특징이 있다.
+        - apk update : 로컬에 캐싱된 apk 패키지 인덱스를 업데이트하는 명령.
+        - apk search : 현재 사용할 수 있는 패키지를 검색하는 명령.
+        - apk add : 패키지를 설치하는 명령.
+            - `--no-cache` 옵션
+                - /var/cache/apk 디렉터리에 저장된 apk 인덱스 대신 새로 받아온 인덱스 정보를 이용해 패키지를 설치한다.
+                - /var/cache/apk 디렉터리에 캐시를 저장하지 않으므로 이 디렉터리의 내용을 따로 삭제할 필요도 없다.
+            - `--virtual` 옵션
+                - 여러 패키지를 합쳐 하나의 별명을 붙이는 기능을 제공한다.
+                - 빌드 시에만 필요한 이미지를 그대로 남겨두면 이미지 크기가 불필요하게 증가할 수 있으므로 이 라이브러리를 제거하는 것이 좋다.
+                - 불필요한 패키지를 한번에 제거할 수 있다.(`apk del [별명]`)
+        - apk del : 설치된 패키지를 제거하는 명령
+    - 알파인 리눅스 기반 도커 이미지 만들기
+        - 2장의 echo를 사용한다.
+        - main.go
+            ```go
+            import (
+                    "fmt"
+                    "log"
+                    "net/http"
+            )
+
+            func main() {
+                    log.Println("start server")
+                    
+                    bind = ":8080"
+
+                    http.HandleFunc("/", func(w http.ResponseWriter, r * http.Request){
+                            log.Println("received request")
+                            fmt.Fprintf(w, "Hello Docker!!!")
+                    })
+
+                    http.ListenAndServe(bind, nil)
+            }
+            ```
+        - Dockerfile
+            ```Dockerfile
+            FROM alpine:3.7
+            
+            # (0) workspace 등록 및 환경 변수 등록
+            WORKDIR /
+            ENV GOPATH /go
+
+            # (1) 빌드 시에만 필요한 라이브리 및 도구 설치
+            RUN apk add --no-cache --virtual=build-devs go git gcc g++
+
+            # (2) 실행 시에도 필요한 라이브리 및 도구 설치
+            RUN apk add --no-cache ca-certificates
+
+            # (3) echo를 빌드해 실행 파일을 만듬
+            COPY . /go/src/github.com/lameld/echo
+            RUN cd /go/src/github.com/lameld/echo && go build -o bin/echo main.go
+            RUN cd /go/src/github.com/lameld/echo && cp bin/echo /usr/local/bin/
+
+            # (4) 빌드 시에만 필요한 라이브러리 및 도구 제거
+            RUN apk del --no-cache build-devs
+
+            CMD ["echo"]
+            ```
+        - 이미지 빌드
+            ```
+            $ docker image build -t ch09/echo:latest .
+            ```
+
+## 3. 가벼운 도커 이미지 만들기
+
+- 배포 대상 어플리케이션 크기 줄이기
+    - 어플리케이션 크기 최적화
+        - 불필요한 파일 삭제
+        - 불필요한 프로그램 최소화
+        - 의존 라이브러리 최소화
+        - 웹 어플리케이션의 애셋(주로 이미지) 용량 줄이기
+    - .dockerignore 파일
+        - 불필요한 파일 및 디렉터리가 컨텡너에 들어가지 않게 하는 것이 중요하다.
+        - .git 디렉토리로 대표되는 불필요함 숨김 파일이 컨테이너에 들어가기 쉽다.
+        - Dockerfile과 같은 디렉토리에에 위치차 .dockerignore 파일에 컨테이너 포함하지 않을 파일이나 디렉토리를 정의하는 기능이다.
+        - .dockerignore
+            ```
+            .git
+            .idea
+            *.swp
+            *.log
+            .DS_STORE
+            ```
+- 도커 이미지의 레이어 구조 고려하기
+    - INTRO
+        - 이미지의 크기를 최적화하려면 이 내부 구조까지 깊이 이해할 필요가 있다.
+        - echo 이미지를 빌드해 보면 다음과 같은 내용이 출력된다.
+        - 각 단계별로 Dockerfile에 기술된 명령이 실행되는 것을 알 수 있다.
+            ```cmd
+            $ docker image build -t ch09/echo:latest .
+            Sending build context to Docker daemon  3.072kB
+            Step 1/10 : FROM alpine:3.7
+            ---> 6d1ef012b567
+            Step 2/10 : WORKDIR /
+            ---> Using cache
+            ---> 96f74ddcf3b7
+            Step 3/10 : ENV GOPATH /go
+            ---> Using cache
+            ---> acaeee72e27d
+            Step 4/10 : RUN apk add --no-cache --virtual=build-devs go git gcc g++
+            ---> Using cache
+            ---> fa4f43acbc98
+            Step 5/10 : RUN apk add --no-cache ca-certificates
+            ---> Using cache
+            ---> 1ad9964de84c
+            Step 6/10 : COPY . /go/src/github.com/lameld/echo
+            ---> Using cache
+            ---> f84186eefbc7
+            Step 7/10 : RUN cd /go/src/github.com/lameld/echo && go build -o bin/echo main.go
+            ---> Using cache
+            ---> 77ffccfd40f7
+            Step 8/10 : RUN cd /go/src/github.com/lameld/echo && cp bin/echo /usr/local/bin/
+            ---> Using cache
+            ---> 56242e05b9ce
+            Step 9/10 : RUN apk del --no-cache build-devs
+            ---> Using cache
+            ---> 9d06ac4d82e2
+            Step 10/10 : CMD ["echo"]
+            ---> Using cache
+            ---> 7bce58ed9dea
+            Successfully built 7bce58ed9dea
+            Successfully tagged ch09/echo:latest
+            ```
+        - 해당 이미지가 어떤 레이어로 구성되었는지 자세한 정보 보기 : `docker image history`
+            ```
+            $ docker image history ch09/echo:latest
+            IMAGE               CREATED             CREATED BY                                      SIZE                COMMENT
+            7bce58ed9dea        2 minutes ago       /bin/sh -c #(nop)  CMD ["echo"]                 0B              
+            9d06ac4d82e2        2 minutes ago       /bin/sh -c apk del --no-cache build-devs        34kB            
+            56242e05b9ce        2 minutes ago       /bin/sh -c cd /go/src/github.com/lameld/echo…   7.52MB          
+            77ffccfd40f7        2 minutes ago       /bin/sh -c cd /go/src/github.com/lameld/echo…   7.52MB          
+            f84186eefbc7        2 minutes ago       /bin/sh -c #(nop) COPY dir:afb826e60552ed0da…   713B            
+            1ad9964de84c        2 minutes ago       /bin/sh -c apk add --no-cache ca-certificates   515kB           
+            fa4f43acbc98        2 minutes ago       /bin/sh -c apk add --no-cache --virtual=buil…   359MB           
+            acaeee72e27d        3 minutes ago       /bin/sh -c #(nop)  ENV GOPATH=/go               0B              
+            96f74ddcf3b7        3 minutes ago       /bin/sh -c #(nop) WORKDIR /                     0B              
+            6d1ef012b567        16 months ago       /bin/sh -c #(nop)  CMD ["/bin/sh"]              0B              
+            <missing>           16 months ago       /bin/sh -c #(nop) ADD file:aa17928040e31624c…   4.21MB
+            ```
+        - 각 레이어에 해당하는 이미지는 도커 파일 시스템 안에 tar.gz 파일에 저장된다.
+        - 레이어 자체도 이미지이며, 중간 과정에 특정한 태그를 붙일 수 있다.
+            ```
+            $ docker image tag f84186eefbc7 ch09/echo:copy
+            ```
+    - 레이어의 수를 최대한 줄이기
+        - 이미지를 구성하는 레이어 자체도 이미지 파일 형태로 디스크에 존재한다.
+        - 때문에 빌드 중에 필요했던 파일도 최종 결과물이 될 이미지에서 불필요한 파일이라면 결국 최종 이미지에 불필요한 파일에 들어간다.
+        - entrykit 이미지
+            - Dockerfile
+                ```Dockerfile
+                FROM alpine:3.7
+
+                RUN apk add --no-cache wget
+                RUN wget https://github.com/progrium/entrykit/releases/download/v0.4.0/entrykit_0.4.0_Linux_x86_64.tgz
+                RUN tar -xvzf entrykit_0.4.0_Linux_x86_64.tgz
+                RUN rm entrykit_0.4.0_Linux_x86_64.tgz
+                RUN mv entrykit /bin/entrykit
+                RUN chmod +x /bin/entrykit
+                RUN entrykit --symlink
+                ```
+            - 이미지 빌드
+                ```
+                $ docker image build -t ch09/entrykit:standard .
+                Sending build context to Docker daemon  2.048kB
+                Step 1/8 : FROM alpine:3.7
+                ---> 6d1ef012b567
+                Step 2/8 : RUN apk add --no-cache wget
+                ---> Using cache
+                ---> 9ddb2b2b256e
+                Step 3/8 : RUN wget https://github.com/progrium/entrykit/releases/download/v0.4.0/entrykit_0.4.0_Linux_x86_64.tgz
+                ---> Using cache
+                ---> bbb9cf07b1a2
+                Step 4/8 : RUN tar -xvzf entrykit_0.4.0_Linux_x86_64.tgz
+                ---> Using cache
+                ---> 72ed24750e29
+                Step 5/8 : RUN rm entrykit_0.4.0_Linux_x86_64.tgz
+                ---> Using cache
+                ---> 063c338b89b0
+                Step 6/8 : RUN mv entrykit /bin/entrykit
+                ---> Using cache
+                ---> 13ae51cb1f1b
+                Step 7/8 : RUN chmod +x /bin/entrykit
+                ---> Using cache
+                ---> dbfc1a91f15f
+                Step 8/8 : RUN entrykit --symlink
+                ---> Using cache
+                ---> 5e6c02d2e7c0
+                Successfully built 5e6c02d2e7c0
+                Successfully tagged ch09/entrykit:standard
+                ```
+            - 이미지 레이어
+                ```
+                $ docker image history ch09/entrykit:standard
+                IMAGE               CREATED             CREATED BY                                      SIZE                COMMENT
+                5e6c02d2e7c0        5 minutes ago       /bin/sh -c entrykit --symlink                   32B             
+                dbfc1a91f15f        5 minutes ago       /bin/sh -c chmod +x /bin/entrykit               9.19MB          
+                13ae51cb1f1b        5 minutes ago       /bin/sh -c mv entrykit /bin/entrykit            9.19MB          
+                063c338b89b0        5 minutes ago       /bin/sh -c rm entrykit_0.4.0_Linux_x86_64.tgz   0B              
+                72ed24750e29        5 minutes ago       /bin/sh -c tar -xvzf entrykit_0.4.0_Linux_x8…   9.19MB          
+                bbb9cf07b1a2        5 minutes ago       /bin/sh -c wget https://github.com/progrium/…   2.71MB          
+                9ddb2b2b256e        6 minutes ago       /bin/sh -c apk add --no-cache wget              480kB           
+                6d1ef012b567        16 months ago       /bin/sh -c #(nop)  CMD ["/bin/sh"]              0B              
+                <missing>           16 months ago       /bin/sh -c #(nop) ADD file:aa17928040e31624c…   4.21MB
+                ```
+            - 각 레이어에서 파일을 조작할 때마다 최종 이미지의 크기가 증가함을 알 수 있다.
+            - 이런 현상을 피하려면 Dockerfile을 빌드 해 생성되는 이미지의 레이어 수를 줄이는 것이 가장 효과적이다.
+            - Dockerfile.light
+                ```Dockerfile
+                FROM alpine:3.7
+
+                RUN apk add --no-cache wget && \
+                wget https://github.com/progrium/entrykit/releases/download/v0.4.0/entrykit_0.4.0_Linux_x86_64.tgz && \
+                tar -xvzf entrykit_0.4.0_Linux_x86_64.tgz && \
+                rm entrykit_0.4.0_Linux_x86_64.tgz && \
+                mv entrykit /bin/entrykit && \
+                chmod +x /bin/entrykit && \
+                entrykit --symlink
+                ```
+            - 이미지 빌드
+                ```
+                $ docker image built -f Dockerfile.light -t ch09/entrykit:light .
+                Sending build context to Docker daemon  3.072kB
+                Step 1/2 : FROM alpine:3.7
+                ---> 6d1ef012b567
+                Step 2/2 : RUN apk add --no-cache wget && wget https://github.com/progrium/entrykit/releases/download/v0.4.0/entrykit_0.4.0_Linux_x86_64.tgz && tar -xvzf entrykit_0.4.0_Linux_x86_64.tgz && rm entrykit_0.4.0_Linux_x86_64.tgz && mv entrykit /bin/entrykit && chmod +x /bin/entrykit && entrykit --symlink
+                ---> Using cache
+                ---> b504a789d31f
+                Successfully built b504a789d31f
+                Successfully tagged ch09/entrykit:light
+                ```
+            - 이미지 레이어
+                ```
+                $ docker image history ch09/entrykit:light
+                IMAGE               CREATED              CREATED BY                                      SIZE                COMMENT
+                b504a789d31f        About a minute ago   /bin/sh -c apk add --no-cache wget && wget h…   9.67MB         
+                6d1ef012b567        16 months ago        /bin/sh -c #(nop)  CMD ["/bin/sh"]              0B             
+                <missing>           16 months ago        /bin/sh -c #(nop) ADD file:aa17928040e31624c…   4.21MB
+                ```
+    - 가독성과 이미지의 트레이드 오프
+        - &&나 백슬래시를 만힝 사용해야 하며 빌드 스타일에 따라 cd 명령을 자주 사용하게 되므로 Dockerfile의 가독성을 해치게 된다.
+        - 이미지 빌드를 시행착오와 함께 반복해야 하는 경우라면 중간 빌드를 재활용하는 이점을 누릴 수가 없다.
+        - 이는 불가피하게 개발 효율을 떨어뜨리므로 개발 과정에서는 각 명령을 별도로 RUN 인스트럭션으로 실행한다.
+        - 빌드 내용이 고정된 다음에 RUN 인스트럭션의 실행 횟수를 줄이면 된다.
+        - 무리하게 모든 경우에 적용하지 않는 것이 좋다.
+        - 이 방법이 유용한 경우는 수 MB 이상의 파일으 자주 다루는 과정이 빌드에 포함되는 경우다.
+        - 중간 레이어 개수 자체가 적은 경우에는 굳이 적용할 필요가 없다.
+
+## 4. 멀티 스테이지 빌드
+
+- 빌드 부산물을 완전히 제가할 수 없다는 한계의 대책 : 멀티 스테이지 빌드
+- 빌드 컨테이너와 실행 컨테이너의 분리
+    - 적용 전
+        ```Dockerfile
+        FROM golang:1.13
+
+        WORKDIR /
+        ENV GOPATH /go
+
+        COPY . /go/src/github.com/gihyodocker/todoapi
+        RUN go get github.com/go-sql-driver/mysql
+        RUN go get gopkg.in/gorp.v1
+        RUN cd /go/src/github.com/gihyodocker/todoapi && go build -o bin/todoapi cmd/main.go
+        RUN cd /go/src/github.com/gihyodocker/todoapi && cp bin/todoapi /usr/local/bin/
+
+        CMD ["todoapi"]
+        ```
+    - 적용 후
+        ```Dockerfile
+        FROM golang:1.13 AS build
+
+        WORKDIR /
+        ENV GOPATH /go
+
+        COPY . /go/src/github.com/gihyodocker/todoapi
+        RUN go get github.com/go-sql-driver/mysql
+        RUN go get gopkg.in/gorp.v1
+        RUN cd /go/src/github.com/gihyodocker/todoapi && go build -o bin/todoapi cmd/main.go
+        
+        FROM apline:3.7
+
+        COPY --from=build /go/src/github.com/gihyodocker/todoapi && cp bin/todoapi /usr/local/bin/
+        CMD ["todoapi"]
+        ```
+    - 빌드 산출물을 다른 컨테이너로 복사할 수 있다.
+    - 실행 컨테이너에 불필요한 파일을 전혀 포함하지 않고 가벼운 이미지를 만들 수 있다.
+    - Dockerfile의 가독성을 유지하면서도 이미지의 크기를 억제할 수 있다.
+    - 장점
+        - 이미지 크기 감소뿐만 아니라 이식성에도 도움을 준다.
+        - 하나의 Dockerfile 안에서 컨테이너 간에 파일을 주고 받기 때문에 도커 호스트와 상관 없이 항상 같은 최종 결과물을 얻을 수 있다.

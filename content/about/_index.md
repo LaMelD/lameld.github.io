@@ -17,6 +17,12 @@ description: "LaMelD 소개"
 | Cloud | AWS, Azure, GCP |
 | Containers | Docker, Kubernetes, Cloud Native |
 
+## Projects
+
+- [RP-CHAT](/projects/rp-chat/) — 캐릭터와 1:1로 대화하는 RP 챗봇 (FastAPI · React · Docker Compose)
+- [md2html](/projects/md2html/) — 마크다운을 저장하면 HTML이 따라 생기는 Claude Code 플러그인
+- [algorithms](/algorithms/) — 백준·프로그래머스·SWEA 풀이 저장소
+
 ## Links
 
 - GitHub: [github.com/LaMelD](https://github.com/LaMelD)
