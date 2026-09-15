@@ -5,7 +5,7 @@ weight: 4
 tags: [algorithm, cpp, swea]
 ---
 
-[algorithms/cpp/SWExpertAcademy](https://github.com/LaMelD/algorithms/tree/master/cpp/SWExpertAcademy)에 있는 SW Expert Academy C++ 풀이 86문제의 목록이다. 난이도(D2~D4)별로 나눴고, 번호를 누르면 풀이 파일로 간다. 풀이 과정을 적은 글은 [SW Expert Academy Solution](/swea/) 시리즈에 있다.
+[algorithms/cpp/SWExpertAcademy](https://github.com/LaMelD/algorithms/tree/master/cpp/SWExpertAcademy)에 있는 SW Expert Academy C++ 풀이 86문제의 목록이다. 난이도(D2~D4)별로 나눴고, 번호를 누르면 풀이 파일로 간다.
 
 ## D2 (26문제)
 

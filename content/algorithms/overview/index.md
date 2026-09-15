@@ -25,7 +25,7 @@ tags: [algorithm, cpp, python]
 - [SW Expert Academy 풀이 목록](../swea/) — 난이도별 목록
 - [프로그래머스 Python 풀이 노트](../programmers-python/) — 노트북과 스크립트의 풀이 코드 전문
 
-문제별 풀이 과정을 적은 글은 별도 시리즈에 있다: [카카오 블라인드 테스트 Solution](/kakao/), [SW Expert Academy Solution](/swea/).
+문제별 풀이 과정을 적은 글은 [카카오 블라인드 테스트 Solution](/kakao/) 시리즈에 있다.
 
 ## 시기
 
