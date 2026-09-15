@@ -21,6 +21,7 @@ description: "LaMelD 소개"
 
 - [RP-CHAT](/projects/rp-chat/) — 캐릭터와 1:1로 대화하는 RP 챗봇 (FastAPI · React · Docker Compose)
 - [md2html](/projects/md2html/) — 마크다운을 저장하면 HTML이 따라 생기는 Claude Code 플러그인
+- [telegram-alarm](/projects/telegram-alarm/) — Claude Code 작업이 끝나면 결과를 텔레그램으로 보내는 훅 플러그인
 - [algorithms](/algorithms/) — 백준·프로그래머스·SWEA 풀이 저장소
 
 ## Links
