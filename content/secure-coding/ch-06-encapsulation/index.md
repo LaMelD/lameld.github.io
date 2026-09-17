@@ -1,5 +1,5 @@
 ---
-title: "6. 캅슐화"
+title: "6. 캡슐화"
 date: 2026-09-17
 weight: 6
 tags: [security, secure-coding, encapsulation]
