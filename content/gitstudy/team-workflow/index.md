@@ -37,7 +37,7 @@ git checkout -b feature/issue-번호 # 예: feature/login-api
 
 ### STEP 2. 작업 중 수시 동기화 (Rebase)
 
-다른 팀원의 작업 결과물을 내 브랜치에 미리 합쳨 충돌을 예방합니다.
+다른 팀원의 작업 결과물을 내 브랜치에 미리 합쳐 충돌을 예방합니다.
 
 ```bash
 # 1. 변경사항 임시 저장
@@ -83,7 +83,7 @@ git push origin feature/issue-번호 --force
 | **Main Protection** | `main` 브랜치 직접 Push는 기술적으로 차단 (설정 필수) |
 | **Atomic Commit** | 커밋은 하나의 논리적 단위로 작게 쪼개기 |
 | **Code Review** | 최소 1명 이상의 승인(Approve) 후 Merge |
-| **Squash & Merge** | 자잘한 커밋들을 하나로 합쳤서 `main` 히스토리를 깔낍하게 유지 |
+| **Squash & Merge** | 자잘한 커밋들을 하나로 합쳐서 `main` 히스토리를 깔낌하게 유지 |
 
 ---
 

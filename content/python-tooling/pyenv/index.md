@@ -3,10 +3,10 @@ title: "버전 관리: pyenv"
 date: 2026-09-17
 weight: 1
 tags: [pyenv, homebrew, zsh]
-description: "여러 Python 버전을 나란히 설치하고 전역·프로젝트·셀 단위로 전환하는 pyenv의 설치, 버전 적용 우선순위, 자주 쓰는 명령어와 nvm과의 비교."
+description: "여러 Python 버전을 나란히 설치하고 전역·프로젝트·셸 단위로 전환하는 pyenv의 설치, 버전 적용 우선순위, 자주 쓰는 명령어와 nvm과의 비교."
 ---
 
-> **pyenv** 는 여러 Python 버전을 한 시스템에 나란히 설치하고 전역·프로젝트·셀 단위로 전환해 주는 버전 관리 도구다. `~/.pyenv/shims` 를 PATH 앞에 끼워 넣어 `python`·`pip` 호출을 가로채는 **shim** 방식으로 동작한다.
+> **pyenv** 는 여러 Python 버전을 한 시스템에 나란히 설치하고 전역·프로젝트·셸 단위로 전환해 주는 버전 관리 도구다. `~/.pyenv/shims` 를 PATH 앞에 끼워 넣어 `python`·`pip` 호출을 가로채는 **shim** 방식으로 동작한다.
 
 ## 1. 설치 (설정)
 
@@ -17,9 +17,9 @@ brew install pyenv
 pyenv --version
 ```
 
-### 셀 설정 (zsh)
+### 셸 설정 (zsh)
 
-`~/.zshrc` 마지막에 아래를 추가한 뒤 셀을 다시 로드한다.
+`~/.zshrc` 마지막에 아래를 추가한 뒤 셸을 다시 로드한다.
 
 ```bash
 export PYENV_ROOT="$HOME/.pyenv"
@@ -52,14 +52,14 @@ pyenv uninstall 3.11.9    # 버전 제거
 ```bash
 pyenv global 3.13.2   # 전역 기본 버전
 pyenv local 3.13.2    # 현재 폴더 + 하위 (.python-version 파일 생성)
-pyenv shell 3.13.2    # 현재 셀 세션에만 (PYENV_VERSION 환경변수)
+pyenv shell 3.13.2    # 현재 셸 세션에만 (PYENV_VERSION 환경변수)
 ```
 
 버전이 여러 곳에서 지정되면 **위쪽이 우선**한다.
 
 | 우선순위 | 지정 방법 | 적용 범위 | 근거 |
 |---|---|---|---|
-| 1 (최상) | `pyenv shell` | 현재 셀 세션 | `PYENV_VERSION` 환경변수 |
+| 1 (최상) | `pyenv shell` | 현재 셸 세션 | `PYENV_VERSION` 환경변수 |
 | 2 | `pyenv local` | 폴더 + 하위 | `.python-version` (현재→상위 탐색) |
 | 3 | `pyenv global` | 전역 | `~/.pyenv/version` |
 | 4 (최하) | system | 전역 | pyenv 설치 이전의 시스템 Python |
@@ -89,7 +89,7 @@ pyenv shell 3.13.2    # 현재 셀 세션에만 (PYENV_VERSION 환경변수)
 | 항목 | pyenv (Python) | nvm (Node.js) |
 |---|---|---|
 | 설치 방식 | 소스 빌드 (느림) | 바이너리 다운로드 (빠름) |
-| 동작 원리 | shim (PATH 가로채기) | 셀 함수 (source) |
+| 동작 원리 | shim (PATH 가로채기) | 셸 함수 (source) |
 | 폴더 자동 전환 | 기본 지원 | 훅 직접 추가 필요 |
 | 프로젝트 파일 | `.python-version` | `.nvmrc` |
 
