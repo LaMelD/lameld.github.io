@@ -83,7 +83,7 @@ git push origin feature/issue-번호 --force
 | **Main Protection** | `main` 브랜치 직접 Push는 기술적으로 차단 (설정 필수) |
 | **Atomic Commit** | 커밋은 하나의 논리적 단위로 작게 쪼개기 |
 | **Code Review** | 최소 1명 이상의 승인(Approve) 후 Merge |
-| **Squash & Merge** | 자잘한 커밋들을 하나로 합쳐서 `main` 히스토리를 깔낌하게 유지 |
+| **Squash & Merge** | 자잘한 커밋들을 하나로 합쳐서 `main` 히스토리를 깔끔하게 유지 |
 
 ---
 
