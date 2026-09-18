@@ -97,6 +97,8 @@ weight: 1
 
 ## 3. 로컬 도커 환경 구축
 
+> 이 절은 책 기준(Ubuntu 18.04 · CentOS 7)이라 `apt-key` 처럼 지금은 권장되지 않는 방법이 섞여 있다. 현행 설치 방법은 [부록 D : 환경별 Docker 설치](/docker/ext-04-install/)에 정리했다.
+
 - Linux 환경에 도커 설치 :: Ubuntu 18.04
     - apt 패키지 업데이트
         ```
