@@ -1,12 +1,14 @@
 ---
 title: "PostgreSQL 사용법과 명령어: 설치, psql, 권한, 백업, 모니터링"
 date: 2026-09-17
-weight: 2
+weight: 3
 tags: [postgresql, database, psql, mariadb]
-description: "Ubuntu 24.04와 PostgreSQL 16 기준 설치, 클러스터 관리, psql 메타 명령어, 역할과 권한, 설정, 백업·복구, 유지보수, 모니터링 명령을 정리하고 MariaDB 사용자를 위한 치트시트를 붙였다."
+description: "Ubuntu 24.04와 PostgreSQL 18 기준 설치, 클러스터 관리, psql 메타 명령어, 역할과 권한, 설정, 백업·복구, 유지보수, 모니터링 명령을 정리하고 MariaDB 사용자를 위한 치트시트를 붙였다."
 ---
 
-Ubuntu 24.04 + PostgreSQL 16 기준. 다른 버전은 경로의 `16`을 바꾼다.
+Ubuntu 24.04 + PostgreSQL 18 기준. 다른 버전은 경로의 `18`을 바꾼다.
+
+Ubuntu 24.04의 apt 기본 저장소가 주는 것은 16이다. 17·18은 PGDG 저장소에서 받는다(1.2절).
 
 ## 1. 설치
 
@@ -39,7 +41,7 @@ sudo apt install postgresql-17          # 원하는 메이저 버전
 ```bash
 pg_lsclusters
 psql --version
-sudo systemctl status postgresql@16-main
+sudo systemctl status postgresql@18-main
 sudo -u postgres psql -c "SELECT version();"
 ```
 
@@ -48,7 +50,7 @@ sudo -u postgres psql -c "SELECT version();"
 ### 2.1 systemd
 
 ```bash
-sudo systemctl start|stop|restart|reload|status postgresql@16-main
+sudo systemctl start|stop|restart|reload|status postgresql@18-main
 sudo systemctl enable postgresql        # 부팅 시 모든 클러스터 시작
 sudo systemctl status postgresql        # 전체 클러스터 상위 유닛
 ```
@@ -59,25 +61,25 @@ sudo systemctl status postgresql        # 전체 클러스터 상위 유닛
 
 ```bash
 pg_lsclusters                              # 클러스터 목록, 포트, 상태
-sudo pg_ctlcluster 16 main start|stop|restart|reload|status
-sudo pg_createcluster 16 second -p 5433    # 새 클러스터 (포트 지정)
-sudo pg_createcluster --locale ko_KR.UTF-8 16 main
-sudo pg_createcluster 16 main -- --locale-provider=icu --icu-locale=ko-KR   # initdb 옵션 전달
-sudo pg_dropcluster --stop 16 second       # 클러스터 삭제 (데이터 소멸)
-sudo pg_upgradecluster 16 main             # 다음 메이저 버전으로 업그레이드
-sudo pg_renamecluster 16 main primary
+sudo pg_ctlcluster 18 main start|stop|restart|reload|status
+sudo pg_createcluster 18 second -p 5433    # 새 클러스터 (포트 지정)
+sudo pg_createcluster --locale ko_KR.UTF-8 18 main
+sudo pg_createcluster 18 main -- --locale-provider=icu --icu-locale=ko-KR   # initdb 옵션 전달
+sudo pg_dropcluster --stop 18 second       # 클러스터 삭제 (데이터 소멸)
+sudo pg_upgradecluster 18 main             # 다음 메이저 버전으로 업그레이드
+sudo pg_renamecluster 18 main primary
 ```
 
 ### 2.3 주요 경로
 
 | 용도 | 경로 |
 |---|---|
-| 설정 | `/etc/postgresql/16/main/postgresql.conf` |
-| 접속 인증 | `/etc/postgresql/16/main/pg_hba.conf` |
-| 사용자 매핑 | `/etc/postgresql/16/main/pg_ident.conf` |
-| 데이터 | `/var/lib/postgresql/16/main/` |
-| 로그 | `/var/log/postgresql/postgresql-16-main.log` |
-| 바이너리 | `/usr/lib/postgresql/16/bin/` |
+| 설정 | `/etc/postgresql/18/main/postgresql.conf` |
+| 접속 인증 | `/etc/postgresql/18/main/pg_hba.conf` |
+| 사용자 매핑 | `/etc/postgresql/18/main/pg_ident.conf` |
+| 데이터 | `/var/lib/postgresql/18/main/` |
+| 로그 | `/var/log/postgresql/postgresql-18-main.log` |
+| 바이너리 | `/usr/lib/postgresql/18/bin/` |
 | 유닉스 소켓 | `/var/run/postgresql/.s.PGSQL.5432` |
 | 클러스터 생성 기본값 | `/etc/postgresql-common/createcluster.conf` |
 
@@ -348,8 +350,8 @@ SET work_mem = '64MB';                   -- 현재 세션만
 ```
 
 ```bash
-sudo systemctl reload postgresql@16-main    # sighup 항목
-sudo systemctl restart postgresql@16-main   # postmaster 항목
+sudo systemctl reload postgresql@18-main    # sighup 항목
+sudo systemctl restart postgresql@18-main   # postmaster 항목
 ```
 
 ### 6.3 pg_hba.conf
@@ -379,7 +381,7 @@ hostssl all             all             0.0.0.0/0               scram-sha-256
 
 1. `postgresql.conf`: `listen_addresses = '*'`
 2. `pg_hba.conf`: 허용할 대역과 `scram-sha-256` 규칙 추가
-3. `sudo systemctl restart postgresql@16-main`
+3. `sudo systemctl restart postgresql@18-main`
 4. 방화벽: `sudo ufw allow from 192.168.0.0/24 to any port 5432`
 5. 확인: `ss -tlnp | grep 5432`, 원격에서 `psql -h server -U app -d appdb`
 
@@ -593,8 +595,8 @@ SELECT slot_name, active, wal_status FROM pg_replication_slots;
 ### 10.7 로그
 
 ```bash
-sudo tail -f /var/log/postgresql/postgresql-16-main.log
-sudo journalctl -u postgresql@16-main -n 100
+sudo tail -f /var/log/postgresql/postgresql-18-main.log
+sudo journalctl -u postgresql@18-main -n 100
 ```
 
 ## 11. 확장 관리
@@ -612,7 +614,7 @@ DROP EXTENSION pg_trgm;
 apt로 추가 설치하는 확장 예시:
 
 ```bash
-sudo apt install postgresql-16-postgis-3 postgresql-16-pgvector postgresql-16-cron
+sudo apt install postgresql-18-postgis-3 postgresql-18-pgvector postgresql-18-cron
 ```
 
 ## 12. Docker로 실행할 때
@@ -622,7 +624,7 @@ sudo apt install postgresql-16-postgis-3 postgresql-16-pgvector postgresql-16-cr
 ```yaml
 services:
   db:
-    image: postgres:16
+    image: postgres:18
     environment:
       POSTGRES_USER: app
       POSTGRES_PASSWORD: change_me

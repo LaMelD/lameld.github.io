@@ -1,7 +1,7 @@
 ---
 title: "PostgreSQL 고가용성 구성: Galera·MaxScale·ProxySQL에 대응하는 요소"
 date: 2026-09-17
-weight: 3
+weight: 4
 tags: [postgresql, database, high-availability, patroni]
 description: "Galera·MaxScale·ProxySQL에 대응하는 PostgreSQL HA 구성 요소를 정리한다. 스트리밍 복제, Patroni·repmgr, Pgpool-II·HAProxy·PgBouncer, 멀티마스터 확장, 쿠버네티스 오퍼레이터와 대표 아키텍처를 다룬다."
 ---

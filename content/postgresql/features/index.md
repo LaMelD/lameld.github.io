@@ -1,7 +1,7 @@
 ---
 title: "PostgreSQL 특징과 기능: 아키텍처, 타입, 인덱스, MariaDB와 비교"
 date: 2026-09-17
-weight: 1
+weight: 2
 tags: [postgresql, database, mariadb]
 description: "PostgreSQL의 프로세스·메모리·저장 구조, MVCC와 VACUUM, 데이터 타입, 인덱스, SQL 기능, 확장, 복제, 버전별 변화를 정리하고 MariaDB와 객체 계층·문법을 비교한다."
 ---
@@ -215,7 +215,7 @@ Debian 계열의 `pg_createcluster`, `pg_lsclusters` 도구는 다중 클러스�
 
 ## 10. MariaDB와 비교
 
-| 항목 | MariaDB 10.11 | PostgreSQL 16 |
+| 항목 | MariaDB 10.11 | PostgreSQL 18 |
 |---|---|---|
 | 객체 계층 | 인스턴스 > database(=schema) > 테이블 (3단계) | 클러스터 > database > schema > 테이블 (4단계) |
 | database와 schema | 같은 것의 두 이름. `CREATE DATABASE` = `CREATE SCHEMA` | 다른 계층. database 안에 schema가 있음 |
@@ -239,8 +239,8 @@ Debian 계열의 `pg_createcluster`, `pg_lsclusters` 도구는 다중 클러스�
 | 로컬 인증 | `unix_socket` | `peer` |
 | 클라이언트 | `mariadb`, `mysql` | `psql` |
 | 덤프 | `mariadb-dump`, `mysqldump` | `pg_dump`, `pg_dumpall` |
-| 설정 파일 | `/etc/mysql/mariadb.conf.d/*.cnf` | `/etc/postgresql/16/main/postgresql.conf`, `pg_hba.conf` |
-| 데이터 경로 | `/var/lib/mysql` | `/var/lib/postgresql/16/main` |
+| 설정 파일 | `/etc/mysql/mariadb.conf.d/*.cnf` | `/etc/postgresql/18/main/postgresql.conf`, `pg_hba.conf` |
+| 데이터 경로 | `/var/lib/mysql` | `/var/lib/postgresql/18/main` |
 | 라이선스 | GPLv2 | PostgreSQL License |
 
 ### 10.1 계층 대응
