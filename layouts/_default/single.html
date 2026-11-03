@@ -32,6 +32,52 @@
       {{ .TableOfContents }}
     </div>
   </aside>
+  <script>
+    // 읽는 위치 표시 + 목차가 화면을 넘치면 지금 읽는 장만 펼친다. 1024px 미만은 목차를 숨기므로 건너뛴다.
+    // ponytail: 로드 시점의 화면 크기로만 판단한다. 창 크기를 바꾼 뒤 맞추려면 resize에서 다시 계산한다.
+    (function () {
+      var nav = document.getElementById('TableOfContents');
+      if (!nav || !matchMedia('(min-width: 1024px)').matches) return;
+      var links = [].slice.call(nav.querySelectorAll('a[href^="#"]'));
+      var heads = links.map(function (a) { return document.getElementById(decodeURIComponent(a.hash.slice(1))); });
+      var chapters = [].slice.call(nav.querySelectorAll(':scope > ul > li'));
+      var collapse = nav.scrollHeight > nav.clientHeight;
+      var reduce = matchMedia('(prefers-reduced-motion: reduce)');
+      if (collapse) {
+        nav.parentNode.classList.add('toc--chapters');
+        chapters.forEach(function (li) {
+          var n = li.querySelectorAll(':scope > ul > li').length;
+          if (n) li.firstElementChild.dataset.count = n;
+        });
+        [].forEach.call(nav.querySelectorAll('ul ul a'), function (a) { a.title = a.textContent.trim(); });
+      }
+      var current = -1, ticking = false;
+      function update() {
+        ticking = false;
+        var line = innerHeight * 0.25, i = 0;
+        var atEnd = scrollY + innerHeight >= document.documentElement.scrollHeight - 2;
+        for (var k = 0; k < heads.length; k++) {
+          if (!heads[k]) continue;
+          if (atEnd || heads[k].getBoundingClientRect().top <= line) i = k; else break;
+        }
+        if (i === current) return;
+        if (current >= 0) links[current].removeAttribute('aria-current');
+        current = i;
+        var a = links[i];
+        a.setAttribute('aria-current', 'location');
+        if (collapse) {
+          var open = a.closest('#TableOfContents > ul > li');
+          chapters.forEach(function (li) { li.classList.toggle('is-open', li === open); });
+        }
+        var n = nav.getBoundingClientRect(), r = a.getBoundingClientRect();
+        if (r.top < n.top + n.height * 0.15 || r.bottom > n.bottom - n.height * 0.15) {
+          nav.scrollBy({ top: r.top - n.top - n.height * 0.3, behavior: reduce.matches ? 'auto' : 'smooth' });
+        }
+      }
+      addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+      update();
+    })();
+  </script>
   {{ end }}
 </article>
 {{ end }}
