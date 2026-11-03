@@ -240,7 +240,8 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 @media (min-width: 1024px) {
   .post--toc { grid-template-columns: minmax(0, var(--measure)) 14rem; justify-content: space-between; }
   .post__aside { display: block; }
-  .toc { position: sticky; top: var(--space-8); }
+  /* 목차가 화면보다 길면 아래 항목이 화면 밖에 남는다. 화면 높이로 자르고 목차만 스크롤한다. */
+  .toc { position: sticky; top: var(--space-8); max-height: calc(100vh - 2 * var(--space-8)); overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; }
 }
 .toc nav { margin-top: var(--space-3); border-left: 1px solid var(--border); }
 .toc ul { padding-left: var(--space-4); }
