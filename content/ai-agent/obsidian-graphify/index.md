@@ -4,6 +4,7 @@ date: 2026-09-14
 weight: 1
 tags: [claude-code, obsidian, graphify, codegraph]
 description: "팀 작업 이력 공유와 Claude Code 세션 비용 절감에 Obsidian과 graphify가 필요한지 검토했다. Obsidian 앱은 도입 안 함, graphify와 codegraph는 보류, docs/ 폴더와 CLAUDE.md 세 줄은 지금 시행."
+aliases: ["/claude-code/obsidian-graphify/"]
 ---
 
 <style>

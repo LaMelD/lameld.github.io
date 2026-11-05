@@ -4,6 +4,7 @@ date: 2026-09-17
 weight: 4
 tags: [claude-code, mcp]
 description: "claude mcp add, .mcp.json 직접 작성, --mcp-config와 shell alias까지 MCP 서버를 등록하는 방법과 스코프별 저장 위치, 우선순위, 확인 커맨드를 정리했다."
+aliases: ["/claude-code/mcp-manual-setup/"]
 ---
 
 > **한 줄 요약** — 나만 쓰면 `claude mcp add -s user`, 팀과 공유하면 `.mcp.json` 직접 작성 후 커밋. `~/.claude.json`을 건드리기 싫다면 `~/mcp.json` + shell alias(4번).

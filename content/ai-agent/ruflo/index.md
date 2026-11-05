@@ -4,6 +4,7 @@ date: 2026-10-02
 weight: 7
 tags: [claude-code, ruflo, claude-flow, multi-agent, mcp, security]
 description: "Claude Flow에서 이름을 바꾼 Ruflo가 무엇이고 어떻게 동작하며 어떻게 설치·사용하는지, 그리고 공급망 사고와 독립 감사가 드러낸 위험과 한계까지 2026년 10월 기준으로 정리했다."
+aliases: ["/claude-code/ruflo/"]
 ---
 
 조사 기준일 2026-10-02. 저장소 [github.com/ruvnet/ruflo](https://github.com/ruvnet/ruflo), npm `ruflo` 3.50.0.

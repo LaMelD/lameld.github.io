@@ -4,6 +4,7 @@ date: 2026-10-16
 weight: 9
 tags: [claude-code, drawio, mcp, diagram]
 description: "draw.io를 AI 에이전트에 붙이는 MCP 서버를 조사했다. JGraph 공식 jgraph/drawio-mcp와 커뮤니티 lgazo/drawio-mcp-server를 중심으로, 각 저장소의 README와 npm·PyPI·GitHub 메타데이터에 적힌 사실만 정리했다. 실측은 하지 않았다."
+aliases: ["/claude-code/drawio-mcp/"]
 ---
 
 > 이 글은 각 프로젝트의 README, 공식 문서, npm·PyPI 레지스트리, GitHub API에서 확인한 내용만 적은 **조사 글**입니다. 직접 설치하거나 실행하지 않았습니다. 어느 쪽이 더 낫다는 판단이나 사용 장면 추정은 넣지 않았습니다. 버전, 날짜, 스타 수는 2026-10-16에 확인한 값입니다.

@@ -4,6 +4,7 @@ date: 2026-09-17
 weight: 2
 tags: [claude-code, codex, antigravity, archify, diagram]
 description: "tt-a1i/archify는 코드베이스나 시스템 설명을 검증된 단일 HTML 다이어그램으로 바꾸는 에이전트 스킬이다. 무엇을 만들고 어떻게 검증하는지, Claude Code·Codex·agy에 설치하고 지우는 법을 실제로 돌려 보고 정리했다."
+aliases: ["/claude-code/archify/"]
 ---
 
 저장소: [github.com/tt-a1i/archify](https://github.com/tt-a1i/archify) · [프로젝트 페이지](https://tt-a1i.github.io/archify/) · MIT · 안정판 v2.16.0(2026-08-30), main은 2.17.0-dev.1

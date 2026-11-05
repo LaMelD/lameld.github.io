@@ -4,13 +4,14 @@ date: 2026-09-17
 weight: 6
 tags: [claude-code, skills]
 description: "마켓플레이스 플러그인이 아니라 직접 작성한 SKILL.md 지침 패키지. 커스텀 스킬의 개념과 디렉토리 구조, 보유한 스킬 6종의 역할과 발동 문구, 스킬 간 연결 관계를 정리했다."
+aliases: ["/claude-code/custom-skills/"]
 ---
 
 > **Custom Skill** 은 마켓플레이스에서 설치하는 플러그인이 아니라 **내가 직접 작성한 `SKILL.md` 지침 패키지**다. 작업 내용이 스킬 설명과 맞으면 Claude가 스스로 로드해 그 절차를 따른다. 이 글은 커스텀 스킬의 개념과 디렉토리 구조, 현재 보유한 스킬 6종(`codex-handoff` · `antigravity-handoff` · `linear-register` · `linear-execute` · `work-history` · `ksadmin-works-register`)과 스킬 간 연결 관계를 정리한다.
 
 ## Custom Skill 이란?
 
-[Plugins 글](/claude-code/plugins/)에서 본 "스킬(Skills)"을 **직접 만들어 쓰는 것**이다. 반복되는 작업 절차(Linear 등록 규칙, 보고 시스템 입력 규칙, 실행자 핸드오프 루프 등)를 마크다운 한 벌로 고정해 두면, 매 세션 설명을 반복하지 않아도 Claude가 같은 규율로 움직인다.
+[Plugins 글](/ai-agent/plugins/)에서 본 "스킬(Skills)"을 **직접 만들어 쓰는 것**이다. 반복되는 작업 절차(Linear 등록 규칙, 보고 시스템 입력 규칙, 실행자 핸드오프 루프 등)를 마크다운 한 벌로 고정해 두면, 매 세션 설명을 반복하지 않아도 Claude가 같은 규율로 움직인다.
 
 - **위치**: 전역은 `~/.claude/skills/스킬명/SKILL.md`, 프로젝트 한정은 `프로젝트/.claude/skills/`. 스킬 저장소(`~/brainstorming/skills/`)를 정본으로 두고 전역 디렉토리에는 심볼릭 링크로 건다
 - **트리거**: frontmatter의 `description`이 자동 호출 판단 기준이다. 사용자가 실제로 쓸 법한 문구("Linear에 등록", "codex로 실행해")를 description에 그대로 넣어야 정확히 발동한다. `/스킬명` 으로 직접 호출도 가능
@@ -147,4 +148,4 @@ flowchart LR
 - 스킬 저장소: `~/brainstorming/skills/` (각 스킬 디렉토리에 `SKILL.md` + 사용가이드 md/html)
 - [Claude Code 공식 문서 — Skills](https://code.claude.com/docs/en/skills)
 - [Anthropic Agent Skills 저장소](https://github.com/anthropics/skills)
-- [Claude Code 플러그인](/claude-code/plugins/) — 플러그인과 스킬의 관계
+- [Claude Code 플러그인](/ai-agent/plugins/) — 플러그인과 스킬의 관계

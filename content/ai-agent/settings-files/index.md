@@ -4,6 +4,7 @@ date: 2026-09-17
 weight: 3
 tags: [claude-code, settings]
 description: "settings.json 계열은 사람이 편집하는 설정 파일이고 .claude.json은 Claude Code가 관리하는 상태 파일이다. 네 파일의 스코프와 우선순위, 무엇을 어디에 넣을지를 정리했다."
+aliases: ["/claude-code/settings-files/"]
 ---
 
 > **한 줄 요약** — `settings.json` 계열은 **사람이 편집하는 설정 파일**, `.claude.json`은 **Claude Code가 관리하는 상태·캐시 파일**입니다. 서로 역할이 완전히 다릅니다.

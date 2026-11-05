@@ -4,6 +4,7 @@ date: 2026-10-16
 weight: 8
 tags: [claude-code, artcraft, mcp, photocraft]
 description: "Photoshop·Illustrator·Premiere·AutoCAD급 데스크톱 앱 13종을 MCP로 묶은 artcraft를 Claude Code에 붙여 세피아 사진 컬러화를 시켜 봤다. 결과는 실망스러웠고, 그 이유가 이 도구의 쓰임새를 정확히 알려 줬다. 어디에 쓰고 어디에 쓰지 말아야 하는지 정리했다."
+aliases: ["/claude-code/artcraft/"]
 ---
 
 사이트: [getartcraft.com](https://getartcraft.com/) · 저장소: [github.com/storytold](https://github.com/storytold) · 오픈소스, 구독 없음 · macOS, Windows, 웹
