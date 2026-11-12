@@ -3,7 +3,7 @@ title: "Claude로 원격 서버 작업하기: SSH 직접 실행, 소켓 재사�
 date: 2026-11-12
 weight: 11
 tags: [claude-code, ssh, remote-control, server]
-description: "Claude Code로 서버를 점검하고 조작하는 방법을 정리했다. ~/.ssh/config와 키로 ssh 명령을 보내는 방법, 열어 둔 SSH 연결(ControlMaster)과 역방향 터널을 쓰는 방법, 서버에서 Claude를 직접 돌리는 방법, Desktop SSH 세션, MCP·Ansible·SSM까지 비교하고 실습으로 확인한 설정과 보안 제한을 붙였다."
+description: "Claude Code로 서버를 점검하고 조작하는 방법을 정리했다. ~/.ssh/config와 키로 ssh 명령을 보내는 방법, 열어 둔 SSH 연결(ControlMaster)과 역방향 터널을 쓰는 방법, 서버에서 Claude를 직접 돌리는 방법, Desktop SSH 세션, MCP·Ansible·SSM까지 비교했다. 상황별로 어떤 방법을 고를지와 추천 순서, 실습으로 확인한 설정과 보안 제한도 붙였다."
 ---
 
 > 2026-11-12 기준으로 Claude Code 2.1.322와 [공식 문서](https://code.claude.com/docs/en/overview)를 바탕으로 정리했다. SSH 설정은 OpenSSH 10.3 컨테이너 두 대로 직접 실습해 확인했다. 실습에서 나온 오류 메시지도 그대로 옮겼다.
@@ -24,6 +24,16 @@ Claude에게 서버 작업을 맡기는 방법은 크게 두 갈래다. **Claude
 | 7. Ansible | 내 컴퓨터 | 나 → 서버 | 여러 대에 같은 변경을 반복할 때 |
 | 8. SSM, Self-hosted environments | 서버 또는 내 망 안 | 서버 → 밖(아웃바운드만) | SSH 포트를 열 수 없을 때 |
 
+## 추천: 대부분은 방법 1부터 시작한다
+
+처음 Claude에게 서버를 맡긴다면 **방법 1을 기본으로 두고, 방법 1로 안 되는 상황이 생길 때 다른 방법을 더하는 것**을 권한다.
+
+- **준비가 가장 적다.** SSH 키 하나면 되고 서버에 아무것도 설치하지 않는다.
+- **설정이 한 곳에 모인다.** Claude가 내 컴퓨터에서 돌기 때문에 로그인 정보, `CLAUDE.md`, 권한 규칙이 모두 내 컴퓨터에 있다. 한 세션에서 여러 서버를 오갈 수도 있다.
+- **서버가 마지막 경계가 된다.** `authorized_keys`의 `command=` 제한과 `sudoers`는 Claude Code 권한 설정을 잘못해도 서버에서 그대로 막는다. Claude를 서버에서 직접 돌리는 방법 3~5에서는 `sudoers`는 남지만, 명령 단위로 묶는 `command=` 제한은 쓸 수 없다.
+
+OTP 서버면 2-a, 바깥에서 들어갈 수 없는 서버면 VPN이나 2-b를 더한다. 개발 서버에서 파일을 많이 고치거나 오래 걸리는 작업이면 방법 4(터미널만 쓰면 3)로 옮기고, 여러 대에 같은 변경을 하면 방법 7을 쓴다. 자세한 판단 기준은 [상황별로 고르기](#상황별로-고르기)에 정리했다.
+
 ## 먼저 알아 둘 점: Claude는 프롬프트에 답하지 못한다
 
 Claude Code의 Bash 도구는 명령마다 새 프로세스로 실행하고, 앞 명령에서 `export`한 환경 변수는 다음 명령에 남지 않는다([Tools reference](https://code.claude.com/docs/en/tools-reference)). 명령 중간에 입력을 기다리는 화면도 Claude가 대신 칠 수 없다. 그래서 SSH가 사람에게 묻는 모든 순간이 걸림돌이 된다.
@@ -40,6 +50,9 @@ Claude Code의 Bash 도구는 명령마다 새 프로세스로 실행하고, 앞
 ## 방법 1: `~/.ssh/config`와 키로 ssh 명령 보내기
 
 처음 떠올린 방법이고, 가장 단순하다. Claude는 `ssh web1 'df -h'`처럼 명령 한 줄을 보내고 결과를 읽는다.
+
+- **잘 맞는 경우**: 상태 확인, 로그 읽기, 장애 원인 찾기처럼 명령을 보내고 결과를 읽는 작업. 서버에 아무것도 설치하지 않고, 한 세션에서 여러 서버를 오갈 수 있다.
+- **맞지 않는 경우**: 서버 파일을 많이 고치는 작업. Claude의 Read·Edit 도구는 내 컴퓨터 파일에만 쓰이므로 서버 파일은 `ssh`로 `sed`나 `tee`를 보내 고쳐야 하고, 따옴표 실수가 나기 쉽다. 오래 걸리는 작업도 불편하다. Bash 도구가 명령 하나를 기다리는 시간은 기본 설정에서 최대 10분이고([Tools reference](https://code.claude.com/docs/en/tools-reference#timeout-and-output-limits)), 내 컴퓨터가 잠들면 연결도 끊긴다. 그런 작업은 서버에서 `tmux`나 `systemd-run`으로 띄우고 결과만 확인하게 하거나 방법 3·4를 쓴다.
 
 ### 1) Claude 전용 키와 계정을 만든다
 
@@ -172,6 +185,9 @@ Claude Code의 [샌드박스](https://code.claude.com/docs/en/sandboxing)를 켜
 
 OTP나 비밀번호를 물어서 Claude가 직접 로그인할 수 없는 서버에 맞는 방법이다.
 
+- **잘 맞는 경우**: OTP, 비밀번호, 터치가 필요한 하드웨어 키로만 들어갈 수 있는 서버나 bastion. 키 인증 서버에서도 반복 접속을 빠르게 하는 용도로 쓴다.
+- **맞지 않는 경우**: 사람 없이 돌아가야 하는 작업. 사람이 먼저 연결을 열어야 하고, `ControlPersist` 시간이 지나면 다시 열어야 한다.
+
 ```text
 Host bastion-otp
   HostName 203.0.113.20
@@ -207,6 +223,9 @@ ControlPath too long ('/private/tmp/.../sshlab/cm-a5b1cd08cf471726b659991de6cb8c
 ### 2-b. 역방향 터널: 서버가 먼저 연결을 건다
 
 서버가 NAT나 방화벽 뒤에 있어 바깥에서 22번 포트로 들어갈 수 없을 때 쓴다. 서버가 나가는 연결을 걸고, 그 연결 위로 Claude 쪽 포트를 서버의 sshd에 이어 둔다.
+
+- **잘 맞는 경우**: 집 서버, 사무실 NAS, 고객사 장비처럼 바깥에서 들어갈 수 없는 서버. 서버 쪽 방화벽에 들어오는 포트를 열지 않아도 된다.
+- **맞지 않는 경우**: VPN을 이미 쓰고 있거나 깔 수 있는 환경. 중계 서버(hub)와 터널 서비스를 따로 관리해야 해서 VPN보다 손이 많이 간다.
 
 ```text
 ① web1 ──(ssh -R 2222:localhost:22)──▶ hub   # hub의 127.0.0.1:2222가 열린다
@@ -266,6 +285,9 @@ Host web1-rev
 
 명령을 SSH로 나르지 않고, Claude Code를 서버에 깔아 그 안에서 돌린다. 따옴표 처리나 접속 반복이 없고, 서버의 파일을 Read·Edit 도구로 직접 다룬다.
 
+- **잘 맞는 경우**: 서버 안에서 몇십 분에서 몇 시간 걸리는 작업(빌드, 테스트, 데이터 처리), 서버 파일을 많이 고치는 작업, 진행 상황을 휴대폰으로 보고 싶을 때.
+- **맞지 않는 경우**: 운영 서버. 계정이 할 수 있는 일은 Claude도 모두 할 수 있고, 명령 단위 제한(`command=`)을 걸 수 없다. 로그인 정보도 서버에 남는다.
+
 ```bash
 ssh web1
 curl -fsSL https://claude.ai/install.sh | bash
@@ -281,6 +303,9 @@ claude
 
 Claude Desktop의 Code 탭은 SSH 연결을 환경으로 저장해 두고, 그 서버에서 세션을 돌린다([Desktop: SSH sessions](https://code.claude.com/docs/en/desktop#ssh-sessions)). 방법 3을 Desktop이 대신 해 주는 셈이다.
 
+- **잘 맞는 경우**: 클라우드 VM이나 사내 개발 서버에서 하는 코드 작업. 설치와 업데이트를 Desktop이 맡고, 터미널 없이 앱에서 세션을 관리한다. 노트북을 덮어도 작업이 이어진다.
+- **맞지 않는 경우**: 운영 서버(방법 3과 같은 이유). 서버 사용자마다 약 1GB가 들고, 연결을 끊은 뒤 얼마나 더 도는지는 로그인 만료 시점에 달려 있다.
+
 - **연결**: 환경 선택기에서 **New environment → SSH**를 열고 **SSH host**에 `user@host`나 `~/.ssh/config`의 `Host` 이름을 넣는다. macOS·Linux에서는 내 컴퓨터의 OpenSSH 클라이언트로 접속하므로 `ProxyJump`, `ProxyCommand`, `IdentityFile`, `CertificateFile` 같은 설정이 그대로 적용된다.
 - **자동 설치**: 처음 접속할 때 Desktop이 서버의 `~/.claude/remote/`에 도우미 프로그램과 Claude Code를 설치한다. 사용자마다 약 1GB가 필요하고 `sudo`는 쓰지 않는다. 서버에는 SFTP 서브시스템이 켜져 있어야 하고, 설치 폴더가 `noexec`로 마운트돼 있으면 안 된다.
 - **실행 권한**: Claude Code와 그것이 띄우는 명령은 SSH로 로그인한 사용자로 돈다. 문서도 그 사용자의 `sudo` 규칙을 사람에게 주는 권한처럼 검토하라고 한다.
@@ -293,9 +318,15 @@ Claude Desktop의 Code 탭은 SSH 연결을 환경으로 저장해 두고, 그 �
 
 VS Code의 Remote-SSH로 서버에 붙은 창에서 Claude Code 확장을 쓰면, 확장은 그 원격 시스템 기준으로 동작한다. 공식 문서도 인증서 설정을 설명하면서, SSH 호스트에 연결된 창이라면 로컬 컴퓨터가 아니라 그 시스템의 `~/.claude/settings.json`을 고치라고 안내한다([VS Code](https://code.claude.com/docs/en/vs-code)). 이미 VS Code로 원격 개발을 한다면 따로 준비할 것이 거의 없다.
 
+- **잘 맞는 경우**: 이미 VS Code Remote-SSH로 그 서버에서 개발하고 있을 때.
+- **맞지 않는 경우**: 운영 서버(방법 3과 같은 이유). VS Code를 쓰지 않는다면 방법 4가 준비할 것이 적다.
+
 ## 방법 6: SSH MCP 서버
 
 SSH 접속을 MCP 도구로 감싼 커뮤니티 서버가 여럿 있다. 그중 [tufantunc/ssh-mcp](https://github.com/tufantunc/ssh-mcp) v2는 명령을 실행하기 전에 분류하고, 역할 × 호스트 그룹으로 허용 여부를 정하고, 파괴적인 명령은 사람의 승인을 받고, 결정을 모두 감사 로그에 남긴다.
+
+- **잘 맞는 경우**: 여러 사람이 같은 서버들에 Claude를 붙이고, 명령마다 승인과 감사 기록을 남겨야 할 때.
+- **맞지 않는 경우**: 혼자 서버 몇 대를 다루는 경우. 방법 1의 서버 쪽 제한으로 충분하고, 공식 도구가 아닌 프로그램에 키를 맡길 이유가 적다.
 
 ```bash
 npm install -g ssh-mcp
@@ -309,6 +340,9 @@ README가 직접 경고하는 두 가지는 지킨다. **root 계정에 연결�
 
 같은 변경을 여러 서버에 반복한다면 Claude에게 명령을 하나씩 보내게 하기보다 플레이북을 쓰게 한다. Ansible은 `~/.ssh/config`를 그대로 쓰므로 방법 1의 준비를 그대로 활용한다.
 
+- **잘 맞는 경우**: 여러 대에 같은 변경을 하거나, 같은 변경을 나중에 다시 해야 할 때. 바뀔 내용을 `--check --diff`로 먼저 본다.
+- **맞지 않는 경우**: 한 번 보고 끝낼 점검이나 장애 분석. 플레이북을 쓰는 품이 더 든다.
+
 ```bash
 ansible-playbook -i inventory.ini site.yml --check --diff   # 무엇이 바뀔지 먼저 본다
 ansible-playbook -i inventory.ini site.yml                  # 검토한 뒤 적용
@@ -318,16 +352,53 @@ ansible-playbook -i inventory.ini site.yml                  # 검토한 뒤 적�
 
 ## 방법 8: SSH 포트를 열지 않는 경로
 
+- **잘 맞는 경우**: AWS에서 22번 포트를 열 수 없을 때(SSM), 조직 정책상 바깥에서 들어오는 연결을 받을 수 없을 때(Self-hosted environments).
+- **맞지 않는 경우**: SSM은 AWS 전용이다. Self-hosted environments는 저장소를 받아 하는 코드 작업용이라 서버 운영에는 맞지 않는다.
+
+자세한 내용은 다음과 같다.
+
 - **AWS Systems Manager**: 인바운드 22번 없이 SSM 에이전트의 아웃바운드 연결로 접속한다. `~/.ssh/config`에 `ProxyCommand sh -c "aws ssm start-session --target %h --document-name AWS-StartSSHSession --parameters 'portNumber=%p'"`를 두면 방법 1, 4를 그대로 쓸 수 있다(Desktop 문서의 예시).
-- **Self-hosted environments**: Team·Enterprise 플랜의 공개 베타다. claude.ai에서 시작한 클라우드 세션을 내 망 안의 runner가 받아 실행한다. runner는 `api.anthropic.com`에 아웃바운드 HTTPS로만 붙고, 문서 표현으로는 "Anthropic never connects into your network"다([Self-hosted environments](https://code.claude.com/docs/en/self-hosted-environments)). 저장소를 받아 작업하는 구조라 서버 운영보다는 내부망 안의 코드 작업에 맞는다.
+- **Self-hosted environments**: Team·Enterprise 플랜의 공개 베타다. claude.ai에서 시작한 클라우드 세션을 내 망 안의 runner가 받아 실행한다. runner는 `api.anthropic.com`에 아웃바운드 HTTPS로만 붙고, 문서 표현으로는 "Anthropic never connects into your network"다([Self-hosted environments](https://code.claude.com/docs/en/self-hosted-environments)).
 
-## 어떻게 고를까
+## 상황별로 고르기
 
-- **서버 한두 대, 내가 지켜보며 점검**: 방법 1. 읽기 전용 키(`restrict,command=`)부터 시작한다.
-- **OTP·비밀번호 서버**: 방법 2-a. 사람이 로그인을 열고, 작업이 끝나면 `ssh -O exit`로 닫는다.
-- **서버가 NAT 뒤**: 방법 2-b, 또는 VPN으로 같은 망에 넣고 방법 1.
-- **서버 안에서 오래 걸리는 작업**: 방법 4(Desktop), 또는 방법 3(tmux + Remote Control).
-- **운영 서버 여러 대 변경**: 방법 7. `--check --diff` 결과를 검토하고 적용한다.
+### 질문 세 개로 좁힌다
+
+1. **바깥에서 SSH로 들어갈 수 있는가?** 못 들어가면 연결 경로부터 만든다. VPN(Tailscale, WireGuard)을 깔 수 있으면 VPN, 아니면 방법 2-b, AWS라면 방법 8의 SSM을 쓴다. 경로가 생기면 다음 질문으로 간다.
+2. **키로 로그인할 수 있는가?** OTP나 비밀번호로만 된다면 방법 2-a로 사람이 연결을 열어 두고, 그 위에서 방법 1처럼 쓴다.
+3. **무엇을 시키는가?**
+   - 점검, 로그 확인, 장애 원인 찾기: 방법 1
+   - 서버 안 코드나 설정 파일을 많이 고치는 개발 작업: Desktop을 쓰면 방법 4, VS Code를 쓰면 방법 5, 터미널만 쓰면 방법 3
+   - 10분 넘게 걸리는 작업: 방법 3(tmux + Remote Control) 또는 방법 4
+   - 여러 대에 같은 변경: 방법 7
+   - 여러 사람이 쓰면서 명령 승인과 감사 기록이 필요한 경우: 방법 6
+
+### 서버 성격으로 정한다
+
+같은 작업이라도 서버가 망가졌을 때 피해가 얼마나 큰지에 따라 고를 방법이 달라진다.
+
+| 서버 | 추천 | 이유 |
+|---|---|---|
+| 개발 서버, 클라우드 VM(다시 만들 수 있음) | 방법 4나 3으로 서버에서 Claude를 돌린다. 가벼운 확인은 방법 1에 `Bash(ssh dev1 *)` 허용 | 서버 파일을 Read·Edit 도구로 바로 다뤄 편하다. 잘못돼도 다시 만들면 된다 |
+| 운영 서버 | 점검은 방법 1의 읽기 전용 키. 변경은 방법 7로 `--check --diff`를 본 뒤 적용하거나, 방법 1에서 명령마다 승인 | 서버 쪽 키 제한이 Claude가 넘을 수 없는 경계가 된다. Claude를 운영 서버에 설치하지 않는다 |
+| 집·사무실 서버, 고객사 장비 | VPN + 방법 1, 안 되면 방법 2-b | 서버에 들어오는 포트를 열지 않는다 |
+| OTP를 거치는 서버 | 방법 2-a | 사람이 로그인하고 Claude는 그 연결만 쓴다 |
+| AWS EC2(22번 닫힘) | 방법 8의 SSM `ProxyCommand` + 방법 1 | 들어오는 포트 없이 방법 1을 그대로 쓴다 |
+
+### 처음 도입하는 순서
+
+1. 읽기 전용 키(`restrict,command=`)로 방법 1을 붙이고 점검만 시킨다. 이 단계에서는 Claude가 실수해도 서버가 바뀌지 않는다.
+2. `~/.ssh/config`의 `Host *`에 ControlMaster를 짧은 `ControlPersist`로 걸어 반복 접속을 줄인다.
+3. 개발 서버는 `Bash(ssh dev1 *)`를 허용하거나 방법 4로 옮겨 자유롭게 쓰게 한다.
+4. 운영 서버를 바꿔야 할 때가 오면 변경용 키와 좁은 `sudoers`를 따로 만든다. 같은 변경이 반복되면 Ansible 플레이북으로 옮긴다.
+
+### 피하는 조합
+
+- **root(또는 `sudo ALL`) 계정에 `Bash(ssh prod *)` 허용**: Claude가 운영 서버에서 무엇이든 묻지 않고 실행한다.
+- **운영 서버에서 방법 3·4·5**: 계정 권한이 곧 Claude의 권한이 되고, 로그인 정보도 서버에 남는다.
+- **`nc`·`socat`으로 연 셸 포트**: 인증도 암호화도 없다.
+- **운영 프로필에 ssh-mcp `auto` 승인**: README가 직접 금지한다.
+- **공용 컴퓨터에서 긴 `ControlPersist`**: 같은 사용자로 도는 다른 프로세스가 로그인 없이 그 연결을 쓴다.
 
 ## 보안 체크리스트
 
