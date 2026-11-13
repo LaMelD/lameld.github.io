@@ -2,10 +2,32 @@
 title: "2026-11-13 AI 브리핑"
 date: 2026-11-13T01:00:00+09:00
 tags: [ai-briefing, google, nvidia, anthropic, security]
-description: "Google이 출력 토큰 없이 확률만 내는 Gemini Decision 1을 냈고 NVIDIA CEO Jensen Huang이 사임했으며, 훔친 GitHub 토큰으로 6만여 저장소에 AI 키까지 노리는 CI 비밀값 탈취기가 심겼고, Node.js·PostgreSQL·Chrome 보안 릴리스의 상당 부분을 AI 연구 프로그램이 찾았다."
+description: "Google이 출력 토큰 없이 확률만 내는 Gemini Decision 1을 냈고 NVIDIA CEO Jensen Huang이 사임했으며, 훔친 GitHub 토큰으로 6만여 저장소에 AI 키까지 노리는 CI 비밀값 탈취기가 심겼고, Node.js·PostgreSQL·Chrome 보안 릴리스의 상당 부분을 AI 연구 프로그램이 찾았다. 게시 뒤 나온 Gemini 4 Hydrogen을 맨 앞에 추가했다."
 ---
 
 > 조사 범위: 2026-11-12 01:00 ~ 2026-11-13 01:00 KST(2026-11-11 16:00 ~ 11-12 16:00 UTC, 미국 수요일 08:00 ~ 목요일 08:00 PST). 직전 브리핑(11-12 판)의 조사 창 종료 시각부터 24시간이다. 시각은 기사 `article:published_time`·JSON-LD `datePublished`, RSS `pubDate`, SEC EDGAR `acceptanceDateTime`, GitHub `published_at`·`merged_at`, npm·PyPI 게시 시각, 저장소·전역 GHSA `published_at`, 상태 페이지 API, Wayback 사본 시각, OpenRouter 등록 시각, Hugging Face API, HN Algolia `created_at`으로 검증했다. HN 점수는 조회 시점(11-12 16시대 UTC) 값이다.
+
+## 게시 후 추가: Google Gemini 4 Hydrogen (공식, 11-12 18:00 UTC 무렵)
+
+> 이 판을 게시한 11-13 01:31 KST보다 늦은 11-12 18:00 UTC(11-13 03:00 KST) 무렵에 나왔다. 조사 창(~11-12 16:00 UTC) 밖이라 아래 본문에는 없고, 다음 판의 조사 창(11-12 16:00 ~ 11-13 16:00 UTC)에 들어간다. 본문의 "미국 3사에는 새 범용 언어 모델이 없다"는 조사 창 기준이다. 시각은 HN 첫 제출(18:01:48 UTC)과 Google 공식 X 게시물 ID로 확인했고, 블로그 메타에는 날짜만 있다.
+
+Gemini 4 시리즈의 빠른 실행용 모델이다. Gemini 3.8 Flash의 후속이고, 모델 ID `gemini-4-hydrogen`으로 바로 정식(GA) 출시됐다. 원문: "While our frontier models, Gemini 4 Carbon and Gemini 4 Argon, excel at deep, long-horizon reasoning on your hardest problems, Hydrogen is built for rapid execution across diverse agentic workflows."
+
+- **가격:** 1M 컨텍스트 전 구간 같은 값이다. 입력 100만 토큰당 $1.50, 출력(생각 토큰 포함) $7.50이다. 암시적 캐시가 적중한 입력은 $0.075다. Gemini API 무료 등급에도 들어갔다.
+- **사양:** 입력·생각·출력이 1,048,576토큰 창 하나를 같이 쓴다. 요청 하나의 기본 출력 상한은 65,536토큰이고, background 실행(long decode)으로 최대 1M 토큰까지 낸다. 입력은 텍스트·이미지·영상·오디오·PDF, 출력은 텍스트다.
+- **생각 수준:** `low`, `medium`, `high`(기본)에 `xhigh`가 새로 생겼다.
+- **성능(Google 발표):** Artificial Analysis Intelligence Index에서 기본 `high`가 51점으로 Argon(50점)을 넘었고, `xhigh`는 54점이다. 같은 지수에서 Carbon(High)은 60점, 1위 Fable 5.2(max)는 65점이다(11-12 판). 3.8 Flash와 비교하면 Terminal-Bench 4.1 57% 대 18.2%, `high` 기준 작업 완료 2.5배 빠름, 지어낸 주장 5배 이상 감소라고 했다.
+- **제공 범위:** Gemini 앱, Google 검색(전 세계), AI Studio·Gemini API 전 등급, Gemini for business에 들어갔다. Antigravity에서는 Google AI Pro·Ultra 유료 구독자만 쓴다. Antigravity에는 한 세션 안에서 Carbon과 Hydrogen을 바꿔 쓰는 Orchestrator가 함께 나왔다. Google 측정으로 Terminal-Bench 4.0에서 Carbon에 가까운 성공률을 내면서 할당량은 평균 24% 덜 쓰고 19% 빨리 끝냈다. Gemini Managed Agents의 Antigravity 에이전트 기본 모델도 Hydrogen으로 바뀌었다.
+- **함정(3.8 Flash에서 옮길 때):**
+  - 명시적 컨텍스트 캐시(`cachedContents`, `caches.create`)를 지원하지 않는다. 요청의 `cached_content`를 빼야 한다.
+  - `temperature`, `top_p`, `top_k`는 보내도 무시된다.
+  - `thinking_level` 기본값이 `medium`에서 `high`로 바뀌었고, `minimal`은 오류를 낸다. 설정을 그대로 두면 생각 토큰이 늘어 비용이 오를 수 있다.
+  - 도구를 선언하지 않고 시스템 지시로 JSON 도구 호출을 흉내 내게 하면 `MALFORMED_FUNCTION_CALL`이 날 수 있다.
+  - 3.8 Flash는 12-31까지 $0.75/$3.75이고 2027-01-01부터 Hydrogen과 같은 $1.50/$7.50이 된다. 지금 옮기면 연말까지는 단가가 두 배다.
+
+중요한 이유: Google의 Flash급 모델이 Gemini 4 세대로 넘어오면서, 무료 등급과 검색·Gemini 앱 같은 소비자 제품까지 한 번에 바뀌었다. 이번 주 Carbon(11-10), Decision 1(11-11)에 이어 사흘 연속 모델 발표다. Carbon이 계획하고 Hydrogen이 실행하는 조합을 Google이 직접 제품(Orchestrator)으로 내놓았다는 점도 눈여겨볼 만하다.
+
+[Google 블로그](https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/) · [개발자 글](https://blog.google/innovation-and-ai/technology/developers-tools/build-with-gemini-4-hydrogen/) · [What's new·마이그레이션](https://aistudio.google.com/docs/whats-new-gemini-4-hydrogen) · [모델 페이지](https://ai.google.dev/gemini-api/docs/models/gemini-4-hydrogen) · [변경 로그](https://aistudio.google.com/docs/changelog) · [모델 카드](https://deepmind.google/models/model-cards/gemini-4-hydrogen/) · [Antigravity Orchestrator](https://antigravity.google/blog/gemini-4-hydrogen-in-google-antigravity/) · [HN](https://news.ycombinator.com/item?id=50471431)
 
 ## 오늘의 핵심 요약
 
