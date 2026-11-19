@@ -1,8 +1,9 @@
 ---
 title: "A2UI 1.0: 에이전트가 텍스트 대신 화면으로 답하는 Google 프로토콜과 MCP Apps"
 date: 2026-11-19T13:40:00+09:00
-weight: 30
-tags: [reading, a2ui, generative-ui, mcp, mcp-apps, google]
+weight: 12
+tags: [a2ui, generative-ui, mcp, mcp-apps, google]
+aliases: ["/reading/a2ui-1-0-mcp-apps/"]
 description: "Google이 생성형 UI 프로토콜 A2UI의 첫 안정판 1.0을 냈다. 양방향 함수 호출, 카탈로그 혼용, @ 예약 키가 들어왔고 0.9 카탈로그는 그대로 쓸 수 없다. PyTorchKR 정리 글을 Google 발표·명세·진화 가이드·패키지 레지스트리와 대조하고, MCP Apps와 결합하는 세 가지 방식과 아직 남은 한계를 정리했다."
 ---
 
