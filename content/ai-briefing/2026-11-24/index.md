@@ -350,7 +350,7 @@ arXiv 공지는 창 안이지만 제출일은 11-18~20이다. 수치는 초록�
   - 재현하지 않은 것: 모든 증명 검증 결과와 벤치마크, 모든 취약점 주장. 도구와 패키지는 하나도 설치하거나 실행하지 않았다. OpenRouter 엔드포인트 수와 저장소 권고 개수, Unsloth 파일 해시는 공개 API로 직접 셌다.
 - **놓쳤을 수 있는 범위:**
   - HN: 창 안 80점 이상 스토리 27개와 20점 초과 스토리 51개의 제목을 모두 봤다. 그 아래는 키워드로 걸렀다.
-  - 전역 GHSA는 reviewed 9건, unreviewed 370건, malware 117건을 창 범위로 받아 셌고, unreviewed는 AI 키워드로만 걸렀다. 저장소 권고는 AI·도구 저장소 139곳을 봤다. 도구 릴리스는 저장소당 최근 15개만 봤다.
+  - 전역 GHSA는 reviewed 9건, unreviewed 370건, malware 117건을 창 범위로 받아 셌고, unreviewed는 AI 키워드로만 걸렀다. 저장소 권고는 AI·도구 저장소 약 130곳을 봤다. 도구 릴리스는 저장소당 최근 15개만 봤다.
   - HF 조직 스캔은 조직당 15개만 봤고, 401 추적 목록은 저장소별로 조회했다. LMArena, Mistral 변경 로그, AI Studio·Antigravity 변경 로그, Microsoft EU Copilot 문서, FBI `ic3.gov` PDF, patchtheplanet.org는 확인하지 못했거나 얕게 봤다.
   - 한국 랩은 HF 조직 스캔과 기사 제목 검색만 했다. Vertex AI 릴리스 노트(캐시 동결)와 Moonshot·Volcengine 변경 로그(월 단위)는 일 단위로 판정하지 못했다.
   - 창이 끝날 때 열려 있던 것: lake comparator v4.36.0 실행과 paranoid 커널 재검증, GLM-5.4 API·가중치, llama.cpp #32778·#32710·#32836·#32910과 b12651 이후 빌드, Claude Code #110979·#110642·#111167·#111218·#111068, MCP 레지스트리 649건, LiteLLM 안정판 키 전송 수정, Kimi Code Plan 모드 우회, OpenSSL 4.0.4·4.1.1, Ubuntu Ruby·Ghostscript 패치, AutoGPT 0.12.0 보안 권고, Microsoft 저장소 복구. 다음 판에서 다룬다.
